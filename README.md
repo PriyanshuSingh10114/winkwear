@@ -135,9 +135,9 @@ If you found this project useful or inspiring:
 
 For queries, suggestions, or collaborations:
 
-Email: priyanshu@example.com
+Email: priyanshsingh22340@gmail.com
 
-LinkedIn: linkedin.com/in/priyanshu
+LinkedIn: https://www.linkedin.com/in/priyanshu-singh-361b16289/
 
 
 ---
