@@ -28,11 +28,9 @@
 
 ---
 
-## 📸 UI Screenshots
+## 📸Demonstration Video and Figma Design
 
-Example placeholders:
-
-./client/src/assets/homepage.png ./client/src/assets/cart.png ./client/src/assets/payment.png
+Demonstration video : https://drive.google.com/file/d/1i1T2zQjZMXJftveUbEtCBPkoCa7Bleji/view?usp=sharing
 
 ---
 
