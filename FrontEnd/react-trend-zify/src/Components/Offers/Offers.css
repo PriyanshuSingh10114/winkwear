@@ -1,0 +1,12 @@
+.offers-scroll {
+  display: flex;
+}
+
+.offers-scroll img {
+  
+  width: 98vw;
+  height: 385px;
+  display: block;
+  margin: 0 auto;
+  border-radius:25px;
+}
