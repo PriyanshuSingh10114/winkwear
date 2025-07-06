@@ -34,11 +34,9 @@
 
 ---
 
-## 📸 UI Screenshots
+## 📸Demonstration Video and Figma Design
 
-Example placeholders:
-
-./client/src/assets/homepage.png ./client/src/assets/cart.png ./client/src/assets/payment.png
+Demonstration video : https://drive.google.com/file/d/1i1T2zQjZMXJftveUbEtCBPkoCa7Bleji/view?usp=sharing
 
 ---
 
@@ -141,9 +139,9 @@ If you found this project useful or inspiring:
 
 For queries, suggestions, or collaborations:
 
-Email: priyanshu@example.com
+Email: priyanshsingh22340@gmail.com
 
-LinkedIn: linkedin.com/in/priyanshu
+LinkedIn: https://www.linkedin.com/in/priyanshu-singh-361b16289/
 
 
 ---
