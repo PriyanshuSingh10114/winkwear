@@ -36,6 +36,29 @@ Example placeholders:
 
 ---
 
+Meet the Minds Behind Wink & Wear
+
+At Wink & Wear, we’re more than just a brand—we’re a passionate team of dreamers, designers, and tech enthusiasts dedicated to redefining online fashion. Here’s a little about the people who brought Wink & Wear to life:
+
+The Tech Brains
+
+Priyanshu Singh – Lead Developer/Visionary  
+Github - @PriyanshuSingh10114
+
+A Coding Enthusiast with a passion for seamless user experiences, Priyanshu didn’t just build Wink & Wear’s e-commerce platform from scratch—he envisioned its very foundation. As our Lead Developer, his technical mastery brought the brand’s identity to life, crafting a website as stylish as our clothes. From smooth browsing to secure payments, every pixel and function reflects his relentless pursuit of innovation, ensuring Wink & Wear isn’t just a platform, but an experience.
+
+Priyansh Singh – Frontend Developer/Logic Analyzer  
+Github - @priyanshsingh11
+
+A visionary tech innovator, Priyansh spearheaded the complete AI-powered transformation of Wink & Wear’s e-commerce platform. Leveraging cutting-edge AI tools and his deep full-stack expertise His meticulous approach eliminated critical bugs, optimized performance, and crafted a dynamic, secure shopping experience as sleek as Wink & Wear’s fashion.
+
+The Style Squad
+
+Bhakti Chopra – Fashion Curator/Figma Designing  
+Github - @bhaktichopra2
+
+With an impeccable eye for detail, Bhakti curates Wink & Wear’s collection—handpicking every piece to strike the perfect balance between trendsetting and timeless styles. Beyond selection, she brings the brand’s vision to life, crafting eye-catching banners, styling outfits, and even shaping design choices to ensure every visual tells a story as captivating as the clothes themselves.
+— The Wink & Wear Team
 ## 💻 Getting Started (Local Setup)
 
 ### 1. Clone the Repository
@@ -93,12 +116,6 @@ Name	GitHub
 Priyanshu Singh	@PriyanshuSingh10114
 Priyansh Singh	@priyanshsingh11
 Bhakti Chopra @bhaktichopra2
-
-
-> Replace the placeholders above with your teammates’ real names and GitHub usernames.
-
-
-
 
 ---
 
