@@ -111,12 +111,6 @@ If you found this project useful or inspiring:
 💡 Build with it
 
 
----
-
-📃 License
-
-This project is licensed under the MIT License.
-
 
 ---
 
