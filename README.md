@@ -34,7 +34,7 @@
 
 ---
 
-## 📸Demonstration Video and Figma Design
+## 📸Demonstration Video 
 
 Demonstration video : https://drive.google.com/file/d/1i1T2zQjZMXJftveUbEtCBPkoCa7Bleji/view?usp=sharing
 
