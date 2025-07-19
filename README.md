@@ -30,7 +30,8 @@
 
 ## 🎨 Figma Design
 
-🖌 [View UI/UX Design on Figma](https://www.figma.com/design/wm01l4GAKZugiQBjmbtIdn/wink-wear?node-id=0-1&t=FRrWoHRK9GVp6nrL-1) 
+### 🖌 This is the design of our projects: 
+[View UI/UX Design on Figma](https://www.figma.com/design/wm01l4GAKZugiQBjmbtIdn/wink-wear?node-id=0-1&t=FRrWoHRK9GVp6nrL-1) 
 
 ---
 
