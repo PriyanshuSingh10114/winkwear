@@ -1,0 +1,30 @@
+.breadcrums {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 50px 170px;
+    color: #cfcfcf; /* Soft white-gray for readability */
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+}
+
+/* Each level in breadcrumb */
+.breadcrums span {
+    color: #a8a8a8; /* Muted grey */
+}
+
+/* Active page (last breadcrumb) */
+.breadcrums .active {
+    color: #d4a045; /* Gold highlight */
+    font-weight: 600;
+}
+
+/* Divider “>” style */
+.breadcrums .divider {
+    color: #555; /* Slightly dimmer divider */
+    font-weight: 700;
+    margin: 0 4px;
+}
+

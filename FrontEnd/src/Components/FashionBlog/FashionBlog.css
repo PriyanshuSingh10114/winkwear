@@ -1,0 +1,163 @@
+.blog-section {
+  padding: 60px 0;
+  text-align: center;
+  color: #f2f2f2;
+  font-weight: 600;
+}
+.blog-section h1 {
+  font-size: 60px;
+  font-weight: 700;
+}
+
+.blog-section hr {
+  width: 200px;
+  height: 4px;
+  background: #d4a045;
+  border: none;
+  margin: 15px auto 40px auto;
+}
+
+/* --- Blog Grid --- */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  padding: 0 60px;
+}
+
+.blog-card {
+  background: #151515;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  transition: 0.35s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  border-color: #d4a045;
+}
+
+.blog-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.blog-content {
+  padding: 20px;
+  text-align: left;
+}
+
+.blog-content h2 {
+  color: #d4a045;
+  font-size: 22px;
+}
+
+.blog-content .meta {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+
+.blog-content p {
+  margin: 10px 0 20px 0;
+  color: #bfbfbf;
+}
+
+/* --- Tags --- */
+.tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.tags span {
+  background: rgba(212,160,69,0.15);
+  color: #d4a045;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(212,160,69,0.4);
+}
+
+.blog-content button {
+  background: #d4a045;
+  color: #0d0d0d;
+  padding: 10px 18px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.blog-content button:hover {
+  background: #eabf69;
+}
+
+/* ---------- POPUP MODAL ---------- */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.modal-content {
+  width: 60%;
+  background: #121212;
+  padding: 30px;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+  animation: fadeIn 0.3s ease;
+  color: #e7e7e7;
+}
+
+.modal-content img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.modal-content h2 {
+  color: #d4a045;
+  margin-bottom: 10px;
+}
+
+.modal-content .meta {
+  opacity: 0.8;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.full-article {
+  white-space: pre-line;
+  line-height: 1.7;
+  color: #ccc;
+}
+
+.close-btn {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
