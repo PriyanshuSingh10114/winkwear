@@ -1,0 +1,354 @@
+/* ============================
+   ROOT: Premium Elegant Matte Dark Theme
+   ============================ */
+:root {
+  --primary: #d4a045;
+  --primary-dark: #b38534;
+  --primary-light: #eabf69;
+
+  --text: #f2f2f2;
+  --text-muted: #b8b8b8;
+  --text-light: #8a8a8a;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --background: #0d0d0d;              /* Matte Black */
+  --card-bg: #151515;                /* Elegant Matte Dark */
+  --card-bg-alt: #1b1b1b;
+
+  --accent: #d4a045;
+
+  --success: #22c55e;
+  --error: #ef4444;
+
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.25);
+  --shadow-md: 0 6px 20px rgba(0,0,0,0.35);
+  --shadow-lg: 0 12px 35px rgba(0,0,0,0.45);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+/* ============================
+   GLOBAL RESET
+   ============================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ============================
+   MAIN LAYOUT
+   ============================ */
+.place-order-container {
+  display: flex;
+  gap: 32px;
+  max-width: 1280px;
+  margin: 60px auto;
+  padding: 0 40px;
+  align-items: flex-start;
+}
+
+.left-side,
+.right-side {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: all 0.35s ease;
+}
+
+.left-side:hover,
+.right-side:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.left-side {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 700px;
+}
+
+.right-side {
+  flex: 0.7;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 80px;
+  align-self: flex-start;
+  min-height: 700px;
+  background: var(--card-bg-alt);
+}
+
+.productdisplay {
+  overflow-x: hidden;
+}
+
+/* ============================
+   HEADINGS
+   ============================ */
+.left-side h2,
+.order-summary-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.left-side h2::after,
+.order-summary-title::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 90px;
+  height: 2.5px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* ============================
+   FORM INPUTS
+   ============================ */
+.input-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.input-box {
+  width: 100%;
+  padding: 18px 20px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #121212;
+  color: var(--text);
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.input-box:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(212, 160, 69, 0.2);
+}
+
+.input-box::placeholder {
+  color: var(--text-light);
+}
+
+/* Input Rows (Fix Alignments) */
+.input-group {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.input-group .input-box {
+  flex: 1;
+}
+
+
+
+/* ============================
+   ORDER SUMMARY CARD
+   ============================ */
+.summary-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Summary Items */
+.cartitems-total-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.cartitems-total-item .label {
+  color: var(--text-muted);
+}
+
+.cartitems-total-item:last-child {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 2px solid var(--border);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--accent);
+}
+
+/* ============================
+   PAYMENT OPTIONS
+   ============================ */
+.payment-method {
+  margin-top: 24px;
+}
+
+.payment-method-title,
+.payment-method h4 {
+  color: var(--text);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.payment-method-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.payment-option {
+  border: 1.5px solid var(--border);
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+  background: #111111;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.payment-option img {
+  width: 32px;
+  opacity: 0.85;
+}
+
+.payment-option:hover {
+  border-color: var(--accent);
+  background: #191919;
+}
+
+.payment-option.selected {
+  border-color: var(--accent);
+  background: rgba(212, 160, 69, 0.07);
+}
+
+.payment-text {
+  color: var(--text);
+  font-weight: 600;
+}
+
+
+
+/* ============================
+   CTA BUTTON
+   ============================ */
+.place-order button {
+  width: 100%;
+  background: var(--accent);
+  color: #0d0d0d;
+  padding: 18px 24px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+  letter-spacing: 0.03em;
+}
+
+.place-order button:hover {
+  background: var(--primary-light);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.place-order button:active {
+  transform: translateY(0);
+}
+
+
+/* ============================
+   RIGHT SIDE SPACING FIX
+   ============================ */
+.right-side {
+  padding: 28px !important;
+  border-radius: var(--radius-lg);
+}
+
+/* ============================
+   SUMMARY CARD (Fix thin box)
+   ============================ */
+.summary-card {
+  width: 100%;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 26px 30px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-md);
+}
+
+/* Improve CartTotal inner spacing */
+.summary-card * {
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.summary-card h2,
+.summary-card h3,
+.summary-card h4 {
+  margin-bottom: 20px !important;
+}
+
+.cartitems-total-item {
+  margin: 12px 0;
+}
+
+
+
+/* ============================
+   SECURITY BADGE
+   ============================ */
+.security-badge {
+  margin-top: 24px;
+  background: rgba(16,185,129,0.15);
+  border: 1px solid rgba(34,197,94,0.4);
+  color: #22c55e;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ============================
+   RESPONSIVE DESIGN
+   ============================ */
+@media (max-width: 900px) {
+  .place-order-container {
+    flex-direction: column;
+  }
+
+  .right-side {
+    position: relative;
+    top: 0;
+    width: 100%;
+  }
+}

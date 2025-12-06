@@ -1,0 +1,178 @@
+/* GLOBAL FONT */
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* LAYOUT WRAPPER */
+.layout-align {
+  display: flex;
+}
+
+/* CATEGORY BANNER */
+.shopcategory-banner {
+  display: block;
+  margin: 30px auto;
+  width: 98%;
+  height: 25vw;
+  border-radius: 25px;
+  object-fit: cover;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* FILTER SIDEBAR */
+.filter-container {
+  width: 15%;
+  padding: 1.2rem;
+  margin-top: 1.5rem;
+  background: #151515;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  color: #e8e8e8;
+}
+
+/* FILTER TITLES */
+.section-title {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f2f2f2;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  color: #c2c2c2;
+  font-weight: 400;
+}
+
+.checkbox-item {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* SORT + INDEX ROW */
+.shopcategory-indexSort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 170px;
+  color: #e8e8e8;
+}
+
+.shopcategory-indexSort p span {
+  font-weight: 700;
+  color: #d4a045; /* Gold accent */
+}
+
+/* SORT BUTTON */
+.shopcategory-sort {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  cursor: pointer;
+  color: #eaeaea;
+  position: relative;
+  transition: 0.25s ease;
+}
+
+.shopcategory-sort:hover {
+  background: #222;
+  border-color: #d4a045;
+}
+
+/* DROPDOWN STYLES */
+.sort-dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #161616;
+  width: 180px;
+  padding: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.08);
+  z-index: 20;
+  animation: popup 0.2s ease-out;
+}
+
+.sort-dropdown p {
+  padding: 10px 15px;
+  margin: 0;
+  cursor: pointer;
+  color: #dddddd;
+  transition: 0.2s;
+}
+
+.sort-dropdown p:hover {
+  background: #1f1f1f;
+  color: #d4a045;
+}
+
+.rotate-arrow {
+  transform: rotate(180deg);
+  transition: 0.25s ease;
+}
+
+/* PRODUCT GRID */
+.shopcategory-products {
+  margin: 20px 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.shopcategory-products img {
+  width: 350px;
+  height: 380px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  background: #161616;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* LOAD MORE BUTTON */
+.shopcategory-loadmore {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 120px auto;
+  width: 233px;
+  height: 69px;
+  border-radius: 75px;
+  background: #1a1a1a;
+  color: #b5b5b5;
+  font-size: 18px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.shopcategory-loadmore button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 75px;
+  background: #d4a045; /* Gold */
+  color: #0d0d0d;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.shopcategory-loadmore button:hover {
+  background: #eab862;
+}
+
+/* DROPDOWN ANIMATION */
+@keyframes popup {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

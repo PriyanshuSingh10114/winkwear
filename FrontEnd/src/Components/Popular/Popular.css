@@ -1,0 +1,53 @@
+/* POPULAR SECTION – Elegant Matte Dark */
+
+.popular {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 60px;
+}
+
+.popular h1 {
+    margin-top: 20px;
+    color: #f2f2f2; /* White for dark mode */
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.popular hr {
+    width: 200px;
+    height: 4px;
+    border-radius: 8px;
+    background: #d4a045; /* Premium gold accent */
+    margin-top: 6px;
+}
+
+.popular-item {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    width: 90%;
+    max-width: 1400px;
+}
+
+
+.popular-item img {
+    width: 350px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 15px;
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover: premium zoom effect */
+.popular-item img:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.6);
+}
