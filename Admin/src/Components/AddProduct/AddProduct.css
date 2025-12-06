@@ -1,0 +1,137 @@
+.add-product-wrapper {
+    background: white;
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+
+.add-product {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 800px;
+    padding: 40px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.addproduct-itemfield {
+    width: 100%;
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.addproduct-itemfield input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0 15px;
+    outline: none;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.addproduct-itemfield input:focus {
+    border-color: #6079ff;
+    box-shadow: 0 0 0 2px rgba(96, 121, 255, 0.1);
+}
+
+.addproduct-price {
+    display: flex;
+    gap: 40px;
+    margin: 20px 0;
+}
+
+.add-product-selector {
+    padding: 10px 15px;
+    width: 100px;
+    height: 50px;
+    font-size: 14px;
+    color: #555;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.add-product-selector:focus {
+    border-color: #6079ff;
+    outline: none;
+}
+
+.addproduct-thumbnail-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: contain;
+    margin: 10px 0;
+    border: 1px dashed #e0e0e0;
+    padding: 5px;
+    background-color: #fafafa;
+}
+
+.addproduct-btn {
+    margin-top: 30px;
+    width: 160px;
+    height: 50px;
+    border-radius: 8px;
+    background: #6079ff;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.addproduct-btn:hover {
+    background: #5066d4;
+    transform: translateY(-1px);
+}
+
+.addproduct-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .add-product-wrapper {
+        padding: 20px 10px;
+        align-items: flex-start;
+        background-color: white;
+    }
+    
+    .add-product {
+        padding: 25px;
+        margin: 0;
+        box-shadow: none;
+        border: none;
+    }
+    
+    .addproduct-itemfield input {
+        height: 45px;
+    }
+    
+    .addproduct-price {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .add-product-selector {
+        width: 100%;
+    }
+    
+    .addproduct-btn {
+        width: 100%;
+    }
+}
