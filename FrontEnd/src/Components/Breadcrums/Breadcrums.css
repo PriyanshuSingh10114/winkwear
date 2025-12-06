@@ -10,6 +10,25 @@
     letter-spacing: 0.5px;
 }
 
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .breadcrums {
+        margin: 40px 40px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .breadcrums {
+        margin: 20px 10px;
+        font-size: 13px;
+        gap: 6px;
+    }
+    .breadcrums .divider {
+        margin: 0 2px;
+    }
+}
+
 /* Each level in breadcrumb */
 .breadcrums span {
     color: #a8a8a8; /* Muted grey */

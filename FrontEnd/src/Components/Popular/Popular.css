@@ -1,53 +1,163 @@
-/* POPULAR SECTION – Elegant Matte Dark */
+/* ===========================================
+   POPULAR SECTION — Premium Matte Dark Style
+   =========================================== */
 
 .popular {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    padding-bottom: 60px;
+    padding: 80px 20px;
+    gap: 12px;
+    background: transparent;
 }
 
+/* Heading */
 .popular h1 {
-    margin-top: 20px;
-    color: #f2f2f2; /* White for dark mode */
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    color: #f5f5f5;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
 }
 
 .popular hr {
-    width: 200px;
-    height: 4px;
-    border-radius: 8px;
-    background: #d4a045; /* Premium gold accent */
-    margin-top: 6px;
+    width: 260px;
+    height: 5px;
+    margin-top: 8px;
+    background: linear-gradient(90deg, #d4a045, #e4c07a);
+    border-radius: 20px;
+    border: none;
 }
 
+/* Grid Layout */
 .popular-item {
-    margin-top: 50px;
+    margin-top: 60px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 45px;
     width: 90%;
-    max-width: 1400px;
+    max-width: 1500px;
 }
 
-
-.popular-item img {
-    width: 350px;
-    height: 380px;
-    object-fit: cover;
-    border-radius: 15px;
-    background: #1a1a1a;
-    border: 1px solid rgba(255,255,255,0.05);
+/* Product Card Wrapper */
+.popular-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #151515;
+    border: 1px solid rgba(255,255,255,0.06);
     box-shadow: 0 10px 25px rgba(0,0,0,0.45);
-    transition: 0.3s ease;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
     cursor: pointer;
 }
 
-/* Hover: premium zoom effect */
-.popular-item img:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 35px rgba(0,0,0,0.6);
+/* Product Image */
+.popular-card img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 16px;
+    transition: transform 0.45s ease;
+}
+
+/* Text Overlay (Optional) */
+.popular-card .popular-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    color: #f2f2f2;
+    font-size: 18px;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.35s ease;
+}
+
+/* Hover Effects */
+.popular-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.65);
+}
+
+.popular-card:hover img {
+    transform: scale(1.07);
+}
+
+.popular-card:hover .popular-info {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .popular h1 {
+        font-size: 36px;
+    }
+
+    .popular-item {
+        gap: 35px;
+    }
+
+    .popular-card img {
+        height: 300px;
+    }
+}
+
+/* Tablet / small desktop adjustments */
+@media (max-width: 1024px) {
+    .popular {
+        padding: 60px 16px;
+    }
+    .popular h1 {
+        font-size: 44px;
+    }
+    .popular-item {
+        gap: 36px;
+    }
+    .popular-card img {
+        height: 340px;
+    }
+    .popular-card {
+        border-radius: 12px;
+    }
+    .popular-card .popular-info {
+        font-size: 16px;
+        padding: 14px;
+    }
+}
+
+/* Small screens / phones */
+@media (max-width: 600px) {
+    .popular {
+        padding: 36px 12px;
+        gap: 8px;
+    }
+    .popular h1 {
+        font-size: 28px;
+        text-transform: none;
+    }
+    .popular-item {
+        gap: 18px;
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .popular-card img {
+        height: auto;
+        max-height: 260px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    .popular-card .popular-info {
+        font-size: 15px;
+        padding: 10px;
+    }
+    .popular-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    .popular-card:hover img {
+        transform: none;
+    }
 }

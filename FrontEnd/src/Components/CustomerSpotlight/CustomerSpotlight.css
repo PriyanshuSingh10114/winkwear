@@ -68,3 +68,45 @@
     font-size: 32px;
   }
 }
+
+/* Responsive adjustments for tablets and small screens */
+@media (max-width: 1024px) {
+  .spotlight-section {
+    padding: 60px 12px;
+  }
+  .spotlight-section h1 {
+    font-size: 34px;
+  }
+  .spotlight-section hr {
+    width: 140px;
+    margin: 14px auto 30px auto;
+  }
+  .spotlight-single img {
+    height: 480px;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .spotlight-section {
+    padding: 30px 8px;
+  }
+  .spotlight-section h1 {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  .spotlight-section hr {
+    width: 100px;
+    height: 3px;
+    margin: 10px auto 18px auto;
+  }
+  .spotlight-single {
+    padding: 0 6px;
+  }
+  .spotlight-single img {
+    height: auto; /* allow natural height for narrow screens */
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}

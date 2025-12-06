@@ -71,32 +71,57 @@
   color: #cfcfcf;
 }
 
-/* Responsive adjustments */
+/* ----------------------------------------
+   RESPONSIVE DESIGN
+----------------------------------------- */
+
+/* LARGE TABLETS */
 @media (max-width: 992px) {
   .image-container {
-    width: 350px;
+    width: 340px;
   }
+
   .about-image {
-    height: 450px;
+    height: 460px;
+  }
+
+  .about-text h1 {
+    font-size: 34px;
   }
 }
 
+/* MOBILE / TABLET */
 @media (max-width: 768px) {
   .about-content {
     flex-direction: column;
     gap: 40px;
   }
-  
+
   .image-container {
     width: 100%;
-    position: static;
+    position: static; /* Removes sticky for mobile */
   }
-  
+
   .about-image {
-    height: 420px;
+    height: 400px;
   }
-  
+
   .about-text h1 {
-    font-size: 32px;
+    font-size: 30px;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 480px) {
+  .about-container {
+    padding: 20px 16px;
+  }
+
+  .about-image {
+    height: 340px;
+  }
+
+  .about-text p {
+    font-size: 15.5px;
   }
 }

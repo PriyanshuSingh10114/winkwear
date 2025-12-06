@@ -108,6 +108,10 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .shop-container {
+        padding: 20px;
+    }
+
     .cart-items {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }

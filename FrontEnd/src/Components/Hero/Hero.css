@@ -15,5 +15,29 @@
   margin: 0 auto;
 }
 
+/* Responsive hero adjustments */
+@media (max-width: 1024px) {
+  .hero-wrapper {
+    height: 65vh;
+  }
+  .hero-full {
+    height: 100vh;
+    object-fit: cover;
+    background-position: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-wrapper {
+    height: 55vh;
+  }
+  .hero-full {
+    height: auto;
+    min-height: 320px;
+    object-fit: cover;
+    background-position: center center;
+  }
+}
+
 
 

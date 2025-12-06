@@ -1,8 +1,3 @@
-import formal from './formal.png';
-import winter from './winter.png';
-import party from './party.png';
-import casual from './casual.png';
-
 import men8 from "./men8.webp";
 import men9 from "./men9.webp";
 import men10 from "./men10.webp";
@@ -14,42 +9,7 @@ import p38_img from "./kids_14.jpg";
 import p39_img from "./kids_15.jpg";
 
 let data_product = [
-  {
-    id: 3,
-    name: "Elegance Stripe: Timeless Flutter-Sleeve Peplum",
-    image: formal,
-    new_price: 85.00,
-    old_price: 120.50,
-    tag: "Office Chic",
-    category: "women",
-  },
-  {
-    id: 43,
-    name: "Frosted Whisper: Cozy Knit-Stripe Peplum Top",
-    image: winter,
-    new_price: 85.00,
-    old_price: 120.50,
-    tag: "Winter Luxe",
-    category: "women",
-  },
-  {
-    id: 4,
-    name: "Gala Nights: Sparkle-Trim Flutter Blouse",
-    image: party,
-    new_price: 80.00,
-    old_price: 100.50,
-    tag: "Evening Glam",
-    category: "women",
-  },
-  {
-    id: 2,
-    name: "Breezy Daze: Relaxed Striped Hem Blouse",
-    image: casual,
-    new_price: 100.00,
-    old_price: 150.00,
-    tag: "Weekend Vibes",
-    category: "women",
-  },
+
   {
     id: 65,
     name: "Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket",

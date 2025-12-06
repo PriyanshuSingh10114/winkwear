@@ -150,3 +150,68 @@
     gap: 16px;
   }
 }
+
+/* Tablet / small desktop adjustments */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 14px 20px;
+  }
+  .nav-logo p {
+    font-size: 22px;
+  }
+  .nav-menu {
+    gap: 18px;
+  }
+  .nav-menu li {
+    font-size: 15px;
+  }
+  .nav-login-btn {
+    padding: 8px 18px;
+    font-size: 14px;
+  }
+  .nav-login-cart img {
+    height: 26px;
+  }
+}
+
+/* Small screens / phones: collapse menu to hamburger (visual-only CSS) */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 12px 12px;
+  }
+  .nav-logo img {
+    height: 36px;
+  }
+  .nav-logo p {
+    font-size: 18px;
+  }
+  /* Hide the regular nav-menu and replace with a compact menu button in markup if available */
+  .nav-menu {
+    display: none;
+  }
+  /* If you add a .nav-hamburger element in JSX, these styles will position it */
+  .nav-hamburger {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background: #151515;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+    cursor: pointer;
+  }
+  .nav-login-cart {
+    gap: 10px;
+  }
+  .nav-login-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  .nav-cart-count {
+    top: -4px;
+    right: -6px;
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+}

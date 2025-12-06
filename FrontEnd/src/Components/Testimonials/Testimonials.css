@@ -1,79 +1,90 @@
-/* --- SECTION --- */
+/* ============================
+   TESTIMONIALS — MATTE DARK PREMIUM
+   ============================ */
 
 .testimonials-section {
-  padding: 80px 0;
+  padding: 90px 0;
   text-align: center;
   color: #f2f2f2;
+  background: transparent;
 }
 
+/* Heading */
 .testimonials-section h1 {
-  font-size: 42px;
+  font-size: 46px;
   font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .testimonials-section hr {
-  width: 200px;
+  width: 180px;
   height: 4px;
   background: #d4a045;
   border: none;
-  margin: 15px auto 45px auto;
+  margin: 15px auto 55px auto;
+  border-radius: 8px;
 }
 
-/* --- GRID --- */
-
+/* Grid Wrapper */
 .testimonials-grid {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   gap: 35px;
   padding: 0 50px;
-  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* --- CARD --- */
-
+/* Testimonial Card */
 .testimonials-card {
   background: #151515;
-  padding: 25px 28px;
-  width: 340px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.08);
+  padding: 30px 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.06);
   box-shadow: 0 10px 28px rgba(0,0,0,0.45);
   transition: 0.35s ease;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Glow hover effect */
 .testimonials-card:hover {
   transform: translateY(-6px);
   border-color: #d4a045;
+  box-shadow: 0 16px 40px rgba(212,160,69,0.15);
 }
 
-/* --- HEADER / PROFILE --- */
-
+/* Card Header (profile + text) */
 .testimonial-header {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
 }
 
 .testimonial-header img {
-  width: 58px;
-  height: 58px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #d4a045;
 }
 
+/* Name */
 .testimonial-header h3 {
   color: #d4a045;
   font-size: 18px;
-  margin: 0;
   font-weight: 600;
+  margin: 0;
 }
 
+/* Verified text */
 .verified {
-  font-size: 15px;
+  font-size: 14px;
   color: #8ccf8c;
+  margin: 0;
 }
 
+/* Purchased Product text */
 .purchase {
   margin-top: 3px;
   font-size: 13px;
@@ -81,20 +92,77 @@
   opacity: 0.85;
 }
 
-/* --- TEXT --- */
-
+/* Review Text */
 .testimonial-text {
-  margin: 18px 0 15px 0;
+  margin: 20px 0 18px;
   font-size: 16px;
-  line-height: 1.6;
-  color: #dedede;
+  line-height: 1.65;
+  color: #e2e2e2;
 }
 
-/* --- STAR RATING --- */
-
+/* Rating Stars */
 .rating {
   color: #e7c16a;
   font-size: 20px;
   letter-spacing: 2px;
   margin-top: 10px;
+}
+
+/* ============================
+   RESPONSIVE DESIGN
+   ============================ */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .testimonials-section h1 {
+    font-size: 38px;
+  }
+
+  .testimonials-card {
+    padding: 25px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .testimonials-section {
+    padding: 60px 0;
+  }
+
+  .testimonials-section h1 {
+    font-size: 32px;
+  }
+
+  .testimonials-section hr {
+    width: 150px;
+  }
+
+  .testimonials-grid {
+    padding: 0 20px;
+    gap: 25px;
+  }
+
+  .testimonials-card {
+    padding: 22px;
+  }
+
+  .testimonial-header img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .testimonial-text {
+    font-size: 15px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 500px) {
+  .testimonials-section h1 {
+    font-size: 28px;
+  }
+
+  .testimonials-card {
+    padding: 20px;
+  }
 }

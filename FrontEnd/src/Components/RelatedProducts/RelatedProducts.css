@@ -1,11 +1,14 @@
-/* RELATED PRODUCTS — ELEGANT MATTE DARK THEME */
+/* ======================================================
+   RELATED PRODUCTS — ELEGANT MATTE DARK THEME
+   Fully Responsive + Improved Visual Hierarchy
+====================================================== */
 
 .relatedproducts {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-    padding: 70px 0;
+    gap: 16px;
+    padding: 70px 5% 80px 5%;
     background: transparent;
 }
 
@@ -13,7 +16,7 @@
 .relatedproducts h1 {
     font-size: 46px;
     font-weight: 700;
-    color: #f2f2f2; /* Soft white */
+    color: #f2f2f2;
     letter-spacing: 1.2px;
     text-align: center;
 }
@@ -23,27 +26,29 @@
     width: 160px;
     height: 4px;
     border-radius: 8px;
-    background: #d4a045; /* Elegant Gold */
+    background: #d4a045;
     border: none;
     margin-top: 6px;
 }
 
-/* Product container */
-.relatedproducts-items {
+/* Product container — NOW FULLY RESPONSIVE GRID */
+.relatedproducts-items { 
     margin-top: 45px;
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 35px;
+    justify-items: center;
 }
 
 /* Product card styling */
 .relatedproducts-item-card {
-    background: #161616; /* Matte Dark Card */
+    background: #161616;
     border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     overflow: hidden;
-    width: 350px;
+    width: 100%;
+    max-width: 350px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.35);
     transition: 0.35s ease;
     cursor: pointer;
@@ -71,36 +76,85 @@
     font-weight: 500;
 }
 
-/* Price */
+/* Price container */
 .relatedproducts-item-price {
     padding: 0 16px 18px 16px;
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 
+/* New price */
 .relatedproducts-item-price-new {
-    color: #d4a045; /* Gold */
+    color: #d4a045;
     font-size: 20px;
     font-weight: 700;
 }
 
+/* Old price */
 .relatedproducts-item-price-old {
     color: #9a9a9a;
     font-size: 18px;
     text-decoration: line-through;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* ======================================================
+   RESPONSIVE BREAKPOINTS
+====================================================== */
+
+/* Tablet Fix */
+@media (max-width: 992px) {
+
     .relatedproducts {
-        padding: 50px 0;
+        padding: 60px 4%;
+    }
+
+    .relatedproducts h1 {
+        font-size: 40px;
+    }
+
+    .relatedproducts-item-card img {
+        height: 330px;
+    }
+}
+
+/* Mobile Large */
+@media (max-width: 768px) {
+
+    .relatedproducts {
+        padding: 50px 3%;
     }
 
     .relatedproducts h1 {
         font-size: 34px;
     }
 
+    .relatedproducts-items {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 24px;
+    }
+
+    .relatedproducts-item-card img {
+        height: 300px;
+    }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+
+    .relatedproducts h1 {
+        font-size: 28px;
+    }
+
+    .relatedproducts hr {
+        width: 120px;
+    }
+
     .relatedproducts-item-card {
-        width: 90%;
+        max-width: 100%;
+    }
+
+    .relatedproducts-item-card img {
+        height: 260px;
     }
 }

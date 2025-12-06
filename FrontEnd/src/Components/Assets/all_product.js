@@ -3,21 +3,6 @@ import p2_img from "./women2.webp";
 import p3_img from "./women3.webp";
 import p4_img from "./women4.webp";
 import p5_img from "./women5.webp";
-import p6_img from "./product_6.png";
-import p7_img from "./product_7.png";
-import p8_img from "./product_8.png";
-import p9_img from "./product_9.png";
-import p10_img from "./product_10.png";
-import p11_img from "./product_11.png";
-import p12_img from "./product_12.png";
-
-import winter from "./winter.png";
-import athletic from "./athletic.png";
-import casual from "./casual.png";
-import formal from "./formal.png";
-import party from "./party.png";
-import sleepwear from "./sleepwear.png";
-import summer from "./summer.png";
 
 import img2 from "./2.jpg";
 import img3 from "./3.jpg";
@@ -104,68 +89,6 @@ let all_product = [
     new_price: 45.0,
     old_price: 89.99,
   },
-      {
-    id: 1,
-    name: "Athletic Performance Tank Top",
-    category: "women",
-    type:"athletic",
-    image: athletic,
-    new_price: 35.0,
-    old_price: 65.99,
-  },
-  {
-    id: 2,
-    name: "Casual Denim Jacket",
-    category: "women",
-    type:"casual",
-    image: casual,
-    new_price: 55.0,
-    old_price: 99.99,
-  },
-  {
-    id: 3,
-    name: "Formal Business Blazer",
-    category: "women",
-    type:"formal",
-    image: formal,
-    new_price: 78.0,
-    old_price: 129.99,
-  },
-  {
-    id: 4,
-    name: "Party Sequin Dress",
-    category: "women",
-    type:"party",
-    image: party,
-    new_price: 65.0,
-    old_price: 119.99,
-  },
-  {
-    id: 5,
-    name: "Sleepwear Cotton Nightgown",
-    category: "women",
-    subCategory:"casual",
-    image: sleepwear,
-    new_price: 32.0,
-    old_price: 59.99,
-  },
-  {
-    id: 6,
-    name: "Summer Floral Sundress",
-    category: "women",
-    subCategory:"summer",
-    image: summer,
-    new_price: 48.0,
-    old_price: 89.99,
-  },
-    {
-    id: 43,
-    name: "Winter Wool Coat",
-    category: "women",
-    image: winter,
-    new_price: 95.0,
-    old_price: 159.99,
-  },
   {
     id: 14,
     name: "Elegant Evening Gown",
@@ -199,63 +122,6 @@ let all_product = [
     new_price: 38.0,
     old_price: 74.99,
   },
-  {
-    id: 18,
-    name: "Sporty Yoga Pants",
-    category: "women",
-    image: p6_img,
-    new_price: 54.0,
-    old_price: 99.99,
-  },
-  {
-    id: 7,
-    name: "Classic Oxford Shirt",
-    category: "women",
-    image: p7_img,
-    new_price: 48.0,
-    old_price: 89.99,
-  },
-  {
-    id: 8,
-    name: "Trendy Crop Top",
-    category: "women",
-    image: p8_img,
-    new_price: 29.0,
-    old_price: 59.99,
-  },
-  {
-    id: 9,
-    name: "Professional Pencil Skirt",
-    category: "women",
-    image: p9_img,
-    new_price: 52.0,
-    old_price: 99.99,
-  },
-  {
-    id: 10,
-    name: "Bohemian Maxi Skirt",
-    category: "women",
-    image: p10_img,
-    new_price: 58.0,
-    old_price: 109.99,
-  },
-  {
-    id: 11,
-    name: "Stretchy Leggings",
-    category: "women",
-    image: p11_img,
-    new_price: 35.0,
-    old_price: 69.99,
-  },
-  {
-    id: 12,
-    name: "Comfy Oversized Hoodie",
-    category: "women",
-    image: p12_img,
-    new_price: 46.0,
-    old_price: 89.99,
-  },
-
   {
     id: 44,
     name: "Running Mesh Tank",
@@ -703,6 +569,7 @@ let all_product = [
   {
     id: 202,
     name: "Golden Hour Knit Top",
+    category: "women",
     image: img202,
     new_price: 48.0,
     old_price: 89.0,
@@ -711,6 +578,7 @@ let all_product = [
   {
     id: 203,
     name: "Night City Party Dress",
+    category: "women",
     image: img203,
     new_price: 72.0,
     old_price: 149.0,
@@ -719,6 +587,7 @@ let all_product = [
   {
     id: 204,
     name: "Everyday Autumn Cardigan",
+    category: "women",
     image: img204,
     new_price: 58.0,
     old_price: 110.0,
@@ -727,6 +596,7 @@ let all_product = [
   {
     id: 205,
     name: "Dark Sweater Cozy Fit",
+    category: "women",
     image: img205,
     new_price: 52.0,
     old_price: 99.0,
@@ -735,6 +605,7 @@ let all_product = [
   {
     id: 206,
     name: "Minimal Aesthetic Top",
+    category: "women",
     image: img206,
     new_price: 45.0,
     old_price: 85.0,
@@ -743,6 +614,7 @@ let all_product = [
   {
     id: 207,
     name: "Magnificent Fashion Coat",
+    category: "women",
     image: img207,
     new_price: 95.0,
     old_price: 165.0,
@@ -751,6 +623,7 @@ let all_product = [
   {
     id: 208,
     name: "Business Formal Suit",
+    category: "women",
     image: img208,
     new_price: 120.0,
     old_price: 199.0,
@@ -759,6 +632,7 @@ let all_product = [
   {
     id: 209,
     name: "Outdoor Street Fashion Jacket",
+    category: "women",
     image: img209,
     new_price: 62.0,
     old_price: 120.0,
@@ -767,6 +641,7 @@ let all_product = [
   {
     id: 210,
     name: "Elegant High-Fashion Dress",
+    category: "women",
     image: img210,
     new_price: 88.0,
     old_price: 160.0,
@@ -775,6 +650,7 @@ let all_product = [
   {
     id: 211,
     name: "Boho Pisces Aesthetic Wear",
+    category: "women",
     image: img211,
     new_price: 55.0,
     old_price: 99.0,
@@ -783,6 +659,7 @@ let all_product = [
   {
     id: 212,
     name: "Sunglasses Summer Outfit",
+    category: "women",
     image: img212,
     new_price: 60.0,
     old_price: 115.0,

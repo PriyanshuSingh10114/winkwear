@@ -1,0 +1,30 @@
+/* Global responsive helpers for Admin - mobile-first */
+:root{
+  --max-mobile: 480px;
+  --max-tablet: 768px;
+}
+
+/* Container helpers */
+.container, .admin-container { padding-left: 1rem; padding-right: 1rem; }
+
+img { max-width: 100%; height: auto; }
+
+.flex-row { display:flex; flex-direction:row; }
+.flex-col { display:flex; flex-direction:column; }
+
+.sidebar { width: 260px; }
+
+@media (max-width: 768px) {
+  .flex-row { flex-direction: column !important; }
+  .sidebar { width: 100% !important; order: 2; }
+  .admin-main { width: 100% !important; order: 1; }
+  .hide-mobile { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  .admin-header { padding: .6rem !important; }
+  .table-responsive { overflow-x: auto; }
+}
+
+/* Ensure admin cards don't force overflow */
+section[class*="card"], div[class*="card"] { max-width: 100% !important; }

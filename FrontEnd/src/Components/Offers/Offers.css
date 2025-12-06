@@ -76,3 +76,62 @@
   50% { opacity: 0.4; }
   100% { opacity: 1; }
 }
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .offers-scroll {
+    gap: 16px;
+    padding: 16px 0;
+  }
+  .offers-scroll img {
+    height: 320px;
+    border-radius: 18px;
+    object-fit: cover;
+  }
+  .timer-box {
+    top: 8%;
+    right: 6%;
+    padding: 14px 18px;
+  }
+  .timer-box h2 {
+    font-size: 18px;
+  }
+  .timer-values {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .offers-scroll {
+    gap: 12px;
+    padding: 12px 0;
+  }
+  .offers-scroll img {
+    width: 94vw;
+    height: auto;
+    max-height: 260px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+  .offers-scroll img:hover {
+    transform: none; /* Disable hover zoom on touch */
+    box-shadow: none;
+  }
+  .timer-box {
+    position: static;
+    margin: 0 auto;
+    padding: 10px 12px;
+    border-radius: 8px;
+    width: fit-content;
+    background: rgba(0,0,0,0.6);
+  }
+  .timer-box h2 {
+    font-size: 16px;
+  }
+  .timer-values {
+    font-size: 18px;
+  }
+  .live-tag {
+    font-size: 12px;
+  }
+}

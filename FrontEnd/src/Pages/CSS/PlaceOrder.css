@@ -341,14 +341,108 @@ body {
 /* ============================
    RESPONSIVE DESIGN
    ============================ */
-@media (max-width: 900px) {
+
+/* ---------- TABLET / SMALL LAPTOP ---------- */
+@media (max-width: 1024px) {
+
   .place-order-container {
     flex-direction: column;
+    padding: 0 20px;
+    gap: 30px;
   }
 
   .right-side {
+    width: 100%;
     position: relative;
     top: 0;
-    width: 100%;
+  }
+
+  .left-side,
+  .right-side {
+    padding: 30px;
+  }
+
+  .payment-method-selection {
+    flex-direction: column;
   }
 }
+
+/* ---------- LARGE MOBILE / PHONES ---------- */
+@media (max-width: 768px) {
+
+  .place-order-container {
+    padding: 0 18px;
+  }
+
+  .left-side,
+  .right-side {
+    padding: 24px;
+  }
+
+  /* Input rows stack vertically */
+  .input-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .input-box {
+    padding: 15px;
+    font-size: 1rem;
+  }
+
+  .summary-card {
+    padding: 22px;
+  }
+
+  .place-order button {
+    font-size: 1.05rem;
+    padding: 16px;
+  }
+
+  .order-summary-title,
+  .left-side h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* ---------- SMALL MOBILE / 480px ---------- */
+@media (max-width: 480px) {
+
+  .place-order-container {
+    padding: 0 12px;
+  }
+
+  .left-side,
+  .right-side {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .input-box {
+    padding: 13px 14px;
+    font-size: 0.95rem;
+  }
+
+  .payment-option {
+    padding: 15px 16px;
+  }
+
+  .payment-option img {
+    width: 26px;
+  }
+
+  .summary-card {
+    padding: 18px;
+  }
+
+  .place-order button {
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+
+  .order-summary-title,
+  .left-side h2 {
+    font-size: 1.45rem;
+  }
+}
+
