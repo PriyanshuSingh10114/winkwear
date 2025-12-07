@@ -62,7 +62,7 @@ Open http://localhost:3000
 
 🎨 Styling & Theme
 
-Uses a global CSS root variables setup for consistent colors across the site (background, cards, text, accents).
+Uses a global CSS root variables setup for consistent colors across the site (background, cards, text, accents)
 
 Each component/page has its own CSS file, following the “Elegant Matte Dark” theme — dark backgrounds, soft text, premium gold accents, shadows & hover effects.
 
