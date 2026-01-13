@@ -54,7 +54,7 @@ Capsule wardrobes also save space and promote smart fashion choices.`,
     {
       title: "2025 Trend Forecast",
       image: blog_3,
-      desc: "What’s coming next? We break down the hottest trends of 2025.",
+      desc: "What’s coming next? We have break down the hottest trends of 2025.",
       fullContent: `
 Fashion in 2025 is taking bold leaps — futuristic silhouettes mixed with earthy neutral palettes.
 Designers are blending technology with creativity like never before.
@@ -68,7 +68,7 @@ Designers are blending technology with creativity like never before.
 Expect a mix of innovation and nostalgia dominating global runways next year.`,
       author: "Liam Anderson",
       date: "October 15, 2025",
-      tags: ["Trends", "2025", "Runway Fashion"],
+      tags: ["Trends Scene", "2025", "Runway Fashion"],
     },
   ];
 

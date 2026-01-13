@@ -34,6 +34,8 @@
   box-shadow: 0 8px 25px rgba(0,0,0,0.45);
   transition: 0.3s ease;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
 .creator-card:hover {
@@ -93,6 +95,7 @@
 /* ---- BUTTON ---- */
 
 .follow-btn {
+  margin-top: auto;
   margin-top: 15px;
   width: 100%;
   padding: 10px 0;
@@ -141,6 +144,8 @@
     width: 100% !important;                /* remove fixed width */
     padding: 8px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
   }
 
   .creator-card img {
@@ -164,6 +169,7 @@
   }
 
   .follow-btn {
+    margin-top: auto;
     padding: 7px 0;
     font-size: 12px;
     border-radius: 6px;

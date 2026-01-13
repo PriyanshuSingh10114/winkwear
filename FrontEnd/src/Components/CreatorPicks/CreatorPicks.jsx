@@ -20,7 +20,7 @@ const CreatorPicks = () => {
       bio: "Luxury minimalist influencer focusing on clean silhouettes.",
       socials: "@mialuxe",
       lookDesc:
-        "Her signature black dress look is timeless, elegant, and always on-trend.",
+        "Her signature black dress look is timeless, elegant, and always on-trend and always a show stealer for everyone present around.",
     },
     {
       img: creator_3,
@@ -29,7 +29,7 @@ const CreatorPicks = () => {
       bio: "Seasonal trend expert curating warm, cozy, textured styles.",
       socials: "@nova.trends",
       lookDesc:
-        "Nova blends soft-knit sweaters with earthy tones for the perfect autumn vibe.",
+        "Nova blends soft-knit sweaters with earthy tones for the perfect autumn vibe. Designed for comfort, warmth, and effortless style.",
     },
   ];
 
