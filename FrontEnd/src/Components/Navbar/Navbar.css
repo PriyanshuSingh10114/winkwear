@@ -190,7 +190,7 @@
   }
 
   .nav-logo p {
-    font-size: 14px;
+    font-size: 10px;
     letter-spacing: 0.6px;
   }
 
@@ -229,7 +229,7 @@
   }
 
   .nav-login-cart img {
-    height: 18px;
+    height: 20px;
   }
 
   .nav-cart-count {
@@ -260,7 +260,7 @@
   }
 
   .nav-logo p {
-    font-size: 12px;   /* ✅ readable, not broken */
+    font-size: 12px;  
     letter-spacing: 0.4px;
   }
 
@@ -269,7 +269,7 @@
   }
 
   .nav-link {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .nav-login-btn {
@@ -278,7 +278,7 @@
   }
 
   .nav-login-cart img {
-    height: 18px;
+    height: 14px;
   }
 }
 

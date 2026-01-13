@@ -43,10 +43,10 @@ const Navbar = () => {
           {menu === 'kids' && <hr />}
         </li>
 
-        <li onClick={() => setMenu("about")}>
+        {/* <li onClick={() => setMenu("about")}>
           <Link className="nav-link" to="/about">About</Link>
           {menu === 'about' && <hr />}
-        </li>
+        </li> */}
       </ul>
 
       <div className="nav-login-cart">
