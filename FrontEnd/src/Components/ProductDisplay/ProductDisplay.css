@@ -340,28 +340,45 @@
     margin: 16px var(--page-side-gap);
   }
 
-  /* LEFT SIDE */
+  /* IMAGE SECTION */
   .productdisplay-left {
     gap: 12px;
+    align-items: center;
   }
 
+  /* MAIN IMAGE CONTAINER — RESPONSIVE */
   .productdisplay-img {
-    min-width: 280px;
-    min-height: 300px;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 3 / 4;        /* 👈 keeps product proportions */
     border-radius: 10px;
+    overflow: hidden;
+    background: #161616;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
+  /* MAIN IMAGE */
   .productdisplay-main-img {
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;        /* 👈 no crop, no zoom */
   }
 
+  /* THUMBNAILS */
   .productdisplay-img-list {
+    display: flex;
     gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
   }
 
   .thumb-btn img {
     width: 48px;
     height: 68px;
+    object-fit: cover;
+    border-radius: 8px;
   }
 
   /* RIGHT SIDE */
@@ -374,14 +391,6 @@
     font-size: 20px;
     padding-left: 8px;
     border-left-width: 3px;
-  }
-
-  .productdisplay-right-stars {
-    gap: 6px;
-  }
-
-  .productdisplay-right-prices {
-    gap: 12px;
   }
 
   .productdisplay-right-price-new {
@@ -397,57 +406,18 @@
     line-height: 1.6;
   }
 
-  /* SIZE */
-  .size-heading {
-    font-size: 14px;
-  }
-
-  .size-option {
-    padding: 6px 12px;
-    font-size: 14px;
-  }
-
   /* CART */
   .cart-controls {
+    flex-direction: column;
     gap: 12px;
   }
 
-  .quantity-controls {
-    padding: 6px 8px;
-  }
-
-  .qty-btn {
-    font-size: 18px;
-  }
-
-  .qty-display {
-    font-size: 15px;
-  }
-
   .add-cart-btn {
-    padding: 12px 18px;
+    width: 100%;
+    padding: 12px;
     font-size: 14px;
-  }
-
-  /* META */
-  .productdisplay-right-category {
-    font-size: 13px;
-  }
-
-  /* TOAST */
-  .pd-toast {
-    font-size: 14px;
-    padding: 10px 12px;
-    right: 10px;
-    left: 10px;
-  }
-
-  /* ZOOM */
-  .pd-zoom {
-    width: 95%;
-    height: 80vh;
-    padding: 10px;
   }
 }
+
 
 

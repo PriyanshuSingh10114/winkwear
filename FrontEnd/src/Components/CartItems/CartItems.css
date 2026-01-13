@@ -7,152 +7,6 @@
   color: #e6e6e6; /* Soft white */
 }
 
-/* Responsive styles */
-@media (max-width: 1024px) {
-  .cartitems {
-    margin: 60px 30px;
-  }
-  .cartitems-format-main {
-    gap: 30px;
-    font-size: 16px;
-  }
-  .cartitems-down {
-    gap: 20px;
-  }
-  .cartitems-total {
-    margin-right: 40px;
-    padding: 18px;
-  }
-  .cartitems-promobox {
-    width: 320px;
-  }
-}
-
-/* ===== STRICT MOBILE CART (PHONES ONLY) ===== */
-@media (max-width: 480px) {
-
-  /* Page spacing */
-  .cartitems {
-    margin: 16px 8px;
-  }
-
-  /* Hide desktop table header */
-  .cartitems-format-main {
-    display: none;
-  }
-
-  /* Each cart item becomes a card */
-  .cartitems-format {
-    display: grid;
-    grid-template-columns: 64px 1fr;
-    gap: 12px;
-    padding: 12px;
-    margin-bottom: 14px;
-    background: #151515;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
-    font-size: 13px;
-  }
-
-  /* Product image */
-  .carticon-product-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 10px;
-  }
-
-  /* Product details stack */
-  .cartitems-format > *:not(img) {
-    grid-column: 2;
-  }
-
-  /* Quantity controls */
-  .cartitems-quantity-controls {
-    margin-top: 6px;
-    gap: 10px;
-  }
-
-  .cartitems-quantity-controls button {
-    padding: 6px 12px;
-    font-size: 14px;
-  }
-
-  /* Remove icon */
-  .cartitems-remove-icon {
-    width: 20px;
-    margin-top: 6px;
-  }
-
-  /* Bottom section stacks */
-  .cartitems-down {
-    flex-direction: column;
-    gap: 18px;
-    margin: 30px 0;
-  }
-
-  /* Totals card */
-  .cartitems-total {
-    width: 100%;
-    margin: 0;
-    padding: 16px;
-    border-radius: 14px;
-  }
-
-  .cartitems-total-item {
-    font-size: 15px;
-  }
-
-  .cartitems-total-item:last-child {
-    font-size: 17px;
-  }
-
-  /* Checkout button */
-  .cartitems-total button {
-    width: 100%;
-    height: 48px;
-    font-size: 16px;
-    border-radius: 10px;
-  }
-
-  /* Promo section */
-  .cartitems-promocode {
-    font-size: 14px;
-  }
-
-  .cartitems-promobox {
-    width: 100%;
-    height: 46px;
-    padding: 0 10px;
-  }
-
-  .cartitems-promocode input {
-    width: 60%;
-    font-size: 13px;
-  }
-
-  .cartitems-promocode button {
-    width: 38%;
-    height: 36px;
-    font-size: 13px;
-  }
-
-  /* Offers box */
-  .available-offers-box {
-    padding: 12px;
-    font-size: 13px;
-  }
-
-  .available-offers-box h3 {
-    font-size: 15px;
-  }
-
-  .available-offers-box li {
-    font-size: 13px;
-  }
-}
-
-
 /* Divider */
 .cartitems hr {
   height: 2px;
@@ -425,4 +279,170 @@
 
 .friday-offer-dim {
   opacity: 0.6;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .cartitems {
+    margin: 60px 30px;
+  }
+  .cartitems-format-main {
+    gap: 30px;
+    font-size: 16px;
+  }
+  .cartitems-down {
+    gap: 20px;
+  }
+  .cartitems-total {
+    margin-right: 40px;
+    padding: 18px;
+  }
+  .cartitems-promobox {
+    width: 320px;
+  }
+}
+
+/* ===============================
+   CART — MOBILE (FIXED ALIGNMENT)
+   =============================== */
+  @media (max-width: 480px) {
+
+  .cartitems {
+    margin: 14px 10px;
+  }
+
+  /* Hide header */
+  .cartitems-format-main {
+    display: none;
+  }
+
+  /* Cart item card */
+  .cartitems-format {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 8px 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+    background: #151515;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+    font-size: 14px;
+    position: relative;
+  }
+
+  /* Product image */
+  .carticon-product-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+    grid-row: 1 / span 4;
+  }
+
+  /* Product name */
+  .cartitems-format p {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  /* Price */
+  .cartitems-format span {
+    color: #d4a045;
+    font-weight: 600;
+  }
+
+  /* Quantity controls */
+  .cartitems-quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .cartitems-quantity-controls button {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  /* Total price */
+  .cartitems-format h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #eab862;
+    margin-top: 4px;
+  }
+
+  /* Remove icon (top-right) */
+  .cartitems-remove-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 18px;
+  }
+
+  /* Bottom section */
+  .cartitems-down {
+    flex-direction: column;
+    gap: 18px;
+    margin: 28px 0;
+  }
+
+  /* Totals card */
+  .cartitems-total {
+    width: 100%;
+    margin: 0;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .cartitems-total-item {
+    font-size: 15px;
+  }
+
+  .cartitems-total-item:last-child {
+    font-size: 17px;
+  }
+
+  /* Checkout button */
+  .cartitems-total button {
+    width: 100%;
+    height: 46px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  /* Promo box */
+  .cartitems-promobox {
+    width: 100%;
+    height: 46px;
+    padding: 0 10px;
+  }
+
+  .cartitems-promocode input {
+    width: 60%;
+    font-size: 13px;
+  }
+
+  .cartitems-promocode button {
+    width: 38%;
+    height: 36px;
+    font-size: 13px;
+  }
+
+
+
+  /* Offers box */
+  .available-offers-box {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .available-offers-box h3 {
+    font-size: 15px;
+  }
+
+  .available-offers-box li {
+    font-size: 13px;
+  }
 }
