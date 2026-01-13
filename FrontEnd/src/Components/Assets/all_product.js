@@ -77,6 +77,33 @@ import img210 from "./new_women_10.jpg";
 import img211 from "./new_women_11.jpg";
 import img212 from "./new_women_12.jpg";
 
+import img301 from "./new_men_1.jpg";
+import img302 from "./new_men_2.jpg";
+import img303 from "./new_men_3.jpg";
+import img304 from "./new_men_4.jpg";
+import img305 from "./new_men_5.jpg";
+import img306 from "./new_men_6.jpg";
+import img307 from "./new_men_7.jpg";
+import img308 from "./new_men_8.jpg";
+import img309 from "./new_men_9.jpg";
+import img310 from "./new_men_10.jpg";
+import img311 from "./new_men_11.jpg";
+import img312 from "./new_men_12.jpg";
+import img313 from "./new_men_13.jpg";
+import img314 from "./new_men_14.jpg";
+import img315 from "./new_men_15.jpg";
+import img316 from "./new_men_16.jpg";
+import img317 from "./new_men_17.jpg";
+import img318 from "./new_men_18.jpg";
+import img319 from "./new_men_19.jpg";
+import img320 from "./new_men_20.jpg";
+import img321 from "./new_men_21.jpg";
+import img322 from "./new_men_22.jpg";
+import img323 from "./new_men_23.jpg";
+import img324 from "./new_men_24.jpg";
+import img325 from "./new_men_25.jpg";
+import img326 from "./new_men_26.jpg";
+
 let all_product = [
   //womens section
 
@@ -244,6 +271,240 @@ let all_product = [
 
   //Men section
 
+      {
+    id: 301,
+    name: "Urban Casual Jacket",
+    category: "men",
+    image: img301,
+    new_price: 68.0,
+    old_price: 129.0,
+    tag: "Casual"
+  },
+  {
+    id: 302,
+    name: "Modern Streetwear Hoodie",
+    category: "men",
+    image: img302,
+    new_price: 54.0,
+    old_price: 99.0,
+    tag: "Street Style"
+  },
+  {
+    id: 303,
+    name: "Slim Fit Cotton Shirt",
+    category: "men",
+    image: img303,
+    new_price: 42.0,
+    old_price: 79.0,
+    tag: "Casual"
+  },
+  {
+    id: 304,
+    name: "Classic Winter Sweatshirt",
+    category: "men",
+    image: img304,
+    new_price: 48.0,
+    old_price: 89.0,
+    tag: "Winter"
+  },
+  {
+    id: 305,
+    name: "Minimal Crewneck Tee",
+    category: "men",
+    image: img305,
+    new_price: 26.0,
+    old_price: 49.0,
+    tag: "Everyday Wear"
+  },
+  {
+    id: 306,
+    name: "Relaxed Fit Denim Jacket",
+    category: "men",
+    image: img306,
+    new_price: 74.0,
+    old_price: 139.0,
+    tag: "Denim"
+  },
+  {
+    id: 307,
+    name: "Premium Zip-Up Hoodie",
+    category: "men",
+    image: img307,
+    new_price: 58.0,
+    old_price: 109.0,
+    tag: "Street Casual"
+  },
+  {
+    id: 308,
+    name: "Formal Office Shirt",
+    category: "men",
+    image: img308,
+    new_price: 52.0,
+    old_price: 99.0,
+    tag: "Formal"
+  },
+  {
+    id: 309,
+    name: "Athleisure Training Jacket",
+    category: "men",
+    image: img309,
+    new_price: 62.0,
+    old_price: 119.0,
+    tag: "Athletic"
+  },
+  {
+    id: 310,
+    name: "Winter Puffer Jacket",
+    category: "men",
+    image: img310,
+    new_price: 92.0,
+    old_price: 179.0,
+    tag: "Winter Wear"
+  },
+  {
+    id: 311,
+    name: "Textured Casual Overshirt",
+    category: "men",
+    image: img311,
+    new_price: 56.0,
+    old_price: 105.0,
+    tag: "Casual"
+  },
+  {
+    id: 312,
+    name: "Street Fit Cargo Jacket",
+    category: "men",
+    image: img312,
+    new_price: 70.0,
+    old_price: 135.0,
+    tag: "Streetwear"
+  },
+  {
+    id: 313,
+    name: "Smart Fit Polo T-Shirt",
+    category: "men",
+    image: img313,
+    new_price: 36.0,
+    old_price: 69.0,
+    tag: "Smart Casual"
+  },
+  {
+    id: 314,
+    name: "Urban Windbreaker Jacket",
+    category: "men",
+    image: img314,
+    new_price: 64.0,
+    old_price: 125.0,
+    tag: "Outdoor"
+  },
+  {
+    id: 315,
+    name: "Classic Black Sweatshirt",
+    category: "men",
+    image: img315,
+    new_price: 46.0,
+    old_price: 85.0,
+    tag: "Winter"
+  },
+  {
+    id: 316,
+    name: "Minimal Street Hoodie",
+    category: "men",
+    image: img316,
+    new_price: 52.0,
+    old_price: 99.0,
+    tag: "Streetwear"
+  },
+  {
+    id: 317,
+    name: "Comfort Fit Daily Tee",
+    category: "men",
+    image: img317,
+    new_price: 24.0,
+    old_price: 45.0,
+    tag: "Basics"
+  },
+  {
+    id: 318,
+    name: "Urban Bomber Jacket",
+    category: "men",
+    image: img318,
+    new_price: 78.0,
+    old_price: 149.0,
+    tag: "Street Style"
+  },
+  {
+    id: 319,
+    name: "Relaxed Weekend Hoodie",
+    category: "men",
+    image: img319,
+    new_price: 50.0,
+    old_price: 95.0,
+    tag: "Casual"
+  },
+  {
+    id: 320,
+    name: "Performance Sports Jacket",
+    category: "men",
+    image: img320,
+    new_price: 68.0,
+    old_price: 129.0,
+    tag: "Athletic"
+  },
+  {
+    id: 321,
+    name: "Formal Blazer Jacket",
+    category: "men",
+    image: img321,
+    new_price: 110.0,
+    old_price: 199.0,
+    tag: "Formal"
+  },
+  {
+    id: 322,
+    name: "Layered Winter Hoodie",
+    category: "men",
+    image: img322,
+    new_price: 60.0,
+    old_price: 115.0,
+    tag: "Winter"
+  },
+  {
+    id: 323,
+    name: "Street Casual Pullover",
+    category: "men",
+    image: img323,
+    new_price: 48.0,
+    old_price: 89.0,
+    tag: "Streetwear"
+  },
+  {
+    id: 324,
+    name: "Daily Wear Cotton Shirt",
+    category: "men",
+    image: img324,
+    new_price: 40.0,
+    old_price: 75.0,
+    tag: "Everyday"
+  },
+  {
+    id: 325,
+    name: "Premium Winter Jacket",
+    category: "men",
+    image: img325,
+    new_price: 98.0,
+    old_price: 179.0,
+    tag: "Winter Luxury"
+  },
+  {
+    id: 326,
+    name: "Modern Street Fashion Jacket",
+    category: "men",
+    image: img326,
+    new_price: 72.0,
+    old_price: 139.0,
+    tag: "Street Style"
+  },
     {
     id: 58,
     name: "Green Solid Bomber Jacket",
@@ -664,7 +925,8 @@ let all_product = [
     new_price: 60.0,
     old_price: 115.0,
     tag: "Summer"
-  },
+  }
+
 ];
 
 export default all_product;
