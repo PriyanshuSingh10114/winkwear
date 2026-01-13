@@ -124,7 +124,7 @@
 
 /* Small screens / phones */
 /* ===== STRICT MOBILE NEWSLETTER (PHONES ONLY) ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   .newsletter {
     width: 100%;

@@ -19,7 +19,7 @@
 }
 
 /* ===== STRICT MOBILE BREADCRUMBS ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   .breadcrums {
     margin: 14px 10px;

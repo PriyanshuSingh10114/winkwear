@@ -406,7 +406,7 @@ body {
 }
 
 /* ===== STRICT MOBILE PLACE ORDER (PHONES ONLY) ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   /* Page container */
   .place-order-container {

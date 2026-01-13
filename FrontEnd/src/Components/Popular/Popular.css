@@ -117,7 +117,7 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .popular {
         padding: 36px 12px;
         gap: 8px;

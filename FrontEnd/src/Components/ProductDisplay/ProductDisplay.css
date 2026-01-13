@@ -329,7 +329,7 @@
   .productdisplay-right-price-new { font-size: 22px; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   :root {
     --page-side-gap: 10px;
@@ -450,18 +450,4 @@
   }
 }
 
-@media (max-width: 420px) {
-  :root { --page-side-gap: 8px; }
-  .productdisplay { margin: 12px var(--page-side-gap); gap: 12px; }
-  .productdisplay-img { min-height: 260px; }
-  .thumb-btn img { width: 48px; height: 68px; }
-  .pd-title { font-size: 20px; }
-  .productdisplay-right-price-new { font-size: 18px; }
-  .productdisplay-right-description { font-size: 13px; }
-  .size-option { padding: 7px 12px; font-size: 14px; }
-  .quantity-controls { gap: 6px; }
-  .qty-btn { font-size: 18px; padding: 4px 8px; }
-  .qty-display { min-width: 28px; }
-  .add-cart-btn { padding: 10px; font-size: 14px; }
-  .pd-zoom { height: 70vh; }
-}
+

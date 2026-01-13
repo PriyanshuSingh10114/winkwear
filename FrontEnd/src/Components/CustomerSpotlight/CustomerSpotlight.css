@@ -118,7 +118,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .spotlight-section {
     padding: 30px 8px;
   }

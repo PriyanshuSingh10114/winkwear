@@ -108,7 +108,7 @@
 
 /* Responsive adjustments */
 /* ===== STRICT MOBILE CART (PHONES ONLY) ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   .shop-container {
     padding: 12px;

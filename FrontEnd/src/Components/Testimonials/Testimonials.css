@@ -125,7 +125,7 @@
 
 /* Small Mobile */
 /* ===== MOBILE FIX: 3 TESTIMONIALS PER ROW ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   .testimonials-grid {
     display: grid;

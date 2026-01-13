@@ -176,10 +176,10 @@
 
 
 /* ===== MOBILE: COMPACT DESKTOP-STYLE NAVBAR ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   .navbar {
-    padding: 8px 10px;
+    padding: 6px 8px;
     height: auto;
   }
 
@@ -206,7 +206,7 @@
   }
 
   .nav-menu li {
-    font-size: 13px;
+    font-size: 10px;
   }
 
   .nav-link {
@@ -224,7 +224,7 @@
   }
 
   .nav-login-cart img {
-    height: 22px;
+    height: 16px;
   }
 
   .nav-cart-count {

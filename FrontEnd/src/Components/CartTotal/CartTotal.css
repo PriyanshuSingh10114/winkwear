@@ -83,7 +83,7 @@
 }
 
 /* ===== STRICT MOBILE CART TOTAL (PHONES) ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   .cartitems-total {
     padding: 12px;

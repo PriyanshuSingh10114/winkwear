@@ -29,7 +29,7 @@
 }
 
 /* ===== STRICT MOBILE CART (PHONES ONLY) ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   /* Page spacing */
   .cartitems {

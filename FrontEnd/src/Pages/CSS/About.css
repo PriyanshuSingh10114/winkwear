@@ -112,7 +112,7 @@
 }
 
 /* ===== STRICT MOBILE ABOUT PAGE (PHONES ONLY) ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   .about-container {
     margin: 20px auto;

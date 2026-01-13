@@ -235,7 +235,7 @@
 }
 
 /* ===== STRICT MOBILE SHOP CATEGORY (PHONES ONLY) ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   /* Banner */
   .shopcategory-banner {
@@ -304,19 +304,3 @@
 }
 
 
-/* ---------- Very Small Devices (max-width: 420px) ---------- */
-@media (max-width: 420px) {
-
-  .shopcategory-products img {
-    height: 260px;
-  }
-
-  .filter-container {
-    padding: 1rem;
-  }
-
-  .shopcategory-sort {
-    font-size: 13px;
-    padding: 8px 14px;
-  }
-}

@@ -213,7 +213,7 @@
 }
 
 /* ===== STRICT MOBILE LOGIN / SIGNUP (PHONES ONLY) ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   .loginsignup {
     padding: 12px;

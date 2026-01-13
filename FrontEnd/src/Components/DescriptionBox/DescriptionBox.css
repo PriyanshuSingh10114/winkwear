@@ -115,7 +115,7 @@
 }
 
 /* ===== STRICT MOBILE DESCRIPTION BOX (PHONES ONLY) ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   .descriptionbox {
     padding: 14px 12px;

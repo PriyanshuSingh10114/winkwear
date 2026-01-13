@@ -128,7 +128,7 @@
 }
 
 /* ===== FIX: CREATOR PICKS – MOBILE ONLY (3 PER ROW) ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   .creator-grid {
     display: grid !important;              /* override flex */

@@ -75,7 +75,7 @@
 }
 
 /* ===== STRICT MOBILE PRODUCT CARD ===== */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
 
   .item {
     width: 100%;                 /* grid controls width */

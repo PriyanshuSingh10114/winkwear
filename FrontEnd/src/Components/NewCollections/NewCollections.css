@@ -70,7 +70,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .new-collections {
         gap: 10px;
         margin-bottom: 40px;
