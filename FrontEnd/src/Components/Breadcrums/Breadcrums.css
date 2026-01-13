@@ -18,32 +18,34 @@
     }
 }
 
+/* ===== STRICT MOBILE BREADCRUMBS ===== */
 @media (max-width: 600px) {
-    .breadcrums {
-        margin: 20px 10px;
-        font-size: 13px;
-        gap: 6px;
-    }
-    .breadcrums .divider {
-        margin: 0 2px;
-    }
-}
 
-/* Each level in breadcrumb */
-.breadcrums span {
-    color: #a8a8a8; /* Muted grey */
-}
+  .breadcrums {
+    margin: 14px 10px;
+    font-size: 13px;
+    gap: 6px;
 
-/* Active page (last breadcrumb) */
-.breadcrums .active {
-    color: #d4a045; /* Gold highlight */
-    font-weight: 600;
-}
+    /* 🔑 Mobile behavior */
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
 
-/* Divider “>” style */
-.breadcrums .divider {
-    color: #555; /* Slightly dimmer divider */
-    font-weight: 700;
+    scrollbar-width: none;       /* Firefox */
+  }
+
+  .breadcrums::-webkit-scrollbar {
+    display: none;               /* Chrome / Safari */
+  }
+
+  .breadcrums span {
+    flex-shrink: 0;
+  }
+
+  .breadcrums .divider {
     margin: 0 4px;
+  }
 }
+
 

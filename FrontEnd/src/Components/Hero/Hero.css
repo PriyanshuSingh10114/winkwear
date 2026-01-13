@@ -28,14 +28,21 @@
 }
 
 @media (max-width: 600px) {
+
   .hero-wrapper {
-    height: 55vh;
+    width: 100%;
+    height: 50svh;           
+    min-height: 300px;
+    max-height: 420px;
+    overflow: hidden;
   }
+
   .hero-full {
-    height: auto;
-    min-height: 320px;
-    object-fit: cover;
-    background-position: center center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       
+    object-position: center;
+    display: block;
   }
 }
 

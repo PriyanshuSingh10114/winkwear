@@ -76,33 +76,40 @@
         margin-bottom: 40px;
         padding: 0 10px;
     }
+
     .new-collections h1 {
         font-size: 26px;
         border-left-width: 4px;
         padding-left: 10px;
         margin-top: 10px;
     }
+
     .new-collections hr {
         width: 120px;
         height: 3px;
         margin-top: 6px;
     }
+
+    /* ✅ THREE IMAGES PER ROW */
     .collections {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 16px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
         margin-top: 18px;
     }
+
     .collections img {
         width: 100%;
-        height: auto;
-        max-height: 260px;
+        height: 160px;          /* fixed height keeps grid clean */
         object-fit: cover;
-        border-radius: 10px;
+        border-radius: 8px;
         box-shadow: none;
     }
+
     .collections img:hover {
-        transform: none; /* disable hover lift on touch */
+        transform: none;
         box-shadow: none;
         border-color: rgba(255,255,255,0.06);
     }
 }
+

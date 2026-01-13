@@ -74,34 +74,48 @@
     }
 }
 
+/* ===== STRICT MOBILE PRODUCT CARD ===== */
 @media (max-width: 600px) {
-    .item {
-        width: 100%; /* let container decide width (usually within a grid/stack)"); */
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: none;
-        transition: none;
-    }
-    .item img {
-        height: auto;
-        max-height: 260px;
-        object-fit: cover;
-    }
-    .item p {
-        font-size: 15px;
-        margin: 8px 0;
-    }
-    .item-prices {
-        gap: 8px;
-    }
-    .item-price-new {
-        font-size: 17px;
-    }
-    .item-price-old {
-        font-size: 15px;
-    }
-    .item:hover {
-        transform: none; /* disable hover zoom on touch devices */
-        box-shadow: none;
-    }
+
+  .item {
+    width: 100%;                 /* grid controls width */
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: none;
+    transition: none;
+  }
+
+  .item img {
+    width: 100%;
+    height: 150px;               /* compact for 2–3 per row */
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+  }
+
+  .item p {
+    font-size: 13px;
+    margin: 6px 0;
+    line-height: 1.3;
+  }
+
+  .item-prices {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .item-price-new {
+    font-size: 14px;
+  }
+
+  .item-price-old {
+    font-size: 12px;
+  }
+
+  /* Disable hover on touch */
+  .item:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
+

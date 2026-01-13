@@ -140,21 +140,96 @@
 }
 
 /* Mobile Small */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
 
+    .relatedproducts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 30px 10px 40px;
+    }
+
+    /* Heading */
     .relatedproducts h1 {
-        font-size: 28px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-align: center;
+    letter-spacing: 0.5px;
     }
 
+    /* Gold underline */
     .relatedproducts hr {
-        width: 120px;
+    width: 90px;
+    height: 3px;
+    background: #d4a045;
+    border: none;
+    border-radius: 6px;
+    margin-top: 4px;
     }
 
+    /* Product grid — mobile optimized */
+    .relatedproducts-items {
+    width: 100%;
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 per row */
+    gap: 14px;
+    }
+
+    /* Product card */
     .relatedproducts-item-card {
-        max-width: 100%;
+    background: #161616;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
     }
 
+    /* Product image */
     .relatedproducts-item-card img {
-        height: 260px;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
     }
+
+    /* Title */
+    .relatedproducts-item-title {
+    padding: 8px 10px 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #e8e8e8;
+    line-height: 1.3;
+    }
+
+    /* Price row */
+    .relatedproducts-item-price {
+    padding: 0 10px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    }
+
+    /* New price */
+    .relatedproducts-item-price-new {
+    font-size: 15px;
+    font-weight: 700;
+    color: #d4a045;
+    }
+
+    /* Old price */
+    .relatedproducts-item-price-old {
+    font-size: 13px;
+    color: #9a9a9a;
+    text-decoration: line-through;
+    }
+
+    /* Disable hover effects on mobile */
+    .relatedproducts-item-card:hover {
+    transform: none;
+    box-shadow: none;
+    }
+
 }

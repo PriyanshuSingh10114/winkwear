@@ -234,42 +234,75 @@
   }
 }
 
-/* ---------- Mobile (max-width: 600px) ---------- */
+/* ===== STRICT MOBILE SHOP CATEGORY (PHONES ONLY) ===== */
 @media (max-width: 600px) {
 
+  /* Banner */
   .shopcategory-banner {
-    height: 45vw;
+    height: 42vw;
+    border-radius: 14px;
+    margin: 14px auto;
+    box-shadow: none;
   }
 
+  /* Layout */
+  .layout-align {
+    flex-direction: column;
+  }
+
+  /* Hide sidebar filters (use button instead) */
+  .filter-container {
+    display: none;
+  }
+
+  /* Sort & index */
   .shopcategory-indexSort {
     margin: 10px 12px;
-  }
-
-  .shopcategory-sort {
-    padding: 10px 16px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
     font-size: 14px;
   }
 
+  .shopcategory-sort {
+    padding: 8px 14px;
+    font-size: 13px;
+    border-radius: 10px;
+  }
+
+  /* Product grid — TWO PER ROW */
   .shopcategory-products {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    margin: 10px 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 12px;
   }
 
   .shopcategory-products img {
     width: 100%;
-    height: 300px;
+    height: 180px;
+    border-radius: 12px;
+    box-shadow: none;
   }
 
+  /* Load more */
   .shopcategory-loadmore {
-    width: 200px;
-    height: 60px;
+    width: 180px;
+    height: 50px;
+    margin: 60px auto;
   }
 
   .shopcategory-loadmore button {
-    font-size: 18px;
+    font-size: 15px;
+  }
+
+  /* Disable hover effects on touch */
+  .shopcategory-sort:hover,
+  .shopcategory-loadmore button:hover {
+    background: inherit;
+    border-color: inherit;
   }
 }
+
 
 /* ---------- Very Small Devices (max-width: 420px) ---------- */
 @media (max-width: 420px) {

@@ -114,34 +114,56 @@
   }
 }
 
-/* Small screens / phones */
+/* ===== STRICT MOBILE DESCRIPTION BOX (PHONES ONLY) ===== */
 @media (max-width: 600px) {
+
   .descriptionbox {
-    padding: 18px 12px;
-    margin: 20px 10px;
+    padding: 14px 12px;
+    margin: 18px 8px;
     border-radius: 10px;
     box-shadow: none;
-    border: 1px solid rgba(255,255,255,0.06);
   }
+
+  /* Tabs: swipe instead of wrap */
   .descriptionbox-navigator {
-    gap: 8px;
     display: flex;
-    flex-wrap: wrap;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 6px;
+    scrollbar-width: none;
   }
+
+  .descriptionbox-navigator::-webkit-scrollbar {
+    display: none;
+  }
+
   .descriptionbox-nav-box {
+    flex-shrink: 0;
     font-size: 13px;
-    padding: 7px 10px;
+    padding: 6px 10px;
     border-radius: 6px;
   }
+
+  /* Content text */
   .descriptionbox-content {
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.55;
   }
+
   .descriptionbox-description p,
   .descriptionbox-reviews p {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
+
+  /* Reviews */
+  .descriptionbox-reviews h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
   .descriptionbox-reviews .stars {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
+

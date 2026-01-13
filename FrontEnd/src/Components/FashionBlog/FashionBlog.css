@@ -191,45 +191,77 @@
   .blog-section {
     padding: 24px 0;
   }
+
   .blog-section h1 {
     font-size: 28px;
   }
+
+  /* ✅ THREE BLOGS PER ROW */
   .blog-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 0 12px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 0 10px;
   }
+
   .blog-card {
-    border-radius: 12px;
+    border-radius: 10px;
   }
+
   .blog-card img {
-    height: 160px;
+    height: 110px;          /* compact height for 3-column layout */
+    object-fit: cover;
   }
+
   .blog-content {
-    padding: 14px;
+    padding: 10px;
   }
+
   .blog-content h2 {
-    font-size: 18px;
-  }
-  .blog-content p {
     font-size: 14px;
-    margin: 8px 0 14px 0;
+    line-height: 1.2;
   }
-  .tags span {
-    padding: 3px 8px;
+
+  .blog-content .meta {
     font-size: 11px;
   }
+
+  .blog-content p {
+    font-size: 12px;
+    margin: 6px 0 10px 0;
+  }
+
+  .tags span {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+
+  .blog-content button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* Disable hover effects on touch devices */
+  .blog-card:hover {
+    transform: none;
+    border-color: rgba(255,255,255,0.06);
+  }
+
+  /* Modal stays mobile-friendly */
   .modal {
     padding-top: 10px;
   }
+
   .modal-content {
     width: 95%;
     padding: 14px;
     border-radius: 10px;
   }
+
   .close-btn {
     font-size: 22px;
     right: 12px;
     top: 8px;
   }
 }
+

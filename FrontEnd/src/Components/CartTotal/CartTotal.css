@@ -13,50 +13,6 @@
   gap: 20px;
 }
 
-/* Responsive styles */
-@media (max-width: 1024px) {
-  .cartitems-total {
-    padding: 18px 10px;
-    gap: 14px;
-  }
-  .cartitems-total h1 {
-    font-size: 1.3rem;
-  }
-  .cartitems-total-item p,
-  .cartitems-total-item h3 {
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .cartitems-total {
-    padding: 10px 4px;
-    gap: 10px;
-    border-radius: var(--radius-md);
-    box-shadow: none;
-  }
-  .cartitems-total h1 {
-    font-size: 1.1rem;
-    margin-bottom: 6px;
-  }
-  .cartitems-total-item {
-    margin: 6px 0;
-  }
-  .cartitems-total-item p,
-  .cartitems-total-item h3 {
-    font-size: 0.85rem;
-  }
-  .cartitems-total-item h3 {
-    font-size: 1rem;
-  }
-  .cartitems-total-item:last-child h3 {
-    font-size: 1.05rem;
-  }
-  .cartitems-total hr {
-    margin: 6px 0;
-  }
-}
-
 /*******************************************
    HEADING
 *******************************************/
@@ -110,3 +66,63 @@
   font-weight: 800;
   font-size: 1.2rem;
 }
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .cartitems-total {
+    padding: 18px 10px;
+    gap: 14px;
+  }
+  .cartitems-total h1 {
+    font-size: 1.3rem;
+  }
+  .cartitems-total-item p,
+  .cartitems-total-item h3 {
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== STRICT MOBILE CART TOTAL (PHONES) ===== */
+@media (max-width: 600px) {
+
+  .cartitems-total {
+    padding: 12px;
+    gap: 10px;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  /* Heading */
+  .cartitems-total h1 {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  /* Row items */
+  .cartitems-total-item {
+    margin: 4px 0;
+  }
+
+  .cartitems-total-item p {
+    font-size: 0.82rem;
+    opacity: 0.85;
+  }
+
+  .cartitems-total-item h3 {
+    font-size: 0.95rem;
+  }
+
+  /* Divider */
+  .cartitems-total hr {
+    margin: 6px 0;
+  }
+
+  /* Grand total emphasis */
+  .cartitems-total-item:last-child h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+}
+
+
+

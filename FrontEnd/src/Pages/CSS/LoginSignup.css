@@ -212,56 +212,80 @@
     }
 }
 
-@media (max-width: 480px) {
-    .loginsignup-container {
-        padding: 1.5rem 1rem;
-    }
-    
-    .loginsignup-container h1 {
-        font-size: 1.75rem;
-    }
-    
-    .loginsignup-fields input {
-        height: 50px;
-        padding: 0 1rem;
-    }
-    
-    .loginsignup-container button {
-        height: 50px;
-    }
+/* ===== STRICT MOBILE LOGIN / SIGNUP (PHONES ONLY) ===== */
+@media (max-width: 600px) {
+
+  .loginsignup {
+    padding: 12px;
+    min-height: 100svh; /* mobile-safe viewport */
+  }
+
+  /* Reduce visual noise */
+  .loginsignup::before {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .loginsignup-container {
+    padding: 20px 16px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  /* Disable hover lift on touch */
+  .loginsignup-container:hover {
+    transform: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  .loginsignup-container h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .loginsignup-fields {
+    gap: 14px;
+    margin-bottom: 1.4rem;
+  }
+
+  .loginsignup-fields input {
+    height: 48px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+  }
+
+  /* Prevent input lift animation on focus */
+  .loginsignup-fields input:focus {
+    transform: none;
+  }
+
+  .loginsignup-container button {
+    height: 48px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    letter-spacing: 0.4px;
+  }
+
+  .loginsignup-container button:hover {
+    transform: none;
+    background: #333;
+  }
+
+  .loginsignup-login {
+    font-size: 0.9rem;
+    margin-top: 1.2rem;
+  }
+
+  .loginsignup-agree {
+    font-size: 0.85rem;
+    gap: 8px;
+  }
+
+  .loginsignup-agree input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
 }
 
-/* Accessibility */
-.loginsignup-container button:focus-visible {
-    outline: 2px solid #333;
-    outline-offset: 2px;
-}
-
-.loginsignup-fields input:focus-visible {
-    outline: 2px solid #333;
-    outline-offset: 2px;
-}
-
-/* Loading state */
-.loginsignup-container button.loading {
-    pointer-events: none;
-    opacity: 0.7;
-}
-
-.loginsignup-container button.loading::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    margin-left: -10px;
-    border: 2px solid transparent;
-    border-top: 2px solid white;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
 
 @keyframes spin {
     0% { transform: rotate(0deg); }

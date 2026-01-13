@@ -111,17 +111,57 @@
   }
 }
 
-/* SMALL MOBILE */
-@media (max-width: 480px) {
+/* ===== STRICT MOBILE ABOUT PAGE (PHONES ONLY) ===== */
+@media (max-width: 600px) {
+
   .about-container {
-    padding: 20px 16px;
+    margin: 20px auto;
+    padding: 18px 14px;
+  }
+
+  /* Stack content */
+  .about-content {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Image section */
+  .image-container {
+    width: 100%;
+    position: static;
+    top: auto;
   }
 
   .about-image {
-    height: 340px;
+    width: 100%;
+    height: 260px;          /* compact, not dominating */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  }
+
+  /* Disable hover depth on touch */
+  .about-image:hover {
+    transform: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  }
+
+  /* Text section */
+  .about-text {
+    padding-top: 0;
+  }
+
+  .about-text h1 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    padding-left: 10px;
+    border-left-width: 3px;
   }
 
   .about-text p {
-    font-size: 15.5px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-bottom: 14px;
   }
 }
+

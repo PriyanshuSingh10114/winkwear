@@ -405,44 +405,114 @@ body {
   }
 }
 
-/* ---------- SMALL MOBILE / 480px ---------- */
-@media (max-width: 480px) {
+/* ===== STRICT MOBILE PLACE ORDER (PHONES ONLY) ===== */
+@media (max-width: 600px) {
 
+  /* Page container */
   .place-order-container {
+    flex-direction: column;
+    gap: 18px;
+    margin: 20px auto;
     padding: 0 12px;
   }
 
+  /* Cards */
   .left-side,
   .right-side {
-    padding: 20px;
+    padding: 18px 14px;
     border-radius: 12px;
+    min-height: auto;
+    box-shadow: var(--shadow-sm);
+    transform: none;
+  }
+
+  /* Remove hover lift on touch */
+  .left-side:hover,
+  .right-side:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Disable sticky summary */
+  .right-side {
+    position: static;
+    top: auto;
+  }
+
+  /* Headings */
+  .left-side h2,
+  .order-summary-title {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+  }
+
+  .left-side h2::after,
+  .order-summary-title::after {
+    width: 60px;
+    height: 2px;
+  }
+
+  /* Inputs */
+  .input-group {
+    flex-direction: column;
+    gap: 10px;
   }
 
   .input-box {
-    padding: 13px 14px;
+    padding: 14px 14px;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+
+  /* Summary card */
+  .summary-card {
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .cartitems-total-item {
+    padding: 8px 0;
     font-size: 0.95rem;
   }
 
+  .cartitems-total-item:last-child {
+    font-size: 1.05rem;
+  }
+
+  /* Payment options */
+  .payment-method-selection {
+    gap: 10px;
+  }
+
   .payment-option {
-    padding: 15px 16px;
+    padding: 14px;
+    border-radius: 10px;
   }
 
   .payment-option img {
     width: 26px;
   }
 
-  .summary-card {
-    padding: 18px;
-  }
-
+  /* CTA button */
   .place-order button {
     padding: 14px;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    border-radius: 10px;
   }
 
-  .order-summary-title,
-  .left-side h2 {
-    font-size: 1.45rem;
+  .place-order button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Security badge */
+  .security-badge {
+    padding: 12px;
+    font-size: 0.9rem;
   }
 }
+
 

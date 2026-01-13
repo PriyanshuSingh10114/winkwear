@@ -28,53 +28,130 @@
   }
 }
 
+/* ===== STRICT MOBILE CART (PHONES ONLY) ===== */
 @media (max-width: 600px) {
+
+  /* Page spacing */
   .cartitems {
-    margin: 20px 4px;
+    margin: 16px 8px;
   }
+
+  /* Hide desktop table header */
   .cartitems-format-main {
-    grid-template-columns: 1fr 2fr 1fr;
-    gap: 10px;
-    font-size: 13px;
-    padding: 10px 0;
+    display: none;
   }
+
+  /* Each cart item becomes a card */
   .cartitems-format {
-    font-size: 12px;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 14px;
+    background: #151515;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+    font-size: 13px;
   }
+
+  /* Product image */
   .carticon-product-icon {
-    height: 40px;
-    width: 40px;
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
   }
+
+  /* Product details stack */
+  .cartitems-format > *:not(img) {
+    grid-column: 2;
+  }
+
+  /* Quantity controls */
+  .cartitems-quantity-controls {
+    margin-top: 6px;
+    gap: 10px;
+  }
+
+  .cartitems-quantity-controls button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  /* Remove icon */
+  .cartitems-remove-icon {
+    width: 20px;
+    margin-top: 6px;
+  }
+
+  /* Bottom section stacks */
   .cartitems-down {
     flex-direction: column;
-    margin: 40px 0;
-    gap: 10px;
+    gap: 18px;
+    margin: 30px 0;
   }
+
+  /* Totals card */
   .cartitems-total {
-    margin-right: 0;
-    padding: 10px;
     width: 100%;
+    margin: 0;
+    padding: 16px;
+    border-radius: 14px;
   }
-  .cartitems-total button {
-    width: 100%;
-    height: 44px;
+
+  .cartitems-total-item {
     font-size: 15px;
   }
+
+  .cartitems-total-item:last-child {
+    font-size: 17px;
+  }
+
+  /* Checkout button */
+  .cartitems-total button {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  /* Promo section */
+  .cartitems-promocode {
+    font-size: 14px;
+  }
+
   .cartitems-promobox {
     width: 100%;
-    padding: 0 6px;
-    height: 44px;
+    height: 46px;
+    padding: 0 10px;
   }
+
   .cartitems-promocode input {
     width: 60%;
     font-size: 13px;
   }
+
   .cartitems-promocode button {
     width: 38%;
     height: 36px;
     font-size: 13px;
   }
+
+  /* Offers box */
+  .available-offers-box {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .available-offers-box h3 {
+    font-size: 15px;
+  }
+
+  .available-offers-box li {
+    font-size: 13px;
+  }
 }
+
 
 /* Divider */
 .cartitems hr {

@@ -174,44 +174,73 @@
   }
 }
 
-/* Small screens / phones: collapse menu to hamburger (visual-only CSS) */
+
+/* ===== MOBILE: COMPACT DESKTOP-STYLE NAVBAR ===== */
 @media (max-width: 600px) {
+
   .navbar {
-    padding: 12px 12px;
+    padding: 8px 10px;
+    height: auto;
   }
+
+  /* Logo */
   .nav-logo img {
-    height: 36px;
+    height: 30px;
   }
+
   .nav-logo p {
-    font-size: 18px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
   }
-  /* Hide the regular nav-menu and replace with a compact menu button in markup if available */
+
+  /* Keep menu horizontal */
   .nav-menu {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;          /* 👈 allows scrolling if needed */
+    white-space: nowrap;
+  }
+
+  .nav-menu::-webkit-scrollbar {
     display: none;
   }
-  /* If you add a .nav-hamburger element in JSX, these styles will position it */
-  .nav-hamburger {
-    display: inline-flex;
-    width: 44px;
-    height: 44px;
-    align-items: center;
-    justify-content: center;
-    background: #151515;
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.06);
-    cursor: pointer;
-  }
-  .nav-login-cart {
-    gap: 10px;
-  }
-  .nav-login-btn {
-    padding: 8px 12px;
+
+  .nav-menu li {
     font-size: 13px;
   }
+
+  .nav-link {
+    font-size: 13px;
+  }
+
+  /* Right side */
+  .nav-login-cart {
+    gap: 8px;
+  }
+
+  .nav-login-btn {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .nav-login-cart img {
+    height: 22px;
+  }
+
   .nav-cart-count {
-    top: -4px;
-    right: -6px;
-    font-size: 11px;
-    padding: 2px 6px;
+    font-size: 9px;
+    padding: 2px 5px;
+    top: -3px;
+    right: -5px;
+  }
+
+  /* Disable hover effects on touch */
+  .nav-menu li:hover .nav-link,
+  .nav-login-btn:hover,
+  .nav-login-cart img:hover {
+    color: inherit;
+    transform: none;
   }
 }
+
+

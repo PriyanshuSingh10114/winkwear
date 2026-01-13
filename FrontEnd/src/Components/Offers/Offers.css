@@ -102,36 +102,52 @@
 }
 
 @media (max-width: 600px) {
+
   .offers-scroll {
-    gap: 12px;
-    padding: 12px 0;
+    gap: 10px;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory;
   }
+
   .offers-scroll img {
-    width: 94vw;
-    height: auto;
-    max-height: 260px;
+    width: 92vw;                 /* fits nicely without edge touch */
+    height: 220px;               /* stable height (no layout jump) */
     border-radius: 12px;
     object-fit: cover;
-  }
-  .offers-scroll img:hover {
-    transform: none; /* Disable hover zoom on touch */
-    box-shadow: none;
-  }
-  .timer-box {
-    position: static;
     margin: 0 auto;
-    padding: 10px 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  }
+
+  /* Disable hover effects for touch */
+  .offers-scroll img:hover {
+    transform: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  }
+
+  /* Timer overlay – compact & readable */
+  .timer-box {
+    position: absolute;
+    bottom: 10%;
+    right: 6%;
+    padding: 8px 10px;
     border-radius: 8px;
-    width: fit-content;
     background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
   }
+
   .timer-box h2 {
-    font-size: 16px;
+    font-size: 14px;
+    margin-bottom: 4px;
   }
+
   .timer-values {
-    font-size: 18px;
+    font-size: 16px;
+    gap: 6px;
   }
+
   .live-tag {
-    font-size: 12px;
+    font-size: 11px;
+    margin-top: 4px;
   }
 }
+
