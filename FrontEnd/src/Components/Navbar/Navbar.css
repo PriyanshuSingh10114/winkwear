@@ -178,27 +178,29 @@
 /* ===== MOBILE: COMPACT DESKTOP-STYLE NAVBAR ===== */
 @media (max-width: 480px) {
 
+  /* NAVBAR CONTAINER */
   .navbar {
-    padding: 6px 8px;
+    padding: 8px 10px;
     height: auto;
   }
 
-  /* Logo */
+  /* LOGO */
   .nav-logo img {
-    height: 24px;
+    height: 26px;
   }
 
   .nav-logo p {
-    font-size: 12px;
-    letter-spacing: 0.5px;
+    font-size: 14px;
+    letter-spacing: 0.6px;
   }
 
-  /* Keep menu horizontal */
+  /* MENU — horizontal, scrollable if needed */
   .nav-menu {
     display: flex;
-    gap: 10px;
-    overflow-x: auto;          /* 👈 allows scrolling if needed */
+    gap: 12px;
+    overflow-x: auto;
     white-space: nowrap;
+    max-width: 55vw;   /* 👈 prevents menu from crushing right section */
   }
 
   .nav-menu::-webkit-scrollbar {
@@ -206,32 +208,35 @@
   }
 
   .nav-menu li {
-    font-size: 10px;
+    font-size: 13px;
+    flex-shrink: 0;
   }
 
   .nav-link {
     font-size: 13px;
   }
 
-  /* Right side */
+  /* RIGHT SIDE */
   .nav-login-cart {
-    gap: 8px;
+    gap: 10px;
+    flex-shrink: 0;
   }
 
   .nav-login-btn {
-    padding: 5px 8px;
+    padding: 5px 10px;
     font-size: 12px;
+    border-radius: 6px;
   }
 
   .nav-login-cart img {
-    height: 16px;
+    height: 18px;
   }
 
   .nav-cart-count {
     font-size: 9px;
     padding: 2px 5px;
-    top: -3px;
-    right: -5px;
+    top: -4px;
+    right: -6px;
   }
 
   /* Disable hover effects on touch */
@@ -242,5 +247,41 @@
     transform: none;
   }
 }
+
+@media (max-width: 430px) {
+
+  .nav-menu {
+    gap: 8px;
+    max-width: 50vw;
+  }
+
+  .nav-logo img {
+    height: 24px;
+  }
+
+  .nav-logo p {
+    font-size: 12px;   /* ✅ readable, not broken */
+    letter-spacing: 0.4px;
+  }
+
+  .nav-menu li {
+    font-size: 12px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+  }
+
+  .nav-login-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .nav-login-cart img {
+    height: 18px;
+  }
+}
+
+
 
 
