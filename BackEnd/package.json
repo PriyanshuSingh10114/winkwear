@@ -1,13 +1,14 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "WinkWear Backend",
   "license": "ISC",
-  "author": "",
+  "author": "Priyanshu Singh",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -17,6 +18,5 @@
     "mongoose": "^8.15.1",
     "multer": "^2.0.0",
     "nodemailer": "^7.0.4"
-  },
-  "keywords": []
+  }
 }
