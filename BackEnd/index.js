@@ -1,4 +1,4 @@
-const port = 4000;
+const PORT = process.env.PORT || 4000;
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -22,6 +22,13 @@ mongoose.connect(
 
 app.get("/", (req, res) => {
   res.send("Express App is Running");
+});
+
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Backend is running",
+  });
 });
 
 /* ================= IMAGE UPLOAD ================= */
