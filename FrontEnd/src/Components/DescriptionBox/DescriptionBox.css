@@ -54,22 +54,97 @@
   margin-bottom: 14px;
 }
 
-/* Reviews Section */
+/* =========================
+   REVIEWS SECTION (DYNAMIC)
+========================= */
+
 .descriptionbox-reviews {
   animation: fadeIn 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .descriptionbox-reviews h3 {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: #d4a045;
   font-size: 18px;
   font-weight: 700;
 }
 
-.descriptionbox-reviews .stars {
-  color: #ffd369;
-  margin-right: 8px;
-  font-size: 20px;
+/* STAR INPUT */
+.star-input {
+  display: flex;
+  gap: 6px;
+}
+
+/* REVIEW TEXTAREA */
+.descriptionbox-reviews textarea {
+  width: 100%;
+  min-height: 90px;
+  background: #1b1b1b;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
+  color: #e6e6e6;
+  outline: none;
+  resize: none;
+}
+
+.descriptionbox-reviews textarea::placeholder {
+  color: #888;
+}
+
+/* SUBMIT REVIEW BUTTON */
+.descriptionbox-reviews button {
+  width: 200px;
+  height: 48px;
+  background: #d4a045;
+  border: none;
+  border-radius: 10px;
+  color: #0d0d0d;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.descriptionbox-reviews button:hover {
+  background: #eab862;
+  transform: translateY(-2px);
+}
+
+/* REVIEW LIST */
+.review-list {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.review-card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.review-card strong {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.review-card p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #cfcfcf;
+  line-height: 1.5;
+}
+
+/* Stars inside review card */
+.review-card svg {
+  margin-right: 2px;
 }
 
 /* Fade Animation */
@@ -78,19 +153,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-  .descriptionbox {
-    padding: 25px 20px;
-  }
-
-  .descriptionbox-nav-box {
-    font-size: 14px;
-    padding: 8px 14px;
-  }
-}
-
-/* Tablet (small desktops / large tablets) */
+/* Tablet */
 @media (max-width: 1024px) {
   .descriptionbox {
     padding: 30px 28px;
@@ -109,12 +172,9 @@
     font-size: 15px;
     line-height: 1.65;
   }
-  .descriptionbox-reviews h3 {
-    font-size: 17px;
-  }
 }
 
-/* ===== STRICT MOBILE DESCRIPTION BOX (PHONES ONLY) ===== */
+/* ===== STRICT MOBILE (UNCHANGED LOGIC) ===== */
 @media (max-width: 480px) {
 
   .descriptionbox {
@@ -124,7 +184,6 @@
     box-shadow: none;
   }
 
-  /* Tabs: swipe instead of wrap */
   .descriptionbox-navigator {
     display: flex;
     gap: 8px;
@@ -145,25 +204,23 @@
     border-radius: 6px;
   }
 
-  /* Content text */
   .descriptionbox-content {
     font-size: 14px;
     line-height: 1.55;
   }
 
-  .descriptionbox-description p,
-  .descriptionbox-reviews p {
-    margin-bottom: 10px;
-  }
-
-  /* Reviews */
   .descriptionbox-reviews h3 {
     font-size: 15px;
-    margin-bottom: 10px;
   }
 
-  .descriptionbox-reviews .stars {
-    font-size: 16px;
+  .descriptionbox-reviews textarea {
+    font-size: 13px;
+    min-height: 70px;
+  }
+
+  .descriptionbox-reviews button {
+    width: 100%;
+    height: 44px;
+    font-size: 14px;
   }
 }
-

@@ -1,17 +1,81 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./DescriptionBox.css";
+import axios from "axios";
+import { FaStar } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const DescriptionBox = ({ product }) => {
   const [activeTab, setActiveTab] = useState("description");
+  const [reviews, setReviews] = useState([]);
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
+  const [comment, setComment] = useState("");
+  const [avgRating, setAvgRating] = useState(0);
+  const [count, setCount] = useState(0);
 
-  // Split description into lines (since you used sentence-based text)
-  const descriptionLines = product?.description
-    ?.split(". ")
-    .filter(line => line.trim() !== "");
+  const token = localStorage.getItem("auth-token");
+
+  /* ---------------- FETCH DATA ---------------- */
+  const loadReviews = async () => {
+    const res = await axios.get(
+      `http://localhost:4000/reviews/${product.id}`
+    );
+    setReviews(res.data);
+  };
+
+  const loadRating = async () => {
+    const res = await axios.get(
+      `http://localhost:4000/rating/${product.id}`
+    );
+    setAvgRating(res.data.avgRating || 0);
+    setCount(res.data.count || 0);
+  };
+
+  useEffect(() => {
+    if (activeTab === "reviews" && product?.id) {
+      loadReviews();
+      loadRating();
+    }
+  }, [activeTab, product]);
+
+  /* ---------------- SUBMIT REVIEW ---------------- */
+  const submitReview = async () => {
+    if (!token) {
+      toast.warn("Login required to submit review");
+      return;
+    }
+
+    if (!rating || !comment.trim()) {
+      toast.error("Please add rating and comment");
+      return;
+    }
+
+    try {
+      await axios.post(
+        "http://localhost:4000/addreview",
+        {
+          productId: product.id,
+          rating,
+          comment,
+        },
+        {
+          headers: { "auth-token": token },
+        }
+      );
+
+      toast.success("Review submitted");
+      setRating(0);
+      setComment("");
+      loadReviews();
+      loadRating();
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Already reviewed");
+    }
+  };
 
   return (
     <div className="descriptionbox">
-      {/* NAVIGATION */}
+      {/* TABS */}
       <div className="descriptionbox-navigator">
         <div
           className={`descriptionbox-nav-box ${
@@ -21,35 +85,71 @@ const DescriptionBox = ({ product }) => {
         >
           Description
         </div>
-
         <div
           className={`descriptionbox-nav-box ${
-            activeTab === "reviews" ? "active" : "fade"
+            activeTab === "reviews" ? "active" : ""
           }`}
           onClick={() => setActiveTab("reviews")}
         >
-          Reviews
+          Reviews ({count})
         </div>
       </div>
 
       {/* CONTENT */}
       <div className="descriptionbox-content">
-        {activeTab === "description" ? (
+        {activeTab === "description" && (
           <div className="descriptionbox-description">
-            <h3>{product.name}</h3>
-
-            <ul>
-              {descriptionLines?.map((line, index) => (
-                <li key={index}>{line}.</li>
-              ))}
-            </ul>
+            <p>{product.description}</p>
           </div>
-        ) : (
+        )}
+
+        {activeTab === "reviews" && (
           <div className="descriptionbox-reviews">
-            <h3>User Reviews</h3>
-            <p>⭐️⭐️⭐️⭐️⭐️ — Amazing quality and fast delivery!</p>
-            <p>⭐️⭐️⭐️⭐️ — Loved the fabric and fitting.</p>
-            <p>⭐️⭐️⭐️ — Good product, packaging can improve.</p>
+            <h3>⭐ {avgRating.toFixed(1)} / 5</h3>
+
+            {/* STAR INPUT */}
+            <div className="star-input">
+              {[...Array(5)].map((_, i) => {
+                const value = i + 1;
+                return (
+                  <FaStar
+                    key={value}
+                    size={22}
+                    color={value <= (hover || rating) ? "#ffc107" : "#444"}
+                    onMouseEnter={() => setHover(value)}
+                    onMouseLeave={() => setHover(0)}
+                    onClick={() => setRating(value)}
+                    style={{ cursor: "pointer" }}
+                  />
+                );
+              })}
+            </div>
+
+            {/* COMMENT */}
+            <textarea
+              placeholder="Write your review..."
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+            />
+
+            <button onClick={submitReview}>Submit Review</button>
+
+            {/* REVIEW LIST */}
+            <div className="review-list">
+              {reviews.length === 0 && <p>No reviews yet.</p>}
+
+              {reviews.map((r) => (
+                <div className="review-card" key={r._id}>
+                  <strong>{r.userName}</strong>
+                  <div>
+                    {[...Array(r.rating)].map((_, i) => (
+                      <FaStar key={i} size={14} color="#ffc107" />
+                    ))}
+                  </div>
+                  <p>{r.comment}</p>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
