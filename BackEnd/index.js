@@ -226,6 +226,6 @@ app.get('/rating/:productId', async (req, res) => {
 });
 
 /* ================= SERVER ================= */
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on  ${PORT}`);
 });
