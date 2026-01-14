@@ -14,7 +14,7 @@ const NewsLetter = () => {
     }
 
     try {
-      await axios.post('http://localhost:4000/subscribe', { email });
+      await axios.post(`${import.meta.env.VITE_API_BACKEND_URL}/subscribe`, { email });
       toast.success('Subscribed to Wink&Wear newsletter!');
       setEmail('');
     } catch (error) {

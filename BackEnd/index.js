@@ -38,7 +38,7 @@ app.use("/uploads", express.static("uploads/images"));
 app.post("/uploads", uploads.single("product"), (req, res) => {
   res.json({
     success: true,
-    imageUrl: `http://localhost:${port}/uploads/${req.file.filename}`
+    imageUrl: `${process.env.VITE_API_FRONTEND_URL}/uploads/${req.file.filename}`
   });
 });
 

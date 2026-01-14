@@ -18,14 +18,14 @@ const DescriptionBox = ({ product }) => {
   /* ---------------- FETCH DATA ---------------- */
   const loadReviews = async () => {
     const res = await axios.get(
-      `http://localhost:4000/reviews/${product.id}`
+      `${import.meta.env.VITE_API_BACKEND_URL}/reviews/${product.id}`
     );
     setReviews(res.data);
   };
 
   const loadRating = async () => {
     const res = await axios.get(
-      `http://localhost:4000/rating/${product.id}`
+      `${import.meta.env.VITE_API_BACKEND_URL}/rating/${product.id}`
     );
     setAvgRating(res.data.avgRating || 0);
     setCount(res.data.count || 0);
@@ -52,7 +52,7 @@ const DescriptionBox = ({ product }) => {
 
     try {
       await axios.post(
-        "http://localhost:4000/addreview",
+        `${import.meta.env.VITE_API_BACKEND_URL}/addreview`,
         {
           productId: product.id,
           rating,
