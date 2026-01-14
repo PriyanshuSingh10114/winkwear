@@ -16,109 +16,169 @@ let new_collections = [
     id: 17,
     name: "Summer Beach Cover-up",
     category: "women",
-    type: 'summer',
+    type: "cover-up",
+    season: "summer",
+    style: "casual",
+    occasion: "vacation",
     image: p5_img,
     new_price: 38.0,
     old_price: 74.99,
+    description:
+      "A lightweight beach cover-up designed for sunny days. Breathable fabric makes it perfect for layering over swimwear during vacations."
   },
   {
     id: 50,
     name: "Knit Cardigan Sweater",
     category: "women",
-    type: 'office',
+    type: "cardigan",
+    season: "winter",
+    style: "casual",
+    occasion: "daily",
     image: img8,
     new_price: 50.0,
     old_price: 99.99,
+    description:
+      "A cozy knit cardigan sweater designed for layering. Offers warmth and comfort with a versatile everyday look."
   },
   {
     id: 52,
     name: "Denim Shorts",
     category: "women",
-    type: 'jacket',
+    type: "shorts",
+    season: "summer",
+    style: "casual",
+    occasion: "daily",
     image: img10,
     new_price: 36.0,
     old_price: 69.99,
+    description:
+      "Classic denim shorts crafted for summer comfort. Perfect for casual outings and relaxed styling."
   },
   {
     id: 56,
     name: "Puffed Sleeve Blouse",
     category: "women",
-    type: 'dress',
+    type: "blouse",
+    season: "all-season",
+    style: "casual",
+    occasion: "daily",
     image: img14,
     new_price: 50.0,
     old_price: 99.99,
+    description:
+      "A fashionable blouse featuring puffed sleeves for a modern feminine look. Comfortable and versatile."
   },
   {
     id: 63,
     name: "Striped Polo Shirt",
     category: "men",
-    type: 'jacket',
+    type: "polo shirt",
+    season: "summer",
+    style: "smart casual",
+    occasion: "daily",
     image: men6,
     new_price: 35.0,
     old_price: 69.99,
+    description:
+      "A striped polo shirt blending casual comfort with a smart finish. Perfect for relaxed outings and semi-casual events."
   },
   {
     id: 65,
-    name: "Lightweight Linen Shirt",
+    name: "Slim Fit Jeans",
     category: "men",
-    type: 'summer',
+    type: "jeans",
+    season: "all-season",
+    style: "casual",
+    occasion: "daily",
     image: men8,
-    new_price: 42.0,
-    old_price: 79.99,
+    new_price: 52.0,
+    old_price: 99.99,
+    description:
+      "Slim fit jeans designed for modern casual wear. Comfortable stretch fabric with a sharp everyday look."
   },
   {
     id: 66,
-    name: "Wool Overcoat",
+    name: "Lightweight Linen Shirt",
     category: "men",
-    type: 'winter',
+    type: "shirt",
+    season: "summer",
+    style: "casual",
+    occasion: "daily",
     image: men9,
-    new_price: 95.0,
-    old_price: 179.99,
+    new_price: 42.0,
+    old_price: 79.99,
+    description:
+      "A breathable linen shirt crafted for warm weather comfort. Ideal for casual outings and summer styling."
   },
   {
-    id: 26,
-    name: "Workwear Utility Jacket",
+    id: 320,
+    name: "Performance Sports Jacket",
     category: "men",
-    type: 'sport',
+    type: "jacket",
+    season: "all-season",
+    style: "athletic",
+    occasion: "daily",
     image: p20_img,
     new_price: 68.0,
     old_price: 129.99,
+    description:
+      "A performance sports jacket engineered for mobility and durability. Suitable for training and active lifestyles."
   },
   {
-    id: 27,
-    name: "Oxford Cloth Shirt",
+    id: 321,
+    name: "Formal Blazer Jacket",
     category: "men",
-    type: 'accessories',
+    type: "blazer",
+    season: "winter",
+    style: "formal",
+    occasion: "office",
     image: p21_img,
-    new_price: 45.0,
-    old_price: 89.99,
+    new_price: 110.0,
+    old_price: 199.0,
+    description:
+      "A formal blazer jacket designed for sharp silhouettes and professional styling. Ideal for office and events."
   },
   {
-    id: 28,
-    name: "Athletic Shorts",
+    id: 322,
+    name: "Layered Winter Hoodie",
     category: "men",
-    type: 'accessories',
+    type: "hoodie",
+    season: "winter",
+    style: "casual",
+    occasion: "daily",
     image: p22_img,
-    new_price: 38.0,
-    old_price: 74.99,
+    new_price: 60.0,
+    old_price: 115.0,
+    description:
+      "A layered winter hoodie offering enhanced warmth and comfort. Perfect for cold-weather casual wear."
   },
   {
     id: 15,
     name: "Vintage Retro Sweater",
     category: "women",
-    type: 'dress',
+    type: "sweater",
+    season: "winter",
+    style: "casual",
+    occasion: "daily",
     image: p3_img,
     new_price: 42.0,
     old_price: 79.99,
+    description:
+      "A vintage-inspired sweater with retro charm, offering warmth and comfort. Perfect for relaxed winter outfits with a nostalgic aesthetic."
   },
   {
     id: 16,
     name: "Designer Silk Blouse",
     category: "women",
-    type: 'winter',
+    type: "blouse",
+    season: "all-season",
+    style: "formal",
+    occasion: "office",
     image: p4_img,
     new_price: 68.0,
     old_price: 125.99,
+    description:
+      "A premium silk blouse designed with a luxurious feel and refined finish. Ideal for professional settings and elegant day-to-night looks."
   }
 ];
 

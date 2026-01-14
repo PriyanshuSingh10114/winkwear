@@ -4,7 +4,18 @@ import './ShopContext.css';
 
 export const ShopContext = createContext(null);
 
-// Merge DB + local products by unique ID
+/* ================= PROMO CONFIG ================= */
+const PROMO_CODES = {
+  SAVE15: { type: 'percent', value: 15, min: 100 },
+  SAVE25: { type: 'percent', value: 25, min: 200 },
+  FLAT50: { type: 'flat', value: 50, min: 350 },
+  FREESHIP: { type: 'shipping', value: 15 },
+  BLACKFRIDAY: { type: 'percent', value: 50, fridayOnly: true },
+};
+
+const isFriday = () => new Date().getDay() === 5;
+
+/* ================= HELPERS ================= */
 const mergeProducts = (local, remote) => {
   const seen = new Set();
   const merged = [];
@@ -19,149 +30,113 @@ const mergeProducts = (local, remote) => {
   return merged;
 };
 
+/* ================= CONTEXT ================= */
 const ShopContextProvider = (props) => {
   const [all_product, setAll_Product] = useState([]);
   const [cartItems, setCartItems] = useState({});
-  const [discount, setDiscount] = useState(0);
   const [appliedCode, setAppliedCode] = useState('');
 
-  // Fetch product list and initialize cart
+  /* ---------- FETCH PRODUCTS ---------- */
   useEffect(() => {
     fetch('http://localhost:4000/allproducts')
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
         const merged = mergeProducts(all_product_local, data);
         setAll_Product(merged);
 
         const initialCart = {};
-        merged.forEach((item) => {
-          initialCart[item.id] = 0;
-        });
+        merged.forEach((item) => (initialCart[item.id] = 0));
         setCartItems(initialCart);
       })
-      .catch((err) => {
-        console.error("Failed to fetch from DB, using local only", err);
+      .catch(() => {
         setAll_Product(all_product_local);
-
         const fallbackCart = {};
-        all_product_local.forEach((item) => {
-          fallbackCart[item.id] = 0;
-        });
+        all_product_local.forEach((item) => (fallbackCart[item.id] = 0));
         setCartItems(fallbackCart);
       });
-
-    // Fetch user's saved cart from backend
-    if (localStorage.getItem('auth-token')) {
-      fetch('http://localhost:4000/getcart', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'auth-token': `${localStorage.getItem('auth-token')}`,
-        },
-        body: JSON.stringify({}),
-      })
-        .then((response) => response.json())
-        .then((data) => setCartItems(data));
-    }
   }, []);
 
-  // Add product to cart
-  const addToCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-
-    if (localStorage.getItem('auth-token')) {
-      fetch('http://localhost:4000/addtocart', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'auth-token': `${localStorage.getItem('auth-token')}`,
-        },
-        body: JSON.stringify({ itemId }),
-      })
-        .then((response) => response.json())
-        .then((data) => console.log(data));
-    }
+  /* ---------- CART OPERATIONS ---------- */
+  const addToCart = (id) => {
+    setCartItems((prev) => ({ ...prev, [id]: prev[id] + 1 }));
   };
 
-  // Remove one quantity from cart
-  const removeFromCart = (itemId) => {
-    setCartItems((prev) => ({
-      ...prev,
-      [itemId]: prev[itemId] > 0 ? prev[itemId] - 1 : 0,
-    }));
-
-    if (localStorage.getItem('auth-token')) {
-      fetch('http://localhost:4000/removefromcart', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'auth-token': `${localStorage.getItem('auth-token')}`,
-        },
-        body: JSON.stringify({ itemId }),
-      })
-        .then((response) => response.json())
-        .then((data) => console.log(data));
-    }
+  const removeFromCart = (id) => {
+    setCartItems((prev) => ({ ...prev, [id]: Math.max(prev[id] - 1, 0) }));
   };
 
-  // Clear entire cart
   const clearCart = () => {
-    const emptyCart = {};
-    all_product.forEach((item) => {
-      emptyCart[item.id] = 0;
-    });
-    setCartItems(emptyCart);
-
-    if (localStorage.getItem('auth-token')) {
-      fetch('http://localhost:4000/clearcart', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'auth-token': `${localStorage.getItem('auth-token')}`,
-        },
-        body: JSON.stringify({}),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log('Cart cleared:', data))
-        .catch((err) => console.error('Error clearing cart:', err));
-    }
+    const empty = {};
+    all_product.forEach((p) => (empty[p.id] = 0));
+    setCartItems(empty);
   };
 
-  // Quantity control
-  const incrementQuantity = (productId) => addToCart(productId);
-  const decrementQuantity = (productId) => removeFromCart(productId);
+  const incrementQuantity = addToCart;
+  const decrementQuantity = removeFromCart;
 
-  // Total amount logic
+  /* ---------- TOTAL CART AMOUNT ---------- */
   const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        const itemInfo = all_product.find(
-          (product) => String(product.id) === String(item)
+    let total = 0;
+
+    for (const id in cartItems) {
+      if (cartItems[id] > 0) {
+        const product = all_product.find(
+          (p) => String(p.id) === String(id)
         );
-        if (itemInfo) {
-          totalAmount += itemInfo.new_price * cartItems[item];
+        if (product) {
+          total += product.new_price * cartItems[id];
         }
       }
     }
-    return totalAmount;
+
+    return total;
   };
 
-  // Total item count logic
-  const getTotalCartItems = () => {
-    let totalItem = 0;
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        totalItem += cartItems[item];
+  /* ---------- FINAL BILL (SINGLE SOURCE OF TRUTH) ---------- */
+  const getOrderSummary = () => {
+    const subtotal = Number(getTotalCartAmount()) || 0;
+    let discount = 0;
+    let shipping = subtotal > 300 ? 0 : 15;
+
+    if (appliedCode && PROMO_CODES[appliedCode]) {
+      const promo = PROMO_CODES[appliedCode];
+
+      if (promo.fridayOnly && !isFriday()) {
+        return { subtotal, discount: 0, shipping, total: subtotal + shipping };
+      }
+
+      if (promo.min && subtotal < promo.min) {
+        return { subtotal, discount: 0, shipping, total: subtotal + shipping };
+      }
+
+      if (promo.type === 'percent') {
+        discount = (subtotal * promo.value) / 100;
+      }
+
+      if (promo.type === 'flat') {
+        discount = promo.value;
+      }
+
+      if (promo.type === 'shipping') {
+        shipping = 0;
       }
     }
-    return totalItem;
+
+    const total = Math.max(0, subtotal - discount + shipping);
+
+    return { subtotal, discount, shipping, total, appliedCode };
   };
 
+  /* ---------- ITEM COUNT ---------- */
+  const getTotalCartItems = () => {
+    let count = 0;
+    for (const id in cartItems) {
+      if (cartItems[id] > 0) count += cartItems[id];
+    }
+    return count;
+  };
+
+  /* ---------- CONTEXT VALUE ---------- */
   const contextValue = {
     all_product,
     cartItems,
@@ -169,13 +144,13 @@ const ShopContextProvider = (props) => {
     removeFromCart,
     incrementQuantity,
     decrementQuantity,
-    getTotalCartItems,
+    clearCart,
     getTotalCartAmount,
-    discount,
-    setDiscount,
+    getOrderSummary,
+    getTotalCartItems,
     appliedCode,
     setAppliedCode,
-    clearCart, // ✅ Added to context
+    promoRules: PROMO_CODES,
   };
 
   return (
@@ -186,5 +161,3 @@ const ShopContextProvider = (props) => {
 };
 
 export default ShopContextProvider;
-
-

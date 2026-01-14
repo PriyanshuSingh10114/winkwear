@@ -6,24 +6,6 @@ import { ShopContext } from "../../Context/ShopContext";
 
 const sizes = ["S", "M", "L", "XL", "XXL"];
 
-// Smart product type -> description
-const descriptions = {
-  Shirt:
-    "Crafted from premium breathable fabric, this shirt blends comfort with timeless elegance—perfect for office or casual outings.",
-  Casual:
-    "Designed for everyday comfort with a modern relaxed fit and soft fabric that moves with you.",
-  Winter:
-    "Warm yet refined—layer-friendly pieces with cosy insulation and a tailored silhouette.",
-  Summer:
-    "Lightweight, breathable and easy-going — perfect for hot days and relaxed looks.",
-  Formal:
-    "Structured tailoring and clean lines for a polished, professional appearance.",
-  Athletic:
-    "Performance fabrics and ergonomic cuts for full-range movement and comfort.",
-  Party:
-    "Stand-out designs with premium finishes — made to get noticed at events and nights out.",
-};
-
 const ProductDisplay = ({ product }) => {
   const { addToCart } = useContext(ShopContext);
   const [selectedSize, setSelectedSize] = useState("");
@@ -33,10 +15,11 @@ const ProductDisplay = ({ product }) => {
   const [zoomOpen, setZoomOpen] = useState(false);
 
   useEffect(() => {
-    // If product changes (navigation), reset states
-    setMainImage(product?.image || "");
-    setSelectedSize("");
-    setQuantity(1);
+    if (product) {
+      setMainImage(product.image);
+      setSelectedSize("");
+      setQuantity(1);
+    }
   }, [product]);
 
   if (!product) {
@@ -46,10 +29,6 @@ const ProductDisplay = ({ product }) => {
       </div>
     );
   }
-
-  const dynamicDescription =
-    descriptions[product.type] ||
-    "A premium piece designed with superior comfort and modern aesthetics.";
 
   const handleAddToCart = () => {
     if (!selectedSize) {
@@ -64,6 +43,10 @@ const ProductDisplay = ({ product }) => {
   const inc = () => setQuantity((q) => Math.min(q + 1, 99));
   const dec = () => setQuantity((q) => Math.max(1, q - 1));
 
+  const descriptionLines = product.description
+    ? product.description.split(". ").filter(line => line.trim() !== "")
+    : [];
+
   return (
     <>
       {added && (
@@ -73,20 +56,17 @@ const ProductDisplay = ({ product }) => {
       )}
 
       <div className="productdisplay" role="main">
-        {/* LEFT: images */}
-        <div className="productdisplay-left" aria-hidden={false}>
-          <div className="productdisplay-img-list" role="list">
-            {/* If product has gallery array (optional) try to use it; fallback to product.image */}
-            {(
-              product.gallery && product.gallery.length
-                ? product.gallery
-                : [product.image, product.image, product.image, product.image]
+        {/* LEFT: Images */}
+        <div className="productdisplay-left">
+          <div className="productdisplay-img-list">
+            {(product.gallery && product.gallery.length
+              ? product.gallery
+              : [product.image, product.image, product.image, product.image]
             ).map((src, idx) => (
               <button
                 key={idx}
                 className={`thumb-btn ${mainImage === src ? "active" : ""}`}
                 onClick={() => setMainImage(src)}
-                aria-label={`Show image ${idx + 1}`}
               >
                 <img src={src} alt={`${product.name} thumbnail ${idx + 1}`} />
               </button>
@@ -97,7 +77,6 @@ const ProductDisplay = ({ product }) => {
             <button
               className="main-img-btn"
               onClick={() => setZoomOpen(true)}
-              aria-label="Open image zoom"
             >
               <img
                 className="productdisplay-main-img"
@@ -109,11 +88,11 @@ const ProductDisplay = ({ product }) => {
           </div>
         </div>
 
-        {/* RIGHT: details */}
+        {/* RIGHT: Details */}
         <div className="productdisplay-right">
           <h1 className="pd-title">{product.name}</h1>
 
-          <div className="productdisplay-right-stars" aria-hidden>
+          <div className="productdisplay-right-stars">
             {[1, 2, 3, 4].map((i) => (
               <img key={i} src={star_icon} alt="" />
             ))}
@@ -130,21 +109,32 @@ const ProductDisplay = ({ product }) => {
             </div>
           </div>
 
+          {/* 🔥 DYNAMIC DESCRIPTION */}
           <div className="productdisplay-right-description">
-            {dynamicDescription}
+            {descriptionLines.length > 0 ? (
+              <ul>
+                {descriptionLines.map((line, index) => (
+                  <li key={index}>
+                    {line.endsWith(".") ? line : `${line}.`}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>Premium quality product designed for everyday comfort.</p>
+            )}
           </div>
 
           {/* SIZE SELECTOR */}
           <div className="size-block">
             <div className="size-heading">Select Size</div>
-            <div className="size-options" role="radiogroup" aria-label="Sizes">
+            <div className="size-options">
               {sizes.map((size) => (
                 <button
                   key={size}
-                  className={`size-option ${selectedSize === size ? "active" : ""}`}
+                  className={`size-option ${
+                    selectedSize === size ? "active" : ""
+                  }`}
                   onClick={() => setSelectedSize(size)}
-                  aria-checked={selectedSize === size}
-                  role="radio"
                 >
                   {size}
                 </button>
@@ -154,10 +144,10 @@ const ProductDisplay = ({ product }) => {
 
           {/* QUANTITY + ADD */}
           <div className="cart-controls">
-            <div className="quantity-controls" aria-label="Quantity">
-              <button className="qty-btn" onClick={dec} aria-label="Decrease quantity">−</button>
-              <div className="qty-display" aria-live="polite">{quantity}</div>
-              <button className="qty-btn" onClick={inc} aria-label="Increase quantity">+</button>
+            <div className="quantity-controls">
+              <button className="qty-btn" onClick={dec}>−</button>
+              <div className="qty-display">{quantity}</div>
+              <button className="qty-btn" onClick={inc}>+</button>
             </div>
 
             <button className="add-cart-btn" onClick={handleAddToCart}>
@@ -167,20 +157,26 @@ const ProductDisplay = ({ product }) => {
 
           {/* META */}
           <p className="productdisplay-right-category">
-            <span>Category:</span> {product.category || "Uncategorized"}
+            <span>Category:</span> {product.category}
           </p>
 
           <p className="productdisplay-right-category">
-            <span>Tags:</span> {product.tags ? product.tags.join(", ") : "Modern, Latest"}
+            <span>Season:</span> {product.season} | <span>Style:</span> {product.style}
+          </p>
+
+          <p className="productdisplay-right-category">
+            <span>Occasion:</span> {product.occasion}
           </p>
         </div>
       </div>
 
-      {/* IMAGE ZOOM MODAL */}
+      {/* IMAGE ZOOM */}
       {zoomOpen && (
         <div className="pd-zoom-backdrop" onClick={() => setZoomOpen(false)}>
-          <div className="pd-zoom" role="dialog" aria-modal="true" onClick={(e)=>e.stopPropagation()}>
-            <button className="pd-zoom-close" onClick={() => setZoomOpen(false)} aria-label="Close zoom">✕</button>
+          <div className="pd-zoom" onClick={(e) => e.stopPropagation()}>
+            <button className="pd-zoom-close" onClick={() => setZoomOpen(false)}>
+              ✕
+            </button>
             <img src={mainImage} alt={`${product.name} large`} />
           </div>
         </div>
