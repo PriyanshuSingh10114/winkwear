@@ -6,16 +6,20 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
+const { OAuth2Client } = require("google-auth-library");
 
 const orderRoute = require('./order');
 const newsletterRoute = require('./newsletter');
+
+/* ================= GOOGLE CLIENT ================= */
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 app.use(express.json());
 app.use(cors());
 app.use(orderRoute);
 app.use('/', newsletterRoute);
 
-/* ================= DB CONNECTION ================= */
+/* ================= DB CONNECTION (UNCHANGED) ================= */
 mongoose.connect(
   "mongodb+srv://Priyanshu5313:9572@cluster0.xrts3ya.mongodb.net/winkwear"
 );
@@ -137,7 +141,8 @@ app.post('/signup', async (req, res) => {
   const user = new Users({ ...req.body, cartData: cart });
   await user.save();
 
-  const token = jwt.sign({ user: { id: user.id } }, 'secret_ecom');
+  /* FIXED JWT (_id instead of id) */
+  const token = jwt.sign({ user: { id: user._id } }, 'secret_ecom');
   res.json({ success: true, token });
 });
 
@@ -147,8 +152,54 @@ app.post('/login', async (req, res) => {
     return res.json({ success: false });
   }
 
-  const token = jwt.sign({ user: { id: user.id } }, 'secret_ecom');
+  /* FIXED JWT (_id instead of id) */
+  const token = jwt.sign({ user: { id: user._id } }, 'secret_ecom');
   res.json({ success: true, token });
+});
+
+/* ================= GOOGLE AUTH (ADDED ONLY) ================= */
+app.post("/auth/google", async (req, res) => {
+  try {
+    const { credential } = req.body;
+    if (!credential) {
+      return res.status(400).json({ success: false });
+    }
+
+    const ticket = await googleClient.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    const { email, name, sub } = payload;
+
+    let user = await Users.findOne({ email });
+
+    if (!user) {
+      const cart = {};
+      for (let i = 0; i < 300; i++) cart[i] = 0;
+
+      user = new Users({
+        name,
+        email,
+        password: sub, // Google unique ID
+        cartData: cart,
+      });
+
+      await user.save();
+    }
+
+    const token = jwt.sign(
+      { user: { id: user._id } },
+      'secret_ecom'
+    );
+
+    res.json({ success: true, token });
+
+  } catch (error) {
+    console.error("Google Login Error:", error);
+    res.status(401).json({ success: false });
+  }
 });
 
 /* ================= CART APIs ================= */
@@ -161,7 +212,8 @@ app.post('/addtocart', fetchUser, async (req, res) => {
 
 app.post('/removefromcart', fetchUser, async (req, res) => {
   const user = await Users.findById(req.user.id);
-  user.cartData[req.body.itemId] = Math.max(user.cartData[req.body.itemId] - 1, 0);
+  user.cartData[req.body.itemId] =
+    Math.max(user.cartData[req.body.itemId] - 1, 0);
   await user.save();
   res.send("Removed");
 });
@@ -172,8 +224,6 @@ app.post('/getcart', fetchUser, async (req, res) => {
 });
 
 /* ================= REVIEW APIs ================= */
-
-// Add review
 app.post('/addreview', fetchUser, async (req, res) => {
   const { productId, rating, comment } = req.body;
 
@@ -183,7 +233,7 @@ app.post('/addreview', fetchUser, async (req, res) => {
   });
 
   if (existing) {
-    return res.status(400).json({ success: false, message: "Already reviewed" });
+    return res.status(400).json({ success: false });
   }
 
   const user = await Users.findById(req.user.id);
@@ -200,7 +250,6 @@ app.post('/addreview', fetchUser, async (req, res) => {
   res.json({ success: true });
 });
 
-// Get reviews
 app.get('/reviews/:productId', async (req, res) => {
   const reviews = await Review.find({
     productId: Number(req.params.productId)
@@ -209,7 +258,6 @@ app.get('/reviews/:productId', async (req, res) => {
   res.json(reviews);
 });
 
-// Average rating
 app.get('/rating/:productId', async (req, res) => {
   const result = await Review.aggregate([
     { $match: { productId: Number(req.params.productId) } },
@@ -227,5 +275,5 @@ app.get('/rating/:productId', async (req, res) => {
 
 /* ================= SERVER ================= */
 app.listen(PORT, () => {
-  console.log(`Server running on  ${PORT}`);
+  console.log(`Server running on ${PORT}`);
 });
