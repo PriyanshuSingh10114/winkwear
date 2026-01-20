@@ -1,108 +1,126 @@
-import './CSS/ShopCategory.css'
-import { useContext, useState, useRef } from 'react'
-import { ShopContext } from '../Context/ShopContext';
-import dropdown_icon from '../Components/Assets/dropdown_icon.png'
-import Item from '../Components/Item/Item'
+import "./CSS/ShopCategory.css";
+import { useContext, useState, useRef, useEffect } from "react";
+import { ShopContext } from "../Context/ShopContext";
+import dropdown_icon from "../Components/Assets/dropdown_icon.png";
+import Item from "../Components/Item/Item";
 
-const ShopCategory = (props) => {
+const ShopCategory = ({ category, banner }) => {
   const { all_product } = useContext(ShopContext);
 
-  const [showFilter, setShowFilter] = useState(false);
-  const [selectedCategories, setSelectedCategories] = useState([]);
   const [visibleCount, setVisibleCount] = useState(8);
-
-  // SORTING STATES
   const [showSortMenu, setShowSortMenu] = useState(false);
   const [sortOption, setSortOption] = useState("default");
 
+  const [filterSeason, setFilterSeason] = useState("all");
+  const [filterStyle, setFilterStyle] = useState("all");
+  const [filterOccasion, setFilterOccasion] = useState("all");
+
   const productsEndRef = useRef(null);
 
-  const categories = ['Summer', 'Winter', 'Casual', 'Formal', 'Athletic', 'Party'];
+  useEffect(() => {
+    setVisibleCount(8);
+  }, [filterSeason, filterStyle, filterOccasion, sortOption, category]);
 
-  const handleCheckboxChange = (event) => {
-    const { value, checked } = event.target;
-    if (checked) {
-      setSelectedCategories([...selectedCategories, value]);
-    } else {
-      setSelectedCategories(selectedCategories.filter((item) => item !== value));
-    }
-  };
-
-  const handleSort = (option) => {
-    setSortOption(option);
-    setShowSortMenu(false);
-  };
-
-  // FILTER PRODUCTS (BY CATEGORY + TYPE)
-  let filteredProducts = all_product.filter((item) => {
-    const categoryMatch = props.category === item.category;
-    const typeMatch =
-      selectedCategories.length === 0 || selectedCategories.includes(item.type);
-    return categoryMatch && typeMatch;
+  /* FILTER */
+  const filtered = all_product.filter((item) => {
+    return (
+      item.category === category &&
+      (filterSeason === "all" || item.season === filterSeason) &&
+      (filterStyle === "all" || item.style === filterStyle) &&
+      (filterOccasion === "all" || item.occasion === filterOccasion)
+    );
   });
 
-  // APPLY SORTING
-  if (sortOption === "lowToHigh") {
-    filteredProducts = filteredProducts.sort((a, b) => a.new_price - b.new_price);
-  }
-  if (sortOption === "highToLow") {
-    filteredProducts = filteredProducts.sort((a, b) => b.new_price - a.new_price);
-  }
-  if (sortOption === "nameAZ") {
-    filteredProducts = filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
-  }
+  /* SORT (non-mutating) */
+  const sorted = [...filtered];
+  if (sortOption === "lowToHigh") sorted.sort((a, b) => a.new_price - b.new_price);
+  if (sortOption === "highToLow") sorted.sort((a, b) => b.new_price - a.new_price);
+  if (sortOption === "nameAZ") sorted.sort((a, b) => a.name.localeCompare(b.name));
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 8);
+    setVisibleCount((p) => p + 8);
     setTimeout(() => {
-      productsEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+      productsEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, 100);
   };
 
   return (
-    <div className='shop-category'>
-      <div className='layout-align'>
-        <img className='shopcategory-banner' src={props.banner} alt="" />
+    <div className="shop-category">
+      {/* BANNER */}
+      <div className="layout-align">
+        <img className="shopcategory-banner" src={banner} alt={category} />
       </div>
 
-      {/* SORT SECTION */}
-      <div className="shopcategory-indexSort">
-        <p>
-          <span>Showing {filteredProducts.length}</span> product(s)
-        </p>
-
-        <div
-          className='shopcategory-sort'
-          onClick={() => setShowSortMenu(!showSortMenu)}
-        >
-          <span>
-            {sortOption === "default" && "Sort by"}
-            {sortOption === "lowToHigh" && "Price: Low to High"}
-            {sortOption === "highToLow" && "Price: High to Low"}
-            {sortOption === "nameAZ" && "Name: A to Z"}
-          </span>
-
-          <img
-            className={showSortMenu ? "rotate-arrow" : ""}
-            src={dropdown_icon}
-            alt=""
-          />
+      {/* TOOLBAR */}
+      <div className="shopcategory-toolbar">
+        {/* LEFT (HIDDEN ON PHONE) */}
+        <div className="toolbar-left">
+          <span>Showing {sorted.length}</span> product(s)
         </div>
 
-        {/* SORT DROPDOWN MENU */}
-        {showSortMenu && (
-          <div className="sort-dropdown">
-            <p onClick={() => handleSort("lowToHigh")}>Price: Low → High</p>
-            <p onClick={() => handleSort("highToLow")}>Price: High → Low</p>
-            <p onClick={() => handleSort("nameAZ")}>Name: A → Z</p>
-            <p onClick={() => handleSort("default")}>Reset</p>
+        {/* FILTERS (HIDDEN ON PHONE) */}
+        <div className="toolbar-center">
+          <select value={filterSeason} onChange={(e) => setFilterSeason(e.target.value)}>
+            <option value="all">All Seasons</option>
+            <option value="summer">Summer</option>
+            <option value="winter">Winter</option>
+            <option value="all-season">All Season</option>
+          </select>
+
+          <select value={filterStyle} onChange={(e) => setFilterStyle(e.target.value)}>
+            <option value="all">All Styles</option>
+            <option value="casual">Casual</option>
+            <option value="formal">Formal</option>
+            <option value="partywear">Party Wear</option>
+            <option value="streetwear">Streetwear</option>
+            <option value="athletic">Athletic</option>
+            <option value="ethnic">Ethnic</option>
+          </select>
+
+          <select value={filterOccasion} onChange={(e) => setFilterOccasion(e.target.value)}>
+            <option value="all">All Occasions</option>
+            <option value="daily">Daily</option>
+            <option value="office">Office</option>
+            <option value="party">Party</option>
+            <option value="vacation">Vacation</option>
+            <option value="festive">Festive</option>
+            <option value="outdoor">Outdoor</option>
+          </select>
+        </div>
+
+        {/* SORT */}
+        <div className="toolbar-right mobile-sort">
+          <div
+            className="shopcategory-sort"
+            onClick={() => setShowSortMenu(!showSortMenu)}
+          >
+            <span className="sort-text">
+              {sortOption === "default" && "Sort by"}
+              {sortOption === "lowToHigh" && "Price: Low → High"}
+              {sortOption === "highToLow" && "Price: High → Low"}
+              {sortOption === "nameAZ" && "Name: A → Z"}
+            </span>
+            <img
+              src={dropdown_icon}
+              className={showSortMenu ? "rotate-arrow" : ""}
+              alt="sort"
+            />
           </div>
-        )}
+
+          {showSortMenu && (
+            <div className="sort-dropdown">
+              <p onClick={() => setSortOption("lowToHigh")}>Price: Low → High</p>
+              <p onClick={() => setSortOption("highToLow")}>Price: High → Low</p>
+              <p onClick={() => setSortOption("nameAZ")}>Name: A → Z</p>
+              <p onClick={() => setSortOption("default")}>Reset</p>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* PRODUCTS */}
       <div className="shopcategory-products">
-        {filteredProducts.slice(0, visibleCount).map((item) => (
+        {sorted.slice(0, visibleCount).map((item) => (
           <Item
             key={item.id}
             id={item.id}
@@ -112,17 +130,17 @@ const ShopCategory = (props) => {
             old_price={item.old_price}
           />
         ))}
-        <div ref={productsEndRef}></div>
+        <div ref={productsEndRef} />
       </div>
 
       {/* LOAD MORE */}
-      {visibleCount < filteredProducts.length && (
+      {visibleCount < sorted.length && (
         <div className="shopcategory-loadmore">
-          <button type="button" onClick={handleLoadMore}>Explore More</button>
+          <button onClick={handleLoadMore}>Explore More</button>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default ShopCategory;
