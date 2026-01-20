@@ -171,7 +171,7 @@ The Style Squad
 Bhakti Chopra – Fashion Curator/Figma Designing
 With an impeccable eye for detail, Bhakti curates Wink & Wear’s collection—handpicking every piece to strike the perfect balance between trendsetting and timeless styles. Beyond selection, she brings the brand’s vision to life, crafting eye-catching banners, styling outfits, and even shaping design choices to ensure every visual tells a story as captivating as the clothes themselves.
 
-— The Wink & Wear Team
+— The Wink & Wear Team !!
 
 ---
 ## Contact
