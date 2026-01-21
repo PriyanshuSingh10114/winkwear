@@ -3,16 +3,27 @@ import "./ProductDisplay.css";
 import star_icon from "../Assets/star_icon.png";
 import star_dull_icon from "../Assets/star_dull_icon.png";
 import { ShopContext } from "../../Context/ShopContext";
+import { useNavigate } from "react-router-dom";
 
 const sizes = ["S", "M", "L", "XL", "XXL"];
+const MAX_QTY_PER_PRODUCT = 10;
 
 const ProductDisplay = ({ product }) => {
-  const { addToCart } = useContext(ShopContext);
+  const navigate = useNavigate();
+
+  const {
+    addToCart,
+    getTotalCartItems,
+  } = useContext(ShopContext);
+
   const [selectedSize, setSelectedSize] = useState("");
   const [added, setAdded] = useState(false);
+  const [limitPopup, setLimitPopup] = useState(false);
   const [mainImage, setMainImage] = useState(product?.image || "");
   const [quantity, setQuantity] = useState(1);
   const [zoomOpen, setZoomOpen] = useState(false);
+
+  const cartCount = getTotalCartItems();
 
   useEffect(() => {
     if (product) {
@@ -30,33 +41,63 @@ const ProductDisplay = ({ product }) => {
     );
   }
 
+  /* ================= POPUP HANDLER ================= */
+  const showLimitPopup = () => {
+    setLimitPopup(true);
+    setTimeout(() => setLimitPopup(false), 2000);
+  };
+
+  /* ================= ADD TO CART ================= */
   const handleAddToCart = () => {
     if (!selectedSize) {
       alert("Please select a size before adding to cart.");
       return;
     }
-    addToCart(product.id, selectedSize, quantity);
+
+    if (quantity >= MAX_QTY_PER_PRODUCT) {
+      showLimitPopup();
+      return;
+    }
+
+    // ✅ CORRECT CALL
+    addToCart(product.id, quantity);
+
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
 
-  const inc = () => setQuantity((q) => Math.min(q + 1, 99));
+  const inc = () => {
+    if (quantity >= MAX_QTY_PER_PRODUCT) {
+      showLimitPopup();
+      return;
+    }
+    setQuantity((q) => q + 1);
+  };
+
   const dec = () => setQuantity((q) => Math.max(1, q - 1));
 
   const descriptionLines = product.description
-    ? product.description.split(". ").filter(line => line.trim() !== "")
+    ? product.description.split(". ").filter((line) => line.trim() !== "")
     : [];
 
   return (
     <>
+      {/* MAX LIMIT POPUP */}
+      {limitPopup && (
+        <div className="pd-toast error" role="alert">
+          Maximum order quantity for this product is 10
+        </div>
+      )}
+
+      {/* ADDED POPUP */}
       {added && (
-        <div className="pd-toast" role="status" aria-live="polite">
-          Added to cart — {product.name} · Size: {selectedSize} · Qty: {quantity}
+        <div className="pd-toast success" role="status" aria-live="polite">
+          Added to cart — {product.name} · Qty: {quantity}
         </div>
       )}
 
       <div className="productdisplay" role="main">
-        {/* LEFT: Images */}
+        {/* LEFT */}
         <div className="productdisplay-left">
           <div className="productdisplay-img-list">
             {(product.gallery && product.gallery.length
@@ -88,7 +129,7 @@ const ProductDisplay = ({ product }) => {
           </div>
         </div>
 
-        {/* RIGHT: Details */}
+        {/* RIGHT */}
         <div className="productdisplay-right">
           <h1 className="pd-title">{product.name}</h1>
 
@@ -109,7 +150,6 @@ const ProductDisplay = ({ product }) => {
             </div>
           </div>
 
-          {/* 🔥 DYNAMIC DESCRIPTION */}
           <div className="productdisplay-right-description">
             {descriptionLines.length > 0 ? (
               <ul>
@@ -124,7 +164,7 @@ const ProductDisplay = ({ product }) => {
             )}
           </div>
 
-          {/* SIZE SELECTOR */}
+          {/* SIZE */}
           <div className="size-block">
             <div className="size-heading">Select Size</div>
             <div className="size-options">
@@ -147,7 +187,13 @@ const ProductDisplay = ({ product }) => {
             <div className="quantity-controls">
               <button className="qty-btn" onClick={dec}>−</button>
               <div className="qty-display">{quantity}</div>
-              <button className="qty-btn" onClick={inc}>+</button>
+              <button
+                className="qty-btn"
+                onClick={inc}
+                disabled={quantity >= MAX_QTY_PER_PRODUCT}
+              >
+                +
+              </button>
             </div>
 
             <button className="add-cart-btn" onClick={handleAddToCart}>
@@ -155,13 +201,33 @@ const ProductDisplay = ({ product }) => {
             </button>
           </div>
 
+          {/* ✅ NEW FEATURE: BUY NOW / GO TO CART */}
+          {cartCount > 0 && (
+            <div className="cart-quick-actions">
+              <button
+                className="buy-now-btn"
+                onClick={() => navigate("/place-order")}
+              >
+                BUY NOW
+              </button>
+
+              <button
+                className="go-cart-btn"
+                onClick={() => navigate("/cart")}
+              >
+                GO TO CART ({cartCount})
+              </button>
+            </div>
+          )}
+
           {/* META */}
           <p className="productdisplay-right-category">
             <span>Category:</span> {product.category}
           </p>
 
           <p className="productdisplay-right-category">
-            <span>Season:</span> {product.season} | <span>Style:</span> {product.style}
+            <span>Season:</span> {product.season} |{" "}
+            <span>Style:</span> {product.style}
           </p>
 
           <p className="productdisplay-right-category">
@@ -170,11 +236,14 @@ const ProductDisplay = ({ product }) => {
         </div>
       </div>
 
-      {/* IMAGE ZOOM */}
+      {/* ZOOM */}
       {zoomOpen && (
         <div className="pd-zoom-backdrop" onClick={() => setZoomOpen(false)}>
           <div className="pd-zoom" onClick={(e) => e.stopPropagation()}>
-            <button className="pd-zoom-close" onClick={() => setZoomOpen(false)}>
+            <button
+              className="pd-zoom-close"
+              onClick={() => setZoomOpen(false)}
+            >
               ✕
             </button>
             <img src={mainImage} alt={`${product.name} large`} />

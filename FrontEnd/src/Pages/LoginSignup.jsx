@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import './CSS/LoginSignup.css'
-import bgIntro from '../Components/Assets/bgintro.jpg'
+import React, { useEffect, useState } from "react";
+import "./CSS/LoginSignup.css";
+import bgIntro from "../Components/Assets/bgintro.jpg";
 
 const LoginSignup = () => {
   const [state, setState] = useState("Login");
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
+  /* ================= GOOGLE AUTH INIT ================= */
   useEffect(() => {
     if (!window.google) return;
 
@@ -18,16 +21,18 @@ const LoginSignup = () => {
       callback: handleGoogleResponse,
     });
 
-    window.google.accounts.id.renderButton(
-      document.getElementById("google-btn"),
-      {
+    const btn = document.getElementById("google-btn");
+    if (btn) {
+      btn.innerHTML = "";
+      window.google.accounts.id.renderButton(btn, {
         theme: "outline",
         size: "large",
         width: 300,
-      }
-    );
+      });
+    }
   }, [state]);
 
+  /* ================= GOOGLE CALLBACK ================= */
   const handleGoogleResponse = async (response) => {
     try {
       const res = await fetch(
@@ -45,21 +50,23 @@ const LoginSignup = () => {
         localStorage.setItem("auth-token", data.token);
         window.location.replace("/");
       } else {
-        alert(data.errors || "Google authentication failed");
+        alert("Google authentication failed");
       }
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
       alert("Google login error");
     }
   };
 
+  /* ================= FORM HANDLER ================= */
   const changeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  /* ================= LOGIN ================= */
   const login = async () => {
     if (!formData.email || !formData.password) {
-      alert("Please fill in email and password");
+      alert("Please enter email and password");
       return;
     }
 
@@ -68,22 +75,34 @@ const LoginSignup = () => {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
       }
     );
 
     const data = await res.json();
+
     if (data.success) {
       localStorage.setItem("auth-token", data.token);
       window.location.replace("/");
     } else {
-      alert(data.errors || "Login failed");
+      alert("Invalid credentials");
     }
   };
 
+  /* ================= SIGNUP ================= */
   const signup = async () => {
-    if (!formData.name || !formData.email || !formData.password) {
-      alert("Fill all fields");
+    const { name, email, password, confirmPassword } = formData;
+
+    if (!name || !email || !password || !confirmPassword) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
       return;
     }
 
@@ -92,16 +111,17 @@ const LoginSignup = () => {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ name, email, password }),
       }
     );
 
     const data = await res.json();
+
     if (data.success) {
       localStorage.setItem("auth-token", data.token);
       window.location.replace("/");
     } else {
-      alert(data.errors || "Signup failed");
+      alert("Signup failed");
     }
   };
 
@@ -116,36 +136,46 @@ const LoginSignup = () => {
         <div className="loginsignup-fields">
           {state === "Sign Up" && (
             <input
+              type="text"
               name="name"
               value={formData.name}
               onChange={changeHandler}
-              type="text"
               placeholder="Your Name"
             />
           )}
 
           <input
+            type="email"
             name="email"
             value={formData.email}
             onChange={changeHandler}
-            type="email"
             placeholder="Email"
           />
 
           <input
+            type="password"
             name="password"
             value={formData.password}
             onChange={changeHandler}
-            type="password"
             placeholder="Password"
           />
+
+          {state === "Sign Up" && (
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={changeHandler}
+              placeholder="Confirm Password"
+            />
+          )}
         </div>
 
         <button onClick={state === "Login" ? login : signup}>
           Continue
         </button>
 
-        {/* ===== GOOGLE AUTH WRAPPED AS PER CSS ===== */}
+        {/* ===== GOOGLE LOGIN ===== */}
         <div className="google-auth">
           <div className="google-auth-divider">
             <span>OR</span>

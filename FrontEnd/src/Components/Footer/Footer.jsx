@@ -20,12 +20,18 @@ const Footer = () => {
             <li>
                 <Link className="nav-link" to="/">Products</Link>
             </li>
-            <li>Offices</li>
+
             <li onClick={() => setMenu("about")}>
                 <Link className="nav-link" to="/about">About</Link>
             </li>
             <li>
-                <Link className="nav-link" to="/about">Contact</Link>
+                <Link className="nav-link" to="/contact">Contact</Link>
+            </li>
+            <li>
+                <Link className="nav-link" to="/privacy-policy">Privacy Policy</Link>
+            </li>
+            <li>
+                <Link className="nav-link" to="/return-exchange">Return & Exchange</Link>
             </li>
         </ul>
         <div className="footer-social-icon">
@@ -41,7 +47,7 @@ const Footer = () => {
         </div>
         <div className="footer-copyright">
             <hr />
-            <p>Copyright @ 2025-All Rights Reserved</p>
+            <p>Copyright @ 2026-All Rights Reserved</p>
         </div>
     </div>
   )

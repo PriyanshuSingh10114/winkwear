@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react';
-import './CartItems.css';
-import { ShopContext } from '../../Context/ShopContext';
-import remove_icon from '../Assets/cart_cross_icon.png';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React, { useContext, useState } from "react";
+import "./CartItems.css";
+import { ShopContext } from "../../Context/ShopContext";
+import remove_icon from "../Assets/cart_cross_icon.png";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
+const MAX_QTY_PER_PRODUCT = 10;
 
 const CartItems = () => {
   const navigate = useNavigate();
@@ -20,18 +22,11 @@ const CartItems = () => {
     promoRules,
   } = useContext(ShopContext);
 
-  const [promoCodeInput, setPromoCodeInput] = useState('');
+  const [promoCodeInput, setPromoCodeInput] = useState("");
 
-  const {
-    subtotal,
-    discount,
-    shipping,
-    total,
-  } = getOrderSummary();
+  const { subtotal, discount, shipping, total } = getOrderSummary();
 
-  // -------------------------------
-  // APPLY PROMO CODE
-  // -------------------------------
+  /* ================= APPLY PROMO ================= */
   const handlePromoSubmit = () => {
     const code = promoCodeInput.trim().toUpperCase();
 
@@ -53,7 +48,9 @@ const CartItems = () => {
     }
 
     if (promo.min && subtotal < promo.min) {
-      toast.warn(`Order value must be at least $${promo.min} to use ${code}.`);
+      toast.warn(
+        `Order value must be at least $${promo.min} to use ${code}.`
+      );
       return;
     }
 
@@ -64,19 +61,17 @@ const CartItems = () => {
 
     setAppliedCode(code);
     toast.success(`Promo ${code} applied successfully!`);
-    setPromoCodeInput('');
+    setPromoCodeInput("");
   };
 
-  // -------------------------------
-  // REMOVE PROMO CODE
-  // -------------------------------
+  /* ================= REMOVE PROMO ================= */
   const handleRemovePromo = () => {
-    setAppliedCode('');
+    setAppliedCode("");
     toast.info("Promo code removed.");
   };
 
   return (
-    <div className='cartitems'>
+    <div className="cartitems">
       <div className="cartitems-format-main">
         <p>Products</p>
         <p>Titles</p>
@@ -92,20 +87,46 @@ const CartItems = () => {
           return (
             <div key={e.id}>
               <div className="cartitems-format cartitems-format-main">
-                <img src={e.image} alt="" className='carticon-product-icon' />
+                <img
+                  src={e.image}
+                  alt={e.name}
+                  className="carticon-product-icon"
+                />
+
                 <p>{e.name}</p>
                 <p>${e.new_price}</p>
 
+                {/* ===== QUANTITY CONTROLS ===== */}
                 <div className="cartitems-quantity-controls">
-                  <button onClick={() => decrementQuantity(e.id)}>-</button>
+                  <button onClick={() => decrementQuantity(e.id)}>
+                    −
+                  </button>
+
                   <span>{cartItems[e.id]}</span>
-                  <button onClick={() => incrementQuantity(e.id)}>+</button>
+
+                  <button
+                    onClick={() => {
+                      if (cartItems[e.id] >= MAX_QTY_PER_PRODUCT) {
+                        toast.error(
+                          "Maximum order quantity for this product is 10"
+                        );
+                        return;
+                      }
+                      incrementQuantity(e.id);
+                    }}
+                    disabled={cartItems[e.id] >= MAX_QTY_PER_PRODUCT}
+                  >
+                    +
+                  </button>
                 </div>
 
-                <p>${(e.new_price * cartItems[e.id]).toFixed(2)}</p>
+                <p>
+                  $
+                  {(e.new_price * cartItems[e.id]).toFixed(2)}
+                </p>
 
                 <img
-                  className='cartitems-remove-icon'
+                  className="cartitems-remove-icon"
                   src={remove_icon}
                   onClick={() => removeFromCart(e.id)}
                   alt="Remove"
@@ -119,7 +140,6 @@ const CartItems = () => {
       })}
 
       <div className="cartitems-down">
-
         {subtotal > 0 ? (
           <div className="cartitems-total">
             <h1>Cart Total</h1>
@@ -156,7 +176,7 @@ const CartItems = () => {
               <h3>${total.toFixed(2)}</h3>
             </div>
 
-            <button onClick={() => navigate('/place-order')}>
+            <button onClick={() => navigate("/place-order")}>
               PROCEED TO CHECKOUT
             </button>
           </div>
@@ -166,6 +186,7 @@ const CartItems = () => {
           </div>
         )}
 
+        {/* ===== PROMO CODE ===== */}
         <div className="cartitems-promocode">
           <p>If you have a Promo Code, enter it here</p>
 
@@ -177,39 +198,45 @@ const CartItems = () => {
               onChange={(e) => setPromoCodeInput(e.target.value)}
               disabled={!!appliedCode}
             />
-            <button onClick={handlePromoSubmit} disabled={!!appliedCode}>
+            <button
+              onClick={handlePromoSubmit}
+              disabled={!!appliedCode}
+            >
               Submit
             </button>
           </div>
 
           {appliedCode && (
-            <button className="remove-promo-btn" onClick={handleRemovePromo}>
+            <button
+              className="remove-promo-btn"
+              onClick={handleRemovePromo}
+            >
               Remove Promo Code
             </button>
           )}
         </div>
-        {/* AVAILABLE OFFERS BANNER */}
+
+        {/* ===== AVAILABLE OFFERS ===== */}
         <div className="available-offers-box">
           <h3>Available Offers</h3>
           <ul>
             <li>
-              ✨ <strong>SAVE15</strong> — 15% OFF on orders above <strong>$100</strong>
+              ✨ <strong>SAVE15</strong> — 15% OFF above <strong>$100</strong>
             </li>
             <li>
-              ⭐ <strong>SAVE25</strong> — 25% OFF on orders above <strong>$200</strong>
+              ⭐ <strong>SAVE25</strong> — 25% OFF above <strong>$200</strong>
             </li>
             <li>
-              💎 <strong>FLAT50</strong> — Flat <strong>$50 OFF</strong> on orders above <strong>$350</strong>
+              💎 <strong>FLAT50</strong> — $50 OFF above <strong>$350</strong>
             </li>
             <li>
-              🚚 <strong>FREESHIP</strong> — Free Shipping on any order
+              🚚 <strong>FREESHIP</strong> — Free Shipping
             </li>
             <li>
-              🔥 <strong>BLACKFRIDAY</strong> — 50% OFF (Only on Fridays)
+              🔥 <strong>BLACKFRIDAY</strong> — 50% OFF (Friday only)
             </li>
           </ul>
         </div>
-
       </div>
     </div>
   );
