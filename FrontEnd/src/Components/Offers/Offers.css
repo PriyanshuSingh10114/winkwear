@@ -101,6 +101,62 @@
   }
 }
 
+/* ===============================
+   OFFERS + TIMER — LARGE MOBILE (≤ 540px)
+================================ */
+@media (max-width: 540px) {
+
+  .offers-scroll {
+    position: relative;
+  }
+
+  .offers-scroll img {
+    width: 88vw;               /* slightly tighter than tablet */
+    height: 260px;
+    border-radius: 14px;
+    object-fit: cover;
+    margin: 0 auto;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  }
+
+  /* ===============================
+     BLACK FRIDAY TIMER — LARGE MOBILE
+     =============================== */
+
+  .timer-box {
+    height: auto;
+    min-height: unset;
+    width: fit-content;
+    max-width: 60%;
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+
+  .timer-box h2 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .timer-values {
+    font-size: 17px;
+    font-weight: 800;
+    gap: 8px;
+  }
+
+  .live-tag {
+    font-size: 11px;
+    margin-top: 6px;
+  }
+
+  /* Touch-safe */
+  .offers-scroll img:hover {
+    transform: none;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  }
+}
+
+
 @media (max-width: 480px) {
 
   .offers-scroll {

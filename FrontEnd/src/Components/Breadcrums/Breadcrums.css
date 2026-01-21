@@ -48,4 +48,33 @@
   }
 }
 
+/* ===== LARGE MOBILE / BIG PHONES (≤ 540px) ===== */
+@media (max-width: 540px) {
+
+  .breadcrums {
+    margin: 16px 14px;
+    font-size: 14px;
+    gap: 8px;
+
+    /* allow single-line scrolling but more relaxed */
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .breadcrums::-webkit-scrollbar {
+    display: none;
+  }
+
+  .breadcrums span {
+    flex-shrink: 0;
+  }
+
+  .breadcrums .divider {
+    margin: 0 6px;
+  }
+}
 

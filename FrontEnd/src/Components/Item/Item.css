@@ -74,6 +74,52 @@
     }
 }
 
+/* ===== PRODUCT CARD — LARGE MOBILE (≤ 540px) ===== */
+@media (max-width: 540px) {
+
+  .item {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    transition: none; /* touch-safe */
+  }
+
+  .item img {
+    width: 100%;
+    height: 190px;               /* more breathing room than 480px */
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+  }
+
+  .item p {
+    font-size: 15px;
+    margin: 8px 0;
+    line-height: 1.4;
+  }
+
+  .item-prices {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .item-price-new {
+    font-size: 16px;
+  }
+
+  .item-price-old {
+    font-size: 13px;
+  }
+
+  /* No hover jump on touch */
+  .item:hover {
+    transform: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+}
+
+
 /* ===== STRICT MOBILE PRODUCT CARD ===== */
 @media (max-width: 480px) {
 

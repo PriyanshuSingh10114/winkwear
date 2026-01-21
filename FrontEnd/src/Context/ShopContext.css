@@ -108,6 +108,74 @@
 
 /* Responsive adjustments */
 /* ===== STRICT MOBILE CART (PHONES ONLY) ===== */
+/* ===============================
+   LARGE MOBILE (≤ 540px)
+   Similar to 480px
+================================ */
+@media (max-width: 540px) {
+
+  .shop-container {
+    padding: 14px;
+  }
+
+  /* ONE ITEM PER ROW */
+  .cart-items {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .cart-item {
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+  }
+
+  /* Quantity controls */
+  .quantity-controls {
+    margin-top: 12px;
+    gap: 14px;
+  }
+
+  .quantity-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .quantity-display {
+    margin: 0 10px;
+    font-size: 16px;
+  }
+
+  /* Total section */
+  .cart-total {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .total-amount {
+    font-size: 22px;
+  }
+
+  /* Action buttons */
+  .action-btn {
+    width: 100%;
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .remove-btn {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  /* Disable hover on touch */
+  .cart-item:hover {
+    transform: none;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+  }
+}
+
 @media (max-width: 480px) {
 
   .shop-container {

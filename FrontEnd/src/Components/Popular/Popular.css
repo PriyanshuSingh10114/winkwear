@@ -116,6 +116,49 @@
     }
 }
 
+/* ===============================
+   POPULAR — LARGE MOBILE (≤ 540px)
+================================ */
+@media (max-width: 540px) {
+
+  .popular {
+    padding: 42px 16px;
+    gap: 12px;
+  }
+
+  .popular h1 {
+    font-size: 30px;
+    text-transform: none;
+  }
+
+  /* ✅ THREE ITEMS — BIG PHONES */
+  .popular-item {
+    width: 100%;
+    gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .popular-card img {
+    width: 100%;
+    height: 260px;              /* taller than 480px */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  }
+
+  .popular-card .popular-info {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  /* Touch-safe */
+  .popular-card:hover,
+  .popular-card:hover img {
+    transform: none;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  }
+}
 
 @media (max-width: 480px) {
     .popular {

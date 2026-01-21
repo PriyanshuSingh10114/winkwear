@@ -7,7 +7,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 18px 48px;
-  background: #0d0d0d; /* Matte Black */
+  background: #0d0d0d;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255,255,255,0.05);
   position: sticky;
@@ -17,7 +17,7 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* LOGO AREA */
+/* LOGO */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -38,7 +38,7 @@
   color: #d4a045;
 }
 
-/* NAV MENU */
+/* MENU */
 .nav-menu {
   display: flex;
   gap: 34px;
@@ -57,14 +57,13 @@
   text-decoration: none;
   color: #d1d1d1;
   transition: color 0.3s ease;
-  font-weight: 500;
 }
 
 .nav-menu li:hover .nav-link {
-  color: #d4a045; /* Gold hover */
+  color: #d4a045;
 }
 
-/* GOLD UNDERLINE EFFECT */
+/* GOLD UNDERLINE */
 .nav-menu li hr {
   position: absolute;
   bottom: -8px;
@@ -78,10 +77,10 @@
 
 @keyframes underline {
   from { width: 0%; }
-  to   { width: 100%; }
+  to { width: 100%; }
 }
 
-/* RIGHT SIDE (LOGIN + CART) */
+/* RIGHT SIDE */
 .nav-login-cart {
   display: flex;
   align-items: center;
@@ -122,7 +121,7 @@
   transform: scale(1.1);
 }
 
-/* CART COUNT BADGE */
+/* CART BADGE */
 .nav-cart-count {
   position: absolute;
   top: -6px;
@@ -136,7 +135,39 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
-/* RESPONSIVE */
+/* ===============================
+   TABLET / SMALL DESKTOP
+================================ */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 14px 20px;
+  }
+
+  .nav-logo p {
+    font-size: 22px;
+  }
+
+  .nav-menu {
+    gap: 18px;
+  }
+
+  .nav-menu li {
+    font-size: 15px;
+  }
+
+  .nav-login-btn {
+    padding: 8px 18px;
+    font-size: 14px;
+  }
+
+  .nav-login-cart img {
+    height: 26px;
+  }
+}
+
+/* ===============================
+   TABLET
+================================ */
 @media (max-width: 768px) {
   .navbar {
     padding: 16px 24px;
@@ -151,40 +182,75 @@
   }
 }
 
-/* Tablet / small desktop adjustments */
-@media (max-width: 1024px) {
+/* ===============================
+   LARGE MOBILE / BIG PHONES (≤ 540px)
+================================ */
+@media (max-width: 540px) {
+
   .navbar {
-    padding: 14px 20px;
+    padding: 10px 14px;
   }
+
+  .nav-logo img {
+    height: 30px;
+  }
+
   .nav-logo p {
-    font-size: 22px;
+    font-size: 14px;
+    letter-spacing: 0.8px;
   }
+
   .nav-menu {
-    gap: 18px;
+    gap: 14px;
+    max-width: 60vw;
+    overflow-x: auto;
+    white-space: nowrap;
   }
+
+  .nav-menu::-webkit-scrollbar {
+    display: none;
+  }
+
   .nav-menu li {
-    font-size: 15px;
+    font-size: 14px;
+    flex-shrink: 0;
   }
-  .nav-login-btn {
-    padding: 8px 18px;
+
+  .nav-link {
     font-size: 14px;
   }
+
+  .nav-login-cart {
+    gap: 12px;
+  }
+
+  .nav-login-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+
   .nav-login-cart img {
-    height: 26px;
+    height: 22px;
+  }
+
+  .nav-cart-count {
+    font-size: 10px;
+    padding: 2px 6px;
+    top: -5px;
+    right: -7px;
   }
 }
 
-
-/* ===== MOBILE: COMPACT DESKTOP-STYLE NAVBAR ===== */
+/* ===============================
+   STRICT MOBILE (≤ 480px)
+================================ */
 @media (max-width: 480px) {
 
-  /* NAVBAR CONTAINER */
   .navbar {
     padding: 8px 10px;
-    height: auto;
   }
 
-  /* LOGO */
   .nav-logo img {
     height: 26px;
   }
@@ -194,13 +260,11 @@
     letter-spacing: 0.6px;
   }
 
-  /* MENU — horizontal, scrollable if needed */
   .nav-menu {
-    display: flex;
     gap: 12px;
+    max-width: 55vw;
     overflow-x: auto;
     white-space: nowrap;
-    max-width: 55vw;   /* 👈 prevents menu from crushing right section */
   }
 
   .nav-menu::-webkit-scrollbar {
@@ -216,10 +280,8 @@
     font-size: 13px;
   }
 
-  /* RIGHT SIDE */
   .nav-login-cart {
     gap: 10px;
-    flex-shrink: 0;
   }
 
   .nav-login-btn {
@@ -247,41 +309,3 @@
     transform: none;
   }
 }
-
-@media (max-width: 430px) {
-
-  .nav-menu {
-    gap: 8px;
-    max-width: 50vw;
-  }
-
-  .nav-logo img {
-    height: 24px;
-  }
-
-  .nav-logo p {
-    font-size: 12px;  
-    letter-spacing: 0.4px;
-  }
-
-  .nav-menu li {
-    font-size: 12px;
-  }
-
-  .nav-link {
-    font-size: 11px;
-  }
-
-  .nav-login-btn {
-    padding: 4px 8px;
-    font-size: 11px;
-  }
-
-  .nav-login-cart img {
-    height: 20px;
-  }
-}
-
-
-
-

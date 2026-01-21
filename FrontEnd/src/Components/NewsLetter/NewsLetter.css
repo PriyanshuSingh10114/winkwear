@@ -122,6 +122,65 @@
     }
 }
 
+/* ===== NEWSLETTER — LARGE MOBILE (≤ 540px) ===== */
+@media (max-width: 540px) {
+
+  .newsletter {
+    width: 100%;
+    padding: 26px 18px;
+    margin-bottom: 40px;
+    gap: 18px;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+
+  .newsletter h1 {
+    font-size: 26px;
+    line-height: 1.35;
+  }
+
+  .newsletter p {
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 8px;
+  }
+
+  /* Input + button stack (roomier) */
+  .newsletter div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    height: auto;
+    padding: 14px;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  .newsletter input {
+    width: 100%;
+    margin: 0;
+    padding: 12px 14px;
+    font-size: 15px;
+    border-radius: 10px;
+    background: #1a1a1a;
+  }
+
+  .newsletter div button {
+    width: 100%;
+    height: 48px;
+    font-size: 15px;
+    border-radius: 10px;
+    margin: 0;
+  }
+
+  /* Touch-safe */
+  .newsletter div button:hover {
+    transform: none;
+  }
+}
+
 /* Small screens / phones */
 /* ===== STRICT MOBILE NEWSLETTER (PHONES ONLY) ===== */
 @media (max-width: 480px) {

@@ -82,6 +82,48 @@
   }
 }
 
+/* ===== LARGE MOBILE CART TOTAL (≤ 540px) ===== */
+@media (max-width: 540px) {
+
+  .cartitems-total {
+    padding: 16px;
+    gap: 12px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+
+  /* Heading */
+  .cartitems-total h1 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  /* Row items */
+  .cartitems-total-item {
+    margin: 6px 0;
+  }
+
+  .cartitems-total-item p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .cartitems-total-item h3 {
+    font-size: 1.05rem;
+  }
+
+  /* Divider */
+  .cartitems-total hr {
+    margin: 8px 0;
+  }
+
+  /* Grand total emphasis */
+  .cartitems-total-item:last-child h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+  }
+}
+
 /* ===== STRICT MOBILE CART TOTAL (PHONES) ===== */
 @media (max-width: 480px) {
 
@@ -123,6 +165,7 @@
     font-weight: 800;
   }
 }
+
 
 
 

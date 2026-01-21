@@ -174,6 +174,57 @@
   }
 }
 
+/* ===== DESCRIPTION BOX — LARGE MOBILE (≤ 540px) ===== */
+@media (max-width: 540px) {
+
+  .descriptionbox {
+    padding: 18px 16px;
+    margin: 22px 14px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+
+  .descriptionbox-navigator {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+
+  .descriptionbox-navigator::-webkit-scrollbar {
+    display: none;
+  }
+
+  .descriptionbox-nav-box {
+    flex-shrink: 0;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 8px;
+  }
+
+  .descriptionbox-content {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .descriptionbox-reviews h3 {
+    font-size: 16px;
+  }
+
+  .descriptionbox-reviews textarea {
+    font-size: 14px;
+    min-height: 90px;
+  }
+
+  .descriptionbox-reviews button {
+    width: 100%;
+    height: 46px;
+    font-size: 15px;
+  }
+}
+
 /* ===== STRICT MOBILE (UNCHANGED LOGIC) ===== */
 @media (max-width: 480px) {
 

@@ -118,6 +118,36 @@
   }
 }
 
+/* ===== SPOTLIGHT — LARGE MOBILE (≤ 540px) ===== */
+@media (max-width: 540px) {
+
+  .spotlight-section {
+    padding: 36px 14px;
+  }
+
+  .spotlight-section h1 {
+    font-size: 26px;
+    margin-bottom: 8px;
+  }
+
+  .spotlight-section hr {
+    width: 120px;
+    height: 3px;
+    margin: 12px auto 22px auto;
+  }
+
+  .spotlight-single {
+    padding: 0 10px;
+  }
+
+  .spotlight-single img {
+    height: auto;          /* natural scaling */
+    max-height: 460px;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+}
+
 @media (max-width: 480px) {
   .spotlight-section {
     padding: 30px 8px;

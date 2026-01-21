@@ -130,6 +130,58 @@
   }
 }
 
+/* ===== CREATOR PICKS – LARGE MOBILE (≤ 540px) ===== */
+@media (max-width: 540px) {
+
+  .creator-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr); /* still 3 per row */
+    gap: 14px;
+    padding: 0 14px;
+  }
+
+  .creator-card {
+    width: 100% !important;
+    padding: 10px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .creator-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .creator-card h3 {
+    font-size: 15px;
+    margin-top: 8px;
+  }
+
+  .creator-item,
+  .creator-bio,
+  .creator-social,
+  .creator-desc {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .follow-btn {
+    margin-top: auto;
+    padding: 8px 0;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  /* keep hover disabled for touch devices */
+  .creator-card:hover {
+    transform: none;
+    border-color: rgba(255,255,255,0.08);
+  }
+}
+
 /* ===== FIX: CREATOR PICKS – MOBILE ONLY (3 PER ROW) ===== */
 @media (max-width: 480px) {
 

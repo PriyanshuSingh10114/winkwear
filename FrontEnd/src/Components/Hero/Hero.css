@@ -1,50 +1,80 @@
-/* Wrapper takes full width */
+/* ===============================
+   HERO — DESKTOP (DEFAULT)
+================================ */
+
+/* Wrapper */
 .hero-wrapper {
   width: 100%;
-  height: 85vh;         
-  overflow: hidden;     
+  height: 85vh;
+  min-height: 520px;
+  max-height: 900px;
+  overflow: hidden;
+  position: relative;
+  background: #000;
 }
 
-/* Perfect full-width hero */
+/* Full-width hero image */
 .hero-full {
-  width: 100vw;
-  height: 100vh;
-  object-fit: fill;   
-  background-color: #000;  
+  width: 100%;
+  height: 100%;
+  object-fit: fill;          /* ✅ correct for hero images */
+  object-position: center;
   display: block;
-  margin: 0 auto;
 }
 
-/* Responsive hero adjustments */
+
+/* ===============================
+   TABLET / SMALL DESKTOP (≤ 1024px)
+================================ */
 @media (max-width: 1024px) {
+
   .hero-wrapper {
     height: 65vh;
-  }
-  .hero-full {
-    height: 100vh;
-    object-fit: cover;
-    background-position: center;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .hero-wrapper {
-    width: 100%;
-    height: 50svh;           
-    min-height: 300px;
-    max-height: 420px;
-    overflow: hidden;
+    min-height: 420px;
+    max-height: 700px;
   }
 
   .hero-full {
     width: 100%;
     height: 100%;
-    object-fit: cover;       
-    object-position: center;
-    display: block;
+    object-fit: cover;
   }
 }
 
 
+/* ===============================
+   LARGE MOBILE / BIG PHONES (≤ 540px)
+================================ */
+@media (max-width: 540px) {
 
+  .hero-wrapper {
+    height: 58svh;            /* stable on mobile browser UI */
+    min-height: 340px;
+    max-height: 520px;
+  }
+
+  .hero-full {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+
+/* ===============================
+   STRICT MOBILE (≤ 480px)
+================================ */
+@media (max-width: 480px) {
+
+  .hero-wrapper {
+    height: 50svh;
+    min-height: 300px;
+    max-height: 420px;
+  }
+
+  .hero-full {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

@@ -288,6 +288,82 @@
     }
 }
 
+/* ===============================
+   LOGIN / SIGNUP — LARGE MOBILE (≤ 540px)
+   Similar to 480px
+================================ */
+@media (max-width: 540px) {
+
+  .loginsignup {
+    padding: 16px;
+    min-height: 100svh;
+  }
+
+  /* Slightly softer overlay */
+  .loginsignup::before {
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .loginsignup-container {
+    padding: 24px 20px;
+    border-radius: 14px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+  }
+
+  /* Touch-safe */
+  .loginsignup-container:hover {
+    transform: none;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+  }
+
+  .loginsignup-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .loginsignup-fields {
+    gap: 16px;
+    margin-bottom: 1.6rem;
+  }
+
+  .loginsignup-fields input {
+    height: 50px;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  .loginsignup-fields input:focus {
+    transform: none;
+  }
+
+  .loginsignup-container button {
+    height: 50px;
+    font-size: 1rem;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .loginsignup-container button:hover {
+    transform: none;
+    background: #333;
+  }
+
+  .loginsignup-login {
+    font-size: 0.95rem;
+    margin-top: 1.4rem;
+  }
+
+  .loginsignup-agree {
+    font-size: 0.9rem;
+    gap: 10px;
+  }
+
+  .loginsignup-agree input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 /* ===== STRICT MOBILE LOGIN / SIGNUP (PHONES ONLY) ===== */
 @media (max-width: 480px) {
 

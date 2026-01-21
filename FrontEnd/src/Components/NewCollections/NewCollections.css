@@ -70,6 +70,53 @@
     }
 }
 
+/* ===== NEW COLLECTIONS — LARGE MOBILE (≤ 540px) ===== */
+@media (max-width: 540px) {
+
+  .new-collections {
+    gap: 14px;
+    margin-bottom: 50px;
+    padding: 0 14px;
+  }
+
+  .new-collections h1 {
+    font-size: 30px;
+    border-left-width: 5px;
+    padding-left: 12px;
+    margin-top: 14px;
+  }
+
+  .new-collections hr {
+    width: 140px;
+    height: 3px;
+    margin-top: 8px;
+  }
+
+  /* THREE IMAGES PER ROW — ROOMIER */
+  .collections {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 22px;
+  }
+
+  .collections img {
+    width: 100%;
+    height: 190px;           /* more breathing space than 480px */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+
+  /* Touch-safe */
+  .collections img:hover {
+    transform: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    border-color: rgba(255,255,255,0.08);
+  }
+}
+
+
 @media (max-width: 480px) {
     .new-collections {
         gap: 10px;
