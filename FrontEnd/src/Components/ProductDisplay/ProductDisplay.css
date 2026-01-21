@@ -468,32 +468,9 @@
   box-shadow: 0 8px 22px rgba(0,0,0,0.55);
 }
 
-/* ================= MOBILE ================= */
-
-@media (max-width: 480px) {
-  .cart-quick-actions {
-    flex-direction: row;   /* 👈 force sideways */
-    gap: 10px;
-  }
-
-  .buy-now-btn,
-  .go-cart-btn {
-    font-size: 13px;
-    padding: 12px 0;
-  }
-}
-
-
-/* mobile adjustment */
-@media (max-width: 480px) {
-  .pd-toast {
-    width: calc(100% - 24px);
-    text-align: center;
-    font-size: 13px;
-    padding: 10px 16px;
-  }
-}
-
+/* =====================================================
+   STRICT MOBILE — ≤ 480px (FINAL FIX)
+===================================================== */
 @media (max-width: 480px) {
 
   :root {
@@ -501,39 +478,25 @@
   }
 
   .productdisplay {
-    gap: 16px;
-    margin: 16px var(--page-side-gap);
-  }
-
-  /* IMAGE SECTION */
-  .productdisplay-left {
-    gap: 12px;
-    align-items: center;
-  }
-
-  /* MAIN IMAGE CONTAINER — RESPONSIVE */
-  .productdisplay-img {
-    width: 100%;
-    max-width: 100%;
-    aspect-ratio: 3 / 4;        /* 👈 keeps product proportions */
-    border-radius: 10px;
-    overflow: hidden;
-    background: #161616;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+    margin: 14px var(--page-side-gap);
   }
 
-  /* MAIN IMAGE */
-  .productdisplay-main-img {
+  /* ================= LEFT ================= */
+  .productdisplay-left {
     width: 100%;
-    height: 100%;
-    object-fit: contain;        /* 👈 no crop, no zoom */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
   }
 
-  /* THUMBNAILS */
+  /* Thumbnails — horizontal */
   .productdisplay-img-list {
     display: flex;
+    flex-direction: row;
     gap: 8px;
     overflow-x: auto;
     padding-bottom: 4px;
@@ -541,12 +504,32 @@
 
   .thumb-btn img {
     width: 48px;
-    height: 68px;
-    object-fit: cover;
+    height: 64px;
     border-radius: 8px;
+    object-fit: cover;
   }
 
-  /* RIGHT SIDE */
+  /* ================= MAIN IMAGE ================= */
+  .productdisplay-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;          /* ✅ KEY FIX */
+    max-height: 72vh;             /* ✅ prevents takeover */
+    min-height: unset !important; /* ❌ kill desktop leak */
+    border-radius: 10px;
+    background: #161616;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .productdisplay-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* ================= RIGHT ================= */
   .productdisplay-right {
     width: 100%;
     min-width: unset;
@@ -556,6 +539,10 @@
     font-size: 20px;
     padding-left: 8px;
     border-left-width: 3px;
+  }
+
+  .productdisplay-right-stars {
+    margin-bottom: 10px;
   }
 
   .productdisplay-right-price-new {
@@ -568,10 +555,10 @@
 
   .productdisplay-right-description {
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.55;
   }
 
-  /* CART */
+  /* ================= CART ================= */
   .cart-controls {
     flex-direction: column;
     gap: 12px;
@@ -581,5 +568,27 @@
     width: 100%;
     padding: 12px;
     font-size: 14px;
+  }
+
+  /* ================= QUICK ACTIONS ================= */
+  .cart-quick-actions {
+    display: flex;
+    flex-direction: row; /* sideways */
+    gap: 10px;
+  }
+
+  .buy-now-btn,
+  .go-cart-btn {
+    padding: 12px 0;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  /* ================= TOAST ================= */
+  .pd-toast {
+    width: calc(100% - 24px);
+    font-size: 13px;
+    text-align: center;
+    padding: 10px 16px;
   }
 }
