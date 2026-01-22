@@ -65,16 +65,29 @@ npm run dev
 
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000)
+4. Open [http://localhost:5173](http://localhost:5173)
 
 ### Useful npm scripts (recommend adding/standardizing)
 
 * `npm start` — start dev server
 * `npm run build` — create production build
-* `npm run lint` — run ESLint
-* `npm run format` — run Prettier
-* `npm test` — run unit tests
-* `npm run analyze` — run bundle analyzer (optional)
+
+---
+<h2>Dockerfile Execution</h2>
+
+    cd Frontend
+    docker build -t winkwear-frontend .
+    docker run -p 5173:5173 winkwear-frontend
+
+    cd Backend
+    docker build -t winkwear-backend .
+    docker run -d \
+    -p 4000:4000 \
+    --env-file .env \
+    --name winkwear-backend \
+    winkwear-backend
+
+
 
 ---
 
