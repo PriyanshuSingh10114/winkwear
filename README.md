@@ -186,14 +186,14 @@ Run the following command to push this image to your newly created AWS repositor
 
 <h1>Step 7: Setup EKS Cluster</h1>
 
-    eksctl create cluster --name three-tier-cluster --region ap-south-1
+    eksctl create cluster --name wink-wear-cluster --region ap-south-1
     --node-type t2.medium --nodes-min 2 --nodes-max 2
     aws eks update-kubeconfig --region us-west-2 --name three-tier-cluster
     kubectl get nodes
     
 <h1>Step 8: Run Manifests</h1>
 
-    kubectl create namespace three-tier
+    kubectl create namespace wink-wear
     kubectl apply -f .
     kubectl delete -f .
 
@@ -201,8 +201,8 @@ Run the following command to push this image to your newly created AWS repositor
 
     curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
     aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
-    eksctl utils associate-iam-oidc-provider --region=ap-south-1 --cluster=three-tier --approve
-    eksctl create iamserviceaccount --cluster=three-tier-cluster --namespace=kube-system --name=aws-load-balancer-controller --role-name AmazonEKSLoadBalancerControllerRole --attach-policy-arn=arn:aws:iam::626072240565:policy/AWSLoadBalancerControllerIAMPolicy --approve --region=ap-south-1
+    eksctl utils associate-iam-oidc-provider --region=ap-south-1 --cluster=wink-wear --approve
+    eksctl create iamserviceaccount --cluster=wink-wear-cluster --namespace=kube-system --name=aws-load-balancer-controller --role-name AmazonEKSLoadBalancerControllerRole --attach-policy-         arn=arn:aws:iam::626072240565:policy/AWSLoadBalancerControllerIAMPolicy --approve --region=ap-south-1
 
 <h1>Step 10: Deploy AWS Load Balancer Controller</h1>
 
