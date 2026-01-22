@@ -75,9 +75,20 @@ npm run dev
 ---
 <h2>Dockerfile Execution</h2>
 
+<h5>Installation</h5>
+
+    sudo apt-get update
+    sudo apt install docker.io
+    docker ps
+    sudo chown $USER /var/run/docker.sock
+
+<h5>Frontend Image creation</h5>
+
     cd Frontend
     docker build -t winkwear-frontend .
     docker run -p 5173:5173 winkwear-frontend
+
+<h5>Backend Image creation</h5>
 
     cd Backend
     docker build -t winkwear-backend .
