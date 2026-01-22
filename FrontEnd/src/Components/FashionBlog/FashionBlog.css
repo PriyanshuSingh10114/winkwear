@@ -1,9 +1,11 @@
+/* ================= BLOG SECTION ================= */
+
 .blog-section {
   padding: 60px 0;
   text-align: center;
   color: #f2f2f2;
-  font-weight: 600;
 }
+
 .blog-section h1 {
   font-size: 60px;
   font-weight: 700;
@@ -14,10 +16,11 @@
   height: 4px;
   background: #d4a045;
   border: none;
-  margin: 15px auto 40px auto;
+  margin: 15px auto 40px;
 }
 
-/* --- Blog Grid --- */
+/* ================= BLOG GRID ================= */
+
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -30,7 +33,7 @@
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.06);
   overflow: hidden;
-  transition: 0.35s ease;
+  transition: 0.3s ease;
   box-shadow: 0 8px 25px rgba(0,0,0,0.45);
 }
 
@@ -62,11 +65,12 @@
 }
 
 .blog-content p {
-  margin: 10px 0 20px 0;
+  margin: 10px 0 20px;
   color: #bfbfbf;
 }
 
-/* --- Tags --- */
+/* ================= TAGS ================= */
+
 .tags {
   display: flex;
   gap: 8px;
@@ -83,6 +87,8 @@
   border: 1px solid rgba(212,160,69,0.4);
 }
 
+/* ================= BUTTON ================= */
+
 .blog-content button {
   background: #d4a045;
   color: #0d0d0d;
@@ -91,52 +97,59 @@
   border: none;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .blog-content button:hover {
   background: #eabf69;
 }
 
-/* ---------- POPUP MODAL ---------- */
+/* ================= MODAL (FIXED) ================= */
+
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
+  inset: 0;
+  background: rgba(0,0,0,0.75);
   display: flex;
   justify-content: center;
-  padding-top: 40px;
+  align-items: flex-start;
+  padding: 30px 12px;
+  z-index: 10000;
+
+  /* 🔑 prevent background scroll */
+  overflow-y: auto;
 }
 
 .modal-content {
   width: 60%;
+  max-width: 900px;
   background: #121212;
-  padding: 30px;
-  border-radius: 12px;
+  padding: 26px;
+  border-radius: 14px;
   position: relative;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6);
-  animation: fadeIn 0.3s ease;
   color: #e7e7e7;
+
+  /* 🔑 prevent overflow */
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .modal-content img {
   width: 100%;
+  max-height: 380px;
+  object-fit: cover;
   border-radius: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .modal-content h2 {
   color: #d4a045;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .modal-content .meta {
-  opacity: 0.8;
   font-size: 14px;
-  margin-bottom: 15px;
+  opacity: 0.8;
+  margin-bottom: 14px;
 }
 
 .full-article {
@@ -145,74 +158,51 @@
   color: #ccc;
 }
 
+/* Close button */
 .close-btn {
-  position: absolute;
-  right: 18px;
-  top: 12px;
+  position: sticky;
+  top: 0;
+  float: right;
   font-size: 28px;
   background: none;
   border: none;
   color: #fff;
   cursor: pointer;
+  z-index: 10;
 }
 
-/* Animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* ================= TABLET ================= */
 
-/* Responsive styles */
 @media (max-width: 1024px) {
-  .blog-section {
-    padding: 40px 0;
-  }
   .blog-section h1 {
     font-size: 42px;
   }
+
   .blog-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
     padding: 0 30px;
   }
-  .blog-card img {
-    height: 220px;
-  }
-  .blog-content h2 {
-    font-size: 20px;
-  }
+
   .modal-content {
     width: 80%;
-    padding: 22px;
   }
 }
 
-/* ===== BLOG — LARGE MOBILE (≤ 540px) ===== */
+/* ================= LARGE MOBILE (≤ 540px) ================= */
+
 @media (max-width: 540px) {
-
-  .blog-section {
-    padding: 32px 0;
-  }
-
   .blog-section h1 {
     font-size: 32px;
   }
 
-  /* THREE BLOGS PER ROW (roomier than 480px) */
   .blog-grid {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
     padding: 0 14px;
   }
 
-  .blog-card {
-    border-radius: 12px;
-  }
-
   .blog-card img {
-    height: 140px;          /* more breathing space */
-    object-fit: cover;
+    height: 140px;
   }
 
   .blog-content {
@@ -221,77 +211,37 @@
 
   .blog-content h2 {
     font-size: 16px;
-    line-height: 1.25;
-  }
-
-  .blog-content .meta {
-    font-size: 12px;
-  }
-
-  .blog-content p {
-    font-size: 13px;
-    margin: 8px 0 12px 0;
-  }
-
-  .tags span {
-    padding: 3px 8px;
-    font-size: 11px;
-  }
-
-  .blog-content button {
-    padding: 8px 12px;
-    font-size: 13px;
-  }
-
-  /* Touch-friendly — no hover jump */
-  .blog-card:hover {
-    transform: none;
-    border-color: rgba(255,255,255,0.08);
-  }
-
-  /* Modal tweaks for big phones */
-  .modal {
-    padding-top: 16px;
   }
 
   .modal-content {
-    width: 92%;
+    width: 95%;
     padding: 18px;
-    border-radius: 12px;
   }
 
-  .close-btn {
-    font-size: 24px;
-    right: 14px;
-    top: 10px;
+  .modal-content img {
+    max-height: 280px;
+  }
+
+  .blog-card:hover {
+    transform: none;
   }
 }
 
+/* ================= SMALL MOBILE (≤ 480px) ================= */
 
 @media (max-width: 480px) {
-  .blog-section {
-    padding: 24px 0;
-  }
-
   .blog-section h1 {
     font-size: 28px;
   }
 
-  /* ✅ THREE BLOGS PER ROW */
   .blog-grid {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     padding: 0 10px;
   }
 
-  .blog-card {
-    border-radius: 10px;
-  }
-
   .blog-card img {
-    height: 110px;          /* compact height for 3-column layout */
-    object-fit: cover;
+    height: 110px;
   }
 
   .blog-content {
@@ -300,49 +250,23 @@
 
   .blog-content h2 {
     font-size: 14px;
-    line-height: 1.2;
-  }
-
-  .blog-content .meta {
-    font-size: 11px;
   }
 
   .blog-content p {
     font-size: 12px;
-    margin: 6px 0 10px 0;
-  }
-
-  .tags span {
-    padding: 2px 6px;
-    font-size: 10px;
-  }
-
-  .blog-content button {
-    padding: 6px 10px;
-    font-size: 12px;
-  }
-
-  /* Disable hover effects on touch devices */
-  .blog-card:hover {
-    transform: none;
-    border-color: rgba(255,255,255,0.06);
-  }
-
-  /* Modal stays mobile-friendly */
-  .modal {
-    padding-top: 10px;
   }
 
   .modal-content {
-    width: 95%;
+    width: 100%;
     padding: 14px;
-    border-radius: 10px;
+    max-height: 92vh;
+  }
+
+  .modal-content img {
+    max-height: 220px;
   }
 
   .close-btn {
     font-size: 22px;
-    right: 12px;
-    top: 8px;
   }
 }
-

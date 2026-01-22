@@ -19,6 +19,8 @@
     "mongodb": "^6.16.0",
     "mongoose": "^8.15.1",
     "multer": "^2.0.0",
-    "nodemailer": "^7.0.4"
+    "nodemailer": "^7.0.4",
+    "razorpay": "^2.9.6",
+    "stripe": "^20.2.0"
   }
 }

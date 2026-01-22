@@ -1,12 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import blog_1 from "../Assets/Fashion_Blog-1.png";
 import blog_2 from "../Assets/Fashion_Blog-2.png";
 import blog_3 from "../Assets/Fashion_Blog-3.png";
 import "./FashionBlog.css";
 
-
 const FashionBlog = () => {
   const [selectedPost, setSelectedPost] = useState(null);
+
+  /* 🔒 Lock background scroll when modal opens */
+  useEffect(() => {
+    if (selectedPost) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [selectedPost]);
 
   const posts = [
     {
@@ -16,16 +28,15 @@ const FashionBlog = () => {
         "From cozy knits to bold jackets — here’s everything you need this winter.",
       fullContent: `
 Winter fashion isn’t just about staying warm — it’s about staying stylish while doing it.
-This season, oversized scarves, wool-blend coats, and neutral layers dominate every top designer runway.
- 
-**Must-Have Essentials:**
+
+Must-Have Essentials:
 • Chunky Knit Sweaters  
 • Longline Wool Coats  
-• High-Quality Leather Boots  
-• Thermal Layering Basics  
-• Textured Scarves & Beanies  
- 
-Pair warm earthy tones with minimal accessories for a clean luxury look. Winter 2025 is all about comfort meeting premium aesthetics.`,
+• Leather Boots  
+• Thermal Basics  
+• Scarves & Beanies  
+
+Winter 2025 is about comfort meeting premium aesthetics.`,
       author: "Sophie Turner",
       date: "December 02, 2025",
       tags: ["Winter Wear", "Trending", "Fashion Tips"],
@@ -35,18 +46,16 @@ Pair warm earthy tones with minimal accessories for a clean luxury look. Winter 
       image: blog_2,
       desc: "Minimal, stylish, powerful. Build a wardrobe that always works.",
       fullContent: `
-A capsule wardrobe is the secret weapon of modern fashion lovers.  
-The idea is simple — fewer clothes, but higher versatility.
- 
-**Core Pieces You Need:**
-• A Classic White Shirt  
+A capsule wardrobe means fewer clothes, higher versatility.
+
+Core Pieces:
+• White Shirt  
 • Tailored Pants  
-• One Black & One Beige Blazer  
+• Neutral Blazers  
 • Premium Denim  
-• Basic Tees In Neutral Shades  
- 
-Once you invest in timeless essentials, you’ll reduce decision fatigue and always look polished.
-Capsule wardrobes also save space and promote smart fashion choices.`,
+• Neutral Tees  
+
+Timeless fashion always wins.`,
       author: "Emily Carter",
       date: "November 22, 2025",
       tags: ["Minimalism", "Wardrobe", "Style Guide"],
@@ -54,21 +63,20 @@ Capsule wardrobes also save space and promote smart fashion choices.`,
     {
       title: "2025 Trend Forecast",
       image: blog_3,
-      desc: "What’s coming next? We have break down the hottest trends of 2025.",
+      desc: "What’s coming next? We break down 2025 fashion trends.",
       fullContent: `
-Fashion in 2025 is taking bold leaps — futuristic silhouettes mixed with earthy neutral palettes.
-Designers are blending technology with creativity like never before.
- 
-**Key Trends to Watch:**
-• Metallic Accent Fits  
-• Ultra-Comfort Tech Fabrics  
-• Eco-Sustainable Materials  
-• Vintage Revival — 90s but elevated  
- 
-Expect a mix of innovation and nostalgia dominating global runways next year.`,
+2025 blends futuristic silhouettes with earthy tones.
+
+Key Trends:
+• Metallic Accents  
+• Tech Fabrics  
+• Sustainable Materials  
+• Vintage Revival  
+
+Innovation meets nostalgia.`,
       author: "Liam Anderson",
       date: "October 15, 2025",
-      tags: ["Trends Scene", "2025", "Runway Fashion"],
+      tags: ["Trends", "2025", "Runway"],
     },
   ];
 
@@ -77,38 +85,52 @@ Expect a mix of innovation and nostalgia dominating global runways next year.`,
       <h1>Fashion Blog</h1>
       <hr />
 
+      {/* BLOG GRID */}
       <div className="blog-grid">
-        {posts.map((p, i) => (
-          <div className="blog-card" key={i}>
-            <img src={p.image} alt={p.title} />
+        {posts.map((post, index) => (
+          <div className="blog-card" key={index}>
+            <img src={post.image} alt={post.title} />
             <div className="blog-content">
-              <h2>{p.title}</h2>
+              <h2>{post.title}</h2>
               <p className="meta">
-                By {p.author} • {p.date}
+                By {post.author} • {post.date}
               </p>
-              <p>{p.desc}</p>
+              <p>{post.desc}</p>
 
               <div className="tags">
-                {p.tags.map((t, idx) => (
-                  <span key={idx}>{t}</span>
+                {post.tags.map((tag, i) => (
+                  <span key={i}>{tag}</span>
                 ))}
               </div>
 
-              <button onClick={() => setSelectedPost(p)}>Read More →</button>
+              <button onClick={() => setSelectedPost(post)}>
+                Read More →
+              </button>
             </div>
           </div>
         ))}
       </div>
 
-      {/* ---------- MODAL POPUP ---------- */}
+      {/* MODAL */}
       {selectedPost && (
-        <div className="modal">
-          <div className="modal-content">
-            <button className="close-btn" onClick={() => setSelectedPost(null)}>
+        <div className="modal" onClick={() => setSelectedPost(null)}>
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="close-btn"
+              onClick={() => setSelectedPost(null)}
+            >
               ×
             </button>
 
-            <img src={selectedPost.image} alt={selectedPost.title} />
+            <img
+              src={selectedPost.image}
+              alt={selectedPost.title}
+              loading="lazy"
+            />
+
             <h2>{selectedPost.title}</h2>
 
             <p className="meta">
