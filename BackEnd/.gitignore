@@ -1,0 +1,45 @@
+# =========================
+# Node / Backend
+# =========================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Environment variables
+# =========================
+
+.env
+
+# =========================
+# Uploads / Generated files
+# =========================
+
+uploads/
+uploads/**
+
+# =========================
+# OS / Editor junk
+# =========================
+
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# =========================
+# Build / Cache
+# =========================
+
+dist/
+build/
+.cache/
+
+# =========================
+# Logs
+# =========================
+
+logs/
+*.log

@@ -10,6 +10,9 @@ const { OAuth2Client } = require("google-auth-library");
 
 const orderRoute = require('./order');
 const newsletterRoute = require('./newsletter');
+const pincodeRoute = require("./pincode");
+
+
 
 /* ================= GOOGLE CLIENT ================= */
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
@@ -18,6 +21,9 @@ app.use(express.json());
 app.use(cors());
 app.use(orderRoute);
 app.use('/', newsletterRoute);
+app.use("/api/pincode", pincodeRoute);
+
+
 
 /* ================= DB CONNECTION (UNCHANGED) ================= */
 mongoose.connect(

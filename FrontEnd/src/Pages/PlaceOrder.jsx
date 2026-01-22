@@ -17,6 +17,7 @@ const PlaceOrder = () => {
   const order = getOrderSummary();
 
   const [method, setMethod] = useState('cod');
+  const [pincodeLoading, setPincodeLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -30,6 +31,56 @@ const PlaceOrder = () => {
     phone: '',
   });
 
+  /* ================= PINCODE HANDLER ================= */
+  const handlePincodeChange = async (e) => {
+    const value = e.target.value.replace(/\D/g, '');
+
+    setFormData((prev) => ({
+      ...prev,
+      zipCode: value,
+    }));
+
+    // Trigger only when exactly 6 digits
+    if (!/^\d{6}$/.test(value)) {
+      setFormData((prev) => ({
+        ...prev,
+        city: '',
+        state: '',
+        country: '',
+      }));
+      return;
+    }
+
+    try {
+      setPincodeLoading(true);
+
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_BACKEND_URL}/api/pincode/${value}`
+      );
+
+      if (res.data.success) {
+        setFormData((prev) => ({
+          ...prev,
+          city: res.data.city,
+          state: res.data.state,
+          country: res.data.country || 'India',
+        }));
+      }
+    } catch (error) {
+      toast.error('Invalid or unsupported pincode', { position: 'top-center' });
+
+      setFormData((prev) => ({
+        ...prev,
+        city: '',
+        state: '',
+        country: '',
+      }));
+    } finally {
+      setPincodeLoading(false);
+    }
+  };
+
+  /* ================= GENERIC INPUT HANDLER ================= */
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -44,8 +95,8 @@ const PlaceOrder = () => {
     (key) => cartItems[key] > 0
   );
 
+  /* ================= PLACE ORDER ================= */
   const handlePlaceOrder = async () => {
-    // ---------------- VALIDATIONS ----------------
     if (!isFormValid()) {
       toast.error('Please fill in all fields.', { position: 'top-center' });
       return;
@@ -69,17 +120,15 @@ const PlaceOrder = () => {
       return;
     }
 
-    // ---------------- SUCCESS FLOW ----------------
     toast.success('Order placed successfully!', {
       position: 'top-center',
       autoClose: 2000,
       onClose: async () => {
         try {
-          await axios.post('http://localhost:4000/placeorder', {
+          await axios.post(`${import.meta.env.VITE_API_BACKEND_URL}/placeorder`, {
             email: formData.email,
             name: `${formData.firstName} ${formData.lastName}`,
 
-            // ✅ FINAL VERIFIED BILL
             order: {
               subtotal: order.subtotal,
               discount: order.discount,
@@ -89,7 +138,6 @@ const PlaceOrder = () => {
               paymentMethod: method,
             },
 
-            // ✅ DELIVERY ADDRESS
             address: {
               street: formData.street,
               city: formData.city,
@@ -99,7 +147,7 @@ const PlaceOrder = () => {
               phone: formData.phone,
             },
           });
-        } catch (error) {
+        } catch {
           toast.error('Order placed but email failed!');
         } finally {
           clearCart();
@@ -158,29 +206,30 @@ const PlaceOrder = () => {
           <input
             className="input-box"
             type="text"
-            placeholder="City"
+            placeholder={pincodeLoading ? 'Detecting city...' : 'City'}
             name="city"
             value={formData.city}
-            onChange={handleChange}
+            readOnly
           />
           <input
             className="input-box"
             type="text"
-            placeholder="State"
+            placeholder={pincodeLoading ? 'Detecting state...' : 'State'}
             name="state"
             value={formData.state}
-            onChange={handleChange}
+            readOnly
           />
         </div>
 
         <div className="input-group">
           <input
             className="input-box"
-            type="number"
-            placeholder="Zip Code"
+            type="text"
+            placeholder="Pincode"
             name="zipCode"
             value={formData.zipCode}
-            onChange={handleChange}
+            onChange={handlePincodeChange}
+            maxLength={6}
           />
           <input
             className="input-box"
@@ -188,7 +237,7 @@ const PlaceOrder = () => {
             placeholder="Country"
             name="country"
             value={formData.country}
-            onChange={handleChange}
+            readOnly
           />
         </div>
 
@@ -218,31 +267,23 @@ const PlaceOrder = () => {
               onClick={() => setMethod('stripe')}
               className={`payment-option ${method === 'stripe' ? 'selected' : ''}`}
             >
-              <div className="payment-content">
-                <img src={stripe_logo} alt="Stripe" />
-                <span className="payment-text">Pay with Stripe</span>
-              </div>
+              <img src={stripe_logo} alt="Stripe" />
+              <span>Pay with Stripe</span>
             </div>
 
             <div
               onClick={() => setMethod('razor-pay')}
-              className={`payment-option ${
-                method === 'razor-pay' ? 'selected' : ''
-              }`}
+              className={`payment-option ${method === 'razor-pay' ? 'selected' : ''}`}
             >
-              <div className="payment-content">
-                <img src={razor_pay} alt="Razorpay" />
-                <span className="payment-text">Pay with Razorpay</span>
-              </div>
+              <img src={razor_pay} alt="Razorpay" />
+              <span>Pay with Razorpay</span>
             </div>
 
             <div
               onClick={() => setMethod('cod')}
               className={`payment-option ${method === 'cod' ? 'selected' : ''}`}
             >
-              <div className="payment-content">
-                <span className="payment-text">Cash on Delivery</span>
-              </div>
+              <span>Cash on Delivery</span>
             </div>
           </div>
 
