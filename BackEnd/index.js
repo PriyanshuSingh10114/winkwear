@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const PORT = process.env.PORT || 4000;
 const express = require("express");
 const app = express();
@@ -18,7 +20,11 @@ const pincodeRoute = require("./pincode");
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: process.env.VITE_API_FRONTEND_URL,
+  credentials: true
+}));
+
 app.use(orderRoute);
 app.use('/', newsletterRoute);
 app.use("/api/pincode", pincodeRoute);
@@ -26,9 +32,16 @@ app.use("/api/pincode", pincodeRoute);
 
 
 /* ================= DB CONNECTION (UNCHANGED) ================= */
-mongoose.connect(
-  "mongodb+srv://Priyanshu5313:9572@cluster0.xrts3ya.mongodb.net/winkwear"
-);
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("✅ MongoDB connected"))
+.catch(err => {
+  console.error("❌ MongoDB connection failed:", err.message);
+  process.exit(1);
+});
+
 
 app.get("/", (req, res) => {
   res.send("Express App is Running");
