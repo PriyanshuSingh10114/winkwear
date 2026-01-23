@@ -236,6 +236,10 @@
     box-shadow: 0 0 0 2px var(--gold-soft);
 }
 
+.chat-messages {
+    -webkit-overflow-scrolling: touch;
+}
+
 .send-btn {
     width: 48px;
     height: 48px;
@@ -297,5 +301,78 @@
 
     40% {
         transform: scale(1);
+    }
+}
+
+/* ================= MOBILE COMPACT CHAT ================= */
+@media (max-width: 600px) {
+
+    .chatbot-container {
+        bottom: 14px;
+        right: 14px;
+    }
+
+    /* Floating icon smaller */
+    .chatbot-toggle {
+        width: 52px;
+        height: 52px;
+    }
+
+    /* Compact chat window (PC-style) */
+    .chat-window {
+        position: absolute;
+        bottom: 68px;
+        right: 0;
+        width: 320px;
+        height: 420px;
+        border-radius: 18px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    /* Header tighter */
+    .chat-header {
+        height: 56px;
+        padding: 0 14px;
+    }
+
+    .chat-messages {
+    -webkit-overflow-scrolling: touch;
+    }
+
+
+    .header-info h3 {
+        font-size: 14px;
+    }
+
+    .header-info p {
+        font-size: 10px;
+    }
+
+    /* Messages tighter */
+    .chat-messages {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .message {
+        font-size: 13px;
+        padding: 10px 14px;
+        max-width: 90%;
+    }
+
+    /* Input smaller */
+    .chat-input-area {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .chat-input-area input {
+        height: 42px;
+        font-size: 13px;
+    }
+
+    .send-btn {
+        width: 42px;
+        height: 42px;
     }
 }
