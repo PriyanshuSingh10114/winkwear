@@ -2,7 +2,7 @@
 .loginsignup {
     width: 100%;
     min-height: 100vh;
-    background: url('FrontEnd\react-trend-zify\src\Components\Assets\Picsart_25-07-04_22-44-50-203.jpg') center/cover;
+
     display: flex;
     align-items: center;
     justify-content: center;
