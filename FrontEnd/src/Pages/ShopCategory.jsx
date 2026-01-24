@@ -1,5 +1,5 @@
 import "./CSS/ShopCategory.css";
-import { useContext, useState, useRef, useEffect } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ShopContext } from "../Context/ShopContext";
 import dropdown_icon from "../Components/Assets/dropdown_icon.png";
 import Item from "../Components/Item/Item";
@@ -8,57 +8,69 @@ const ShopCategory = ({ category, banner }) => {
   const { all_product } = useContext(ShopContext);
 
   const [visibleCount, setVisibleCount] = useState(8);
-  const [showSortMenu, setShowSortMenu] = useState(false);
   const [sortOption, setSortOption] = useState("default");
-
   const [filterSeason, setFilterSeason] = useState("all");
   const [filterStyle, setFilterStyle] = useState("all");
   const [filterOccasion, setFilterOccasion] = useState("all");
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
 
-  const productsEndRef = useRef(null);
+  const endRef = useRef(null);
 
   useEffect(() => {
     setVisibleCount(8);
-  }, [filterSeason, filterStyle, filterOccasion, sortOption, category]);
+  }, [category, sortOption, filterSeason, filterStyle, filterOccasion]);
 
-  /* FILTER */
-  const filtered = all_product.filter((item) => {
-    return (
-      item.category === category &&
-      (filterSeason === "all" || item.season === filterSeason) &&
-      (filterStyle === "all" || item.style === filterStyle) &&
-      (filterOccasion === "all" || item.occasion === filterOccasion)
-    );
-  });
+  /* ================= FILTER ================= */
+  const filtered = all_product.filter((item) =>
+    item.category === category &&
+    (filterSeason === "all" || item.season === filterSeason) &&
+    (filterStyle === "all" || item.style === filterStyle) &&
+    (filterOccasion === "all" || item.occasion === filterOccasion)
+  );
 
-  /* SORT (non-mutating) */
+  /* ================= SORT ================= */
   const sorted = [...filtered];
   if (sortOption === "lowToHigh") sorted.sort((a, b) => a.new_price - b.new_price);
   if (sortOption === "highToLow") sorted.sort((a, b) => b.new_price - a.new_price);
   if (sortOption === "nameAZ") sorted.sort((a, b) => a.name.localeCompare(b.name));
 
-  const handleLoadMore = () => {
-    setVisibleCount((p) => p + 8);
-    setTimeout(() => {
-      productsEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+  const resetFilters = () => {
+    setSortOption("default");
+    setFilterSeason("all");
+    setFilterStyle("all");
+    setFilterOccasion("all");
   };
 
   return (
     <div className="shop-category">
-      {/* BANNER */}
-      <div className="layout-align">
-        <img className="shopcategory-banner" src={banner} alt={category} />
+
+      {/* ================= MOBILE FILTER (STABLE) ================= */}
+      <div className="mobile-filter-wrapper">
+        <div className="mobile-filter-bar">
+          <button
+            className="mobile-filter-btn"
+            onClick={() => setShowMobileFilter(true)}
+          >
+            <span>
+              Filter & Sort
+              {(filterSeason !== "all" ||
+                filterStyle !== "all" ||
+                filterOccasion !== "all") && " •"}
+            </span>
+            <img src={dropdown_icon} alt="filter" />
+          </button>
+        </div>
       </div>
 
-      {/* TOOLBAR */}
+      {/* ================= BANNER ================= */}
+      <img className="shopcategory-banner" src={banner} alt={category} />
+
+      {/* ================= DESKTOP TOOLBAR ================= */}
       <div className="shopcategory-toolbar">
-        {/* LEFT (HIDDEN ON PHONE) */}
         <div className="toolbar-left">
-          <span>Showing {sorted.length}</span> product(s)
+          <span>{sorted.length}</span> product(s)
         </div>
 
-        {/* FILTERS (HIDDEN ON PHONE) */}
         <div className="toolbar-center">
           <select value={filterSeason} onChange={(e) => setFilterSeason(e.target.value)}>
             <option value="all">All Seasons</option>
@@ -87,56 +99,86 @@ const ShopCategory = ({ category, banner }) => {
             <option value="outdoor">Outdoor</option>
           </select>
         </div>
-
-        {/* SORT */}
-        <div className="toolbar-right mobile-sort">
-          <div
-            className="shopcategory-sort"
-            onClick={() => setShowSortMenu(!showSortMenu)}
-          >
-            <span className="sort-text">
-              {sortOption === "default" && "Sort by"}
-              {sortOption === "lowToHigh" && "Price: Low → High"}
-              {sortOption === "highToLow" && "Price: High → Low"}
-              {sortOption === "nameAZ" && "Name: A → Z"}
-            </span>
-            <img
-              src={dropdown_icon}
-              className={showSortMenu ? "rotate-arrow" : ""}
-              alt="sort"
-            />
-          </div>
-
-          {showSortMenu && (
-            <div className="sort-dropdown">
-              <p onClick={() => setSortOption("lowToHigh")}>Price: Low → High</p>
-              <p onClick={() => setSortOption("highToLow")}>Price: High → Low</p>
-              <p onClick={() => setSortOption("nameAZ")}>Name: A → Z</p>
-              <p onClick={() => setSortOption("default")}>Reset</p>
-            </div>
-          )}
-        </div>
       </div>
 
-      {/* PRODUCTS */}
+      {/* ================= PRODUCTS ================= */}
       <div className="shopcategory-products">
         {sorted.slice(0, visibleCount).map((item) => (
-          <Item
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            image={item.image}
-            new_price={item.new_price}
-            old_price={item.old_price}
-          />
+          <Item key={item.id} {...item} />
         ))}
-        <div ref={productsEndRef} />
+        <div ref={endRef} />
       </div>
 
-      {/* LOAD MORE */}
+      {/* ================= LOAD MORE ================= */}
       {visibleCount < sorted.length && (
         <div className="shopcategory-loadmore">
-          <button onClick={handleLoadMore}>Explore More</button>
+          <button onClick={() => setVisibleCount((v) => v + 8)}>
+            Explore More
+          </button>
+        </div>
+      )}
+
+      {/* ================= MOBILE FILTER SHEET ================= */}
+      {showMobileFilter && (
+        <div className="mobile-filter-overlay">
+          <div className="mobile-filter-sheet">
+            <h3>Filter & Sort</h3>
+
+            <div className="filter-group">
+              <label>Sort By</label>
+              <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+                <option value="default">Default</option>
+                <option value="lowToHigh">Price: Low → High</option>
+                <option value="highToLow">Price: High → Low</option>
+                <option value="nameAZ">Name: A → Z</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Season</label>
+              <select value={filterSeason} onChange={(e) => setFilterSeason(e.target.value)}>
+                <option value="all">All</option>
+                <option value="summer">Summer</option>
+                <option value="winter">Winter</option>
+                <option value="all-season">All Season</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Style</label>
+              <select value={filterStyle} onChange={(e) => setFilterStyle(e.target.value)}>
+                <option value="all">All</option>
+                <option value="casual">Casual</option>
+                <option value="formal">Formal</option>
+                <option value="partywear">Party Wear</option>
+                <option value="streetwear">Streetwear</option>
+                <option value="athletic">Athletic</option>
+                <option value="ethnic">Ethnic</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Occasion</label>
+              <select value={filterOccasion} onChange={(e) => setFilterOccasion(e.target.value)}>
+                <option value="all">All</option>
+                <option value="daily">Daily</option>
+                <option value="office">Office</option>
+                <option value="party">Party</option>
+                <option value="vacation">Vacation</option>
+                <option value="festive">Festive</option>
+                <option value="outdoor">Outdoor</option>
+              </select>
+            </div>
+
+            <div className="filter-actions">
+              <button className="reset-btn" onClick={resetFilters}>
+                Reset
+              </button>
+              <button className="apply-btn" onClick={() => setShowMobileFilter(false)}>
+                Apply
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

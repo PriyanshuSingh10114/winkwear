@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ quiet: true });
 
 const PORT = process.env.PORT || 4000;
 const express = require("express");
@@ -32,15 +32,13 @@ app.use("/api/pincode", pincodeRoute);
 
 
 /* ================= DB CONNECTION (UNCHANGED) ================= */
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("✅ MongoDB connected"))
-.catch(err => {
-  console.error("❌ MongoDB connection failed:", err.message);
-  process.exit(1);
-});
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch(err => {
+    console.error("❌ MongoDB connection failed:", err.message);
+    process.exit(1);
+  });
+
 
 
 app.get("/", (req, res) => {
