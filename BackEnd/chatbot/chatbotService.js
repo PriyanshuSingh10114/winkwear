@@ -160,9 +160,9 @@ const chatbotService = async (userMessage, onChunk = null) => {
   if (Object.keys(filters).length) {
     const products = await Product.find(filters).limit(5);
     productContext = `
-Available products:
-${formatProducts(products)}
-`;
+    Available products:
+    ${formatProducts(products)}
+    `;
   }
 
   const finalPrompt = `
