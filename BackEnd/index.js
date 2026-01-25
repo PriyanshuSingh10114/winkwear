@@ -32,6 +32,15 @@ const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 /* ================= MIDDLEWARE ================= */
 app.use(express.json());
 app.use(cors());
+app.use(cors({
+  origin: process.env.VITE_API_FRONTEND_URL,
+  credentials: true
+}));
+
+app.use(orderRoute);
+app.use('/', newsletterRoute);
+app.use("/api/pincode", pincodeRoute);
+
 
 /* ================= ROUTES ================= */
 app.use("/api/orders", orderRoute);
@@ -39,13 +48,15 @@ app.use("/", newsletterRoute);
 app.use("/api/pincode", pincodeRoute);
 app.use("/api/chatbot", chatbotRoute);
 
-/* ================= DB CONNECTION ================= */
-mongoose
-  .connect(
-    "mongodb+srv://Priyanshu5313:9572@cluster0.xrts3ya.mongodb.net/winkwear"
-  )
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.error("MongoDB Error:", err));
+/* ================= DB CONNECTION (UNCHANGED) ================= */
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch(err => {
+    console.error("❌ MongoDB connection failed:", err.message);
+    process.exit(1);
+  });
+
+
 
 /* ================= BASIC ROUTES ================= */
 app.get("/", (req, res) => {
@@ -285,4 +296,6 @@ app.get("/rating/:productId", async (req, res) => {
 /* ================= SERVER ================= */
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+});
+  console.log(`Server running on ${PORT}`);
 });
