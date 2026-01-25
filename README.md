@@ -1,6 +1,6 @@
 # Wink & Wear
 
-**Live demo:** [https://winkandwear-1.onrender.com/](https://winkandwear-1.onrender.com/)
+**Production Link** https://winkandwear.com/
 
 **Repository:** [https://github.com/PriyanshuSingh10114/winkwear](https://github.com/PriyanshuSingh10114/winkwear)
 
