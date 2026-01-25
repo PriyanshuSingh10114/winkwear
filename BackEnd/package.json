@@ -11,8 +11,9 @@
     "dev": "nodemon index.js"
   },
   "dependencies": {
-    "@langchain/community": "^0.0.55",
-    "@langchain/core": "^0.1.60",
+    "@google/generative-ai": "^0.24.1",
+    "@langchain/community": "^1.1.7",
+    "@langchain/core": "^1.1.17",
     "@langchain/google-genai": "^2.1.12",
     "axios": "^1.13.2",
     "cors": "^2.8.5",
@@ -20,7 +21,7 @@
     "express": "^5.1.0",
     "google-auth-library": "^10.5.0",
     "jsonwebtoken": "^9.0.2",
-    "langchain": "^0.1.36",
+    "langchain": "^1.2.13",
     "mongodb": "^6.16.0",
     "mongoose": "^8.15.1",
     "multer": "^2.0.0",
