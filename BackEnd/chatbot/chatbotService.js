@@ -20,7 +20,7 @@ if (!process.env.GOOGLE_GEMINI_API) {
 /* ===================== GEMINI INIT ===================== */
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API);
 const model = genAI.getGenerativeModel({
-  model: "gemini-3-flash-preview", // free-tier, fast
+  model: "gemini-1.0-pro", // free-tier, fast
 });
 
 /* ===================== SYSTEM PROMPT ===================== */
