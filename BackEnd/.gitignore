@@ -26,7 +26,7 @@ uploads/**
 Thumbs.db
 .vscode/
 .idea/
-
+.env
 # =========================
 # Build / Cache
 # =========================

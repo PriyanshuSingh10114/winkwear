@@ -1,35 +1,128 @@
-.policy-container {
+.profile-page {
   max-width: 900px;
   margin: 60px auto;
   padding: 0 20px;
   color: #e6e6e6;
 }
 
-.policy-container h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
+.profile-page h2 {
+  font-size: 34px;
+  margin-bottom: 25px;
   border-left: 4px solid #d4a045;
   padding-left: 12px;
 }
 
-.policy-container h2 {
-  margin-top: 28px;
-  margin-bottom: 10px;
-  color: #ffffff;
+/* ================= CARD ================= */
+.profile-card {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 10px;
+  padding: 28px;
 }
 
-.policy-container p,
-.policy-container li {
-  line-height: 1.7;
+/* ================= AVATAR ================= */
+.avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d4a045;
+}
+
+.avatar-upload {
+  font-size: 14px;
+  color: #d4a045;
+  cursor: pointer;
+  padding: 6px 12px;
+  border: 1px solid #d4a045;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.avatar-upload:hover {
+  background: #d4a045;
+  color: #000;
+}
+
+
+/* ================= TEXT INFO ================= */
+.profile-card p {
+  font-size: 15px;
+  margin: 10px 0;
   color: #cfcfcf;
 }
 
-.policy-container ul {
-  padding-left: 20px;
+.profile-card strong {
+  color: #ffffff;
 }
 
-.policy-footer {
-  margin-top: 40px;
+/* ================= INPUT FIELDS ================= */
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  margin-top: 18px;
+}
+
+.profile-field label {
   font-size: 13px;
-  color: #999;
+  margin-bottom: 6px;
+  color: #aaa;
+}
+
+.profile-field input,
+.profile-field select {
+  background: #0d0d0d;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.profile-field input:focus,
+.profile-field select:focus {
+  outline: none;
+  border-color: #d4a045;
+}
+
+/* ================= BUTTON ================= */
+.profile-card button {
+  margin-top: 28px;
+  background: #d4a045;
+  border: none;
+  color: #000;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.profile-card button:hover {
+  background: #e3b35c;
+}
+
+.profile-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+  .avatar-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
 }

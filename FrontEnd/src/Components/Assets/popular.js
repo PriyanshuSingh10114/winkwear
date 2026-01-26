@@ -1,15 +1,16 @@
-import img201 from "./new_women_1.jpg";
-import img202 from "./new_women_2.jpg";
-import img203 from "./new_women_3.jpg";
-import img204 from "./new_women_4.jpg";
-import img205 from "./new_women_5.jpg";
-import img206 from "./new_women_6.jpg";
-import img207 from "./new_women_7.jpg";
-import img208 from "./new_women_8.jpg";
-import img209 from "./new_women_9.jpg";
-import img210 from "./new_women_10.jpg";
-import img211 from "./new_women_11.jpg";
-import img212 from "./new_women_12.jpg";
+import img201 from "./new_women_1.webp";
+import img202 from "./new_women_2.webp";
+import img203 from "./new_women_3.webp";
+import img204 from "./new_women_4.webp";
+import img205 from "./new_women_5.webp";
+import img206 from "./new_women_6.webp";
+import img207 from "./new_women_7.webp";
+import img208 from "./new_women_8.webp";
+import img209 from "./new_women_9.webp";
+import img210 from "./new_women_10.webp";
+import img211 from "./new_women_11.webp";
+import img212 from "./new_women_12.webp";
+
 
 const products = [
   {

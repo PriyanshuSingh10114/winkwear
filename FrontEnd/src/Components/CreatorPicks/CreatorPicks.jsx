@@ -1,7 +1,7 @@
 import "./CreatorPicks.css";
-import creator_1 from "../Assets/creator_1.png";
-import creator_2 from "../Assets/creator_2.png";
-import creator_3 from "../Assets/creator_3.png";
+import creator_1 from "../Assets/creator_1.webp";
+import creator_2 from "../Assets/creator_2.webp";
+import creator_3 from "../Assets/creator_3.webp";
 const CreatorPicks = () => {
   const picks = [
     {

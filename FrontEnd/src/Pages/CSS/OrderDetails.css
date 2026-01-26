@@ -1,0 +1,110 @@
+.order-details {
+  padding: 40px;
+  color: #fff;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* ================= META ================= */
+.order-meta {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.order-meta p {
+  margin: 4px 0;
+}
+
+/* ================= TRACKING ================= */
+.tracking {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 25px 0 35px;
+}
+
+.step {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #2a2a2a;
+  font-size: 13px;
+  min-width: 130px;
+  text-align: center;
+}
+
+.step.done {
+  background: #d4a045;
+  color: #000;
+}
+
+/* ================= ITEMS ================= */
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 15px 0 30px;
+}
+
+.order-item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: #111;
+  padding: 14px;
+  border-radius: 12px;
+}
+
+.order-item img {
+  width: 90px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #1c1c1c;
+  flex-shrink: 0;
+}
+
+.item-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+/* ================= ADDRESS ================= */
+.address-box {
+  background: #111;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* ================= TOTAL ================= */
+.order-total {
+  font-size: 18px;
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+/* ================= CANCEL BUTTON ================= */
+.cancel-btn {
+  background: #c0392b;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background: #e74c3c;
+}
+
+.cancel-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

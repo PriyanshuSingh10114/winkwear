@@ -2,22 +2,21 @@ import men8 from "./men8.webp";
 import men9 from "./men9.webp";
 import men10 from "./men10.webp";
 import men11 from "./men11.webp";
-import img325 from "./new_men_25.jpg";
-import img326 from "./new_men_26.jpg";
+import img325 from "./new_men_25.webp";
+import img326 from "./new_men_26.webp";
 
-import p36_img from "./kids_12.jpg";
-import p37_img from "./kids_13.jpg";
-import p38_img from "./kids_14.jpg";
-import p39_img from "./kids_15.jpg";
-import p27_img from "./kids_3.jpg";
-import p28_img from "./kids_4.jpg";
+import p37_img from "./kids_13.webp";
+import p38_img from "./kids_14.webp";
+import p39_img from "./kids_15.webp";
+import p27_img from "./kids_3.webp";
+import p28_img from "./kids_4.webp";
 
-import img203 from "./new_women_3.jpg";
-import img204 from "./new_women_4.jpg";
-import img205 from "./new_women_5.jpg";
-import img206 from "./new_women_6.jpg";
-import img211 from "./new_women_11.jpg";
-import img212 from "./new_women_12.jpg";
+import img203 from "./new_women_3.webp";
+import img204 from "./new_women_4.webp";
+import img205 from "./new_women_5.webp";
+import img206 from "./new_women_6.webp";
+import img211 from "./new_women_11.webp";
+import img212 from "./new_women_12.webp";
 
 let data_product = [
   {

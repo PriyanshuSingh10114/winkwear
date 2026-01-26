@@ -1,5 +1,5 @@
 import "./CustomerSpotlight.css";
-import cs_1 from "../Assets/customer_gallery-1.png";
+import cs_1 from "../Assets/customer_gallery-1.webp";
 
 const CustomerSpotlight = () => {
   return (

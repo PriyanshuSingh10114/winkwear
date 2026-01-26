@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import blog_1 from "../Assets/Fashion_Blog-1.png";
-import blog_2 from "../Assets/Fashion_Blog-2.png";
-import blog_3 from "../Assets/Fashion_Blog-3.png";
+import blog_1 from "../Assets/Fashion_Blog-1.webp";
+import blog_2 from "../Assets/Fashion_Blog-2.webp";
+import blog_3 from "../Assets/Fashion_Blog-3.webp";
 import "./FashionBlog.css";
 
 const FashionBlog = () => {

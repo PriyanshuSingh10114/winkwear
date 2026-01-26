@@ -24,8 +24,6 @@ const chatbotRoute = require("./chatbot/chatbotRoute");
 
 /* ================= APP INIT ================= */
 const app = express();
-
-/* ================= GOOGLE CLIENT ================= */
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 /* ================= MIDDLEWARE ================= */
@@ -53,37 +51,22 @@ mongoose
   });
 
 /* ================= BASIC ROUTES ================= */
-app.get("/", (req, res) => {
-  res.send("Express App is Running");
-});
+app.get("/", (_, res) => res.send("Express App is Running"));
 
-app.get("/health", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "Backend is running",
-  });
-});
+app.get("/health", (_, res) =>
+  res.json({ success: true, message: "Backend is running" })
+);
 
 /* ================= IMAGE UPLOAD ================= */
 const storage = multer.diskStorage({
   destination: "./uploads/images",
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
-    );
+  filename: (_, file, cb) => {
+    cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
   },
 });
 
 const uploads = multer({ storage });
 app.use("/uploads", express.static("uploads/images"));
-
-app.post("/uploads", uploads.single("product"), (req, res) => {
-  res.json({
-    success: true,
-    imageUrl: `${process.env.VITE_API_FRONTEND_URL}/uploads/${req.file.filename}`,
-  });
-});
 
 /* ================= REVIEW MODEL ================= */
 const Review = mongoose.model("Review", {
@@ -100,23 +83,35 @@ const Users = mongoose.model("Users", {
   name: String,
   email: String,
   password: String,
+
+  phone: String,
+  gender: String,
+  dob: Date,
+
+  avatar: {
+    type: String,
+    default: "",
+  },
+
+  lastLogin: Date,
+
   cartData: Object,
-  date: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now },
 });
 
 /* ================= AUTH MIDDLEWARE ================= */
 const fetchUser = async (req, res, next) => {
   const token = req.header("auth-token");
   if (!token) {
-    return res.status(401).send({ errors: "Authentication required" });
+    return res.status(401).json({ success: false });
   }
 
   try {
-    const data = jwt.verify(token, "secret_ecom");
+    const data = jwt.verify(token, process.env.JWT_SECRET || "secret_ecom");
     req.user = data.user;
     next();
   } catch {
-    res.status(401).send({ errors: "Invalid token" });
+    res.status(401).json({ success: false });
   }
 };
 
@@ -136,16 +131,16 @@ app.post("/removeproduct", async (req, res) => {
   res.json({ success: true });
 });
 
-app.get("/allproducts", async (req, res) => {
+app.get("/allproducts", async (_, res) => {
   res.send(await Product.find({}));
 });
 
-app.get("/newcollection", async (req, res) => {
+app.get("/newcollection", async (_, res) => {
   const products = await Product.find({});
   res.send(products.slice(-8));
 });
 
-app.get("/popularinwomen", async (req, res) => {
+app.get("/popularinwomen", async (_, res) => {
   const products = await Product.find({ category: "women" });
   res.send(products.slice(0, 4));
 });
@@ -161,7 +156,10 @@ app.post("/signup", async (req, res) => {
   const user = new Users({ ...req.body, cartData: cart });
   await user.save();
 
-  const token = jwt.sign({ user: { id: user._id } }, "secret_ecom");
+  const token = jwt.sign(
+    { user: { id: user._id } },
+    process.env.JWT_SECRET || "secret_ecom"
+  );
   res.json({ success: true, token });
 });
 
@@ -171,25 +169,25 @@ app.post("/login", async (req, res) => {
     return res.json({ success: false });
   }
 
-  const token = jwt.sign({ user: { id: user._id } }, "secret_ecom");
+  user.lastLogin = new Date();
+  await user.save();
+
+  const token = jwt.sign(
+    { user: { id: user._id } },
+    process.env.JWT_SECRET || "secret_ecom"
+  );
   res.json({ success: true, token });
 });
 
 /* ================= GOOGLE AUTH ================= */
 app.post("/auth/google", async (req, res) => {
   try {
-    const { credential } = req.body;
-    if (!credential) {
-      return res.status(400).json({ success: false });
-    }
-
     const ticket = await googleClient.verifyIdToken({
-      idToken: credential,
+      idToken: req.body.credential,
       audience: process.env.GOOGLE_CLIENT_ID,
     });
 
     const { email, name, sub } = ticket.getPayload();
-
     let user = await Users.findOne({ email });
 
     if (!user) {
@@ -202,11 +200,16 @@ app.post("/auth/google", async (req, res) => {
         password: sub,
         cartData: cart,
       });
-
-      await user.save();
     }
 
-    const token = jwt.sign({ user: { id: user._id } }, "secret_ecom");
+    user.lastLogin = new Date();
+    await user.save();
+
+    const token = jwt.sign(
+      { user: { id: user._id } },
+      process.env.JWT_SECRET || "secret_ecom"
+    );
+
     res.json({ success: true, token });
   } catch (err) {
     console.error("Google Login Error:", err);
@@ -236,6 +239,40 @@ app.post("/getcart", fetchUser, async (req, res) => {
   const user = await Users.findById(req.user.id);
   res.json(user.cartData);
 });
+
+/* ================= USER PROFILE ================= */
+app.get("/user/profile", fetchUser, async (req, res) => {
+  const user = await Users.findById(req.user.id).select("-password");
+  res.json({ success: true, user });
+});
+
+app.put("/user/profile", fetchUser, async (req, res) => {
+  const { phone, gender, dob } = req.body;
+
+  const user = await Users.findByIdAndUpdate(
+    req.user.id,
+    { phone, gender, dob },
+    { new: true }
+  ).select("-password");
+
+  res.json({ success: true, user });
+});
+
+/* ================= USER AVATAR ================= */
+app.post(
+  "/user/avatar",
+  fetchUser,
+  uploads.single("avatar"),
+  async (req, res) => {
+    const avatarUrl = `${process.env.VITE_API_FRONTEND_URL}/uploads/${req.file.filename}`;
+
+    await Users.findByIdAndUpdate(req.user.id, {
+      avatar: avatarUrl,
+    });
+
+    res.json({ success: true, avatar: avatarUrl });
+  }
+);
 
 /* ================= REVIEW APIs ================= */
 app.post("/addreview", fetchUser, async (req, res) => {

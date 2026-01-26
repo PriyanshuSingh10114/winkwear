@@ -7,16 +7,19 @@ import Shop from './Pages/Shop';
 import Product from './Pages/Product'
 import Cart from './Pages/Cart';
 import Footer from './Components/Footer/Footer'
-import men_banner from './Components/Assets/banner_1.png'
-import women_banner from './Components/Assets/banner_4.png'
-import kid_banner from './Components/Assets/banner_6.png'
+import men_banner from './Components/Assets/banner_1.webp'
+import women_banner from './Components/Assets/banner_4.webp'
+import kid_banner from './Components/Assets/banner_6.webp'
 import PlaceOrder from './Pages/PlaceOrder'
 import Orders from './Pages/Orders'
 import About from './Pages/About.jsx'
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import ReturnExchange from "./Pages/ReturnExchange";
+import OrderDetails from "./Pages/OrderDetails.jsx";
 import Contact from "./Pages/Contact";
+import Profile from "./Pages/Profile";
 import Chatbot from './Components/Chatbot/Chatbot';
+
 
 function App() {
 
@@ -41,6 +44,8 @@ function App() {
           <Route path='/login' element={<LoginSignup />} />
           <Route path="/place-order" element={<PlaceOrder />} />
           <Route path="/Orders" element={<Orders />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/orders/:orderId" element={<OrderDetails />} />
 
         </Routes>
         <Chatbot />

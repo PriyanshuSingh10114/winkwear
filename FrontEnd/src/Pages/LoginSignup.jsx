@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./CSS/LoginSignup.css";
-import bgIntro from "../Components/Assets/bgintro.jpg";
+import bgIntro from "../Components/Assets/bgintro.webp";
 
 const LoginSignup = () => {
   const [state, setState] = useState("Login");
@@ -48,6 +48,16 @@ const LoginSignup = () => {
 
       if (data.success) {
         localStorage.setItem("auth-token", data.token);
+
+        // ✅ SAVE USER INFO
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            name: data.name || "User",
+            email: data.email || "",
+          })
+        );
+
         window.location.replace("/");
       } else {
         alert("Google authentication failed");
@@ -86,6 +96,16 @@ const LoginSignup = () => {
 
     if (data.success) {
       localStorage.setItem("auth-token", data.token);
+
+      // ✅ SAVE USER INFO
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          name: data.name || "User",
+          email: formData.email,
+        })
+      );
+
       window.location.replace("/");
     } else {
       alert("Invalid credentials");
@@ -119,6 +139,13 @@ const LoginSignup = () => {
 
     if (data.success) {
       localStorage.setItem("auth-token", data.token);
+
+      // ✅ SAVE USER INFO
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ name, email })
+      );
+
       window.location.replace("/");
     } else {
       alert("Signup failed");
@@ -175,7 +202,6 @@ const LoginSignup = () => {
           Continue
         </button>
 
-        {/* ===== GOOGLE LOGIN ===== */}
         <div className="google-auth">
           <div className="google-auth-divider">
             <span>OR</span>

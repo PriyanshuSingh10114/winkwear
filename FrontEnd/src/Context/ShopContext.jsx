@@ -19,12 +19,12 @@ const PROMO_CODES = {
 const isFriday = () => new Date().getDay() === 5;
 
 /* ================= HELPERS ================= */
-const mergeProducts = (local, remote) => {
+const mergeProducts = (local, remote = []) => {
   const seen = new Set();
   const merged = [];
 
   [...local, ...remote].forEach((product) => {
-    if (!seen.has(product.id)) {
+    if (product?.id && !seen.has(product.id)) {
       merged.push(product);
       seen.add(product.id);
     }
@@ -35,9 +35,19 @@ const mergeProducts = (local, remote) => {
 
 /* ================= CONTEXT PROVIDER ================= */
 const ShopContextProvider = ({ children }) => {
-  const [all_product, setAll_Product] = useState([]);
+  // ✅ SAFE DEFAULT (NEVER EMPTY / UNDEFINED)
+  const [all_product, setAll_Product] = useState(all_product_local);
   const [cartItems, setCartItems] = useState({});
   const [appliedCode, setAppliedCode] = useState("");
+
+  /* ================= INITIAL CART ================= */
+  const buildInitialCart = (products) => {
+    const cart = {};
+    products.forEach((p) => {
+      cart[p.id] = 0;
+    });
+    return cart;
+  };
 
   /* ================= FETCH PRODUCTS ================= */
   useEffect(() => {
@@ -46,55 +56,31 @@ const ShopContextProvider = ({ children }) => {
       .then((data) => {
         const merged = mergeProducts(all_product_local, data);
         setAll_Product(merged);
-
-        const initialCart = {};
-        merged.forEach((item) => {
-          initialCart[item.id] = 0;
-        });
-        setCartItems(initialCart);
+        setCartItems(buildInitialCart(merged));
       })
       .catch(() => {
-        // fallback to local products
+        // 🔥 HARD FALLBACK (NO CRASH EVER)
         setAll_Product(all_product_local);
-
-        const fallbackCart = {};
-        all_product_local.forEach((item) => {
-          fallbackCart[item.id] = 0;
-        });
-        setCartItems(fallbackCart);
+        setCartItems(buildInitialCart(all_product_local));
       });
   }, []);
 
   /* ================= CART OPERATIONS ================= */
 
-  // ✅ ADD TO CART (MERGE + MAX 10)
   const addToCart = (id, qty = 1) => {
-    setCartItems((prev) => {
-      const currentQty = prev[id] || 0;
-      const mergedQty = Math.min(
-        currentQty + qty,
-        MAX_QTY_PER_PRODUCT
-      );
-
-      return {
-        ...prev,
-        [id]: mergedQty,
-      };
-    });
-  };
-
-  // ✅ INCREMENT (CART PAGE)
-  const incrementQuantity = (id) => {
     setCartItems((prev) => ({
       ...prev,
-      [id]: Math.min(
-        (prev[id] || 0) + 1,
-        MAX_QTY_PER_PRODUCT
-      ),
+      [id]: Math.min((prev[id] || 0) + qty, MAX_QTY_PER_PRODUCT),
     }));
   };
 
-  // ✅ DECREMENT (CART PAGE)
+  const incrementQuantity = (id) => {
+    setCartItems((prev) => ({
+      ...prev,
+      [id]: Math.min((prev[id] || 0) + 1, MAX_QTY_PER_PRODUCT),
+    }));
+  };
+
   const decrementQuantity = (id) => {
     setCartItems((prev) => ({
       ...prev,
@@ -102,7 +88,6 @@ const ShopContextProvider = ({ children }) => {
     }));
   };
 
-  // ✅ REMOVE ITEM COMPLETELY
   const removeFromCart = (id) => {
     setCartItems((prev) => ({
       ...prev,
@@ -110,13 +95,13 @@ const ShopContextProvider = ({ children }) => {
     }));
   };
 
-  // ✅ CLEAR CART
+  // ✅ BULLETPROOF CLEAR CART
   const clearCart = () => {
-    const empty = {};
-    all_product.forEach((p) => {
-      empty[p.id] = 0;
-    });
-    setCartItems(empty);
+    const source = Array.isArray(all_product) && all_product.length
+      ? all_product
+      : all_product_local;
+
+    setCartItems(buildInitialCart(source));
   };
 
   /* ================= TOTAL CART AMOUNT ================= */
@@ -147,21 +132,11 @@ const ShopContextProvider = ({ children }) => {
       const promo = PROMO_CODES[appliedCode];
 
       if (promo.fridayOnly && !isFriday()) {
-        return {
-          subtotal,
-          discount: 0,
-          shipping,
-          total: subtotal + shipping,
-        };
+        return { subtotal, discount: 0, shipping, total: subtotal + shipping };
       }
 
       if (promo.min && subtotal < promo.min) {
-        return {
-          subtotal,
-          discount: 0,
-          shipping,
-          total: subtotal + shipping,
-        };
+        return { subtotal, discount: 0, shipping, total: subtotal + shipping };
       }
 
       if (promo.type === "percent") {
@@ -179,22 +154,14 @@ const ShopContextProvider = ({ children }) => {
 
     const total = Math.max(0, subtotal - discount + shipping);
 
-    return {
-      subtotal,
-      discount,
-      shipping,
-      total,
-      appliedCode,
-    };
+    return { subtotal, discount, shipping, total, appliedCode };
   };
 
   /* ================= TOTAL ITEM COUNT ================= */
   const getTotalCartItems = () => {
     let count = 0;
     for (const id in cartItems) {
-      if (cartItems[id] > 0) {
-        count += cartItems[id];
-      }
+      if (cartItems[id] > 0) count += cartItems[id];
     }
     return count;
   };

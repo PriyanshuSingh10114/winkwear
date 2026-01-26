@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import botAvatar from "../Assets/chatbot-avatar.png";
+import botAvatar from "../Assets/chatbot-avatar.webp";
 import './Chatbot.css';
 
 const Chatbot = () => {

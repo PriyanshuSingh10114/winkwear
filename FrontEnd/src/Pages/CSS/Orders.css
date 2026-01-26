@@ -1,0 +1,234 @@
+/* ===============================
+   ORDERS PAGE
+================================ */
+
+.orders-page {
+  padding: 40px 60px;
+  color: #f2f2f2;
+  min-height: 70vh;
+}
+
+.orders-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #d4a045;
+}
+
+.empty-orders {
+  opacity: 0.7;
+  font-size: 15px;
+}
+
+/* ===============================
+   ORDER CARD
+================================ */
+
+.order-card {
+  background: #151515;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: transform 0.25s ease, border 0.25s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(212,160,69,0.4);
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-id {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.order-date {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+/* ===============================
+   STATUS BADGE
+================================ */
+
+.order-status {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.order-status.shipped {
+  background: rgba(212,160,69,0.2);
+  color: #d4a045;
+  border: 1px solid rgba(212,160,69,0.4);
+}
+
+.order-status.delivered {
+  background: rgba(46,204,113,0.2);
+  color: #2ecc71;
+  border: 1px solid rgba(46,204,113,0.4);
+}
+
+.order-status.cancelled {
+  background: rgba(231,76,60,0.2);
+  color: #e74c3c;
+  border: 1px solid rgba(231,76,60,0.4);
+}
+
+/* ===============================
+   ITEMS PREVIEW
+================================ */
+
+.order-items {
+  padding: 14px 16px;
+  background: #101010;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.order-items p {
+  margin: 4px 0;
+}
+
+.order-items span {
+  opacity: 0.7;
+  font-size: 13px;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.order-total {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.order-delivery {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 4px;
+}
+
+/* ===============================
+   ACTION BUTTONS
+================================ */
+
+.order-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.view-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(212,160,69,0.5);
+  background: transparent;
+  color: #d4a045;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.view-btn:hover {
+  background: rgba(212,160,69,0.15);
+}
+
+.track-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: #1b1b1b;
+  color: #eaeaea;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.track-btn:hover {
+  background: #222;
+}
+
+.cancel-btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(231,76,60,0.5);
+  background: transparent;
+  color: #e74c3c;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cancel-btn:hover {
+  background: rgba(231,76,60,0.15);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+  .orders-page {
+    padding: 24px;
+  }
+
+  .order-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-actions {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-title {
+    font-size: 22px;
+  }
+
+  .order-card {
+    padding: 16px;
+  }
+
+  .order-total {
+    font-size: 16px;
+  }
+
+  .view-btn,
+  .track-btn,
+  .cancel-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

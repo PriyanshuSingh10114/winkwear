@@ -1,0 +1,199 @@
+/* ===============================
+   PROFILE PAGE — DARK LUXURY
+================================ */
+
+.profile-page {
+  min-height: 100vh;
+  padding: 40px 60px;
+  background: #0d0d0d;
+  color: #f2f2f2;
+  font-family: "Inter", sans-serif;
+}
+
+/* Title */
+.profile-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #d4a045;
+  margin-bottom: 28px;
+}
+
+/* ===============================
+   PROFILE CARDS
+================================ */
+
+.profile-card {
+  background: #151515;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.profile-card h3 {
+  font-size: 18px;
+  margin-bottom: 14px;
+  color: #e6c57a;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 8px;
+}
+
+/* ===============================
+   USER INFO
+================================ */
+
+.profile-info p {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #dcdcdc;
+}
+
+.profile-info strong {
+  color: #f2f2f2;
+}
+
+/* Muted text */
+.muted {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* ===============================
+   ORDER HISTORY
+================================ */
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Order card */
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #101010;
+  border-radius: 12px;
+  padding: 16px 18px;
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: 0.3s ease;
+}
+
+.order-item:hover {
+  border-color: rgba(212,160,69,0.5);
+  background: #141414;
+}
+
+/* Left */
+.order-id {
+  font-weight: 600;
+  color: #d4a045;
+  font-size: 14px;
+}
+
+.order-date {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* Middle */
+.order-status {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* Status colors */
+.order-status.delivered {
+  color: #4caf50;
+}
+
+.order-status.in {
+  color: #ff9800;
+}
+
+.order-status.cancelled {
+  color: #f44336;
+}
+
+.order-items {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* Right */
+.order-total {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f2f2f2;
+}
+
+/* ===============================
+   TABLET
+================================ */
+
+@media (max-width: 1024px) {
+  .profile-page {
+    padding: 32px 30px;
+  }
+
+  .profile-title {
+    font-size: 28px;
+  }
+}
+
+/* ===============================
+   MOBILE (≤ 768px)
+================================ */
+
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 26px 18px;
+  }
+
+  .profile-title {
+    font-size: 24px;
+  }
+
+  .order-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .order-total {
+    align-self: flex-end;
+  }
+}
+
+/* ===============================
+   SMALL MOBILE (≤ 480px)
+================================ */
+
+@media (max-width: 480px) {
+  .profile-page {
+    padding: 20px 14px;
+  }
+
+  .profile-title {
+    font-size: 22px;
+  }
+
+  .profile-card {
+    padding: 18px;
+  }
+
+  .profile-info p {
+    font-size: 14px;
+  }
+
+  .order-item {
+    padding: 14px;
+  }
+
+  .order-total {
+    font-size: 15px;
+  }
+}

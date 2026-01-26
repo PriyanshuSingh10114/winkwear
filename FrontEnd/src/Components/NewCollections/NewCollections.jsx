@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 const NewCollections = () => {
   const [new_collection,setNew_collection]=useState([]);
   useEffect(()=>{
-    fetch(`${import.meta.env.VITE_API_BACKEND_URL}/newcollections`)
+    fetch(`${import.meta.env.VITE_API_BACKEND_URL}/newcollection`)
     .then((response)=>response.json())
     .then((data)=>setNew_collection(data));
   },[])

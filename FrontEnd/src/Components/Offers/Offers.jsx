@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Offers.css";
-import offer1 from "../Assets/offer_banner-1.png";
-import offer2 from "../Assets/banner_1.png";
+import offer1 from "../Assets/offer_banner-1.webp";
+import offer2 from "../Assets/banner_1.webp";
 
 const Offers = () => {
   const [timeLeft, setTimeLeft] = useState({});
