@@ -272,59 +272,7 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.45);
 }
 
-/* ===============================
-   MOBILE OPTIMIZATION
-================================ */
 @media (max-width: 540px) {
-  .nav-login-cart {
-    gap: 14px;
-  }
-
-  .nav-login-btn {
-    padding: 6px 14px;
-    font-size: 13px;
-  }
-
-  .nav-login-cart img {
-    height: 22px;
-  }
-
-  .nav-cart-count {
-    font-size: 10px;
-    padding: 2px 6px;
-    top: -5px;
-    right: -6px;
-  }
-}
-
-
-/* ===============================
-   TABLET / SMALL DESKTOP
-================================ */
-
-@media (max-width: 1024px) {
-  .navbar { padding: 14px 20px; }
-  .nav-logo p { font-size: 22px; }
-  .nav-menu { gap: 18px; }
-  .nav-menu li { font-size: 15px; }
-}
-
-/* ===============================
-   TABLET
-================================ */
-
-@media (max-width: 768px) {
-  .navbar { padding: 16px 24px; }
-  .nav-menu { gap: 20px; }
-  .nav-login-cart { gap: 16px; }
-}
-
-/* ===============================
-   LARGE MOBILE (≤ 540px)
-================================ */
-
-@media (max-width: 540px) {
-
   .navbar { padding: 10px 14px; }
 
   .nav-logo img { height: 30px; }
@@ -346,56 +294,96 @@
   .nav-cart-count { font-size: 10px; }
 }
 
-/* ===============================
-   STRICT MOBILE (≤ 480px)
-================================ */
-
 @media (max-width: 480px) {
-
-  .navbar { padding: 5px 7px; }
-
-  .nav-logo img { height: 22px; }
-  .nav-logo p { font-size: 11px; }
-
-  .nav-menu { gap: 8px; max-width: 55vw; }
-
-  .nav-login-cart img { height: 22px; }
-  .nav-cart-count { font-size: 9px; }
-
-  /* Disable hover effects on touch */
-  .nav-menu li:hover .nav-link,
-  .user-chip:hover,
-  .nav-login-cart img:hover {
-    transform: none;
-    color: inherit;
-  }
-}
-
-/* Slight tweaks for very small phones */
-@media (max-width: 480px) {
-  .nav-logo img {
-    height: 28px;
+  .navbar {
+    padding: 6px 10px;
+    height: 54px;
   }
 
-  .nav-login-cart img {
-    height: 24px;
-  }
-
-  .user-avatar {
-    width: 26px;
-    height: 26px;
+  .nav-logo img { height: 24px; }
+  .nav-logo p {
     font-size: 12px;
+    letter-spacing: 0.5px;
   }
-}
 
-@media (max-width: 420px) {
-  .nav-logo img {
-    height: 26px;
+  .nav-login-cart {
+    gap: 12px;
+  }
+
+  .nav-login-cart img { height: 21px; }
+
+  .nav-cart-count {
+    font-size: 9px;
+    top: -4px;
+    right: -6px;
   }
 
   .user-avatar {
-    width: 24px;
-    height: 24px;
+    width: 25px;
+    height: 25px;
+    font-size: 11px;
+  }
+
+  .user-name { display: none; }
+}
+
+@media (max-width: 460px) {
+  .navbar {
+    padding: 5px 9px;
+  }
+
+  .nav-logo {
+    gap: 7px;
+  }
+
+  .nav-login-cart {
+    gap: 10px;
+  }
+
+  .nav-logo p {
     font-size: 11px;
   }
 }
+
+
+@media (max-width: 420px) {
+  .navbar {
+    padding: 5px 8px;
+    height: 48px;
+  }
+
+  .nav-logo {
+    gap: 6px;
+  }
+
+  .nav-logo img {
+    height: 21px;
+  }
+
+  .nav-logo p {
+    font-size: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  .nav-login-cart {
+    gap: 8px;
+  }
+
+  .nav-login-cart img {
+    height: 19px;
+  }
+
+  .nav-cart-count {
+    font-size: 8px;
+    padding: 2px 5px;
+    top: -3px;
+    right: -5px;
+  }
+
+  .user-avatar {
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
+  }
+}
+
