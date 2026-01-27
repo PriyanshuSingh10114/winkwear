@@ -5,13 +5,13 @@
 
 ---
 
-## 🚀 Overview
+##  Overview
 
 Wink & Wear is a high-performance, full-stack e-commerce application built on the **MERN stack** (MongoDB, Express, React, Node.js). It features a premium, matte-dark UI/UX and integrates **Google Gemini AI** to deliver an intelligent shopping experience through a custom AI assistant, "Winkie".
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 The platform is designed with a modular architecture, facilitating a seamless transition from a local development environment to a scalable, production-grade cloud ecosystem.
 
@@ -44,7 +44,7 @@ graph TD
 
 ---
 
-## 🤖 AI Shopping Assistant (Winkie)
+##  AI Shopping Assistant (Winkie)
 
 "Winkie" leverages **Google Gemini 1.0 Pro** to assist customers in real-time.
 
@@ -97,9 +97,9 @@ graph TD
 
 ---
 
-## 👥 Development Team
+##  Development Team
 
-- **Priyanshu Singh**: Architect & Lead Developer.
+- **Priyanshu Singh**: Cloud Architect & Lead Developer.
 - **Priyansh Singh**: AI Integration & System Optimization.
 
 ---
