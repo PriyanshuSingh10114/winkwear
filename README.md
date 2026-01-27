@@ -1,184 +1,107 @@
-# Wink & Wear | E-Commerce Platform
+# Wink & Wear | Premium E-Commerce Platform
 
 **Live Demo:** [https://winkandwear-1.onrender.com/](https://winkandwear-1.onrender.com/)  
-**GitHub Repository:** [https://github.com/PriyanshuSingh10114/winkwear](https://github.com/PriyanshuSingh10114/winkwear)
+**Source Code:** [GitHub Repository](https://github.com/PriyanshuSingh10114/winkwear)
 
 ---
 
-## Table of Contents
-1. [Overview](#overview)
-2. [Infrastructure Architecture](#infrastructure-architecture)
-3. [AI Chatbot Integration](#ai-chatbot-integration)
-4. [Data Models](#data-models)
-5. [API Reference](#api-reference)
-6. [Security](#security)
-7. [Frontend Architecture](#frontend-architecture)
-8. [Setup](#setup)
-9. [Team](#team)
+## 🚀 Overview
+
+Wink & Wear is a high-performance, full-stack e-commerce application built on the **MERN stack** (MongoDB, Express, React, Node.js). It features a premium, matte-dark UI/UX and integrates **Google Gemini AI** to deliver an intelligent shopping experience through a custom AI assistant, "Winkie".
 
 ---
 
-## Overview
+## 🏗️ System Architecture
 
-Wink & Wear is a full-stack e-commerce application built using the MERN stack (MongoDB, Express, React, Node.js). It integrates Google Gemini AI to provide an intelligent shopping assistant and features a responsive, matte-dark user interface designed for a premium shopping experience.
-
----
-
-## Infrastructure Architecture
-
-The system is designed to transition from a development environment to a scalable production ecosystem.
-
-![Infrastructure System Design](file:///C:/Users/Priyansh%20Singh/.gemini/antigravity/brain/d796de62-6725-4b11-ae94-e344633e136a/uploaded_media_1769532731785.jpg)
-
-### 1. Development Environment
-- **CI/CD:** Automated deployment via GitHub.
-- **Frontend:** Static assets hosted on Amazon S3 and delivered via CloudFront CDN.
-- **Backend:** Node.js/Express API running on Amazon EC2 compute instances.
-- **Database:** MongoDB Atlas (Document Store).
-- **Networking:** Route 53 for DNS and AWS Certificate Manager for SSL/TLS.
-
-### 2. Production Environment
-- **Containerization:** All services containerized using Docker.
-- **Orchestration:** Managed by Kubernetes (K8s) for auto-scaling and high availability.
-- **Image Registry:** Versioned images stored in Amazon ECR.
-- **Security:** AWS WAF and Shield for DDoS protection and web exploit mitigation.
-
----
-
-## AI Chatbot Integration
-
-The "Winkie" shopping assistant manages user queries by bridging real-time product data with generative AI.
-
-- **Engine:** Google Gemini 1.0 Pro.
-- **Functionality:** Extracts categories and budget constraints from natural language to query MongoDB directly.
-- **Optimization:** Uses streaming responses (generateContentStream) for low latency and a "Fast Path" for common policy-related queries.
-
-# WinkWear System Design
-
-This document outlines the architecture of WinkWear, including the newly integrated AI Shopping Assistant, **Winkie**.
-
-## High-Level Architecture
-
-The system follows a MERN stack architecture (MongoDB, Express, React, Node.js) with an additional integration for AI-powered features.
+The platform is designed with a modular architecture, facilitating a seamless transition from a local development environment to a scalable, production-grade cloud ecosystem.
 
 ```mermaid
 graph TD
-    subgraph "Client Layer (Frontend)"
+    subgraph "Client Layer"
         A[React App] --> B[User Interface]
-        B --> C[Chatbot Component 'Winkie']
+        B --> C[AI Assistant 'Winkie']
     end
 
-    subgraph "Server Layer (Backend)"
+    subgraph "Server Layer"
         A --> D[Node.js / Express Server]
-        C --> E[Chatbot Routes]
-        D --> F[Product Routes]
-        D --> G[User Routes]
-        E --> H[Chatbot Service]
+        C --> E[Chatbot Service]
+        D --> F[Product/Auth Routes]
     end
 
-    subgraph "External Services"
-        H --> I[Google Gemini AI API]
+    subgraph "External Integrations"
+        E --> I[Google Gemini AI]
     end
 
     subgraph "Data Layer"
-        F --> J[(MongoDB)]
-        G --> J
-        H --> J
+        D --> J[(MongoDB Atlas)]
+        E --> J
     end
-
-    style C fill:#f9f,stroke:#333,stroke-width:2px
-    style I fill:#4285F4,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
-## Chatbot Interaction Flow
-
-Winkie is designed to be fast and responsive, using a tiered approach to handle user queries.
-
-1.  **Fast Path**: Common queries (greetings, return policy, contact) are handled instantly via hardcoded logic to save API costs and latency.
-2.  **Product Context**: If a user asks about products or pricing, the system queries the MongoDB database for real-time product data.
-3.  **AI Generation**: Complex queries are sent to Google Gemini with the relevant system prompt and product context.
-4.  **Streaming**: Responses are streamed back to the frontend for a "real-time typing" effect.
-5.  **Caching**: Responses are cached for 10 minutes to improve performance for repeated queries.
-
-## Deployment Grade Setups
-
-### Development Grade (Current)
-- **Frontend**: Local React Development Server.
-- **Backend**: Local Node.js server.
-- **Database**: MongoDB Atlas or Local MongoDB.
-- **AI**: Google Gemini API (Free Tier).
-
-### Production Grade (Planned)
-- **Frontend**: Hosted on S3/CloudFront or Vercel.
-- **Backend**: Containerized (Docker) and managed by Kubernetes (EKS/GKE) for scalability.
-- **Load Balancing**: AWS ALB or Nginx for distributing traffic.
-- **Database**: Managed MongoDB (Atlas Production Tier).
-- **Monitoring**: CloudWatch / ELK Stack for logs and performance tracking.
+### Infrastructure Strategy
+- **Development**: Hosted via Render/Vercel with MongoDB Atlas.
+- **Production (Planned)**: Containerized deployment using **Docker** and **Kubernetes**, hosted on **AWS (EC2, S3, CloudFront)** for global low-latency delivery.
 
 ---
 
-> [!TIP]
-> **Winkie** also acts as a primary filter for customer support, handling around 80% of common queries before escalating to human email support.
+## 🤖 AI Shopping Assistant (Winkie)
 
+"Winkie" leverages **Google Gemini 1.0 Pro** to assist customers in real-time.
 
----
-
-## Data Models
-
-Structured using Mongoose for schematic integrity:
-
-- **Users:** Stores profile data, hashed credentials, and persistent cart objects.
-- **Product:** Manages metadata including pricing, categorization, and availability.
-- **Review:** Handles product ratings and user feedback with reverse-chronological sorting.
+- **Hybrid Logic**: Uses a "Fast Path" for common policy queries (returns, support) and Gemini for complex natural language understanding.
+- **Context-Aware**: Dynamically queries the MongoDB database to provide real-time product recommendations and pricing based on user intent.
+- **Optimized UX**: Implements streaming responses for an interactive, real-time consultation experience.
 
 ---
 
-## API Reference
+## 💻 Tech Stack
 
-### Authentication
-- `POST /signup`: Account creation (Returns JWT).
-- `POST /login`: Credential verification (Returns JWT).
-- `POST /auth/google`: OAuth 2.0 flow via Google Auth Library.
-
-### Core Operations
-- `GET /allproducts`: Complete inventory retrieval.
-- `POST /addtocart`: Increment item quantity (Requires Auth).
-- `POST /getcart`: Synchronize frontend state with database (Requires Auth).
+- **Frontend**: React.js, React Router, Context API, Vanilla CSS (Premium Matte Design).
+- **Backend**: Node.js, Express.js, JWT Authentication, OAuth 2.0.
+- **Database**: MongoDB with Mongoose ODM.
+- **AI/ML**: Google Generative AI (Gemini).
+- **Security**: SHA-256 Hashing, JWT Session Management.
 
 ---
 
-## Security
+## 📡 API Reference (Core)
 
-- **Authentication:** JSON Web Tokens (JWT) are used for session persistence. Protected routes use the `fetchUser` middleware for header-based token verification.
-- **Google OAuth:** Validates ID tokens on the backend to facilitate secure social login.
-
----
-
-## Frontend Architecture
-
-- **State Management:** React Context API (ShopContext) provides global access to products and shopping cart data.
-- **Routing:** React Router DOM manages SPA navigation and dynamic category filtering.
+| Endpoint | Method | Description | Auth Required |
+| :--- | :--- | :--- | :--- |
+| `/signup` | POST | User registration & JWT generation | No |
+| `/login` | POST | User authentication | No |
+| `/allproducts` | GET | Retrieve full product inventory | No |
+| `/addtocart` | POST | Synchronize shopping cart state | Yes |
+| `/chat` | POST | Interact with the AI Assistant | No |
 
 ---
 
-## Setup
+## ⚙️ Setup & Installation
 
 ### Prerequisites
 - Node.js (v16+)
-- MongoDB Atlas account
+- MongoDB Atlas / Local MongoDB
 - Google Gemini API Key
 
-### Installation
-1. Clone the repository.
-2. Install dependencies: `npm install --recursive`
-3. Configure `.env` files with `MONGO_URI`, `GOOGLE_GEMINI_API`, and `GOOGLE_CLIENT_ID`.
-4. Start services:
-   - Backend: `cd BackEnd && npm start`
-   - Frontend: `cd FrontEnd && npm run dev`
+### Quick Start
+1. **Clone & Install**:
+   ```bash
+   git clone https://github.com/PriyanshuSingh10114/winkwear.git
+   npm install --recursive
+   ```
+2. **Environment Configuration**: Create `.env` files in `BackEnd/` and `FrontEnd/` with your credentials:
+   - `MONGO_URI`, `GOOGLE_GEMINI_API`, `JWT_SECRET`.
+3. **Run Services**:
+   - Backend: `npm start --prefix BackEnd`
+   - Frontend: `npm run dev --prefix FrontEnd`
 
 ---
 
-## Team
+## 👥 Development Team
 
-- **Priyanshu Singh:** Lead Developer and Architect.
-- **Priyansh Singh:** AI Integration and System Optimization.
+- **Priyanshu Singh**: Architect & Lead Developer.
+- **Priyansh Singh**: AI Integration & System Optimization.
+
+---
+> [!NOTE]
+> This project is currently in active development, transitioning towards a production-grade Kubernetes-managed architecture.
