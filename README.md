@@ -112,10 +112,15 @@ flowchart TD
 
 ---
 
-##  Development Team
+## Development Team
 
-- **Priyanshu Singh**: Cloud Architect & Lead Developer.
-- **Priyansh Singh**: AI Integration & System Optimization.
+- **Priyanshu Singh**  
+  *Cloud Architect & Lead Developer*  
+  GitHub: https://github.com/PriyanshuSingh10114
+
+- **Priyansh Singh**  
+  *AI Integration & System Optimization*  
+  GitHub: https://github.com/priyanshsingh11
 
 ---
 > [!NOTE]
