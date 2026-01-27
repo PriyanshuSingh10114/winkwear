@@ -1,6 +1,6 @@
 # Wink & Wear | Premium E-Commerce Platform
 
-**Live Demo:** [https://winkandwear-1.onrender.com/](https://winkandwear-1.onrender.com/)  
+**Live Website:** https://winkandwear.com/
 **Source Code:** [GitHub Repository](https://github.com/PriyanshuSingh10114/winkwear)
 
 ---
