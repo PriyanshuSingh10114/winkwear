@@ -53,15 +53,73 @@ The "Winkie" shopping assistant manages user queries by bridging real-time produ
 - **Functionality:** Extracts categories and budget constraints from natural language to query MongoDB directly.
 - **Optimization:** Uses streaming responses (generateContentStream) for low latency and a "Fast Path" for common policy-related queries.
 
+# WinkWear System Design
+
+This document outlines the architecture of WinkWear, including the newly integrated AI Shopping Assistant, **Winkie**.
+
+## High-Level Architecture
+
+The system follows a MERN stack architecture (MongoDB, Express, React, Node.js) with an additional integration for AI-powered features.
+
 ```mermaid
 graph TD
-    User-->Frontend[React UI]
-    Frontend-->Backend[Node.js API]
-    Backend-->DB[(MongoDB)]
-    Backend-->AI[Google Gemini]
-    AI-->Backend
-    Backend-->Frontend
+    subgraph "Client Layer (Frontend)"
+        A[React App] --> B[User Interface]
+        B --> C[Chatbot Component 'Winkie']
+    end
+
+    subgraph "Server Layer (Backend)"
+        A --> D[Node.js / Express Server]
+        C --> E[Chatbot Routes]
+        D --> F[Product Routes]
+        D --> G[User Routes]
+        E --> H[Chatbot Service]
+    end
+
+    subgraph "External Services"
+        H --> I[Google Gemini AI API]
+    end
+
+    subgraph "Data Layer"
+        F --> J[(MongoDB)]
+        G --> J
+        H --> J
+    end
+
+    style C fill:#f9f,stroke:#333,stroke-width:2px
+    style I fill:#4285F4,stroke:#fff,stroke-width:2px,color:#fff
 ```
+
+## Chatbot Interaction Flow
+
+Winkie is designed to be fast and responsive, using a tiered approach to handle user queries.
+
+1.  **Fast Path**: Common queries (greetings, return policy, contact) are handled instantly via hardcoded logic to save API costs and latency.
+2.  **Product Context**: If a user asks about products or pricing, the system queries the MongoDB database for real-time product data.
+3.  **AI Generation**: Complex queries are sent to Google Gemini with the relevant system prompt and product context.
+4.  **Streaming**: Responses are streamed back to the frontend for a "real-time typing" effect.
+5.  **Caching**: Responses are cached for 10 minutes to improve performance for repeated queries.
+
+## Deployment Grade Setups
+
+### Development Grade (Current)
+- **Frontend**: Local React Development Server.
+- **Backend**: Local Node.js server.
+- **Database**: MongoDB Atlas or Local MongoDB.
+- **AI**: Google Gemini API (Free Tier).
+
+### Production Grade (Planned)
+- **Frontend**: Hosted on S3/CloudFront or Vercel.
+- **Backend**: Containerized (Docker) and managed by Kubernetes (EKS/GKE) for scalability.
+- **Load Balancing**: AWS ALB or Nginx for distributing traffic.
+- **Database**: Managed MongoDB (Atlas Production Tier).
+- **Monitoring**: CloudWatch / ELK Stack for logs and performance tracking.
+
+---
+
+> [!TIP]
+> **Winkie** also acts as a primary filter for customer support, handling around 80% of common queries before escalating to human email support.
+
 
 ---
 
