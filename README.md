@@ -1,316 +1,217 @@
-adding the chatbot feature here
+# Wink & Wear | Premium E-Commerce Platform
 
-# Wink & Wear
-
-**Production Link** https://winkandwear.com/
-
-**Repository:** [https://github.com/PriyanshuSingh10114/winkwear](https://github.com/PriyanshuSingh10114/winkwear)
+**Live Demo:** [https://winkandwear-1.onrender.com/](https://winkandwear-1.onrender.com/)  
+**GitHub Repository:** [https://github.com/PriyanshuSingh10114/winkwear](https://github.com/PriyanshuSingh10114/winkwear)
 
 ---
 
-## Project overview
-
-**Wink & Wear** is a modern, dark-theme e-commerce storefront built with React. The site aims to deliver a premium fashion shopping experience with a matte‑dark aesthetic, gold accents, and polished UI components. The app includes category-based product listings, product detail pages, cart & checkout flows, and responsive layouts for desktop/tablet/mobile.
-
-This README turns the current repo into a professional, contributor-friendly project by documenting setup, architecture, recommended improvements, deployment steps, and a roadmap for future enhancements.
-
----
-
-## Key features
-
-* Matte dark theme with consistent root CSS variables
-* Category filtering, sorting, and load-more pagination
-* Product details with image gallery and size selection
-* Cart and checkout flow (current COD placeholder)
-* Responsive layout and modular React components
-* Context API used for global cart/shop state
+## 📖 Table of Contents
+1. [Project Overview](#-project-overview)
+2. [Infrastructure & System Design](#-infrastructure--system-design)
+3. [AI Chatbot: Winkie](#-ai-chatbot-winkie)
+4. [Data Architecture (Models)](#-data-architecture-models)
+5. [API Reference](#-api-reference)
+6. [Security & Authentication](#-security--authentication)
+7. [Frontend Architecture](#-frontend-architecture)
+8. [Setup & Installation](#-setup--installation)
+9. [Project Roadmap](#-project-roadmap)
+10. [Team](#-team)
 
 ---
 
-## Live demo & screenshots
+## � Project Overview
 
-* **Live app:** [https://winkandwear-1.onrender.com/](https://winkandwear-1.onrender.com/)
+**Wink & Wear** is a full-stack e-commerce application designed for a premium shopping experience. It utilizes the **MERN** stack (MongoDB, Express, React, Node.js) and integrates **Google Gemini AI** to provide a dynamic, intelligent user interface. The platform features inclusive collection management, a robust admin panel, and high-performance asset delivery.
 
-> (Add high-resolution screenshots in `/assets/screenshots/` and reference them in this README for a better store listing experience on GitHub.)
-
----
-
-## Tech stack
-
-* React (functional components + hooks)
-* React Router for client routing
-* Context API for app-level state
-* Vanilla CSS with component-level styles
-* Optional: `axios` or `fetch` for API calls
+### Core Value Props
+- **Aesthetic Excellence:** Precision-crafted matte dark UI with HSL color tokens.
+- **Intelligent Discovery:** AI-driven product recommendations and support.
+- **Scalable Backend:** JWT-secured RESTful API designed for high availability.
 
 ---
 
-## Getting started (local development)
+## 🏗 Infrastructure & System Design
 
-1. Clone the repo
+The architecture is engineered to scale from a lean development setup to a high-availability, production-grade ecosystem capable of serving thousands of concurrent users.
 
-```bash
-git clone https://github.com/PriyanshuSingh10114/winkwear.git
-cd winkwear
+![Infrastructure System Design](file:///C:/Users/Priyansh%20Singh/.gemini/antigravity/brain/d796de62-6725-4b11-ae94-e344633e136a/uploaded_media_1769532731785.jpg)
+
+### 1. Development Grade Setup (Low Traffic Architecture)
+*Designed for early-stage deployment and testing with a capacity of <300 concurrent users.*
+
+- **Source Control & CI/CD**: Seamless integration with **GitHub** for automated deployments and version tracking.
+- **Frontend Delivery**:
+    - **Amazon S3**: Hosting optimized static assets (React build).
+    - **Amazon CloudFront**: Global Content Delivery Network (CDN) to minimize latency by caching assets at edge locations.
+- **Data Layer**: A dedicated **MongoDB** instance (Atlas) providing high-performance document-based storage.
+- **Backend Services**: Node.js/Express API running on **Amazon EC2** compute instances, serving core business logic.
+- **DNS & Perimeter Security**: 
+    - **Amazon Route 53**: Handling high-availability DNS routing.
+    - **SSL/TLS Certificates**: Ensuring end-to-end encryption via AWS Certificate Manager (ACM).
+
+### 2. Production Grade Setup (Enterprise Scalability)
+*Built for high-traffic scenarios using modern orchestration and containerization strategies.*
+
+- **Containerization (Docker)**: Every component (Frontend, Backend, and Database adapters) is containerized using **Docker** for environment parity and rapid deployment.
+- **Elastic Orchestration (Kubernetes)**:
+    - **Auto-Healing & Scaling**: Deployment on **Kubernetes (K8s)** clusters to manage container lifecycles, ensuring zero downtime.
+    - **Multi-Node Clusters**: Horizontal scaling across multiple worker nodes to handle "Large Number of user" traffic spikes.
+- **Image Management**: Container images are versioned and stored in a secure registry (e.g., **Amazon ECR**).
+- **Advanced Traffic Management**:
+    - **Global Load Balancer**: Distributes incoming requests across the Kubernetes service mesh effectively.
+    - **AWS WAF & Shield**: Enterprise-grade protection against DDoS attacks and common web exploits (represented by the red shield icon).
+- **Edge Performance**: Unified delivery via **Route 53** and **CloudFront**, ensuring that users worldwide experience blazing-fast load times.
+
+---
+
+## 🤖 AI Chatbot: Winkie
+
+"Winkie" is not just a chatbot; it's an integrated service that bridges the gap between static content and user intent.
+
+### Technical Implementation
+- **LLM Engine:** Google Gemini 1.0 Pro.
+- **Integrated Search:** The service extracts categories (`men`, `women`, `kids`) and price ceilings from natural language and queries the MongoDB `Product` collection in real-time.
+- **Streaming:** Implements `generateContentStream` to pipe AI tokens directly to the React frontend, minimizing Time to First Byte (TTFB).
+- **Fallback Logic:** A hybrid "Fast Path" handles repetitive queries (e.g., "return policy") without incurring LLM latency or cost.
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant F as React Frontend
+    participant B as Node.js Backend
+    participant G as Gemini AI
+    participant D as MongoDB
+
+    U->>F: "Find men's shirts under ₹2000"
+    F->>B: POST /api/chatbot (intent extraction)
+    B->>D: Find {category: 'men', price: {$lte: 2000}}
+    D-->>B: Return [Product List]
+    B->>G: Prompt (Products + Context)
+    G-->>B: Stream AI Response
+    B-->>F: Chunked Data Stream
+    F-->>U: Display Rich UI Component
 ```
 
-2. Install dependencies
+---
 
-```bash
-npm install
-```
+## 🗄 Data Architecture (Models)
 
-3. Start dev server
+The system uses **Mongoose ODM** to strictly enforce schematic integrity.
 
-```bash
-npm run dev
+### 1. User Model (`Users`)
+- `name`: String (Required)
+- `email`: String (Unique, Indexed)
+- `password`: Hashed String
+- `cartData`: Object (Map of `id` to `quantity`)
+- `date`: Date (Auto-generated)
 
-```
+### 2. Product Model (`Product`)
+- `id`: Number (Primary identifier for cart logic)
+- `name`: String
+- `images`: String (S3 URL/Local Path)
+- `category`: String (Enum: `men`, `women`, `kid`)
+- `new_price`: Number
+- `old_price`: Number
+- `available`: Boolean (Default: true)
 
-4. Open [http://localhost:5173](http://localhost:5173)
-
-### Useful npm scripts (recommend adding/standardizing)
-
-* `npm start` — start dev server
-* `npm run build` — create production build
+### 3. Review Model (`Review`)
+- `productId`: Number (Indexed)
+- `userId`: String
+- `userName`: String
+- `rating`: Number (Min: 1, Max: 5)
+- `comment`: String
 
 ---
 
-<h1>AWS Configuration for production Read</h1>
+## ⚡ API Reference
 
-<h1>Step 1: IAM Configuration</h1>
+### Authentication
+- `POST /signup`: Create new account. Returns JWT.
+- `POST /login`: Verify credentials. Returns JWT.
+- `POST /auth/google`: OAuth 2.0 flow using `google-auth-library`.
 
-    Create a user eks-admin with AdministratorAccess.
-    
-Generate Security Credentials: Access Key and Secret Access Key.
+### Product Management
+- `GET /allproducts`: List all inventory.
+- `GET /newcollection`: Fetch last 8 added items.
+- `GET /popularinwomen`: Fetch top-rated women's items.
+- `POST /addproduct` (Admin): Insert new product with Image upload.
 
-<h1>Step 2: EC2 Setup</h1>
-
-    ubuntu Instance
-    t2.micro
-    25GBi
-    create access key with .pem
-    region ap-south-1
-
-    connect it with ssh client with command line in your system
-
-after login 
-
-    sudo-apt get update
-    
-
-SSH into the instance from your local machine.
-
-<h3>Step 3: Install AWS CLI v2</h3>
-
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    sudo apt install unzip
-    unzip awscliv2.zip
-    sudo ./aws/install -i /usr/local/aws-cli -b /usr/local/bin --update
-
-aws configure
-
-    Enter public access key
-    Enter private access key 
-    Select Region ap-south-1
-    In fourth option make blank entry
-
-<h1>Dockerfile Execution</h1>
-
-<h5>Installation</h5>
-
-    sudo apt-get update
-    sudo apt install docker.io
-    docker ps
-    sudo chown $USER /var/run/docker.sock
-
-<h5>Frontend Image creation</h5>
-
-    cd Frontend
-    docker build -t winkwear-frontend .
-    docker run -p 5173:5173 winkwear-frontend
-
-<h5>Backend Image creation</h5>
-
-    cd Backend
-    docker build -t winkwear-backend .
-    docker run -d \
-    -p 4000:4000 \
-    --env-file .env \
-    --name winkwear-backend \
-    winkwear-backend
-    
-Retrieve an authentication token and authenticate your Docker client to your registry. Use the AWS CLI:
-
-    aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r7m1r0t0
-    
-Note: If you receive an error using the AWS CLI, make sure that you have the latest version of the AWS CLI and Docker installed. Build your Docker image using the following command. For information on building a Docker file from scratch see the instructions here . You can skip this step if your image is already built:
-
-    docker build -t winkwear-frontend-app .
-    
-After the build completes, tag your image so you can push the image to this repository:
-
-    docker tag blogverse-client-app:latest public.ecr.aws/r7m1r0t0/winkwear-frontend-app:latest
-    
-Run the following command to push this image to your newly created AWS repository:
-
-    docker push public.ecr.aws/r7m1r0t0/winkwear-frontend-app:latest
-
-Retrieve an authentication token and authenticate your Docker client to your registry. Use the AWS CLI:
-
-    aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r7m1r0t0
-    
-Note: If you receive an error using the AWS CLI, make sure that you have the latest version of the AWS CLI and Docker installed.
-Build your Docker image using the following command. For information on building a Docker file from scratch see the instructions here . You can skip this step if your image is already built:
-
-    docker build -t winkwear-backend-app .
-    
-After the build completes, tag your image so you can push the image to this repository:
-
-    docker tag blogverse-server-app:latest public.ecr.aws/r7m1r0t0/winkwear-backend-app:latest
-    
-Run the following command to push this image to your newly created AWS repository:
-
-    docker push public.ecr.aws/r7m1r0t0/winkwear-backend-app:latest
-
-<h1>Step 5: Install kubectl</h1>
-
-    curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
-    chmod +x ./kubectl
-    sudo mv ./kubectl /usr/local/bin
-    kubectl version --short --client
-
-<h1>Step 6: Install eksctl</h1>
-
-    curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-    sudo mv /tmp/eksctl /usr/local/bin
-    eksctl version
-
-<h1>Step 7: Setup EKS Cluster</h1>
-
-    eksctl create cluster --name wink-wear-cluster --region ap-south-1
-    --node-type t2.medium --nodes-min 2 --nodes-max 2
-    aws eks update-kubeconfig --region us-west-2 --name three-tier-cluster
-    kubectl get nodes
-    
-<h1>Step 8: Run Manifests</h1>
-
-    kubectl create namespace wink-wear
-    kubectl apply -f .
-    kubectl delete -f .
-
-<h1>Step 9: Install AWS Load Balancer</h1>
-
-    curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
-    aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
-    eksctl utils associate-iam-oidc-provider --region=ap-south-1 --cluster=wink-wear --approve
-    eksctl create iamserviceaccount --cluster=wink-wear-cluster --namespace=kube-system --name=aws-load-balancer-controller --role-name AmazonEKSLoadBalancerControllerRole --attach-policy-         arn=arn:aws:iam::626072240565:policy/AWSLoadBalancerControllerIAMPolicy --approve --region=ap-south-1
-
-<h1>Step 10: Deploy AWS Load Balancer Controller</h1>
-
-    sudo snap install helm --classic
-    helm repo add eks https://aws.github.io/eks-charts
-    helm repo update eks
-    helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=my-cluster --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
-    kubectl get deployment -n kube-system aws-load-balancer-controller    
+### Cart & Orders
+- `POST /addtocart`: Increments quantity (Protected by JWT).
+- `POST /removefromcart`: Decrements quantity (Protected by JWT).
+- `POST /getcart`: Syncs frontend state with DB.
 
 ---
 
-## Recommended environment variables
+## 🔐 Security & Authentication
 
-Create a `.env.local` (add to `.gitignore`):
+### JWT Implementation
+Wink & Wear uses JSON Web Tokens for session persistence.
+1. **Issuer:** Backend signs a payload `{user: {id: user._id}}` with a 256-bit secret key.
+2. **Middleware:** The `fetchUser` middleware intercepts requests, extracts the `auth-token` from headers, and verifies it before granting access to protected routes (`/addtocart`, etc.).
 
-```
-REACT_APP_API_BASE_URL=https://api.example.com
-REACT_APP_RENDER_URL=https://winkandwear-1.onrender.com
-```
+### Google OAuth Flow
+- Backend validates the `credential` token sent from the Google Login button.
+- It uses the Ticket payload to either log in an existing user or auto-provision a new account.
 
-Keep secrets out of source control. Use Render / Vercel / Netlify environment variables for production.
+---
+
+## ⚛️ Frontend Architecture
+
+### State Management: Context API
+We use a global `ShopContext` to synchronize the cart across the entire SPA.
+- **Provider:** Wraps `App.jsx`, providing `all_product`, `cartItems`, and helper functions like `getTotalCartAmount`.
+- **Syncing:** Whenever the app mounts, it fetches the cart from `/getcart` if a token is present, ensuring cross-device persistence.
+
+### Routing
+Utilizes `react-router-dom` for client-side navigation:
+- `/:category`: Dynamic category filtering.
+- `/product/:productId`: Nested routes for detailed SKU view.
+- `/cart`: Protected view with checkout logic integration.
 
 ---
 
-## Project structure (recommended)
+## 🚀 Setup & Installation
 
-```
-/src
-  /assets
-    /images
-    /icons
-    /screenshots
-  /components
-    /Common (Navbar, Footer, Button)
-    /Product (ProductCard, ProductList, Gallery)
-    /Cart
-    /Checkout
-  /context
-    CartContext.jsx
-    ShopContext.jsx
-  /pages
-    Home.jsx
-    Shop.jsx
-    Product.jsx
-    Cart.jsx
-    Checkout.jsx
-  /utils
-    api.js
-    currency.js
-    helpers.js
-  /hooks
-    useLocalStorage.js
-    useDebounce.js
-  index.js
-  App.js
+### Environment Variables
+Create a `.env` in the root and Backend directories:
+```env
+MONGO_URI=your_mongodb_connection_string
+GOOGLE_GEMINI_API=your_gemini_key
+GOOGLE_CLIENT_ID=your_google_id
+JWT_SECRET=your_secret_key
 ```
 
-## Deployment
+### Installation Steps
+1. **Clone & Install:**
+   ```bash
+   git clone https://github.com/PriyanshuSingh10114/winkwear.git
+   npm install --recursive
+   ```
+2. **Seed Data (Optional):**
+   Access Admin Panel to add your initial product catalog.
 
-Current live demo hosted on Render (`winkandwear-1.onrender.com`).
-
-Recommended deployment steps:
-
-* Create a Render web service or Vercel/Netlify site linked to the repo.
-* Set environment variables in the hosting provider's dashboard.
-* Configure a `build` command (`npm run build`) and `start` command for production.
-* Use a `render.yaml` or `netlify.toml` / `vercel.json` for more control.
+3. **Execution:**
+   - **Backend:** `cd BackEnd && npm start`
+   - **Frontend:** `cd FrontEnd && npm run dev`
 
 ---
-<h1>Welcome to Wink & Wear—where fashion meets individuality!</h1>
-At Wink & Wear, we believe that clothing is more than just fabric—it's a statement, a mood, and an extension of your unique personality. Our carefully curated collection blends bold designs, timeless elegance, and playful creativity to help you stand out in every crowd.
 
-From effortlessly chic everyday wear to head-turning statement pieces, each item in our collection is handpicked to inspire confidence and self-expression. Whether you're dressing up for a special occasion or keeping it cool for a casual day out, Wink & Wear has something to match your vibe.
+## 🗺 Project Roadmap
 
-Why choose us?
+- [ ] **Stripe/Razorpay Integration:** Transition from COD placeholder to real-time gateways.
+- [ ] **Advanced Analytics:** Dashboard for admin to track sales velocity per category.
+- [ ] **Image Optimization:** Move from local storage to **Sharp** optimized S3 uploads.
+- [ ] **Dockerization:** Complete Dockerfile setup for all 3 tiers (Front/Back/Admin).
+- [ ] **Search Engine:** Move from Mongoose regex to **ElasticSearch** for faster discovery.
 
-✨ Unique Designs – No mass-market repeats here! Our pieces are as distinctive as you are.
-✨ Quality & Comfort – Fashion shouldn't compromise comfort—our fabrics feel as good as they look.
-✨ Affordable Luxury – Style shouldn't break the bank. We offer premium looks at accessible prices.
+---
 
-At Wink & Wear, we're not just selling clothes—we're celebrating individuality. So go ahead, wink at the world and wear your confidence!
+## 👥 Team
+
+- **Priyanshu Singh (Lead Developer/Visionary):** The architect who built the foundation and identity of Wink & Wear.
+- **Priyansh Singh (AI Engineer/Full-Stack):** Leading the AI-powered transformation and system optimization.
+
+---
 
 Stay Bold. Stay You. 💫
-Wink & Wear
-
-Meet the Minds Behind Wink & Wear
-
-At Wink & Wear, we’re more than just a brand—we’re a passionate team of dreamers, designers, and tech enthusiasts dedicated to redefining online fashion. Here’s a little about the people who brought Wink & Wear to life:
-
-The Tech Brains
-
-Priyanshu Singh – Lead Developer/Visionary
-A coding wizard with a passion for seamless user experiences, Priyanshu didn’t just build Wink & Wear’s e-commerce platform from scratch—he envisioned its very foundation. As our Lead Developer, his technical mastery brought the brand’s identity to life, crafting a website as stylish as our clothes. From smooth browsing to secure payments, every pixel and function reflects his relentless pursuit of innovation, ensuring Wink & Wear isn’t just a platform, but an experience.
-
-
-Priyansh Singh – Frontend Developer/Logic Analyzer
-A visionary tech innovator, Priyansh spearheaded the complete AI-powered transformation of Wink & Wear’s e-commerce platform. Leveraging cutting-edge AI tools and his deep full-stack expertise His meticulous approach eliminated critical bugs, optimized performance, and crafted a dynamic, secure shopping experience as sleek as Wink & Wear’s fashion.
-
-
-— The Wink & Wear Team !!
-
----
-## Contact
-
-Project is owned and maintained by **Priyanshu Singh**. For questions, open an issue or create a PR.
-
-Email: priyanshusingh22340@gmail.com
-
-
