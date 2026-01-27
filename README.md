@@ -16,26 +16,43 @@ Wink & Wear is a high-performance, full-stack e-commerce application built on th
 The platform is designed with a modular architecture, facilitating a seamless transition from a local development environment to a scalable, production-grade cloud ecosystem.
 
 ```mermaid
-graph TD
-    subgraph "Client Layer"
-        A[React App] --> B[User Interface]
-        B --> C[AI Assistant 'Winkie']
+flowchart TD
+    %% ================= CLIENT LAYER =================
+    subgraph CL["Client Layer (Frontend)"]
+        UI[React Application]
+        CHAT[AI Chatbot UI<br/>Winkie]
+        UI --> CHAT
     end
 
-    subgraph "Server Layer"
-        A --> D[Node.js / Express Server]
-        C --> E[Chatbot Service]
-        D --> F[Product/Auth Routes]
+    %% ================= SERVER LAYER =================
+    subgraph SL["Server Layer (Backend)"]
+        API[Node.js + Express API]
+        AUTH[Auth & User Routes]
+        PROD[Product & Cart Routes]
+        BOT[Chatbot Service Layer]
+        
+        API --> AUTH
+        API --> PROD
+        CHAT --> BOT
     end
 
-    subgraph "External Integrations"
-        E --> I[Google Gemini AI]
+    %% ================= EXTERNAL SERVICES =================
+    subgraph ES["External AI Services"]
+        GEMINI[Google Gemini AI API]
     end
 
-    subgraph "Data Layer"
-        D --> J[(MongoDB Atlas)]
-        E --> J
+    %% ================= DATA LAYER =================
+    subgraph DL["Data Layer"]
+        DB[(MongoDB Atlas)]
     end
+
+    %% ================= CONNECTIONS =================
+    UI --> API
+    BOT --> GEMINI
+    AUTH --> DB
+    PROD --> DB
+    BOT --> DB
+
 ```
 
 ### Infrastructure Strategy
