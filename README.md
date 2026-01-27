@@ -69,7 +69,7 @@ flowchart TD
 
 ---
 
-## 💻 Tech Stack
+## Tech Stack
 
 - **Frontend**: React.js, React Router, Context API, Vanilla CSS (Premium Matte Design).
 - **Backend**: Node.js, Express.js, JWT Authentication, OAuth 2.0.
@@ -79,7 +79,7 @@ flowchart TD
 
 ---
 
-## 📡 API Reference (Core)
+## API Reference (Core)
 
 | Endpoint | Method | Description | Auth Required |
 | :--- | :--- | :--- | :--- |
@@ -91,7 +91,7 @@ flowchart TD
 
 ---
 
-## ⚙️ Setup & Installation
+## Setup & Installation
 
 ### Prerequisites
 - Node.js (v16+)
