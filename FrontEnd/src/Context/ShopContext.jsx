@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import all_product_local from "../Components/Assets/all_product";
+import { toast } from "react-toastify";
 import "./ShopContext.css";
 
 export const ShopContext = createContext(null);
@@ -67,12 +68,23 @@ const ShopContextProvider = ({ children }) => {
 
   /* ================= CART OPERATIONS ================= */
 
-  const addToCart = (id, qty = 1) => {
-    setCartItems((prev) => ({
-      ...prev,
-      [id]: Math.min((prev[id] || 0) + qty, MAX_QTY_PER_PRODUCT),
-    }));
-  };
+const addToCart = (id, qty = 1) => {
+  const token = localStorage.getItem("auth-token");
+
+  if (!token) {
+  toast.error("Please login first");
+
+  setTimeout(() => {
+    window.location.href = "/login";
+  }, 1500);
+  return;
+}
+
+  setCartItems((prev) => ({
+    ...prev,
+    [id]: Math.min((prev[id] || 0) + qty, MAX_QTY_PER_PRODUCT),
+  }));
+};
 
   const incrementQuantity = (id) => {
     setCartItems((prev) => ({

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useEffect } from "react";
 import "./CartItems.css";
 import { ShopContext } from "../../Context/ShopContext";
 import remove_icon from "../Assets/cart_cross_icon.png";
@@ -9,6 +10,13 @@ const MAX_QTY_PER_PRODUCT = 10;
 
 const CartItems = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+  const token = localStorage.getItem("auth-token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const {
     all_product,
