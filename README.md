@@ -27,7 +27,6 @@
   <img src="https://img.shields.io/github/stars/PriyanshuSingh10114/winkwear?style=for-the-badge" />
   <img src="https://img.shields.io/github/forks/PriyanshuSingh10114/winkwear?style=for-the-badge" />
   <img src="https://img.shields.io/github/last-commit/PriyanshuSingh10114/winkwear?style=for-the-badge" />
-  <img src="https://img.shields.io/github/repo-size/PriyanshuSingh10114/winkwear?style=for-the-badge" />
 </p>
 
 ---
