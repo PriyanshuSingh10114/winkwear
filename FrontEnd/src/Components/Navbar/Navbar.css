@@ -387,3 +387,57 @@
   }
 }
 
+@media (max-width: 400px) {
+  .navbar {
+    padding: 4px 6px;
+    height: 46px;
+  }
+
+  .nav-logo {
+    gap: 5px;
+  }
+
+  .nav-logo img {
+    height: 19px;
+  }
+
+  .nav-logo p {
+    font-size: 9.5px;
+    letter-spacing: 0.25px;
+  }
+
+  .nav-menu {
+    gap: 8px;
+    max-width: 52vw;
+  }
+
+  .nav-login-cart {
+    gap: 6px;
+  }
+
+  .nav-login-cart img {
+    height: 18px;
+  }
+
+  .nav-cart-count {
+    font-size: 7px;
+    padding: 2px 4px;
+    top: -2px;
+    right: -4px;
+  }
+
+  .user-avatar {
+    width: 20px;
+    height: 20px;
+    font-size: 9px;
+  }
+
+  .user-chip {
+    padding: 4px;
+  }
+
+  .user-name {
+    display: none;
+  }
+}
+
