@@ -21,8 +21,6 @@
   <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" />
 </p>
 
----
-
 <p align="center">
   <img src="https://img.shields.io/github/stars/PriyanshuSingh10114/winkwear?style=for-the-badge" />
   <img src="https://img.shields.io/github/forks/PriyanshuSingh10114/winkwear?style=for-the-badge" />
