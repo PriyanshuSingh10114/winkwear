@@ -45,8 +45,8 @@ const PlaceOrder = () => {
 
     try {
       setPincodeLoading(true);
+      console.log(import.meta.env.VITE_API_BACKEND_URL);
       const res = await axios.get(
-        console.log(import.meta.env.VITE_API_BACKEND_URL),
         `${import.meta.env.VITE_API_BACKEND_URL}/api/pincode/${value}`
       );
 
