@@ -1,8 +1,6 @@
-const express = require("express");
-const router = express.Router();
-const { getPincodeDetails } = require("./pincodeService");
+const pincodeService = require("../services/pincodeService");
 
-router.get("/:pincode", async (req, res) => {
+const getPincode = async (req, res, next) => {
   try {
     const { pincode } = req.params;
 
@@ -13,7 +11,7 @@ router.get("/:pincode", async (req, res) => {
       });
     }
 
-    const data = await getPincodeDetails(pincode);
+    const data = await pincodeService.getPincodeDetails(pincode);
 
     if (!data) {
       return res.status(404).json({
@@ -29,11 +27,8 @@ router.get("/:pincode", async (req, res) => {
       country: data.country,
     });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Server error",
-    });
+    next(error);
   }
-});
+};
 
-module.exports = router;
+module.exports = { getPincode };

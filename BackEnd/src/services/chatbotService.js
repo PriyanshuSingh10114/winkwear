@@ -1,26 +1,16 @@
-require("dotenv").config({
-  path: require("path").join(process.cwd(), ".env"),
-});
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const Product = require("../models/Product");
+const env = require("../config/env");
 
 /* ================= CACHE ================= */
 // Simple in-memory cache (key = user message)
 const responseCache = new Map();
-
-// Optional: auto-expire cache after 10 minutes
 const CACHE_TTL = 10 * 60 * 1000; // 10 mins
 
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-const Product = require("../models/Product");
-
-/* ===================== SAFETY CHECK ===================== */
-if (!process.env.GOOGLE_GEMINI_API) {
-  throw new Error("GOOGLE_GEMINI_API is missing in .env");
-}
-
 /* ===================== GEMINI INIT ===================== */
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API);
+const genAI = new GoogleGenerativeAI(env.GOOGLE_GEMINI_API || "dummy_key");
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.0-pro", // free-tier, fast
+  model: "gemini-1.0-pro",
 });
 
 /* ===================== SYSTEM PROMPT ===================== */
@@ -56,7 +46,6 @@ Product Format:
 const fastPathReply = (message) => {
   const msg = message.toLowerCase().trim();
 
-  // Greeting / menu
   if (["hi", "hello", "hey"].includes(msg)) {
     return `
     Hey 👋 I’m Winkie from WinkWear.
@@ -64,30 +53,23 @@ const fastPathReply = (message) => {
     `;
   }
 
-  // Return / refund
   if (msg.includes("return") || msg.includes("refund")) {
     return "WinkWear offers a 30-day return and refund policy on all products.";
   }
 
-  // About
   if (msg.includes("about")) {
     return "WinkWear is a premium fashion brand focused on modern, stylish clothing.";
   }
 
-  // Contact
   if (msg.includes("contact") || msg.includes("support")) {
     return "You can reach us anytime at support@winkwear.com";
   }
 
-  return null; // means: go to Gemini
+  return null;
 };
 
-/* ===================== HELPERS ===================== */
+const getCacheKey = (message) => message.toLowerCase().trim();
 
-const getCacheKey = (message) =>
-  message.toLowerCase().trim();
-
-// Detect category & price from user message
 const detectFilters = (message) => {
   const filters = {};
   const priceMatch = message.match(/(\d+)/);
@@ -100,61 +82,39 @@ const detectFilters = (message) => {
   return filters;
 };
 
-// Format product list nicely
 const formatProducts = (products) => {
   if (!products.length) return "No matching products found.";
-
   return products
-    .map(
-      (p) =>
-        `• ${p.name}\n  Price: ₹${p.new_price}\n  Category: ${p.category}`
-    )
+    .map((p) => `• ${p.name}\n  Price: ₹${p.new_price}\n  Category: ${p.category}`)
     .join("\n\n");
 };
 
-// Gemini retry logic (handles 503 overload)
-const generateWithRetry = async (prompt, retries = 2) => {
-  try {
-    return await model.generateContent(prompt);
-  } catch (error) {
-    if (error.status === 503 && retries > 0) {
-      await new Promise((res) => setTimeout(res, 1000)); // wait 1s
-      return generateWithRetry(prompt, retries - 1);
-    }
-    throw error;
-  }
-};
-
-/* ================= STREAMING (FIX-4) ================= */
 const streamGeminiResponse = async (prompt, onChunk) => {
   const stream = await model.generateContentStream(prompt);
-
   let fullText = "";
 
   for await (const chunk of stream.stream) {
     const text = chunk.text();
     if (text) {
       fullText += text;
-      if (onChunk) onChunk(text); // send chunk to caller
+      if (onChunk) onChunk(text);
     }
   }
 
   return fullText;
 };
 
-/* ===================== MAIN SERVICE ===================== */
-
 const chatbotService = async (userMessage, onChunk = null) => {
   const fastReply = fastPathReply(userMessage);
   if (fastReply) return fastReply;
+  
   const cacheKey = getCacheKey(userMessage);
   if (responseCache.has(cacheKey)) {
     return responseCache.get(cacheKey);
   }
-  let productContext = "";
   
+  let productContext = "";
 
-  // Detect product intent
   const filters = detectFilters(userMessage);
 
   if (Object.keys(filters).length) {
@@ -177,18 +137,14 @@ Respond as Winkie.
 `;
 
   try {
-  const finalResponse = await streamGeminiResponse(
-    finalPrompt,
-    onChunk
-  );
+    const finalResponse = await streamGeminiResponse(finalPrompt, onChunk);
 
-  // 🔥 FIX-3: cache streamed response
-  responseCache.set(cacheKey, finalResponse);
-  setTimeout(() => responseCache.delete(cacheKey), CACHE_TTL);
+    responseCache.set(cacheKey, finalResponse);
+    setTimeout(() => responseCache.delete(cacheKey), CACHE_TTL);
 
-  return finalResponse;
-} catch (error) {
-  return `
+    return finalResponse;
+  } catch (error) {
+    return `
 ⚠️ I’m a bit busy right now.
 
 You can still:
@@ -198,9 +154,7 @@ You can still:
 4️⃣ Contact support  
 
 Please try again in a moment 🙂`;
-}
-
+  }
 };
 
 module.exports = chatbotService;
-
