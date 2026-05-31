@@ -1,5 +1,5 @@
 const axios = require('axios');
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'http://localhost:5000';
 
 async function testAll() {
   console.log("Testing Backend Endpoints...\n");

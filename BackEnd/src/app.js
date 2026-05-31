@@ -49,5 +49,4 @@ app.get("/health", (_, res) =>
 
 /* ================= ERROR HANDLER ================= */
 app.use(errorHandler);
-
 module.exports = app;
