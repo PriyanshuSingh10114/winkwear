@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./CSS/PlaceOrder.css";
 import CartTotal from "../Components/CartTotal/CartTotal";
 import razor_pay from "../Components/Assets/razorpay_logo.png";
@@ -11,12 +11,18 @@ import axios from "axios";
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+  const token = localStorage.getItem("auth-token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const {
     clearCart,
     cartItems,
     getOrderSummary,
-    all_product, // ✅ CORRECT NAME
+    all_product, 
   } = useContext(ShopContext);
 
   const orderSummary = getOrderSummary();
@@ -45,6 +51,7 @@ const PlaceOrder = () => {
 
     try {
       setPincodeLoading(true);
+      console.log(import.meta.env.VITE_API_BACKEND_URL);
       const res = await axios.get(
         `${import.meta.env.VITE_API_BACKEND_URL}/api/pincode/${value}`
       );
@@ -87,6 +94,12 @@ const PlaceOrder = () => {
 
   /* ================= PLACE ORDER ================= */
   const handlePlaceOrder = async () => {
+    const token = localStorage.getItem("auth-token");
+    if (!token) {
+      toast.error("Please login first");
+      navigate("/login");
+      return;
+    }
     if (!isFormValid()) {
       toast.error("Please fill all required fields.", {
         position: "top-center",
