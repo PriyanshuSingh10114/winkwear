@@ -3,14 +3,24 @@ const Product = require("../models/Product");
 const env = require("../config/env");
 
 /* ================= CACHE ================= */
-// Simple in-memory cache (key = user message)
 const responseCache = new Map();
-const CACHE_TTL = 10 * 60 * 1000; // 10 mins
+const CACHE_TTL = 10 * 60 * 1000;
 
-/* ===================== GEMINI INIT ===================== */
-const genAI = new GoogleGenerativeAI(env.GOOGLE_GEMINI_API || "dummy_key");
+/* ================= GEMINI INIT ================= */
+
+console.log(
+  "Gemini API Key Loaded:",
+  !!env.GOOGLE_GEMINI_API
+);
+
+if (!env.GOOGLE_GEMINI_API) {
+  console.error("❌ GOOGLE_GEMINI_API is missing in .env");
+}
+
+const genAI = new GoogleGenerativeAI(env.GOOGLE_GEMINI_API);
+
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.0-pro",
+  model: "gemini-2.5-flash",
 });
 
 /* ===================== SYSTEM PROMPT ===================== */
@@ -90,14 +100,19 @@ const formatProducts = (products) => {
 };
 
 const streamGeminiResponse = async (prompt, onChunk) => {
-  const stream = await model.generateContentStream(prompt);
+  const result = await model.generateContentStream(prompt);
+
   let fullText = "";
 
-  for await (const chunk of stream.stream) {
+  for await (const chunk of result.stream) {
     const text = chunk.text();
+
     if (text) {
       fullText += text;
-      if (onChunk) onChunk(text);
+
+      if (onChunk) {
+        onChunk(text);
+      }
     }
   }
 
@@ -126,34 +141,49 @@ const chatbotService = async (userMessage, onChunk = null) => {
   }
 
   const finalPrompt = `
-${SYSTEM_PROMPT}
+  ${SYSTEM_PROMPT}
 
-User message:
-"${userMessage}"
+  User message:
+  "${userMessage}"
 
-${productContext}
+  ${productContext}
 
-Respond as Winkie.
-`;
+  Respond as Winkie.
+  `;
 
   try {
-    const finalResponse = await streamGeminiResponse(finalPrompt, onChunk);
+    console.log("===== USER MESSAGE =====");
+    console.log(userMessage);
+
+    console.log("===== GEMINI PROMPT =====");
+    console.log(finalPrompt);
+
+    const finalResponse = await streamGeminiResponse(
+      finalPrompt,
+      onChunk
+    );
 
     responseCache.set(cacheKey, finalResponse);
-    setTimeout(() => responseCache.delete(cacheKey), CACHE_TTL);
+
+    setTimeout(() => {
+      responseCache.delete(cacheKey);
+    }, CACHE_TTL);
 
     return finalResponse;
   } catch (error) {
+    console.error("===== GEMINI ERROR =====");
+    console.error(error);
+
     return `
-⚠️ I’m a bit busy right now.
+  ⚠️ I’m a bit busy right now.
 
-You can still:
-1️⃣ Browse products by category  
-2️⃣ Find products under a price  
-3️⃣ View return & refund policy  
-4️⃣ Contact support  
+  You can still:
+  1️⃣ Browse products by category
+  2️⃣ Find products under a price
+  3️⃣ View return & refund policy
+  4️⃣ Contact support
 
-Please try again in a moment 🙂`;
+  Please try again in a moment 🙂`;
   }
 };
 
