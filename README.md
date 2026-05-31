@@ -1,316 +1,132 @@
-adding the chatbot feature here
+# Wink & Wear | Premium E-Commerce Platform
 
-# Wink & Wear
+**Live Website:** https://winkandwear.com/
+---
 
-**Production Link** https://winkandwear.com/
+##  Overview
 
-**Repository:** [https://github.com/PriyanshuSingh10114/winkwear](https://github.com/PriyanshuSingh10114/winkwear)
+Wink & Wear is a high-performance, full-stack e-commerce application built on the **MERN stack** (MongoDB, Express, React, Node.js). It features a premium, matte-dark UI/UX and integrates **Google Gemini AI** to deliver an intelligent shopping experience through a custom AI assistant, "Winkie".
+
+---
+<p align="center">
+  <img src="winkandwear.png" width="800" />
+</p>
 
 ---
 
-## Project overview
+##  System Architecture
 
-**Wink & Wear** is a modern, dark-theme e-commerce storefront built with React. The site aims to deliver a premium fashion shopping experience with a matte‑dark aesthetic, gold accents, and polished UI components. The app includes category-based product listings, product detail pages, cart & checkout flows, and responsive layouts for desktop/tablet/mobile.
+The platform is designed with a modular architecture, facilitating a seamless transition from a local development environment to a scalable, production-grade cloud ecosystem.
 
-This README turns the current repo into a professional, contributor-friendly project by documenting setup, architecture, recommended improvements, deployment steps, and a roadmap for future enhancements.
+```mermaid
+flowchart TD
+    %% ================= CLIENT LAYER =================
+    subgraph CL["Client Layer (Frontend)"]
+        UI[React Application]
+        CHAT[AI Chatbot UI<br/>Winkie]
+        UI --> CHAT
+    end
 
----
+    %% ================= SERVER LAYER =================
+    subgraph SL["Server Layer (Backend)"]
+        API[Node.js + Express API]
+        AUTH[Auth & User Routes]
+        PROD[Product & Cart Routes]
+        BOT[Chatbot Service Layer]
+        
+        API --> AUTH
+        API --> PROD
+        CHAT --> BOT
+    end
 
-## Key features
+    %% ================= EXTERNAL SERVICES =================
+    subgraph ES["External AI Services"]
+        GEMINI[Google Gemini AI API]
+    end
 
-* Matte dark theme with consistent root CSS variables
-* Category filtering, sorting, and load-more pagination
-* Product details with image gallery and size selection
-* Cart and checkout flow (current COD placeholder)
-* Responsive layout and modular React components
-* Context API used for global cart/shop state
+    %% ================= DATA LAYER =================
+    subgraph DL["Data Layer"]
+        DB[(MongoDB Atlas)]
+    end
 
----
-
-## Live demo & screenshots
-
-* **Live app:** [https://winkandwear-1.onrender.com/](https://winkandwear-1.onrender.com/)
-
-> (Add high-resolution screenshots in `/assets/screenshots/` and reference them in this README for a better store listing experience on GitHub.)
-
----
-
-## Tech stack
-
-* React (functional components + hooks)
-* React Router for client routing
-* Context API for app-level state
-* Vanilla CSS with component-level styles
-* Optional: `axios` or `fetch` for API calls
-
----
-
-## Getting started (local development)
-
-1. Clone the repo
-
-```bash
-git clone https://github.com/PriyanshuSingh10114/winkwear.git
-cd winkwear
-```
-
-2. Install dependencies
-
-```bash
-npm install
-```
-
-3. Start dev server
-
-```bash
-npm run dev
+    %% ================= CONNECTIONS =================
+    UI --> API
+    BOT --> GEMINI
+    AUTH --> DB
+    PROD --> DB
+    BOT --> DB
 
 ```
 
-4. Open [http://localhost:5173](http://localhost:5173)
-
-### Useful npm scripts (recommend adding/standardizing)
-
-* `npm start` — start dev server
-* `npm run build` — create production build
+### Infrastructure Strategy
+- **Development**: Hosted via Render/Vercel with MongoDB Atlas.
+- **Production (Planned)**: Containerized deployment using **Docker** and **Kubernetes**, hosted on **AWS (EC2, S3, CloudFront)** for global low-latency delivery.
 
 ---
 
-<h1>AWS Configuration for production Read</h1>
+##  AI Shopping Assistant (Winkie)
 
-<h1>Step 1: IAM Configuration</h1>
+"Winkie" leverages **Google Gemini 1.0 Pro** to assist customers in real-time.
 
-    Create a user eks-admin with AdministratorAccess.
-    
-Generate Security Credentials: Access Key and Secret Access Key.
-
-<h1>Step 2: EC2 Setup</h1>
-
-    ubuntu Instance
-    t2.micro
-    25GBi
-    create access key with .pem
-    region ap-south-1
-
-    connect it with ssh client with command line in your system
-
-after login 
-
-    sudo-apt get update
-    
-
-SSH into the instance from your local machine.
-
-<h3>Step 3: Install AWS CLI v2</h3>
-
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    sudo apt install unzip
-    unzip awscliv2.zip
-    sudo ./aws/install -i /usr/local/aws-cli -b /usr/local/bin --update
-
-aws configure
-
-    Enter public access key
-    Enter private access key 
-    Select Region ap-south-1
-    In fourth option make blank entry
-
-<h1>Dockerfile Execution</h1>
-
-<h5>Installation</h5>
-
-    sudo apt-get update
-    sudo apt install docker.io
-    docker ps
-    sudo chown $USER /var/run/docker.sock
-
-<h5>Frontend Image creation</h5>
-
-    cd Frontend
-    docker build -t winkwear-frontend .
-    docker run -p 5173:5173 winkwear-frontend
-
-<h5>Backend Image creation</h5>
-
-    cd Backend
-    docker build -t winkwear-backend .
-    docker run -d \
-    -p 4000:4000 \
-    --env-file .env \
-    --name winkwear-backend \
-    winkwear-backend
-    
-Retrieve an authentication token and authenticate your Docker client to your registry. Use the AWS CLI:
-
-    aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r7m1r0t0
-    
-Note: If you receive an error using the AWS CLI, make sure that you have the latest version of the AWS CLI and Docker installed. Build your Docker image using the following command. For information on building a Docker file from scratch see the instructions here . You can skip this step if your image is already built:
-
-    docker build -t winkwear-frontend-app .
-    
-After the build completes, tag your image so you can push the image to this repository:
-
-    docker tag blogverse-client-app:latest public.ecr.aws/r7m1r0t0/winkwear-frontend-app:latest
-    
-Run the following command to push this image to your newly created AWS repository:
-
-    docker push public.ecr.aws/r7m1r0t0/winkwear-frontend-app:latest
-
-Retrieve an authentication token and authenticate your Docker client to your registry. Use the AWS CLI:
-
-    aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/r7m1r0t0
-    
-Note: If you receive an error using the AWS CLI, make sure that you have the latest version of the AWS CLI and Docker installed.
-Build your Docker image using the following command. For information on building a Docker file from scratch see the instructions here . You can skip this step if your image is already built:
-
-    docker build -t winkwear-backend-app .
-    
-After the build completes, tag your image so you can push the image to this repository:
-
-    docker tag blogverse-server-app:latest public.ecr.aws/r7m1r0t0/winkwear-backend-app:latest
-    
-Run the following command to push this image to your newly created AWS repository:
-
-    docker push public.ecr.aws/r7m1r0t0/winkwear-backend-app:latest
-
-<h1>Step 5: Install kubectl</h1>
-
-    curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
-    chmod +x ./kubectl
-    sudo mv ./kubectl /usr/local/bin
-    kubectl version --short --client
-
-<h1>Step 6: Install eksctl</h1>
-
-    curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-    sudo mv /tmp/eksctl /usr/local/bin
-    eksctl version
-
-<h1>Step 7: Setup EKS Cluster</h1>
-
-    eksctl create cluster --name wink-wear-cluster --region ap-south-1
-    --node-type t2.medium --nodes-min 2 --nodes-max 2
-    aws eks update-kubeconfig --region us-west-2 --name three-tier-cluster
-    kubectl get nodes
-    
-<h1>Step 8: Run Manifests</h1>
-
-    kubectl create namespace wink-wear
-    kubectl apply -f .
-    kubectl delete -f .
-
-<h1>Step 9: Install AWS Load Balancer</h1>
-
-    curl -O https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.5.4/docs/install/iam_policy.json
-    aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
-    eksctl utils associate-iam-oidc-provider --region=ap-south-1 --cluster=wink-wear --approve
-    eksctl create iamserviceaccount --cluster=wink-wear-cluster --namespace=kube-system --name=aws-load-balancer-controller --role-name AmazonEKSLoadBalancerControllerRole --attach-policy-         arn=arn:aws:iam::626072240565:policy/AWSLoadBalancerControllerIAMPolicy --approve --region=ap-south-1
-
-<h1>Step 10: Deploy AWS Load Balancer Controller</h1>
-
-    sudo snap install helm --classic
-    helm repo add eks https://aws.github.io/eks-charts
-    helm repo update eks
-    helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=my-cluster --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
-    kubectl get deployment -n kube-system aws-load-balancer-controller    
+- **Hybrid Logic**: Uses a "Fast Path" for common policy queries (returns, support) and Gemini for complex natural language understanding.
+- **Context-Aware**: Dynamically queries the MongoDB database to provide real-time product recommendations and pricing based on user intent.
+- **Optimized UX**: Implements streaming responses for an interactive, real-time consultation experience.
 
 ---
 
-## Recommended environment variables
+## Tech Stack
 
-Create a `.env.local` (add to `.gitignore`):
-
-```
-REACT_APP_API_BASE_URL=https://api.example.com
-REACT_APP_RENDER_URL=https://winkandwear-1.onrender.com
-```
-
-Keep secrets out of source control. Use Render / Vercel / Netlify environment variables for production.
+- **Frontend**: React.js, React Router, Context API, Vanilla CSS (Premium Matte Design).
+- **Backend**: Node.js, Express.js, JWT Authentication, OAuth 2.0.
+- **Database**: MongoDB with Mongoose ODM.
+- **AI/ML**: Google Generative AI (Gemini).
+- **Security**: SHA-256 Hashing, JWT Session Management.
 
 ---
 
-## Project structure (recommended)
+## API Reference (Core)
 
-```
-/src
-  /assets
-    /images
-    /icons
-    /screenshots
-  /components
-    /Common (Navbar, Footer, Button)
-    /Product (ProductCard, ProductList, Gallery)
-    /Cart
-    /Checkout
-  /context
-    CartContext.jsx
-    ShopContext.jsx
-  /pages
-    Home.jsx
-    Shop.jsx
-    Product.jsx
-    Cart.jsx
-    Checkout.jsx
-  /utils
-    api.js
-    currency.js
-    helpers.js
-  /hooks
-    useLocalStorage.js
-    useDebounce.js
-  index.js
-  App.js
-```
-
-## Deployment
-
-Current live demo hosted on Render (`winkandwear-1.onrender.com`).
-
-Recommended deployment steps:
-
-* Create a Render web service or Vercel/Netlify site linked to the repo.
-* Set environment variables in the hosting provider's dashboard.
-* Configure a `build` command (`npm run build`) and `start` command for production.
-* Use a `render.yaml` or `netlify.toml` / `vercel.json` for more control.
+| Endpoint | Method | Description | Auth Required |
+| :--- | :--- | :--- | :--- |
+| `/signup` | POST | User registration & JWT generation | No |
+| `/login` | POST | User authentication | No |
+| `/allproducts` | GET | Retrieve full product inventory | No |
+| `/addtocart` | POST | Synchronize shopping cart state | Yes |
+| `/chat` | POST | Interact with the AI Assistant | No |
 
 ---
-<h1>Welcome to Wink & Wear—where fashion meets individuality!</h1>
-At Wink & Wear, we believe that clothing is more than just fabric—it's a statement, a mood, and an extension of your unique personality. Our carefully curated collection blends bold designs, timeless elegance, and playful creativity to help you stand out in every crowd.
 
-From effortlessly chic everyday wear to head-turning statement pieces, each item in our collection is handpicked to inspire confidence and self-expression. Whether you're dressing up for a special occasion or keeping it cool for a casual day out, Wink & Wear has something to match your vibe.
+## Setup & Installation
 
-Why choose us?
+### Prerequisites
+- Node.js (v16+)
+- MongoDB Atlas / Local MongoDB
+- Google Gemini API Key
 
-✨ Unique Designs – No mass-market repeats here! Our pieces are as distinctive as you are.
-✨ Quality & Comfort – Fashion shouldn't compromise comfort—our fabrics feel as good as they look.
-✨ Affordable Luxury – Style shouldn't break the bank. We offer premium looks at accessible prices.
-
-At Wink & Wear, we're not just selling clothes—we're celebrating individuality. So go ahead, wink at the world and wear your confidence!
-
-Stay Bold. Stay You. 💫
-Wink & Wear
-
-Meet the Minds Behind Wink & Wear
-
-At Wink & Wear, we’re more than just a brand—we’re a passionate team of dreamers, designers, and tech enthusiasts dedicated to redefining online fashion. Here’s a little about the people who brought Wink & Wear to life:
-
-The Tech Brains
-
-Priyanshu Singh – Lead Developer/Visionary
-A coding wizard with a passion for seamless user experiences, Priyanshu didn’t just build Wink & Wear’s e-commerce platform from scratch—he envisioned its very foundation. As our Lead Developer, his technical mastery brought the brand’s identity to life, crafting a website as stylish as our clothes. From smooth browsing to secure payments, every pixel and function reflects his relentless pursuit of innovation, ensuring Wink & Wear isn’t just a platform, but an experience.
-
-
-Priyansh Singh – Frontend Developer/Logic Analyzer
-A visionary tech innovator, Priyansh spearheaded the complete AI-powered transformation of Wink & Wear’s e-commerce platform. Leveraging cutting-edge AI tools and his deep full-stack expertise His meticulous approach eliminated critical bugs, optimized performance, and crafted a dynamic, secure shopping experience as sleek as Wink & Wear’s fashion.
-
-
-— The Wink & Wear Team !!
+### Quick Start
+1. **Clone & Install**:
+   ```bash
+   git clone https://github.com/PriyanshuSingh10114/winkwear.git
+   npm install --recursive
+   ```
+2. **Environment Configuration**: Create `.env` files in `BackEnd/` and `FrontEnd/` with your credentials:
+   - `MONGO_URI`, `GOOGLE_GEMINI_API`, `JWT_SECRET`.
+3. **Run Services**:
+   - Backend: `npm start --prefix BackEnd`
+   - Frontend: `npm run dev --prefix FrontEnd`
 
 ---
-## Contact
 
-Project is owned and maintained by **Priyanshu Singh**. For questions, open an issue or create a PR.
+## Development Team
 
-Email: priyanshusingh22340@gmail.com
+- **Priyanshu Singh**  
+  *Cloud Architect & Lead Developer*  
+  GitHub: https://github.com/PriyanshuSingh10114
 
+- **Priyansh Singh**  
+  *AI Integration & System Optimization*  
+  GitHub: https://github.com/priyanshsingh11
 
+---
+> [!NOTE]
+> This project is currently in active development, transitioning towards a production-grade Kubernetes-managed architecture.
