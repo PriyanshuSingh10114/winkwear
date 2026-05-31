@@ -23,6 +23,14 @@
 
 ---
 
+<p align="center">
+  <img src="https://img.shields.io/github/stars/PriyanshuSingh10114/winkwear?style=for-the-badge" />
+  <img src="https://img.shields.io/github/forks/PriyanshuSingh10114/winkwear?style=for-the-badge" />
+  <img src="https://img.shields.io/github/last-commit/PriyanshuSingh10114/winkwear?style=for-the-badge" />
+  <img src="https://img.shields.io/github/repo-size/PriyanshuSingh10114/winkwear?style=for-the-badge" />
+</p>
+
+---
 ## 📖 Overview
 
 Wink & Wear is a high-performance, full-stack e-commerce application built on the robust **MERN stack** (MongoDB, Express, React, Node.js). It features a premium, matte-dark UI/UX designed to captivate users and provide an elegant shopping journey. At the core of the platform is an integration with **Google Gemini AI** to deliver an intelligent, personalized shopping experience through our custom AI assistant, "Winkie".
