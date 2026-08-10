@@ -15,17 +15,19 @@ const Footer = () => {
         </div>
         <ul className="footer-links">
             <li>
-                <Link className="nav-link" to="/about">Company</Link>
+                <Link className="nav-link" to="/mens">Men's Fashion</Link>
             </li>
             <li>
-                <Link className="nav-link" to="/">Products</Link>
-            </li>
-
-            <li onClick={() => setMenu("about")}>
-                <Link className="nav-link" to="/about">About</Link>
+                <Link className="nav-link" to="/womens">Women's Fashion</Link>
             </li>
             <li>
-                <Link className="nav-link" to="/contact">Contact</Link>
+                <Link className="nav-link" to="/kids">Kids' Fashion</Link>
+            </li>
+            <li>
+                <Link className="nav-link" to="/about">About Us</Link>
+            </li>
+            <li>
+                <Link className="nav-link" to="/contact">Contact Us</Link>
             </li>
             <li>
                 <Link className="nav-link" to="/privacy-policy">Privacy Policy</Link>
@@ -34,6 +36,7 @@ const Footer = () => {
                 <Link className="nav-link" to="/return-exchange">Return & Exchange</Link>
             </li>
         </ul>
+
         <div className="footer-social-icon">
             <div className="footer-icon-container">
                 <img src={instagram_icon} alt="" />

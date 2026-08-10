@@ -2,6 +2,7 @@ import React from 'react'
 import SEO from '../Components/SEO/SEO'
 import { PAGE_SEO, SITE_URL } from '../config/seoConfig'
 import Hero from '../Components/Hero/Hero'
+import CategoryShowcase from '../Components/CategoryShowcase/CategoryShowcase'
 import Popular from '../Components/Popular/Popular'
 import Offers from '../Components/Offers/Offers'
 import NewCollections from '../Components/NewCollections/NewCollections'
@@ -45,10 +46,11 @@ const Shop = () => {
         canonical={PAGE_SEO.home.canonical}
         schemaData={homepageSchema}
       />
-      <h1 className="sr-only" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', border: 0 }}>
+      <h1 style={{ textAlign: "center", color: "#ffffff", fontSize: "1.8rem", fontWeight: "700", margin: "24px 5% 8px 5%", letterSpacing: "0.5px" }}>
         Wink & Wear | Online Fashion Store for Men, Women & Kids
       </h1>
       <Hero/>
+      <CategoryShowcase />
       <Popular/>
       <Offers/>
       <NewCollections/>
@@ -61,4 +63,5 @@ const Shop = () => {
   )
 }
 
-export default Shop
+export default Shop
+

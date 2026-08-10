@@ -37,30 +37,31 @@ const Navbar = () => {
   return (
     <div className="navbar">
       {/* ---------------- LOGO ---------------- */}
-      <div
-        className="nav-logo"
-        onClick={() => (window.location.href = "/")}
-      >
-        <img src={logo} alt="Logo" />
+      <Link to="/" className="nav-logo">
+        <img src={logo} alt="Wink & Wear Logo" />
         <p>Wιɳƙ&Wҽαɾ</p>
-      </div>
+      </Link>
 
       {/* ---------------- MENU ---------------- */}
       <ul className="nav-menu">
-        {["shop", "mens", "womens", "kids"].map((item) => (
-          <li key={item} onClick={() => setMenu(item)}>
-            <Link
-              className="nav-link"
-              to={item === "shop" ? "/" : `/${item}`}
-            >
-              {item === "shop"
-                ? "Shop"
-                : item.charAt(0).toUpperCase() + item.slice(1)}
-            </Link>
-            {menu === item && <hr />}
-          </li>
-        ))}
+        <li onClick={() => setMenu("shop")}>
+          <Link className="nav-link" to="/">Shop</Link>
+          {menu === "shop" && <hr />}
+        </li>
+        <li onClick={() => setMenu("mens")}>
+          <Link className="nav-link" to="/mens">Men's Fashion</Link>
+          {menu === "mens" && <hr />}
+        </li>
+        <li onClick={() => setMenu("womens")}>
+          <Link className="nav-link" to="/womens">Women's Fashion</Link>
+          {menu === "womens" && <hr />}
+        </li>
+        <li onClick={() => setMenu("kids")}>
+          <Link className="nav-link" to="/kids">Kids' Fashion</Link>
+          {menu === "kids" && <hr />}
+        </li>
       </ul>
+
 
       {/* ---------------- RIGHT SIDE ---------------- */}
       <div className="nav-login-cart">
