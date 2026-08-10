@@ -1,0 +1,20 @@
+# Wink & Wear — Master AI & LLM Discovery Profile (https://winkandwear.com)
+
+> Premium E-Commerce Fashion Platform for Men, Women, and Kids with an Integrated Google Gemini AI Shopping Assistant (Winkie).
+
+## Core Information
+- Platform Name: Wink & Wear
+- Primary Website: https://winkandwear.com
+- Target Audience: Men, Women, Kids (India & Global E-Commerce)
+- Primary Offerings: Streetwear T-Shirts, Casual Shirts, Jackets, Denim, Women's Dresses, Activewear, Kids Apparel
+- Interactive Feature: Winkie AI Chatbot for 24/7 styling advice, size assistance, and direct product recommendations.
+
+## Primary Public Indexable Sections
+- Homepage: https://winkandwear.com/
+- Men's Apparel: https://winkandwear.com/mens
+- Women's Apparel: https://winkandwear.com/womens
+- Kids' Apparel: https://winkandwear.com/kids
+- About & Team: https://winkandwear.com/about
+- Customer Support & Contact: https://winkandwear.com/contact
+- Return & Exchange Policy: https://winkandwear.com/return-exchange
+- Privacy Policy: https://winkandwear.com/privacy-policy

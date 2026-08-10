@@ -1,10 +1,18 @@
 import React from "react";
 import "../Pages/CSS/Contact.css";
+import SEO from "../Components/SEO/SEO";
+import { PAGE_SEO } from "../config/seoConfig";
 
 const Contact = () => {
   return (
     <div className="contact-container">
+      <SEO
+        title={PAGE_SEO.contact.title}
+        description={PAGE_SEO.contact.description}
+        canonical={PAGE_SEO.contact.canonical}
+      />
       <h1>Contact Us</h1>
+
 
       <p className="contact-subtitle">
         We’d love to hear from you. Whether you have a question, feedback, or

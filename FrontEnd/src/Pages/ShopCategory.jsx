@@ -3,6 +3,31 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { ShopContext } from "../Context/ShopContext";
 import dropdown_icon from "../Components/Assets/dropdown_icon.png";
 import Item from "../Components/Item/Item";
+import SEO from "../Components/SEO/SEO";
+import { PAGE_SEO, SITE_URL } from "../config/seoConfig";
+import { createProductSlug } from "../utils/slugify";
+
+const getCategorySEO = (category) => {
+  if (category === "men") {
+    return {
+      ...PAGE_SEO.mens,
+      h1: "Men's Fashion & Apparel Collection",
+      intro: "Discover premium men's clothing at Wink & Wear. From casual streetwear t-shirts and formal shirts to jackets and denim, shop stylish apparel designed for modern fit and daily comfort.",
+    };
+  }
+  if (category === "women") {
+    return {
+      ...PAGE_SEO.womens,
+      h1: "Women's Fashion & Apparel Collection",
+      intro: "Explore trendy women's fashion at Wink & Wear. Shop chic dresses, casual tops, stylish activewear and everyday outfits crafted with high-quality fabrics.",
+    };
+  }
+  return {
+    ...PAGE_SEO.kids,
+    h1: "Kids' Fashion & Apparel Collection",
+    intro: "Shop comfortable, soft, and durable clothing for kids at Wink & Wear. Discover fun t-shirts, vibrant dresses, and play-ready outfits.",
+  };
+};
 
 const ShopCategory = ({ category, banner }) => {
   const { all_product } = useContext(ShopContext);
@@ -15,6 +40,7 @@ const ShopCategory = ({ category, banner }) => {
   const [showMobileFilter, setShowMobileFilter] = useState(false);
 
   const endRef = useRef(null);
+  const catSEO = getCategorySEO(category);
 
   useEffect(() => {
     setVisibleCount(8);
@@ -34,6 +60,20 @@ const ShopCategory = ({ category, banner }) => {
   if (sortOption === "highToLow") sorted.sort((a, b) => b.new_price - a.new_price);
   if (sortOption === "nameAZ") sorted.sort((a, b) => a.name.localeCompare(b.name));
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": catSEO.h1,
+    "url": `${SITE_URL}${catSEO.canonical}`,
+    "numberOfItems": sorted.length,
+    "itemListElement": sorted.slice(0, 16).map((product, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": product.name,
+      "url": `${SITE_URL}${createProductSlug(product.name, product.id)}`
+    }))
+  };
+
   const resetFilters = () => {
     setSortOption("default");
     setFilterSeason("all");
@@ -43,6 +83,12 @@ const ShopCategory = ({ category, banner }) => {
 
   return (
     <div className="shop-category">
+      <SEO
+        title={catSEO.title}
+        description={catSEO.description}
+        canonical={catSEO.canonical}
+        schemaData={itemListSchema}
+      />
 
       {/* ================= MOBILE FILTER (STABLE) ================= */}
       <div className="mobile-filter-wrapper">
@@ -62,8 +108,14 @@ const ShopCategory = ({ category, banner }) => {
         </div>
       </div>
 
-      {/* ================= BANNER ================= */}
-      <img className="shopcategory-banner" src={banner} alt={category} />
+      {/* ================= BANNER & H1 ================= */}
+      <img className="shopcategory-banner" src={banner} alt={`${catSEO.h1} Banner`} />
+
+      <div style={{ padding: "0 5%", marginTop: "1rem" }}>
+        <h1 style={{ color: "#fff", fontSize: "1.8rem", marginBottom: "0.5rem" }}>{catSEO.h1}</h1>
+        <p style={{ color: "#aaa", fontSize: "0.95rem", lineHeight: "1.5", maxWidth: "800px" }}>{catSEO.intro}</p>
+      </div>
+
 
       {/* ================= DESKTOP TOOLBAR ================= */}
       <div className="shopcategory-toolbar">

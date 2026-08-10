@@ -19,11 +19,24 @@
 /* Product Name */
 .item p {
     margin: 10px 0;
-    color: #e8e8e8; /* Soft white */
+    color: #ffffff; /* Crisp white */
     font-weight: 500;
     font-size: 17px;
     letter-spacing: 0.3px;
 }
+
+.item p a,
+.item a {
+    color: #ffffff; /* Crisp white */
+    text-decoration: none;
+}
+
+.item p a:hover,
+.item a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
 
 /* Prices Row */
 .item-prices {

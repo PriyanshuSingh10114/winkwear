@@ -1,10 +1,18 @@
 import React from "react";
 import "../Pages/CSS/Policy.css";
+import SEO from "../Components/SEO/SEO";
+import { PAGE_SEO } from "../config/seoConfig";
 
 const PrivacyPolicy = () => {
   return (
     <div className="policy-container">
+      <SEO
+        title={PAGE_SEO.privacyPolicy.title}
+        description={PAGE_SEO.privacyPolicy.description}
+        canonical={PAGE_SEO.privacyPolicy.canonical}
+      />
       <h1>Privacy Policy</h1>
+
 
       <p>
         At <strong>Wink & Wear</strong>, your privacy is important to us. This

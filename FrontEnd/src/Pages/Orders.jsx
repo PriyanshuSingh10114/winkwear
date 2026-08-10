@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./CSS/Orders.css";
+import SEO from "../Components/SEO/SEO";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -16,13 +17,15 @@ const Orders = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="orders-page">Loading...</div>;
+  if (loading) return <div className="orders-page"><SEO title="My Orders | Wink & Wear" robots="noindex, nofollow" />Loading...</div>;
 
   if (!orders.length)
-    return <div className="orders-page">No orders found</div>;
+    return <div className="orders-page"><SEO title="My Orders | Wink & Wear" robots="noindex, nofollow" />No orders found</div>;
 
   return (
     <div className="orders-page">
+      <SEO title="My Orders | Wink & Wear" robots="noindex, nofollow" />
+
       <h2>My Orders</h2>
 
       {orders.map((order) => (

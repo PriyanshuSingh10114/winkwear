@@ -1,10 +1,42 @@
 import React from "react";
 import "../Pages/CSS/Policy.css";
+import SEO from "../Components/SEO/SEO";
+import { PAGE_SEO } from "../config/seoConfig";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the return policy at Wink & Wear?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Returns are accepted within 7 days of delivery for unused items with original tags intact."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a refund take to process?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Refunds are processed within 5-7 business days to the original payment method after quality inspection."
+      }
+    }
+  ]
+};
 
 const ReturnExchange = () => {
   return (
     <div className="policy-container">
+      <SEO
+        title={PAGE_SEO.returnExchange.title}
+        description={PAGE_SEO.returnExchange.description}
+        canonical={PAGE_SEO.returnExchange.canonical}
+        schemaData={faqSchema}
+      />
       <h1>Return & Exchange Policy</h1>
+
 
       <p>
         At <strong>Wink & Wear</strong>, we strive to ensure complete customer

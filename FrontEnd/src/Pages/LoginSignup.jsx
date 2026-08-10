@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./CSS/LoginSignup.css";
 import bgIntro from "../Components/Assets/bgintro.webp";
+import SEO from "../Components/SEO/SEO";
 
 const LoginSignup = () => {
   const [state, setState] = useState("Login");
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -157,7 +159,9 @@ const LoginSignup = () => {
       className="loginsignup"
       style={{ background: `url(${bgIntro}) center/cover` }}
     >
+      <SEO title="Account Login & Sign Up | Wink & Wear" robots="noindex, nofollow" />
       <div className="loginsignup-container">
+
         <h1>{state}</h1>
 
         <div className="loginsignup-fields">

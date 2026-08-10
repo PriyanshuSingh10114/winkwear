@@ -1,0 +1,25 @@
+# https://winkandwear.com/robots.txt
+# Wink & Wear Search Engine Crawling Instructions
+
+User-agent: *
+Allow: /
+Allow: /mens
+Allow: /womens
+Allow: /kids
+Allow: /about
+Allow: /contact
+Allow: /privacy-policy
+Allow: /return-exchange
+Allow: /product/
+
+# Disallow Private User & Administrative Routes
+Disallow: /cart
+Disallow: /place-order
+Disallow: /orders
+Disallow: /profile
+Disallow: /login
+Disallow: /admin
+Disallow: /api/
+
+# Sitemap Location
+Sitemap: https://winkandwear.com/sitemap.xml

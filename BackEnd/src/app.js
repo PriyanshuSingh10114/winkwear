@@ -41,11 +41,16 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/pincode", pincodeRoutes);
 app.use("/api/chatbot", chatbotRoutes);
 
-/* ================= BASIC ROUTES ================= */
+const seoController = require("./controllers/seoController");
+
+/* ================= BASIC & SEO ROUTES ================= */
+app.get("/sitemap.xml", seoController.getSitemap);
+app.get("/robots.txt", seoController.getRobots);
 app.get("/", (_, res) => res.send("Express App is Running"));
 app.get("/health", (_, res) =>
   res.json({ success: true, message: "Backend is running" })
 );
+
 
 /* ================= ERROR HANDLER ================= */
 app.use(errorHandler);

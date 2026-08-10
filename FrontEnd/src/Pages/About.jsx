@@ -1,11 +1,19 @@
 import React from 'react'
 import '../Pages/CSS/About.css'
 import aboutImg from '../Components/Assets/about.webp'
+import SEO from '../Components/SEO/SEO'
+import { PAGE_SEO } from '../config/seoConfig'
 
 const About = () => {
   return (
     <div className='about-container'>
+      <SEO
+        title={PAGE_SEO.about.title}
+        description={PAGE_SEO.about.description}
+        canonical={PAGE_SEO.about.canonical}
+      />
       <div className='about-content'>
+
         <div className='image-container'>
           <img src={aboutImg} alt="Wink & Wear fashion" className='about-image'/>
         </div>

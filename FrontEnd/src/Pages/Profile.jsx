@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import "./CSS/Profile.css";
 import axios from "axios";
+import SEO from "../Components/SEO/SEO";
 
 const Profile = () => {
+
   const [user, setUser] = useState(null);
   const [form, setForm] = useState({
     phone: "",
@@ -109,7 +111,9 @@ const Profile = () => {
 
   return (
     <div className="profile-page">
+      <SEO title="User Profile | Wink & Wear" robots="noindex, nofollow" />
       <h2>My Profile</h2>
+
 
       <div className="profile-card">
         {/* AVATAR */}

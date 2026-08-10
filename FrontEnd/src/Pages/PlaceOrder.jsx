@@ -8,8 +8,10 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import SEO from "../Components/SEO/SEO";
 
 const PlaceOrder = () => {
+
   const navigate = useNavigate();
   useEffect(() => {
   const token = localStorage.getItem("auth-token");
@@ -200,7 +202,9 @@ const PlaceOrder = () => {
 
   return (
     <div className="place-order-container">
+      <SEO title="Checkout | Wink & Wear" robots="noindex, nofollow" />
       <ToastContainer />
+
 
       {/* LEFT */}
       <div className="left-side">
