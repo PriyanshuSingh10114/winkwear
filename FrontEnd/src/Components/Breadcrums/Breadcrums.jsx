@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 const Breadcrums = ({ product }) => {
   if (!product) return null;
 
-  const categoryPath = product.category === 'men' ? '/mens' : product.category === 'women' ? '/womens' : product.category === 'kid' ? '/kids' : '/';
-  const categoryName = product.category ? product.category.charAt(0).toUpperCase() + product.category.slice(1) : "Collection";
+  const catLower = (product.category || "").toLowerCase();
+  const categoryPath = (catLower === 'men' || catLower === 'mens') ? '/mens' : (catLower === 'women' || catLower === 'womens') ? '/womens' : '/kids';
+  const categoryName = product.category ? (catLower === 'kid' ? 'Kids' : product.category.charAt(0).toUpperCase() + product.category.slice(1)) : "Collection";
 
   return (
     <div className='breadcrums' aria-label="Breadcrumb">

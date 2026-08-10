@@ -46,9 +46,20 @@ const ShopCategory = ({ category, banner }) => {
     setVisibleCount(8);
   }, [category, sortOption, filterSeason, filterStyle, filterOccasion]);
 
-  /* ================= FILTER ================= */
+  /* ================= BULLETPROOF CATEGORY FILTER ================= */
+  const isCategoryMatch = (itemCat, targetCat) => {
+    if (!itemCat || !targetCat) return false;
+    const c1 = itemCat.toLowerCase().trim();
+    const c2 = targetCat.toLowerCase().trim();
+    if (c1 === c2) return true;
+    if ((c1 === "kid" || c1 === "kids") && (c2 === "kid" || c2 === "kids")) return true;
+    if ((c1 === "men" || c1 === "mens") && (c2 === "men" || c2 === "mens")) return true;
+    if ((c1 === "women" || c1 === "womens") && (c2 === "women" || c2 === "womens")) return true;
+    return false;
+  };
+
   const filtered = all_product.filter((item) =>
-    item.category === category &&
+    isCategoryMatch(item.category, category) &&
     (filterSeason === "all" || item.season === filterSeason) &&
     (filterStyle === "all" || item.style === filterStyle) &&
     (filterOccasion === "all" || item.occasion === filterOccasion)
@@ -155,8 +166,8 @@ const ShopCategory = ({ category, banner }) => {
 
       {/* ================= PRODUCTS ================= */}
       <div className="shopcategory-products">
-        {sorted.slice(0, visibleCount).map((item) => (
-          <Item key={item.id} {...item} />
+        {sorted.slice(0, visibleCount).map((item, idx) => (
+          <Item key={item.id} {...item} priority={idx < 4} />
         ))}
         <div ref={endRef} />
       </div>

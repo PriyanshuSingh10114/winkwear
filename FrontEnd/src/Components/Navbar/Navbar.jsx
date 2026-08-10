@@ -252,65 +252,79 @@ const Navbar = () => {
         <ul className="nav-center-menu">
           <li className="nav-item">
             <Link
-              to="/mens"
-              className={`nav-link ${activeTab === "mens" ? "active" : ""}`}
+              to="/"
+              onClick={(e) => {
+                if (location.pathname === "/") {
+                  e.preventDefault();
+                  const el = document.getElementById("new-collections");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  setTimeout(() => {
+                    const el = document.getElementById("new-collections");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }, 200);
+                }
+              }}
+              className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
             >
               New Arrivals
             </Link>
           </li>
 
-          {["women", "men", "kids", "collections"].map((key) => (
-            <li
-              key={key}
-              className="nav-item mega-trigger"
-              onMouseEnter={() => setActiveMegaMenu(key)}
-              onMouseLeave={() => setActiveMegaMenu(null)}
-            >
-              <Link
-                to={key === "collections" ? "/" : `/${key}s`}
-                className={`nav-link ${activeTab === key ? "active" : ""}`}
+          {["women", "men", "kids"].map((key) => {
+            const categoryPath = key === "kids" ? "/kids" : `/${key}s`;
+            return (
+              <li
+                key={key}
+                className="nav-item mega-trigger"
+                onMouseEnter={() => setActiveMegaMenu(key)}
+                onMouseLeave={() => setActiveMegaMenu(null)}
               >
-                {key.charAt(0).toUpperCase() + key.slice(1)}
-              </Link>
+                <Link
+                  to={categoryPath}
+                  className={`nav-link ${activeTab === key ? "active" : ""}`}
+                >
+                  {key.charAt(0).toUpperCase() + key.slice(1)}
+                </Link>
 
-              {/* DESKTOP MEGA MENU PANEL */}
-              {activeMegaMenu === key && (
-                <div className="mega-menu-panel">
-                  <div className="mega-menu-container">
-                    {/* COL 1: Categories */}
-                    <div className="mega-col">
-                      <h4>{MEGA_MENU_DATA[key].title}</h4>
-                      <ul>
-                        {MEGA_MENU_DATA[key].categories.map((cat, idx) => (
-                          <li key={idx}>
-                            <Link
-                              to={cat.path}
-                              onClick={() => setActiveMegaMenu(null)}
-                            >
-                              {cat.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                {/* DESKTOP MEGA MENU PANEL */}
+                {activeMegaMenu === key && (
+                  <div className="mega-menu-panel">
+                    <div className="mega-menu-container">
+                      {/* COL 1: Categories */}
+                      <div className="mega-col">
+                        <h4>{MEGA_MENU_DATA[key].title}</h4>
+                        <ul>
+                          {MEGA_MENU_DATA[key].categories.map((cat, idx) => (
+                            <li key={idx}>
+                              <Link
+                                to={cat.path}
+                                onClick={() => setActiveMegaMenu(null)}
+                              >
+                                {cat.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                    {/* COL 2: Featured Edits */}
-                    <div className="mega-col">
-                      <h4>Featured Trends</h4>
-                      <ul className="mega-featured-list">
-                        {MEGA_MENU_DATA[key].featured.map((feat, idx) => (
-                          <li key={idx}>
-                            <Link
-                              to={key === "collections" ? "/" : `/${key}s`}
-                              onClick={() => setActiveMegaMenu(null)}
-                            >
-                              <span>{feat.name}</span>
-                              <span className="mega-badge">{feat.badge}</span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                      {/* COL 2: Featured Edits */}
+                      <div className="mega-col">
+                        <h4>Featured Trends</h4>
+                        <ul className="mega-featured-list">
+                          {MEGA_MENU_DATA[key].featured.map((feat, idx) => (
+                            <li key={idx}>
+                              <Link
+                                to={categoryPath}
+                                onClick={() => setActiveMegaMenu(null)}
+                              >
+                                <span>{feat.name}</span>
+                                <span className="mega-badge">{feat.badge}</span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
                     {/* COL 3: Trending Preview Card */}
                     <div className="mega-col mega-preview-col">
@@ -339,7 +353,8 @@ const Navbar = () => {
                 </div>
               )}
             </li>
-          ))}
+          );
+        })}
         </ul>
 
         {/* ================= 3. RIGHT: ACTION ICONS ================= */}
@@ -557,7 +572,22 @@ const Navbar = () => {
             <div className="drawer-body">
               <ul className="drawer-main-nav">
                 <li>
-                  <Link to="/mens" onClick={() => setDrawerOpen(false)}>
+                  <Link
+                    to="/"
+                    onClick={(e) => {
+                      setDrawerOpen(false);
+                      if (location.pathname === "/") {
+                        e.preventDefault();
+                        const el = document.getElementById("new-collections");
+                        if (el) el.scrollIntoView({ behavior: "smooth" });
+                      } else {
+                        setTimeout(() => {
+                          const el = document.getElementById("new-collections");
+                          if (el) el.scrollIntoView({ behavior: "smooth" });
+                        }, 200);
+                      }
+                    }}
+                  >
                     New Arrivals 🔥
                   </Link>
                 </li>
@@ -585,7 +615,7 @@ const Navbar = () => {
                       <ul className="drawer-sub-menu">
                         <li>
                           <Link
-                            to={`/${category}s`}
+                            to={category === "kids" ? "/kids" : `/${category}s`}
                             onClick={() => setDrawerOpen(false)}
                           >
                             Explore All {category.toUpperCase()}

@@ -219,6 +219,8 @@ const ProductDisplay = ({ product }) => {
                 className="productdisplay-main-img"
                 src={mainImage}
                 alt={product.name}
+                fetchPriority="high"
+                decoding="async"
                 draggable="false"
               />
             </button>

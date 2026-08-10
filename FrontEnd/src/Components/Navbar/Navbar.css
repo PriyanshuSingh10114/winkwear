@@ -25,13 +25,14 @@
 }
 
 .navbar-container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 40px;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 24px;
   height: 72px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
   transition: height 0.3s ease;
 }
 
@@ -895,7 +896,7 @@
 
 @media (max-width: 540px) {
   .nav-brand-text {
-    font-size: 18px;
+    font-size: 17px;
   }
   .nav-brand-logo {
     height: 30px;
@@ -910,6 +911,7 @@
 
 @media (max-width: 390px) {
   .nav-brand-text {
-    display: none; /* Keep header ultra clean on smallest mobile viewports */
+    font-size: 15px;
+    display: inline-block;
   }
 }

@@ -6,21 +6,48 @@
     border: 1px solid rgba(255,255,255,0.06);
     box-shadow: 0 8px 25px rgba(0,0,0,0.35);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
+    contain: content; /* Performant CSS containment for smooth scrolling */
 }
 
 .item-img-container {
     position: relative;
     overflow: hidden;
     border-radius: 10px;
+    background: #1c1c1c;
+    aspect-ratio: 3 / 4;
+    width: 100%;
 }
 
-.item img {
+.item-img-placeholder {
     width: 100%;
-    height: 320px;         /* Reduced height (optional) */
+    height: 100%;
+    background: linear-gradient(90deg, #1a1a1a 25%, #262626 50%, #1a1a1a 75%);
+    background-size: 200% 100%;
+    animation: itemShimmer 1.5s infinite linear;
+}
+
+@keyframes itemShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.item img,
+.item-product-img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;     /* Prevent zoom or distortion */
     border-radius: 10px;
     object-position: top center;
     display: block;
+    transition: opacity 0.25s ease-out, transform 0.35s ease;
+}
+
+.item-product-img.loading {
+    opacity: 0.85;
+}
+
+.item-product-img.loaded {
+    opacity: 1;
 }
 
 .item-wishlist-btn {
@@ -81,6 +108,9 @@
     font-weight: 500;
     font-size: 17px;
     letter-spacing: 0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .item p a,
@@ -94,7 +124,6 @@
     color: #ffffff;
     text-decoration: underline;
 }
-
 
 /* Prices Row */
 .item-prices {
@@ -120,7 +149,7 @@
 
 /* Hover Effect */
 .item:hover {
-    transform: scale(1.06);
+    transform: translateY(-4px);
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55);
 }
 
@@ -130,9 +159,6 @@
         width: 300px;
         padding: 12px;
         border-radius: 12px;
-    }
-    .item img {
-        height: 280px;
     }
     .item p {
         font-size: 16px;
@@ -147,21 +173,12 @@
 
 /* ===== PRODUCT CARD — LARGE MOBILE (≤ 540px) ===== */
 @media (max-width: 540px) {
-
   .item {
     width: 100%;
     padding: 12px;
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.35);
     transition: none; /* touch-safe */
-  }
-
-  .item img {
-    width: 100%;
-    height: 190px;               /* more breathing room than 480px */
-    object-fit: cover;
-    object-position: center;
-    border-radius: 10px;
   }
 
   .item p {
@@ -190,24 +207,14 @@
   }
 }
 
-
 /* ===== STRICT MOBILE PRODUCT CARD ===== */
 @media (max-width: 480px) {
-
   .item {
     width: 100%;                 /* grid controls width */
     padding: 8px;
     border-radius: 10px;
     box-shadow: none;
     transition: none;
-  }
-
-  .item img {
-    width: 100%;
-    height: 150px;               /* compact for 2–3 per row */
-    object-fit: cover;
-    object-position: center;
-    border-radius: 8px;
   }
 
   .item p {
@@ -235,4 +242,3 @@
     box-shadow: none;
   }
 }
-

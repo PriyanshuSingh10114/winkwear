@@ -1,16 +1,17 @@
-import React, { useContext, useState } from 'react'
-import './Item.css'
-import { Link } from 'react-router-dom'
-import { createProductSlug } from '../../utils/slugify'
-import { formatPrice } from '../../utils/formatPrice'
-import { WishlistContext } from '../../Context/WishlistContext'
-import { FaHeart, FaRegHeart, FaEye } from 'react-icons/fa'
-import QuickViewModal from '../QuickView/QuickViewModal'
+import React, { useContext, useState, memo } from 'react';
+import './Item.css';
+import { Link } from 'react-router-dom';
+import { createProductSlug } from '../../utils/slugify';
+import { formatPrice } from '../../utils/formatPrice';
+import { WishlistContext } from '../../Context/WishlistContext';
+import { FaHeart, FaRegHeart, FaEye } from 'react-icons/fa';
+import QuickViewModal from '../QuickView/QuickViewModal';
 
 const Item = (props) => {
   const productUrl = createProductSlug(props.name, props.id);
   const { toggleWishlist, isInWishlist } = useContext(WishlistContext);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const productData = {
     id: props.id,
@@ -38,10 +39,18 @@ const Item = (props) => {
 
   return (
     <>
-      <div className='item'>
+      <div className="item">
         <div className="item-img-container">
           <Link to={productUrl} onClick={() => window.scrollTo(0, 0)}>
-            <img src={props.image} alt={props.name || "Wink & Wear Fashion Item"} loading="lazy" decoding="async" />
+            <img
+              src={props.image}
+              alt={props.name || "Wink & Wear Fashion Item"}
+              loading={props.priority ? "eager" : "lazy"}
+              fetchPriority={props.priority ? "high" : "auto"}
+              decoding="async"
+              onLoad={() => setIsLoaded(true)}
+              className={`item-product-img ${isLoaded ? "loaded" : "loading"}`}
+            />
           </Link>
           
           {/* Wishlist Heart Icon Button */}
@@ -81,7 +90,17 @@ const Item = (props) => {
         <QuickViewModal product={productData} onClose={() => setQuickViewOpen(false)} />
       )}
     </>
-  )
-}
+  );
+};
 
-export default Item
+// Memoize Item component to prevent unnecessary React DOM re-renders during parent scrolling
+export default memo(Item, (prevProps, nextProps) => {
+  return (
+    prevProps.id === nextProps.id &&
+    prevProps.name === nextProps.name &&
+    prevProps.image === nextProps.image &&
+    prevProps.new_price === nextProps.new_price &&
+    prevProps.old_price === nextProps.old_price &&
+    prevProps.priority === nextProps.priority
+  );
+});
