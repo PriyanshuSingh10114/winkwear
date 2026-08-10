@@ -14,7 +14,10 @@ export default function Hero() {
 
   return (
     <div className="hero-wrapper">
-      <img src={randomBanner} alt="Hero Banner" className="hero-full" />
+      <h1 className="sr-only" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', border: 0 }}>
+        Wink &amp; Wear | Online Fashion Store for Men, Women &amp; Kids
+      </h1>
+      <img src={randomBanner} alt="Wink & Wear - Online Fashion Store Hero Banner" className="hero-full" fetchPriority="high" />
     </div>
   );
 }

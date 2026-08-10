@@ -82,16 +82,16 @@ Innovation meets nostalgia.`,
 
   return (
     <div className="blog-section">
-      <h1>Fashion Blog</h1>
+      <h2>Fashion Blog</h2>
       <hr />
 
       {/* BLOG GRID */}
       <div className="blog-grid">
         {posts.map((post, index) => (
           <div className="blog-card" key={index}>
-            <img src={post.image} alt={post.title} />
+            <img src={post.image} alt={post.title} loading="lazy" />
             <div className="blog-content">
-              <h2>{post.title}</h2>
+              <h3>{post.title}</h3>
               <p className="meta">
                 By {post.author} • {post.date}
               </p>

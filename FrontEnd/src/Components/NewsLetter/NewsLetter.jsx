@@ -26,7 +26,7 @@ const NewsLetter = () => {
   return (
     <>
       <div className='newsletter'>
-        <h1>Get Exclusive Offers on your Email</h1>
+        <h2>Get Exclusive Offers on your Email</h2>
         <p>Subscribe to our Newsletter and Stay Updated</p>
         <div>
           <input 

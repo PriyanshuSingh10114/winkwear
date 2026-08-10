@@ -35,7 +35,7 @@ const CreatorPicks = () => {
 
   return (
     <div className="creator-section">
-      <h1>Creator / Influencer Picks</h1>
+      <h2>Creator / Influencer Picks</h2>
       <hr />
 
       <div className="creator-grid">

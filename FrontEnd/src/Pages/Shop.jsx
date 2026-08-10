@@ -45,9 +45,6 @@ const Shop = () => {
         canonical={PAGE_SEO.home.canonical}
         schemaData={homepageSchema}
       />
-      <h1 className="sr-only" style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', border: 0 }}>
-        Wink & Wear | Online Fashion Store for Men, Women & Kids
-      </h1>
       <Hero/>
       <Popular/>
       <Offers/>

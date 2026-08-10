@@ -37,13 +37,10 @@ const Navbar = () => {
   return (
     <div className="navbar">
       {/* ---------------- LOGO ---------------- */}
-      <div
-        className="nav-logo"
-        onClick={() => (window.location.href = "/")}
-      >
-        <img src={logo} alt="Logo" />
+      <Link to="/" className="nav-logo">
+        <img src={logo} alt="Wink & Wear Logo" />
         <p>Wιɳƙ&Wҽαɾ</p>
-      </div>
+      </Link>
 
       {/* ---------------- MENU ---------------- */}
       <ul className="nav-menu">
@@ -110,8 +107,8 @@ const Navbar = () => {
         )}
 
         {/* CART */}
-        <Link to="/cart">
-          <img src={cart_icon} alt="Cart" />
+        <Link to="/cart" aria-label="Shopping Cart">
+          <img src={cart_icon} alt="Shopping Cart" />
         </Link>
         <div className="nav-cart-count">{getTotalCartItems()}</div>
       </div>

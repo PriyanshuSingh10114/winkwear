@@ -100,7 +100,7 @@ const Product = () => {
     <div>
       <SEO
         title={`${product.name} | Wink & Wear`}
-        description={product.description || `Shop ${product.name} for $${product.new_price} at Wink & Wear. Premium quality, comfortable fit & fast shipping across India.`}
+        description={product.description || `Shop ${product.name} online at Wink & Wear. Premium quality, comfortable fit & fast shipping across India.`}
         canonical={productSlug}
         ogImage={image}
         ogType="product"

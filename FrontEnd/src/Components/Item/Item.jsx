@@ -9,7 +9,7 @@ const Item = (props) => {
   return (
     <div className='item'>
       <Link to={productUrl} onClick={() => window.scrollTo(0, 0)}>
-        <img src={props.image} alt={props.name || "Wink & Wear Fashion Item"} loading="lazy" />
+        <img src={props.image} alt={props.name || "Wink & Wear Fashion Item"} loading="lazy" decoding="async" />
       </Link>
       <p>
         <Link to={productUrl} onClick={() => window.scrollTo(0, 0)}>

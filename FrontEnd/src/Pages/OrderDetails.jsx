@@ -73,6 +73,7 @@ const OrderDetails = () => {
 
   return (
     <div className="order-details">
+      <SEO title="Order Details | Wink & Wear" robots="noindex, nofollow" />
       <h2>Order Details</h2>
 
       {/* ================= META ================= */}

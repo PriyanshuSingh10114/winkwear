@@ -26,6 +26,7 @@
   align-items: center;
   gap: 14px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .nav-logo img {

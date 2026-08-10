@@ -9,10 +9,10 @@ import whatsapp_icon from '../Assets/whatsapp_icon.png'
 const Footer = () => {
   return (
     <div className="footer">
-        <div className="footer-logo">
-            <img src={logo} alt="" />
+        <Link to="/" className="footer-logo">
+            <img src={logo} alt="Wink & Wear Footer Logo" />
             <p>Wιɳƙ&Wҽαɾ</p>
-        </div>
+        </Link>
         <ul className="footer-links">
             <li>
                 <Link className="nav-link" to="/about">Company</Link>
@@ -20,8 +20,7 @@ const Footer = () => {
             <li>
                 <Link className="nav-link" to="/">Products</Link>
             </li>
-
-            <li onClick={() => setMenu("about")}>
+            <li>
                 <Link className="nav-link" to="/about">About</Link>
             </li>
             <li>
@@ -31,18 +30,18 @@ const Footer = () => {
                 <Link className="nav-link" to="/privacy-policy">Privacy Policy</Link>
             </li>
             <li>
-                <Link className="nav-link" to="/return-exchange">Return & Exchange</Link>
+                <Link className="nav-link" to="/return-exchange">Return &amp; Exchange</Link>
             </li>
         </ul>
         <div className="footer-social-icon">
             <div className="footer-icon-container">
-                <img src={instagram_icon} alt="" />
+                <img src={instagram_icon} alt="Wink & Wear Instagram" />
             </div>
             <div className="footer-icon-container">
-                <img src={pintester_icon} alt="" />
+                <img src={pintester_icon} alt="Wink & Wear Pinterest" />
             </div>
             <div className="footer-icon-container">
-                <img src={whatsapp_icon} alt="" />
+                <img src={whatsapp_icon} alt="Wink & Wear WhatsApp Support" />
             </div>
         </div>
         <div className="footer-copyright">
