@@ -1,211 +1,148 @@
-/* OFFER BANNER SCROLLER – Elegant Matte Dark Theme */
+/* =========================================================
+   OFFER BANNER & TIMER — Luxury Responsive System
+   ========================================================= */
 
-.offers-scroll {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 20px;
-  padding: 20px 0;
-  scrollbar-width: none; /* Firefox */
+.offers-container {
+  position: relative;
+  width: 100%;
+  padding: 40px 24px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.offers-scroll::-webkit-scrollbar {
-  display: none; /* Chrome */
+.offers-scroll {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
 }
 
 .offers-scroll img {
-  width: 98vw;
-  height: 385px;
+  width: 100%;
+  height: 380px;
   display: block;
-  margin: 0 auto;
-  border-radius: 25px;
-
-  /* Elegant Matte Look */
-  object-fit: fill;
+  border-radius: 24px;
+  object-fit: cover;
   background: #151515;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-
-  scroll-snap-align: start;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.offers-scroll img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.55);
 }
 
 .timer-box {
   position: absolute;
-  top: 10%;
+  top: 50%;
   right: 5%;
-  background: rgba(0, 0, 0, 0.65);
-  padding: 20px 25px;
-  border-radius: 10px;
-  color: gold;
-  font-family: 'Poppins', sans-serif;
+  transform: translateY(-50%);
+  background: rgba(13, 13, 13, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 24px 32px;
+  border-radius: 16px;
+  color: #d4a045;
   text-align: center;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.5);
+  border: 1px solid rgba(212, 160, 69, 0.4);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+  z-index: 10;
 }
 
 .timer-box h2 {
-  font-size: 20px;
-  margin-bottom: 8px;
-  font-weight: 600;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  margin: 0 0 6px 0;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.timer-box p {
+  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+  color: #cccccc;
+  margin: 0 0 12px 0;
 }
 
 .timer-values {
   display: flex;
   gap: 8px;
   justify-content: center;
-  font-size: 22px;
-  font-weight: bold;
+  align-items: center;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 800;
+  color: #d4a045;
 }
 
 .live-tag {
   margin-top: 10px;
-  font-size: 14px;
-  color: red;
-  font-weight: bold;
-  animation: pulse 1s infinite;
+  font-size: 13px;
+  color: #e63946;
+  font-weight: 700;
+  animation: timerPulse 1.5s infinite;
 }
 
-@keyframes pulse {
+@keyframes timerPulse {
   0% { opacity: 1; }
   50% { opacity: 0.4; }
   100% { opacity: 1; }
 }
 
-/* Responsive styles */
+/* Tablet (641px – 1024px) */
 @media (max-width: 1024px) {
-  .offers-scroll {
-    gap: 16px;
-    padding: 16px 0;
+  .offers-container {
+    padding: 32px 20px;
   }
   .offers-scroll img {
-    height: 320px;
+    height: 300px;
     border-radius: 18px;
-    object-fit: cover;
   }
   .timer-box {
-    top: 8%;
-    right: 6%;
-    padding: 14px 18px;
-  }
-  .timer-box h2 {
-    font-size: 18px;
-  }
-  .timer-values {
-    font-size: 20px;
+    padding: 18px 22px;
+    right: 4%;
   }
 }
 
-/* ===============================
-   OFFERS + TIMER — LARGE MOBILE (≤ 540px)
-================================ */
-@media (max-width: 540px) {
-
-  .offers-scroll {
-    position: relative;
+/* Mobile (≤ 640px) */
+@media (max-width: 640px) {
+  .offers-container {
+    padding: 24px 16px;
   }
-
   .offers-scroll img {
-    width: 88vw;               /* slightly tighter than tablet */
-    height: 260px;
+    height: 240px;
     border-radius: 14px;
-    object-fit: cover;
-    margin: 0 auto;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.45);
   }
-
-  /* ===============================
-     BLACK FRIDAY TIMER — LARGE MOBILE
-     =============================== */
-
   .timer-box {
-    height: auto;
-    min-height: unset;
-    width: fit-content;
-    max-width: 60%;
-    padding: 10px 14px;
-    border-radius: 10px;
-  }
-
-  .timer-box h2 {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-
-  .timer-values {
-    font-size: 17px;
-    font-weight: 800;
-    gap: 8px;
-  }
-
-  .live-tag {
-    font-size: 11px;
-    margin-top: 6px;
-  }
-
-  /* Touch-safe */
-  .offers-scroll img:hover {
-    transform: none;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.45);
-  }
-}
-
-
-@media (max-width: 480px) {
-
-  .offers-scroll {
-    position: relative;
-  }
-
-  .offers-scroll img {
-    width: 92vw;
-    height: 220px;
+    top: 50%;
+    right: 4%;
+    padding: 12px 14px;
     border-radius: 12px;
-    object-fit: cover;
-    margin: 0 auto;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    max-width: 55%;
   }
-
-  /* ===============================
-     BLACK FRIDAY TIMER — MOBILE
-     =============================== */
-
-  .timer-box {
-    height: auto !important;
-    min-height: unset !important;
-    width: fit-content;
-    max-width: 50%;
-  }
-
-
   .timer-box h2 {
     font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
-
-  .timer-values {
-    font-size: 15px;
-    font-weight: 700;
-    gap: 6px;
-  }
-
-  .live-tag {
+  .timer-box p {
     font-size: 10px;
-    margin-top: 4px;
+    margin-bottom: 6px;
   }
-
-  /* Disable hover effects on touch */
-  .offers-scroll img:hover {
-    transform: none;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  .timer-values {
+    font-size: 14px;
+    gap: 4px;
   }
 }
 
-
+/* Micro Screen (≤ 360px) */
+@media (max-width: 360px) {
+  .offers-scroll img {
+    height: 220px;
+  }
+  .timer-box {
+    padding: 8px 10px;
+    max-width: 60%;
+  }
+  .timer-box h2 {
+    font-size: 11px;
+  }
+  .timer-values {
+    font-size: 12px;
+  }
+}

@@ -1,162 +1,84 @@
+/* ===========================================
+   NEW COLLECTIONS — Luxury Responsive Grid
+   =========================================== */
+
 .new-collections {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-    margin-bottom: 100px;
-    color: #f2f2f2; /* Soft white */
+    gap: 12px;
+    margin-bottom: 80px;
+    padding: 0 24px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
+/* Fluid Heading Scale */
+.new-collections h2,
 .new-collections h1 {
-    margin-top: 20px;
-    font-size: 50px;
+    margin-top: 10px;
+    font-size: clamp(1.65rem, 4vw, 3.25rem);
     font-weight: 700;
-    color: #ffffff; /* Pure white title */
+    color: #ffffff;
     letter-spacing: 1px;
-    border-left: 5px solid #d4a045; /* Gold accent */
+    border-left: 5px solid #d4a045;
     padding-left: 14px;
+    text-transform: uppercase;
 }
 
 .new-collections hr {
-    width: 220px;
+    width: clamp(140px, 30vw, 220px);
     height: 4px;
     border-radius: 10px;
-    background: #d4a045; /* Gold underline */
+    background: #d4a045;
     margin-top: 8px;
+    border: none;
 }
 
+/* Grid Layout System */
 .collections {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    margin-top: 60px;
-    gap: 35px;
-}
-
-.collections img {
-    width: 350px;
-    height: 380px;
-    border-radius: 15px;
-    object-fit: cover;
-
-    background: #1a1a1a;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-
-    box-shadow: 0 10px 25px rgba(0,0,0,0.45);
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-/* Elegant hover effect */
-.collections img:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 35px rgba(0,0,0,0.55);
-    border-color: #d4a045; /* Gold border on hover */
-}
-
-/* Responsive styles */
-@media (max-width: 1024px) {
-    .new-collections h1 {
-        font-size: 38px;
-        padding-left: 12px;
-    }
-    .collections {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin-top: 40px;
-    }
-    .collections img {
-        width: 100%;
-        height: 320px;
-        border-radius: 12px;
-    }
-}
-
-/* ===== NEW COLLECTIONS — LARGE MOBILE (≤ 540px) ===== */
-@media (max-width: 540px) {
-
-  .new-collections {
-    gap: 14px;
-    margin-bottom: 50px;
-    padding: 0 14px;
-  }
-
-  .new-collections h1 {
-    font-size: 30px;
-    border-left-width: 5px;
-    padding-left: 12px;
-    margin-top: 14px;
-  }
-
-  .new-collections hr {
-    width: 140px;
-    height: 3px;
-    margin-top: 8px;
-  }
-
-  /* THREE IMAGES PER ROW — ROOMIER */
-  .collections {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin-top: 22px;
-  }
-
-  .collections img {
+    margin-top: 48px;
+    gap: 32px;
     width: 100%;
-    height: 190px;           /* more breathing space than 480px */
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  }
-
-  /* Touch-safe */
-  .collections img:hover {
-    transform: none;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-    border-color: rgba(255,255,255,0.08);
-  }
+    max-width: 1440px;
+    box-sizing: border-box;
 }
 
-
-@media (max-width: 480px) {
+/* Tablet Layout (641px – 1024px) */
+@media (max-width: 1024px) {
     .new-collections {
-        gap: 10px;
-        margin-bottom: 40px;
-        padding: 0 10px;
+        margin-bottom: 60px;
+        padding: 0 20px;
     }
-
-    .new-collections h1 {
-        font-size: 26px;
-        border-left-width: 4px;
-        padding-left: 10px;
-        margin-top: 10px;
-    }
-
-    .new-collections hr {
-        width: 120px;
-        height: 3px;
-        margin-top: 6px;
-    }
-
-    /* ✅ THREE IMAGES PER ROW */
     .collections {
-        display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        margin-top: 18px;
-    }
-
-    .collections img {
-        width: 100%;
-        height: 160px;          /* fixed height keeps grid clean */
-        object-fit: cover;
-        border-radius: 8px;
-        box-shadow: none;
-    }
-
-    .collections img:hover {
-        transform: none;
-        box-shadow: none;
-        border-color: rgba(255,255,255,0.06);
+        gap: 20px;
+        margin-top: 36px;
     }
 }
 
+/* Mobile Layout (≤ 640px) — LUXURY 2-COLUMN GRID */
+@media (max-width: 640px) {
+    .new-collections {
+        margin-bottom: 48px;
+        padding: 0 16px;
+    }
+    .collections {
+        grid-template-columns: repeat(2, 1fr); /* ✅ Roomy 2 columns */
+        gap: 14px;
+        margin-top: 24px;
+    }
+}
+
+/* Ultra-Compact Micro Screen (≤ 340px) */
+@media (max-width: 340px) {
+    .new-collections {
+        padding: 0 12px;
+    }
+    .collections {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
