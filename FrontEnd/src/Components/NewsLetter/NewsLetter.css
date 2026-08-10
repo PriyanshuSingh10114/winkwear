@@ -1,14 +1,14 @@
 /* ================= NEWSLETTER SECTION ================= */
 
 .newsletter {
-  width: 100%;
+  width: 94%;
   max-width: 1440px;
-  min-height: 380px;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 60px;
+  margin: 0 auto 50px auto;
   padding: 60px 40px;
   background: #121212;
   gap: 24px;

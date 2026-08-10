@@ -3,7 +3,11 @@
 ------------------------------ */
 
 .cartitems {
-  margin: 100px 170px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 40px auto;
+  padding: 0 40px;
+  box-sizing: border-box;
   color: #e6e6e6;
 }
 

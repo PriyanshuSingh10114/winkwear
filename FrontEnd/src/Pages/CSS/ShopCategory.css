@@ -17,7 +17,7 @@
 @media (max-width: 640px) {
   .mobile-filter-wrapper {
     display: block;
-    padding: 8px 16px;
+    padding: 8px 12px;
     background: #0d0d0d;
   }
 
@@ -86,12 +86,12 @@
   }
 }
 
-/* Mobile Layout (≤ 640px) — LUXURY 2-COLUMN GRID */
+/* Mobile Layout (≤ 640px) — 3 PRODUCTS PER ROW AS REQUESTED */
 @media (max-width: 640px) {
   .shopcategory-products {
-    grid-template-columns: repeat(2, 1fr); /* ✅ Roomy 2 columns */
-    gap: 14px;
-    margin: 16px;
+    grid-template-columns: repeat(3, 1fr); /* ✅ 3 products per line */
+    gap: 10px;
+    margin: 10px;
   }
 
   .toolbar-center,
@@ -100,12 +100,12 @@
   }
 }
 
-/* Micro Screen (≤ 340px) */
-@media (max-width: 340px) {
+/* Micro Screen (≤ 360px) */
+@media (max-width: 360px) {
   .shopcategory-products {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin: 12px;
+    grid-template-columns: repeat(3, 1fr); /* ✅ 3 products per line */
+    gap: 6px;
+    margin: 6px;
   }
 }
 

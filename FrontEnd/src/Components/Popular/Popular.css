@@ -1,5 +1,5 @@
 /* ===========================================
-   POPULAR SECTION — Premium Luxury Responsive Grid
+   POPULAR SECTION — 3 Products Per Row Mobile Grid
    =========================================== */
 
 .popular {
@@ -16,7 +16,7 @@
 /* Fluid Heading Scale */
 .popular h2,
 .popular h1 {
-    font-size: clamp(1.65rem, 4vw, 3.25rem);
+    font-size: clamp(1.5rem, 4vw, 3.25rem);
     font-weight: 700;
     color: #f5f5f5;
     text-transform: uppercase;
@@ -57,26 +57,26 @@
     }
 }
 
-/* Mobile Layout (≤ 640px) — LUXURY 2-COLUMN GRID */
+/* Mobile Layout (≤ 640px) — 3 PRODUCTS PER ROW AS REQUESTED */
 @media (max-width: 640px) {
     .popular {
-        padding: 48px 16px;
+        padding: 40px 10px;
         gap: 8px;
     }
     .popular-item {
-        margin-top: 24px;
-        grid-template-columns: repeat(2, 1fr); /* ✅ Roomy 2 columns */
-        gap: 14px;
+        margin-top: 20px;
+        grid-template-columns: repeat(3, 1fr); /* ✅ 3 products per line */
+        gap: 10px;
     }
 }
 
-/* Ultra-Compact Micro Screen (≤ 340px) */
-@media (max-width: 340px) {
+/* Micro Screen (≤ 360px) */
+@media (max-width: 360px) {
     .popular {
-        padding: 36px 12px;
+        padding: 32px 6px;
     }
     .popular-item {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        grid-template-columns: repeat(3, 1fr); /* ✅ 3 products per line */
+        gap: 6px;
     }
 }

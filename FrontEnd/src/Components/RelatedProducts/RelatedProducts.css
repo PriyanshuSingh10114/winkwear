@@ -152,12 +152,12 @@
   }
 
   .relatedproducts-items {
-    grid-template-columns: repeat(2, 1fr); /* ✅ 2 per row */
-    gap: 16px;
+    grid-template-columns: repeat(3, 1fr); /* ✅ 3 per row */
+    gap: 10px;
   }
 
   .relatedproducts-item-card img {
-    height: 210px;
+    height: 170px;
   }
 
   .relatedproducts-item-title {

@@ -1,8 +1,10 @@
 .order-details {
-  padding: 40px;
+  padding: 40px 24px;
   color: #fff;
+  width: 100%;
   max-width: 900px;
-  margin: auto;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* ================= META ================= */

@@ -1,5 +1,5 @@
 /* ===========================================
-   NEW COLLECTIONS — Luxury Responsive Grid
+   NEW COLLECTIONS — 3 Products Per Row Mobile Grid
    =========================================== */
 
 .new-collections {
@@ -17,7 +17,7 @@
 .new-collections h2,
 .new-collections h1 {
     margin-top: 10px;
-    font-size: clamp(1.65rem, 4vw, 3.25rem);
+    font-size: clamp(1.5rem, 4vw, 3.25rem);
     font-weight: 700;
     color: #ffffff;
     letter-spacing: 1px;
@@ -59,26 +59,26 @@
     }
 }
 
-/* Mobile Layout (≤ 640px) — LUXURY 2-COLUMN GRID */
+/* Mobile Layout (≤ 640px) — 3 PRODUCTS PER ROW AS REQUESTED */
 @media (max-width: 640px) {
     .new-collections {
-        margin-bottom: 48px;
-        padding: 0 16px;
+        margin-bottom: 40px;
+        padding: 0 10px;
     }
     .collections {
-        grid-template-columns: repeat(2, 1fr); /* ✅ Roomy 2 columns */
-        gap: 14px;
-        margin-top: 24px;
+        grid-template-columns: repeat(3, 1fr); /* ✅ 3 products per line */
+        gap: 10px;
+        margin-top: 20px;
     }
 }
 
-/* Ultra-Compact Micro Screen (≤ 340px) */
-@media (max-width: 340px) {
+/* Micro Screen (≤ 360px) */
+@media (max-width: 360px) {
     .new-collections {
-        padding: 0 12px;
+        padding: 0 6px;
     }
     .collections {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        grid-template-columns: repeat(3, 1fr); /* ✅ 3 products per line */
+        gap: 6px;
     }
 }
