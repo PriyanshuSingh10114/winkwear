@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { formatPrice } from "../utils/formatPrice";
 import "./CSS/OrderDetails.css";
 import SEO from "../Components/SEO/SEO";
 
@@ -104,7 +105,7 @@ const OrderDetails = () => {
           <div key={index} className="order-item">
             <p className="item-name">{item.name}</p>
             <p className="item-meta">
-              Qty: {item.quantity} • ${item.price}
+              Qty: {item.quantity} • {formatPrice(item.price)}
             </p>
           </div>
         ))}
@@ -126,7 +127,7 @@ const OrderDetails = () => {
 
       {/* ================= TOTAL ================= */}
       <div className="order-total">
-        <strong>Total Amount:</strong> ${order.total}
+        <strong>Total Amount:</strong> {formatPrice(order.total)}
       </div>
 
       {/* ================= CANCEL ================= */}

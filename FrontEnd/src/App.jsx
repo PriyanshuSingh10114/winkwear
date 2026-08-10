@@ -18,6 +18,7 @@ import ReturnExchange from "./Pages/ReturnExchange";
 import OrderDetails from "./Pages/OrderDetails.jsx";
 import Contact from "./Pages/Contact";
 import Profile from "./Pages/Profile";
+import Wishlist from "./Pages/Wishlist";
 import Chatbot from './Components/Chatbot/Chatbot';
 
 
@@ -41,6 +42,7 @@ function App() {
             <Route path=':productId' element={<Product />} />
           </Route>
           <Route path='/cart' element={<Cart />} />
+          <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/login' element={<LoginSignup />} />
           <Route path="/place-order" element={<PlaceOrder />} />
           <Route path="/Orders" element={<Orders />} />

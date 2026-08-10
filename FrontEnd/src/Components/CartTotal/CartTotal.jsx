@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { ShopContext } from '../../Context/ShopContext';
+import { formatPrice } from '../../utils/formatPrice';
 import './CartTotal.css';
 
 const CartTotal = () => {
@@ -18,7 +19,7 @@ const CartTotal = () => {
 
       <div className="cartitems-total-item">
         <p>Subtotal</p>
-        <p>${subtotal.toFixed(2)}</p>
+        <p>{formatPrice(subtotal)}</p>
       </div>
 
       {discount > 0 && (
@@ -26,7 +27,7 @@ const CartTotal = () => {
           <hr />
           <div className="cartitems-total-item">
             <p>Discount</p>
-            <p>- ${discount.toFixed(2)}</p>
+            <p>- {formatPrice(discount)}</p>
           </div>
         </>
       )}
@@ -35,14 +36,14 @@ const CartTotal = () => {
 
       <div className="cartitems-total-item">
         <p>Shipping Fee</p>
-        <p>{shipping === 0 ? "Free" : `$${shipping}`}</p>
+        <p>{shipping === 0 ? "Free" : formatPrice(shipping)}</p>
       </div>
 
       <hr />
 
       <div className="cartitems-total-item total-highlight">
         <h3>Total</h3>
-        <h3>${total.toFixed(2)}</h3>
+        <h3>{formatPrice(total)}</h3>
       </div>
     </div>
   );

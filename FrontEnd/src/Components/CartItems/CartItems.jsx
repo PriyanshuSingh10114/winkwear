@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
-import { useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./CartItems.css";
 import { ShopContext } from "../../Context/ShopContext";
 import remove_icon from "../Assets/cart_cross_icon.png";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { formatPrice } from "../../utils/formatPrice";
 
 const MAX_QTY_PER_PRODUCT = 10;
 
@@ -12,7 +12,7 @@ const CartItems = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-  const token = localStorage.getItem("auth-token");
+    const token = localStorage.getItem("auth-token");
     if (!token) {
       navigate("/login");
     }
@@ -57,7 +57,7 @@ const CartItems = () => {
 
     if (promo.min && subtotal < promo.min) {
       toast.warn(
-        `Order value must be at least $${promo.min} to use ${code}.`
+        `Order value must be at least ${formatPrice(promo.min)} to use ${code}.`
       );
       return;
     }
@@ -102,7 +102,7 @@ const CartItems = () => {
                 />
 
                 <p>{e.name}</p>
-                <p>${e.new_price}</p>
+                <p>{formatPrice(e.new_price)}</p>
 
                 {/* ===== QUANTITY CONTROLS ===== */}
                 <div className="cartitems-quantity-controls">
@@ -129,8 +129,7 @@ const CartItems = () => {
                 </div>
 
                 <p>
-                  $
-                  {(e.new_price * cartItems[e.id]).toFixed(2)}
+                  {formatPrice(e.new_price * cartItems[e.id])}
                 </p>
 
                 <img
@@ -160,13 +159,13 @@ const CartItems = () => {
 
             <div className="cartitems-total-item">
               <p>Subtotal</p>
-              <p>${subtotal.toFixed(2)}</p>
+              <p>{formatPrice(subtotal)}</p>
             </div>
 
             {discount > 0 && (
               <div className="cartitems-total-item">
                 <p>Discount</p>
-                <p>- ${discount.toFixed(2)}</p>
+                <p>- {formatPrice(discount)}</p>
               </div>
             )}
 
@@ -174,14 +173,14 @@ const CartItems = () => {
 
             <div className="cartitems-total-item">
               <p>Shipping Fee</p>
-              <p>{shipping === 0 ? "Free" : `$${shipping}`}</p>
+              <p>{shipping === 0 ? "Free" : formatPrice(shipping)}</p>
             </div>
 
             <hr />
 
             <div className="cartitems-total-item total-highlight">
               <h3>Total</h3>
-              <h3>${total.toFixed(2)}</h3>
+              <h3>{formatPrice(total)}</h3>
             </div>
 
             <button onClick={() => navigate("/place-order")}>
@@ -229,13 +228,13 @@ const CartItems = () => {
           <h3>Available Offers</h3>
           <ul>
             <li>
-              ✨ <strong>SAVE15</strong> — 15% OFF above <strong>$100</strong>
+              ✨ <strong>SAVE15</strong> — 15% OFF above <strong>{formatPrice(100)}</strong>
             </li>
             <li>
-              ⭐ <strong>SAVE25</strong> — 25% OFF above <strong>$200</strong>
+              ⭐ <strong>SAVE25</strong> — 25% OFF above <strong>{formatPrice(200)}</strong>
             </li>
             <li>
-              💎 <strong>FLAT50</strong> — $50 OFF above <strong>$350</strong>
+              💎 <strong>FLAT50</strong> — {formatPrice(50)} OFF above <strong>{formatPrice(350)}</strong>
             </li>
             <li>
               🚚 <strong>FREESHIP</strong> — Free Shipping

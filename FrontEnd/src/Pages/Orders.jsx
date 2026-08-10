@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { formatPrice } from "../utils/formatPrice";
 import "./CSS/Orders.css";
 import SEO from "../Components/SEO/SEO";
 
@@ -59,7 +60,7 @@ const Orders = () => {
 
 
           <div className="order-footer">
-            <p className="total">${order.total}</p>
+            <p className="total">{formatPrice(order.total)}</p>
             <Link to={`/orders/${order._id}`} className="view-btn">
               View Details →
             </Link>

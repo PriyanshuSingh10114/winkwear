@@ -2,12 +2,21 @@ import React, { useState, useRef, useEffect } from "react";
 import botAvatar from "../Assets/chatbot-avatar.webp";
 import "./Chatbot.css";
 
+const PROMPT_CHIPS = [
+  "🔥 Summer Outfits",
+  "👕 Men's Casual Wear",
+  "👗 Women's Dresses",
+  "🚚 Shipping & Delivery",
+  "✨ Outfit Recommendations",
+  "📏 Size Guide Helper",
+];
+
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const [messages, setMessages] = useState([
     {
-      text: "Hi! I'm Winkie, your WinkWear assistant. How can I help you today?",
+      text: "Hi! I'm Winkie, your Wink & Wear AI Assistant. How can I help you today?",
       sender: "bot",
     },
   ]);
@@ -24,11 +33,13 @@ const Chatbot = () => {
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages, isTyping]);
+    if (isOpen) {
+      scrollToBottom();
+    }
+  }, [messages, isTyping, isOpen]);
 
-  const handleSend = async () => {
-    const message = input.trim();
+  const handleSendText = async (textToSend) => {
+    const message = textToSend.trim();
 
     if (!message || isTyping) return;
 
@@ -62,8 +73,6 @@ const Chatbot = () => {
       }
 
       const data = await response.json();
-
-      console.log("Chatbot Response:", data);
 
       setMessages((prev) => [
         ...prev,
@@ -111,6 +120,7 @@ const Chatbot = () => {
             <button
               className="close-chat"
               onClick={() => setIsOpen(false)}
+              aria-label="Close Chat"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -129,10 +139,7 @@ const Chatbot = () => {
           {/* Messages */}
           <div className="chat-messages">
             {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`message ${msg.sender}`}
-              >
+              <div key={index} className={`message ${msg.sender}`}>
                 {msg.text}
               </div>
             ))}
@@ -148,6 +155,20 @@ const Chatbot = () => {
             <div ref={messagesEndRef} />
           </div>
 
+          {/* Quick Action Prompt Chips */}
+          <div className="chatbot-chips-bar">
+            {PROMPT_CHIPS.map((chip, idx) => (
+              <button
+                key={idx}
+                className="chip-btn"
+                onClick={() => handleSendText(chip)}
+                disabled={isTyping}
+              >
+                {chip}
+              </button>
+            ))}
+          </div>
+
           {/* Input */}
           <div className="chat-input-area">
             <input
@@ -157,14 +178,14 @@ const Chatbot = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  handleSend();
+                  handleSendText(input);
                 }
               }}
             />
 
             <button
               className="send-btn"
-              onClick={handleSend}
+              onClick={() => handleSendText(input)}
               disabled={isTyping}
               aria-label="Send message"
             >
@@ -185,6 +206,7 @@ const Chatbot = () => {
       <button
         className="chatbot-toggle"
         onClick={() => setIsOpen(!isOpen)}
+        aria-label="Toggle AI Chatbot"
       >
         <img src={botAvatar} alt="Winkie AI" />
       </button>

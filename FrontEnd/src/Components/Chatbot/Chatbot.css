@@ -198,6 +198,41 @@
     border-bottom-left-radius: 4px;
 }
 
+/* ================= QUICK ACTION PROMPT CHIPS ================= */
+.chatbot-chips-bar {
+    display: flex;
+    gap: 8px;
+    padding: 8px 14px;
+    background: #0f0f0f;
+    overflow-x: auto;
+    border-top: 1px solid var(--border);
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.chatbot-chips-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.chip-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    color: #e0e0e0;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.chip-btn:hover {
+    background: rgba(212, 175, 55, 0.2);
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
 .message.user {
     align-self: flex-end;
     background: linear-gradient(135deg, var(--gold), #b8860b);
