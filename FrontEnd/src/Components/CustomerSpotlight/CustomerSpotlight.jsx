@@ -5,8 +5,9 @@ const CustomerSpotlight = () => {
   return (
     <div className="spotlight-section">
       <div className="spotlight-single">
-        <img src={cs_1} alt="Customer Spotlight Gallery" />
+        <img src={cs_1} alt="Customer Spotlight Gallery" loading="lazy" decoding="async" />
       </div>
+
     </div>
   );
 };

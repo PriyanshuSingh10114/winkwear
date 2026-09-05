@@ -1,4 +1,4 @@
-import React, { useContext, useState, memo } from 'react';
+import React, { useContext, useState, useEffect, memo } from 'react';
 import './Item.css';
 import { Link } from 'react-router-dom';
 import { createProductSlug } from '../../utils/slugify';
@@ -6,17 +6,23 @@ import { formatPrice } from '../../utils/formatPrice';
 import { WishlistContext } from '../../Context/WishlistContext';
 import { FaHeart, FaRegHeart, FaEye } from 'react-icons/fa';
 import QuickViewModal from '../QuickView/QuickViewModal';
+import fallbackProductImg from '../Assets/10.webp';
 
 const Item = (props) => {
   const productUrl = createProductSlug(props.name, props.id);
   const { toggleWishlist, isInWishlist } = useContext(WishlistContext);
   const [quickViewOpen, setQuickViewOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [imgSrc, setImgSrc] = useState(props.image || fallbackProductImg);
+
+  useEffect(() => {
+    setImgSrc(props.image || fallbackProductImg);
+  }, [props.image]);
 
   const productData = {
     id: props.id,
     name: props.name,
-    image: props.image,
+    image: imgSrc,
     new_price: props.new_price,
     old_price: props.old_price,
     category: props.category || '',
@@ -43,12 +49,18 @@ const Item = (props) => {
         <div className="item-img-container">
           <Link to={productUrl} onClick={() => window.scrollTo(0, 0)}>
             <img
-              src={props.image}
+              src={imgSrc}
               alt={props.name || "Wink & Wear Fashion Item"}
               loading={props.priority ? "eager" : "lazy"}
               fetchPriority={props.priority ? "high" : "auto"}
               decoding="async"
               onLoad={() => setIsLoaded(true)}
+              onError={() => {
+                if (imgSrc !== fallbackProductImg) {
+                  setImgSrc(fallbackProductImg);
+                }
+                setIsLoaded(true);
+              }}
               className={`item-product-img ${isLoaded ? "loaded" : "loading"}`}
             />
           </Link>

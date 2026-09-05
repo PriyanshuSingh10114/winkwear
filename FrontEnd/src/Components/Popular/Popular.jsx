@@ -1,26 +1,42 @@
-import React from 'react'
-import './Popular.css'
-import popular from '../Assets/popular'
-import Item from '../Item/Item'
-import { useEffect ,useState} from 'react'
+import React, { useState, useEffect } from 'react';
+import './Popular.css';
+import popular from '../Assets/popular';
+import Item from '../Item/Item';
 
 const Popular = () => {
-  const [popularProducts,setPopularProducts]=useState([]);
-  
-  useEffect(()=>{
-    fetch(`${import.meta.env.VITE_API_BACKEND_URL}/popularinwomen`)
-    .then((response)=>response.json())
-    .then((data)=>setPopularProducts(data));
-  },[])
+  const [popularProducts, setPopularProducts] = useState(popular);
 
-  const displayProducts = popularProducts.length > 0 ? popularProducts : popular;
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BACKEND_URL}/popularinwomen`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const validRemote = data.filter((item) => (item.images || item.image) && String(item.images || item.image).trim().length > 0);
+
+          const seen = new Set(validRemote.map((p) => p.id));
+          const merged = [...validRemote];
+
+          popular.forEach((item) => {
+            if (!seen.has(item.id)) {
+              merged.push(item);
+              seen.add(item.id);
+            }
+          });
+
+          setPopularProducts(merged.slice(0, 4));
+        }
+      })
+      .catch(() => {
+        setPopularProducts(popular);
+      });
+  }, []);
 
   return (
     <div className="popular">
       <h2>POPULAR IN WOMEN</h2>
       <hr />
       <div className="popular-item">
-        {displayProducts.map((item, i) => {
+        {popularProducts.map((item, i) => {
           return (
             <Item
               key={item.id || i}
@@ -38,5 +54,4 @@ const Popular = () => {
   );
 };
 
-
-export default Popular
+export default Popular;

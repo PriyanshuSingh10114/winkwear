@@ -120,7 +120,8 @@ const ShopCategory = ({ category, banner }) => {
       </div>
 
       {/* ================= BANNER & H1 ================= */}
-      <img className="shopcategory-banner" src={banner} alt={`${catSEO.h1} Banner`} />
+      <img className="shopcategory-banner" src={banner} alt={`${catSEO.h1} Banner`} fetchPriority="high" decoding="async" />
+
 
       <div style={{ padding: "0 5%", marginTop: "1rem" }}>
         <h1 style={{ color: "#fff", fontSize: "1.8rem", marginBottom: "0.5rem" }}>{catSEO.h1}</h1>

@@ -41,7 +41,8 @@ const CreatorPicks = () => {
       <div className="creator-grid">
         {picks.map((c, i) => (
           <div className="creator-card" key={i}>
-            <img src={c.img} alt={c.name} />
+            <img src={c.img} alt={c.name} loading="lazy" decoding="async" width={300} height={400} />
+
 
             <div className="creator-content">
               <h3>{c.name}</h3>

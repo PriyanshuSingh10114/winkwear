@@ -2,10 +2,11 @@
 .shopcategory-banner {
   width: 98%;
   max-width: 1440px;
-  height: clamp(160px, 25vw, 420px);
+  height: clamp(180px, 30vw, 460px);
   margin: 14px auto;
   border-radius: 18px;
   object-fit: cover;
+  object-position: center 20%;
   display: block;
 }
 

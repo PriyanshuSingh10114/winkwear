@@ -1,26 +1,43 @@
-import React from 'react'
-import './NewCollections.css'
-import new_collections from '../Assets/new_collections'
-import Item from '../Item/Item'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import './NewCollections.css';
+import new_collections from '../Assets/new_collections';
+import Item from '../Item/Item';
 
 const NewCollections = () => {
-  const [new_collection,setNew_collection]=useState([]);
-  useEffect(()=>{
-    fetch(`${import.meta.env.VITE_API_BACKEND_URL}/newcollection`)
-    .then((response)=>response.json())
-    .then((data)=>setNew_collection(data));
-  },[])
+  const [collection, setCollection] = useState(new_collections);
 
-  const displayProducts = new_collection.length > 0 ? new_collection : new_collections;
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_BACKEND_URL}/newcollection`)
+      .then((response) => response.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          // Filter remote products with valid images and merge with fallback
+          const validRemote = data.filter((item) => (item.images || item.image) && String(item.images || item.image).trim().length > 0);
+          
+          const seen = new Set(validRemote.map((p) => p.id));
+          const merged = [...validRemote];
+
+          new_collections.forEach((item) => {
+            if (!seen.has(item.id)) {
+              merged.push(item);
+              seen.add(item.id);
+            }
+          });
+
+          setCollection(merged.slice(0, 12));
+        }
+      })
+      .catch(() => {
+        setCollection(new_collections);
+      });
+  }, []);
 
   return (
     <div className="new-collections" id="new-collections">
       <h2>NEW COLLECTIONS</h2>
       <hr />
       <div className="collections">
-        {displayProducts.map((item, i) => {
+        {collection.map((item, i) => {
           return (
             <Item
               key={item.id || i}
@@ -38,5 +55,4 @@ const NewCollections = () => {
   );
 };
 
-
-export default NewCollections
+export default NewCollections;
