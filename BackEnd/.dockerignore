@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+.env
+.env.*
+.git
+.gitignore
+uploads/*
+!uploads/.gitkeep
+*.md
+verify_benchmark.js
+explain_stats.js

@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const { OAuth2Client } = require("google-auth-library");
 const User = require("../models/User");
 const env = require("../config/env");
@@ -9,24 +10,52 @@ const generateToken = (user) => {
   return jwt.sign({ user: { id: user._id } }, env.JWT_SECRET);
 };
 
+const isBcryptHash = (str) => {
+  return typeof str === "string" && /^\$2[aby]\$\d{2}\$/.test(str);
+};
+
 const signup = async (userData) => {
-  const check = await User.findOne({ email: userData.email });
+  const check = await User.findOne({ email: userData.email.toLowerCase().trim() });
   if (check) {
     return null;
   }
 
+  const hashedPassword = await bcrypt.hash(userData.password, 10);
+
   const cart = {};
   for (let i = 0; i < 300; i++) cart[i] = 0;
 
-  const user = new User({ ...userData, cartData: cart });
+  const user = new User({
+    ...userData,
+    email: userData.email.toLowerCase().trim(),
+    password: hashedPassword,
+    cartData: cart,
+  });
   await user.save();
 
   return generateToken(user);
 };
 
 const login = async (email, password) => {
-  const user = await User.findOne({ email });
-  if (!user || user.password !== password) {
+  const normalizedEmail = email.toLowerCase().trim();
+  const user = await User.findOne({ email: normalizedEmail });
+  if (!user) {
+    return null;
+  }
+
+  let isPasswordValid = false;
+
+  if (isBcryptHash(user.password)) {
+    isPasswordValid = await bcrypt.compare(password, user.password);
+  } else {
+    // Legacy plaintext password check with on-the-fly migration to bcrypt
+    if (user.password === password) {
+      isPasswordValid = true;
+      user.password = await bcrypt.hash(password, 10);
+    }
+  }
+
+  if (!isPasswordValid) {
     return null;
   }
 
@@ -43,16 +72,19 @@ const googleAuth = async (credential) => {
   });
 
   const { email, name, sub } = ticket.getPayload();
-  let user = await User.findOne({ email });
+  const normalizedEmail = email.toLowerCase().trim();
+  let user = await User.findOne({ email: normalizedEmail });
 
   if (!user) {
     const cart = {};
     for (let i = 0; i < 300; i++) cart[i] = 0;
 
+    const dummyHashedPassword = await bcrypt.hash(sub, 10);
+
     user = new User({
       name,
-      email,
-      password: sub,
+      email: normalizedEmail,
+      password: dummyHashedPassword,
       cartData: cart,
     });
   }
@@ -64,7 +96,7 @@ const googleAuth = async (credential) => {
 };
 
 const getUserProfile = async (userId) => {
-  return await User.findById(userId).select("-password");
+  return await User.findById(userId).select("-password").lean();
 };
 
 const updateUserProfile = async (userId, profileData) => {
@@ -73,7 +105,9 @@ const updateUserProfile = async (userId, profileData) => {
     userId,
     { phone, gender, dob },
     { new: true }
-  ).select("-password");
+  )
+    .select("-password")
+    .lean();
 };
 
 const updateUserAvatar = async (userId, filename) => {

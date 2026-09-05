@@ -13,12 +13,16 @@ requiredVars.forEach((key) => {
 });
 
 module.exports = {
-  PORT: process.env.PORT,
+  PORT: process.env.PORT || 5000,
   MONGODB_URI: process.env.MONGODB_URI,
   JWT_SECRET: process.env.JWT_SECRET || "secret_ecom",
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   VITE_API_FRONTEND_URL: process.env.VITE_API_FRONTEND_URL,
-  EMAIL_USER: "artisinghstp5313@gmail.com",
-  EMAIL_PASS: "ieqoqbymehkiacrf",
+  EMAIL_USER: process.env.EMAIL_USER || "artisinghstp5313@gmail.com",
+  EMAIL_PASS: process.env.EMAIL_PASS || "ieqoqbymehkiacrf",
   GOOGLE_GEMINI_API: process.env.GOOGLE_GEMINI_API,
+  AWS_REGION: process.env.AWS_REGION || "ap-south-1",
+  S3_BUCKET_MEDIA: process.env.S3_BUCKET_MEDIA,
+  CLOUDFRONT_URL: process.env.CLOUDFRONT_URL,
 };
+

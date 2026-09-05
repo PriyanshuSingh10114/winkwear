@@ -1,20 +1,36 @@
-# -------- Base Image --------
-FROM node:20-alpine
+# ==========================================
+# WinkWear Backend - Production Dockerfile
+# ==========================================
+FROM node:20-alpine AS builder
 
-# Create app directory
 WORKDIR /app
 
-# Copy dependency files
+# Install dependencies
 COPY package*.json ./
+RUN npm ci --only=production
 
-# Install only production dependencies
-RUN npm install --production
-
-# Copy rest of the code
+# Copy source code
 COPY . .
 
-# Backend runs on port 4000
-EXPOSE 4000
+# Production Runner
+FROM node:20-alpine AS runner
 
-# Start server
-CMD ["node", "index.js"]
+WORKDIR /app
+
+ENV NODE_ENV=production
+ENV PORT=5000
+
+# Create non-root user for security
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
+
+COPY --from=builder --chown=nodejs:nodejs /app /app
+
+USER nodejs
+
+EXPOSE 5000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:5000/health || exit 1
+
+CMD ["node", "src/server.js"]
