@@ -3,7 +3,7 @@
  * Domain: https://winkandwear.com
  */
 
-export const SITE_URL = "https://winkandwear.com";
+export const SITE_URL = import.meta.env.VITE_API_FRONTEND_URL || "https://winkandwear.com";
 
 export const DEFAULT_SEO = {
   title: "Wink & Wear | Online Fashion Store for Men, Women & Kids",

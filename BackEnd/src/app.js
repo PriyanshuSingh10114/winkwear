@@ -19,9 +19,23 @@ const app = express();
 
 /* ================= MIDDLEWARE ================= */
 app.use(express.json());
+
+const allowedOrigins = [
+  env.VITE_API_FRONTEND_URL,
+  "http://localhost:5173",
+  "https://winkandwear.com",
+  "https://www.winkandwear.com"
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: env.VITE_API_FRONTEND_URL,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(null, true);
+      }
+    },
     credentials: true,
   })
 );
