@@ -13,18 +13,30 @@ const NewCollections = () => {
     .then((data)=>setNew_collection(data));
   },[])
 
+  const displayProducts = new_collection.length > 0 ? new_collection : new_collections;
+
   return (
     <div className="new-collections" id="new-collections">
-        <h2>NEW COLLECTIONS</h2>
-        <hr />
-        <div className="collections">
-            {new_collections.map((item,i)=>{
-                return <Item key={item.id || i} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price} priority={i < 4} />
-            })}
-        </div>
+      <h2>NEW COLLECTIONS</h2>
+      <hr />
+      <div className="collections">
+        {displayProducts.map((item, i) => {
+          return (
+            <Item
+              key={item.id || i}
+              id={item.id}
+              name={item.name}
+              image={item.images || item.image}
+              new_price={item.new_price}
+              old_price={item.old_price}
+              priority={i < 4}
+            />
+          );
+        })}
+      </div>
     </div>
+  );
+};
 
-  )
-}
 
 export default NewCollections

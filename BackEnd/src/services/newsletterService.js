@@ -12,7 +12,10 @@ const subscribe = async (email) => {
     text: `Hi,\n\nThanks for subscribing to Wink & Wear!\nYou'll now receive exclusive deals and updates directly to your inbox.\n\nRegards,\nThe Wink & Wear Team`,
   };
 
-  await emailSender.sendEmail(mailOptions);
+  emailSender.sendEmail(mailOptions).catch((err) => {
+    console.error("Async Newsletter Email Error:", err.message);
+  });
 };
 
 module.exports = { subscribe };
+

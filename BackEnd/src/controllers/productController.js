@@ -20,12 +20,13 @@ const removeProduct = async (req, res, next) => {
 
 const getAllProducts = async (req, res, next) => {
   try {
-    const products = await productService.getAllProducts();
+    const products = await productService.getAllProducts(req.query);
     res.send(products);
   } catch (error) {
     next(error);
   }
 };
+
 
 const getNewCollection = async (req, res, next) => {
   try {

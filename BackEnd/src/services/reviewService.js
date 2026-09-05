@@ -28,7 +28,10 @@ const addReview = async (userId, productId, rating, comment) => {
 const getReviewsByProduct = async (productId) => {
   return await Review.find({
     productId: Number(productId),
-  }).sort({ date: -1 });
+  })
+    .sort({ date: -1 })
+    .select("productId userId userName rating comment date")
+    .lean();
 };
 
 const getRatingByProduct = async (productId) => {
@@ -51,3 +54,4 @@ module.exports = {
   getReviewsByProduct,
   getRatingByProduct,
 };
+

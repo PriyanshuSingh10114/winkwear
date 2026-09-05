@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const compression = require("compression");
 const env = require("./config/env");
 
 // Middlewares
@@ -17,14 +18,35 @@ const chatbotRoutes = require("./routes/chatbotRoutes");
 
 const app = express();
 
-/* ================= MIDDLEWARE ================= */
-app.use(express.json());
+/* ================= COMPRESSION & TIMING ================= */
+// Response compression (Gzip / Deflate)
+app.use(compression());
+
+// Safe request latency logging (never logs sensitive payloads or tokens)
+app.use((req, res, next) => {
+  const start = process.hrtime.bigint();
+  res.on("finish", () => {
+    const end = process.hrtime.bigint();
+    const duration = Number(end - start) / 1_000_000;
+    // Only log non-static API requests to keep logs clean
+    if (!req.originalUrl.startsWith("/uploads")) {
+      console.log(
+        `[PERF] ${req.method} ${req.originalUrl} -> ${res.statusCode} (${duration.toFixed(1)}ms)`
+      );
+    }
+  });
+  next();
+});
+
+/* ================= BODY PARSER & CORS ================= */
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 const allowedOrigins = [
   env.VITE_API_FRONTEND_URL,
   "http://localhost:5173",
   "https://winkandwear.com",
-  "https://www.winkandwear.com"
+  "https://www.winkandwear.com",
 ].filter(Boolean);
 
 app.use(
@@ -41,15 +63,22 @@ app.use(
 );
 
 /* ================= STATIC FILES ================= */
-// Serve local images
-app.use("/uploads", express.static("uploads/images"));
+// Serve local images with HTTP caching headers (7-day max-age and ETag)
+app.use(
+  "/uploads",
+  express.static("uploads/images", {
+    maxAge: "7d",
+    etag: true,
+    lastModified: true,
+  })
+);
 
 /* ================= ROUTES ================= */
 app.use("/", productRoutes);
 app.use("/", userRoutes);
 app.use("/", cartRoutes);
 app.use("/", reviewRoutes);
-app.use("/", newsletterRoutes); 
+app.use("/", newsletterRoutes);
 
 app.use("/api/orders", orderRoutes);
 app.use("/api/pincode", pincodeRoutes);
@@ -65,7 +94,7 @@ app.get("/health", (_, res) =>
   res.json({ success: true, message: "Backend is running" })
 );
 
-
 /* ================= ERROR HANDLER ================= */
 app.use(errorHandler);
+
 module.exports = app;

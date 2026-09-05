@@ -1,8 +1,12 @@
 const Product = require("../models/Product");
 
 const addProduct = async (productData) => {
-  const products = await Product.find({});
-  const id = products.length ? products[products.length - 1].id + 1 : 1;
+  const lastProduct = await Product.findOne({})
+    .sort({ id: -1 })
+    .select("id")
+    .lean();
+
+  const id = lastProduct && typeof lastProduct.id === "number" ? lastProduct.id + 1 : 1;
 
   const product = new Product({ id, ...productData });
   await product.save();
@@ -13,18 +17,43 @@ const removeProduct = async (id) => {
   return await Product.findOneAndDelete({ id });
 };
 
-const getAllProducts = async () => {
-  return await Product.find({});
+const getAllProducts = async (filters = {}) => {
+  const query = {};
+  if (filters.category) {
+    query.category = filters.category;
+  }
+  if (filters.available !== undefined) {
+    query.available = filters.available;
+  }
+
+  let dbQuery = Product.find(query)
+    .select("id name images category new_price old_price date available")
+    .lean();
+
+  if (filters.limit) {
+    const limit = Math.min(Math.max(Number(filters.limit) || 20, 1), 100);
+    const page = Math.max(Number(filters.page) || 1, 1);
+    const skip = (page - 1) * limit;
+    dbQuery = dbQuery.skip(skip).limit(limit);
+  }
+
+  return await dbQuery;
 };
 
 const getNewCollection = async () => {
-  const products = await Product.find({});
-  return products.slice(-8);
+  return await Product.find({ available: { $ne: false } })
+    .sort({ date: -1, id: -1 })
+    .limit(8)
+    .select("id name images category new_price old_price date available")
+    .lean();
 };
 
 const getPopularInWomen = async () => {
-  const products = await Product.find({ category: "women" });
-  return products.slice(0, 4);
+  return await Product.find({ category: "women", available: { $ne: false } })
+    .sort({ date: -1, id: -1 })
+    .limit(4)
+    .select("id name images category new_price old_price date available")
+    .lean();
 };
 
 module.exports = {
