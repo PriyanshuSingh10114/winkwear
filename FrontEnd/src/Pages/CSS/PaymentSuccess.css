@@ -1,0 +1,225 @@
+/* =========================================================
+   PAYMENT SUCCESS & STATUS — Wink & Wear Luxury Matte Dark
+   ========================================================= */
+
+.payment-success-wrapper {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  background: #0a0a0a;
+  box-sizing: border-box;
+}
+
+.payment-success-card {
+  width: 100%;
+  max-width: 620px;
+  background: #141414;
+  border: 1px solid rgba(212, 160, 69, 0.3);
+  border-radius: 20px;
+  padding: 44px 36px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.65);
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.status-container h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 16px 0 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.order-subtitle {
+  color: #a0a0a0;
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* Icons */
+.success-icon {
+  font-size: 4rem;
+  color: #2ec4b6;
+  filter: drop-shadow(0 0 12px rgba(46, 196, 182, 0.35));
+}
+
+.error-icon {
+  font-size: 4rem;
+  color: #e63946;
+  filter: drop-shadow(0 0 12px rgba(230, 57, 70, 0.35));
+}
+
+.spinner-icon {
+  font-size: 3.5rem;
+  color: #d4a045;
+  animation: spin 1.2s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Receipt Details */
+.receipt-box {
+  background: #0d0d0d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  text-align: left;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.95rem;
+}
+
+.receipt-row:last-child {
+  border-bottom: none;
+}
+
+.receipt-label {
+  color: #888888;
+}
+
+.receipt-value {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.receipt-value.gold-text {
+  color: #d4a045;
+  font-family: monospace;
+  font-size: 0.92rem;
+}
+
+.status-tag {
+  background: rgba(212, 160, 69, 0.15);
+  color: #d4a045;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(212, 160, 69, 0.3);
+}
+
+.discount-val {
+  color: #2ec4b6;
+}
+
+.total-row {
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(212, 160, 69, 0.4);
+}
+
+.total-row .receipt-label {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.total-row .total-val {
+  color: #d4a045;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+/* Delivery info */
+.delivery-info {
+  background: #0f0f0f;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.delivery-info h4 {
+  margin: 0 0 8px 0;
+  color: #d4a045;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.delivery-info p {
+  margin: 0;
+  color: #cccccc;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 180px;
+}
+
+.btn-primary {
+  background: #d4a045;
+  color: #0a0a0a;
+  border: 1px solid #d4a045;
+}
+
+.btn-primary:hover {
+  background: #e5b35a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 160, 69, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #d4a045;
+  color: #d4a045;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .payment-success-card {
+    padding: 30px 20px;
+  }
+
+  .status-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    flex: none;
+  }
+}

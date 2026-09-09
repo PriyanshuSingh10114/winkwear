@@ -5,6 +5,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 router.post("/placeorder", authMiddleware, orderController.placeOrder);
 router.get("/myorders", authMiddleware, orderController.getMyOrders);
+router.get("/:id/payment-status", authMiddleware, orderController.getPaymentStatus);
 router.get("/:id", authMiddleware, orderController.getOrderById);
 router.put("/cancel/:id", authMiddleware, orderController.cancelOrder);
 

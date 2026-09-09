@@ -31,6 +31,18 @@ const PlaceOrder = () => {
 
   const [method, setMethod] = useState("cod");
   const [pincodeLoading, setPincodeLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Check for Stripe cancellation redirect on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("cancelled") === "true") {
+      toast.info("Stripe checkout was cancelled. Your cart items have been preserved.", {
+        position: "top-center",
+        autoClose: 4000,
+      });
+    }
+  }, []);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -53,7 +65,6 @@ const PlaceOrder = () => {
 
     try {
       setPincodeLoading(true);
-      console.log(import.meta.env.VITE_API_BACKEND_URL);
       const res = await axios.get(
         `${import.meta.env.VITE_API_BACKEND_URL}/api/pincode/${value}`
       );
@@ -126,15 +137,14 @@ const PlaceOrder = () => {
           productId: product.id,
           name: product.name,
           price: Number(product.new_price),
-          image: product.images || "",
+          image: product.images || product.image || "",
           quantity: cartItems[id],
-
         };
       })
       .filter(Boolean);
 
     if (!items.length) {
-      toast.error("Products not loaded yet. Please try again.", {
+      toast.error("Your cart is empty or products are still loading.", {
         position: "top-center",
       });
       return;
@@ -147,39 +157,77 @@ const PlaceOrder = () => {
       return;
     }
 
-    if (method !== "cod") {
-      toast.error("Payment gateway not enabled yet.", {
+    if (method === "razorpay") {
+      toast.error("Razorpay gateway is not enabled yet.", {
         position: "top-center",
       });
       return;
     }
 
     try {
+      setIsSubmitting(true);
+
+      // STRIPE HOSTED CHECKOUT FLOW
+      if (method === "stripe") {
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_BACKEND_URL}/api/payment/create-checkout-session`,
+          {
+            email: formData.email,
+            name: `${formData.firstName} ${formData.lastName}`.trim(),
+            items,
+            couponCode: orderSummary.appliedCode || "",
+            address: {
+              name: `${formData.firstName} ${formData.lastName}`.trim(),
+              phone: formData.phone,
+              street: formData.street,
+              city: formData.city,
+              state: formData.state,
+              pincode: formData.zipCode,
+              country: formData.country || "India",
+            },
+          },
+          {
+            headers: {
+              "auth-token": token,
+            },
+          }
+        );
+
+        if (res.data?.url) {
+          // Redirect to Stripe Hosted Checkout
+          window.location.href = res.data.url;
+          return;
+        } else {
+          throw new Error("Failed to retrieve checkout redirect URL");
+        }
+      }
+
+      // CASH ON DELIVERY (COD) FLOW
       await axios.post(
         `${import.meta.env.VITE_API_BACKEND_URL}/api/orders/placeorder`,
         {
           email: formData.email,
-          name: `${formData.firstName} ${formData.lastName}`,
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
           items,
           order: {
             subtotal: orderSummary.subtotal,
             shipping: orderSummary.shipping,
             total: orderSummary.total,
-            paymentMethod: method,
+            paymentMethod: "COD",
           },
           address: {
-            name: `${formData.firstName} ${formData.lastName}`,
+            name: `${formData.firstName} ${formData.lastName}`.trim(),
             phone: formData.phone,
             street: formData.street,
             city: formData.city,
             state: formData.state,
             pincode: formData.zipCode,
-            country: formData.country,
+            country: formData.country || "India",
           },
         },
         {
           headers: {
-            "auth-token": localStorage.getItem("auth-token"),
+            "auth-token": token,
           },
         }
       );
@@ -192,11 +240,13 @@ const PlaceOrder = () => {
       clearCart();
       navigate("/orders");
     } catch (error) {
-      console.error(error);
+      console.error("[CHECKOUT ERROR]", error);
       toast.error(
-        error.response?.data?.message || "Order failed. Please try again.",
+        error.response?.data?.message || error.message || "Order failed. Please try again.",
         { position: "top-center" }
       );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -300,16 +350,21 @@ const PlaceOrder = () => {
           <div className="payment-method-selection">
             <div
               className={`payment-option ${
+                method === "stripe" ? "selected" : ""
+              }`}
+              onClick={() => setMethod("stripe")}
+            >
+              <img src={stripe_logo} alt="Stripe" />
+              <span>Pay with Card (Stripe)</span>
+            </div>
+
+            <div
+              className={`payment-option ${
                 method === "cod" ? "selected" : ""
               }`}
               onClick={() => setMethod("cod")}
             >
               <span>Cash on Delivery</span>
-            </div>
-
-            <div className="payment-option disabled">
-              <img src={stripe_logo} alt="Stripe" />
-              <span>Stripe (Coming Soon)</span>
             </div>
 
             <div className="payment-option disabled">
@@ -319,7 +374,17 @@ const PlaceOrder = () => {
           </div>
 
           <div className="place-order">
-            <button onClick={handlePlaceOrder}>Place Order</button>
+            <button 
+              onClick={handlePlaceOrder} 
+              disabled={isSubmitting}
+              className={isSubmitting ? "loading" : ""}
+            >
+              {isSubmitting
+                ? "Creating secure checkout..."
+                : method === "stripe"
+                ? "Proceed to Stripe Payment"
+                : "Place Order"}
+            </button>
           </div>
         </div>
       </div>

@@ -33,9 +33,38 @@ const orderSchema = new mongoose.Schema(
       default: "COD",
     },
 
+    paymentStatus: {
+      type: String,
+      enum: ["pending", "paid", "failed", "refunded"],
+      default: "pending",
+    },
+
+    stripeSessionId: {
+      type: String,
+      sparse: true,
+      index: true,
+    },
+
+    stripePaymentIntentId: {
+      type: String,
+      sparse: true,
+    },
+
     subtotal: Number,
     shipping: Number,
+    discount: {
+      type: Number,
+      default: 0,
+    },
+    promoCode: {
+      type: String,
+      default: "",
+    },
     total: Number,
+    currency: {
+      type: String,
+      default: "usd",
+    },
 
     status: {
       type: String,

@@ -173,10 +173,20 @@ const cancelOrder = async (userId, orderId) => {
   return true;
 };
 
+const getPaymentStatus = async (userId, orderId) => {
+  return await Order.findOne({
+    _id: orderId,
+    userId,
+  })
+    .select("paymentStatus status total subtotal discount shipping items createdAt address tracking stripeSessionId paymentMethod")
+    .lean();
+};
+
 module.exports = {
   placeOrder,
   getMyOrders,
   getOrderById,
   cancelOrder,
+  getPaymentStatus,
 };
 

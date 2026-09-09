@@ -55,9 +55,35 @@ const cancelOrder = async (req, res, next) => {
   }
 };
 
+const getPaymentStatus = async (req, res, next) => {
+  try {
+    const order = await orderService.getPaymentStatus(req.user.id, req.params.id);
+    if (!order) {
+      return res.status(404).json({ success: false, message: "Order not found" });
+    }
+    res.json({
+      success: true,
+      orderId: order._id,
+      paymentStatus: order.paymentStatus,
+      status: order.status,
+      total: order.total,
+      subtotal: order.subtotal,
+      discount: order.discount,
+      shipping: order.shipping,
+      paymentMethod: order.paymentMethod,
+      items: order.items,
+      address: order.address,
+      createdAt: order.createdAt,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   placeOrder,
   getMyOrders,
   getOrderById,
   cancelOrder,
+  getPaymentStatus,
 };

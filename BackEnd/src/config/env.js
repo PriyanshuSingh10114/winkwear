@@ -24,5 +24,8 @@ module.exports = {
   AWS_REGION: process.env.AWS_REGION || "ap-south-1",
   S3_BUCKET_MEDIA: process.env.S3_BUCKET_MEDIA,
   CLOUDFRONT_URL: process.env.CLOUDFRONT_URL,
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+  STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+  CLIENT_URL: process.env.CLIENT_URL || process.env.VITE_API_FRONTEND_URL || "http://localhost:5173",
 };
 
