@@ -5,6 +5,7 @@ import cart_icon from "../Assets/cart_icon.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContext";
 import { WishlistContext } from "../../Context/WishlistContext";
+import { useTheme } from "../../Context/ThemeContext";
 import { formatPrice } from "../../utils/formatPrice";
 import { createProductSlug } from "../../utils/slugify";
 import {
@@ -16,6 +17,8 @@ import {
   FaShoppingBag,
   FaChevronDown,
   FaChevronRight,
+  FaSun,
+  FaMoon,
 } from "react-icons/fa";
 
 const MEGA_MENU_DATA = {
@@ -85,6 +88,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const { theme, toggleTheme } = useTheme();
   const { getTotalCartItems, all_product } = useContext(ShopContext);
   const { getWishlistCount } = useContext(WishlistContext);
 
@@ -369,6 +373,23 @@ const Navbar = () => {
 
         {/* ================= 3. RIGHT: ACTION ICONS ================= */}
         <div className="nav-right-actions">
+          {/* THEME TOGGLE (LIGHT / DARK) */}
+          <button
+            className="nav-action-btn theme-toggle-btn"
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
+          >
+            {theme === "dark" ? (
+              <FaSun className="theme-toggle-icon sun" />
+            ) : (
+              <FaMoon className="theme-toggle-icon moon" />
+            )}
+            <span className="action-label desktop-only">
+              {theme === "dark" ? "Day" : "Night"}
+            </span>
+          </button>
+
           {/* SEARCH BUTTON */}
           <button
             className="nav-action-btn search-trigger-btn"
@@ -674,6 +695,26 @@ const Navbar = () => {
                   <Link to="/contact" onClick={() => setDrawerOpen(false)}>
                     Customer Support
                   </Link>
+                </li>
+
+                <li className="drawer-theme-li">
+                  <button
+                    className="drawer-theme-toggle"
+                    onClick={toggleTheme}
+                    aria-label="Toggle light or dark theme"
+                  >
+                    <span className="drawer-theme-left">
+                      {theme === "dark" ? (
+                        <FaSun className="drawer-theme-icon sun" />
+                      ) : (
+                        <FaMoon className="drawer-theme-icon moon" />
+                      )}
+                      <span>Theme: {theme === "dark" ? "Dark Mode" : "Light Mode"}</span>
+                    </span>
+                    <span className="drawer-theme-pill">
+                      {theme === "dark" ? "Switch to Day" : "Switch to Night"}
+                    </span>
+                  </button>
                 </li>
               </ul>
 

@@ -237,3 +237,64 @@
     font-size: 0.88rem;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .testimonials-header h2 {
+  color: #141414;
+}
+
+[data-theme="light"] .testimonials-badge {
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .testimonials-header p {
+  color: #555555;
+}
+
+[data-theme="light"] .testimonials-header p strong {
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .testimonials-card {
+  background: linear-gradient(145deg, #ffffff 0%, #fbfbfb 100%);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .testimonials-card:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .user-name-row h3 {
+  color: #141414;
+}
+
+[data-theme="light"] .user-loc {
+  color: #777777;
+}
+
+[data-theme="light"] .star-icon,
+[data-theme="light"] .rating-num {
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .purchase-tag {
+  background: #f4f5f8;
+  border-color: rgba(0, 0, 0, 0.06);
+  color: #666666;
+}
+
+[data-theme="light"] .purchase-tag strong {
+  color: #141414;
+}
+
+[data-theme="light"] .testimonial-text {
+  color: #3b3b3b;
+}
+
+[data-theme="light"] .card-footer-date {
+  color: #888888;
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+

@@ -261,3 +261,32 @@
   }
 }
 
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .relatedproducts h1 {
+  color: #141414;
+}
+
+[data-theme="light"] .relatedproducts-item-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .relatedproducts-item-card:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .relatedproducts-item-title {
+  color: #141414;
+}
+
+[data-theme="light"] .relatedproducts-item-price-new {
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .relatedproducts-item-price-old {
+  color: #777777;
+}
+
+

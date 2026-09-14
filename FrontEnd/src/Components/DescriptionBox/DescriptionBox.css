@@ -275,3 +275,52 @@
     font-size: 14px;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .descriptionbox {
+  background: #ffffff;
+  color: #141414;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .descriptionbox-nav-box {
+  background: #f0f2f5;
+  color: #4a4a4a;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .descriptionbox-nav-box:hover {
+  background: var(--color-gold-subtle);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .descriptionbox-nav-box.active {
+  background: var(--color-gold);
+  color: #ffffff;
+}
+
+[data-theme="light"] .descriptionbox-content {
+  color: #4a4a4a;
+}
+
+[data-theme="light"] .descriptionbox-reviews textarea {
+  background: #f6f7f9;
+  border-color: rgba(0, 0, 0, 0.14);
+  color: #141414;
+}
+
+[data-theme="light"] .review-card {
+  background: #f8f9fa;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .review-user {
+  color: #141414;
+}
+
+[data-theme="light"] .review-text {
+  color: #4a4a4a;
+}
+

@@ -100,3 +100,29 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .notfound-container {
+  background: radial-gradient(circle at 50% 30%, rgba(218, 165, 32, 0.08), transparent 70%), var(--color-bg-primary);
+}
+
+[data-theme="light"] .notfound-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .notfound-title {
+  color: #141414;
+}
+
+[data-theme="light"] .notfound-text {
+  color: #555555;
+}
+
+[data-theme="light"] .notfound-nav-link {
+  background: #f6f7f9;
+  color: #333333;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+

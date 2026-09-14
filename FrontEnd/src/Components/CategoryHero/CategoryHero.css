@@ -249,3 +249,53 @@
     flex-direction: column;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .cat-hero-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fbf9f5 50%, #f4f5f8 100%);
+  border-color: rgba(179, 125, 29, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .cat-hero-title {
+  color: #141414;
+}
+
+[data-theme="light"] .cat-hero-intro {
+  color: #555555;
+}
+
+[data-theme="light"] .cat-hero-pills-label {
+  color: #777777;
+}
+
+[data-theme="light"] .cat-hero-pill {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #333333;
+}
+
+[data-theme="light"] .cat-hero-pill:hover {
+  background: var(--color-gold-subtle);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .cat-hero-pill.active {
+  background: linear-gradient(135deg, #b37d1d, #9c6a14);
+  color: #ffffff;
+}
+
+[data-theme="light"] .cat-hero-perks {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .cat-perk {
+  color: #555555;
+}
+
+[data-theme="light"] .cat-preview-frame {
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+

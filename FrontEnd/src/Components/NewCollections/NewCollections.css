@@ -82,3 +82,10 @@
         gap: 6px;
     }
 }
+
+/* Light Mode */
+[data-theme="light"] .new-collections h2,
+[data-theme="light"] .new-collections h1 {
+    color: #141414;
+}
+

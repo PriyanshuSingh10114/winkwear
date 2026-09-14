@@ -59,3 +59,24 @@
     flex-direction: column;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .contact-container {
+  color: #141414;
+}
+
+[data-theme="light"] .contact-container h1 {
+  color: #141414;
+}
+
+[data-theme="light"] .contact-subtitle {
+  color: #555555;
+}
+
+[data-theme="light"] .contact-form input,
+[data-theme="light"] .contact-form textarea {
+  background: #f6f7f9;
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #141414;
+}
+

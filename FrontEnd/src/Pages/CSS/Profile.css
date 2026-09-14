@@ -197,3 +197,39 @@
     font-size: 15px;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .profile-page {
+  background: var(--color-bg-primary);
+  color: #141414;
+}
+
+[data-theme="light"] .profile-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .profile-card h3 {
+  color: var(--color-gold);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .profile-info p {
+  color: #4a4a4a;
+}
+
+[data-theme="light"] .profile-info strong {
+  color: #141414;
+}
+
+[data-theme="light"] .order-item {
+  background: #f8f9fa;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .order-item:hover {
+  background: #ffffff;
+  border-color: var(--color-gold);
+}
+

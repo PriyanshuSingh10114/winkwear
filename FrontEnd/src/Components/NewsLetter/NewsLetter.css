@@ -117,3 +117,41 @@
     font-size: 15px;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .newsletter {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .newsletter h2,
+[data-theme="light"] .newsletter h1 {
+  color: #141414;
+}
+
+[data-theme="light"] .newsletter p {
+  color: #555555;
+}
+
+[data-theme="light"] .newsletter-form {
+  background: #f6f7f9;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .newsletter-form input {
+  color: #141414;
+}
+
+[data-theme="light"] .newsletter-form input::placeholder {
+  color: #888888;
+}
+
+@media (max-width: 640px) {
+  [data-theme="light"] .newsletter-form input {
+    background: #f6f7f9;
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+}
+

@@ -166,6 +166,30 @@
   }
 }
 
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .cartitems-total {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .cartitems-total h1 {
+  color: #141414;
+}
+
+[data-theme="light"] .cartitems-total-item p {
+  color: #4a4a4a;
+}
+
+[data-theme="light"] .cartitems-total-item h3 {
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .cartitems-total hr {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+
 
 
 

@@ -80,3 +80,10 @@
         gap: 6px;
     }
 }
+
+/* Light Mode */
+[data-theme="light"] .popular h2,
+[data-theme="light"] .popular h1 {
+    color: #141414;
+}
+

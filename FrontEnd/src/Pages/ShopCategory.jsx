@@ -170,22 +170,7 @@ const ShopCategory = ({ category }) => {
         schemaData={combinedSchema}
       />
 
-      {/* ================= BREADCRUMBS ================= */}
-      <div style={{ padding: "1rem 5% 0" }}>
-        <div className="breadcrums" aria-label="Breadcrumb">
-          <Link to="/">HOME</Link>
-          <span style={{ margin: "0 8px", color: "#666" }}>&gt;</span>
-          {subcategory ? (
-            <>
-              <Link to={categoryPath}>{categoryName.toUpperCase()}</Link>
-              <span style={{ margin: "0 8px", color: "#666" }}>&gt;</span>
-              <span style={{ color: "#fff" }}>{subcategory.toUpperCase().replace(/-/g, " ")}</span>
-            </>
-          ) : (
-            <span style={{ color: "#fff" }}>{categoryName.toUpperCase()}</span>
-          )}
-        </div>
-      </div>
+
 
       {/* ================= MOBILE FILTER (STABLE) ================= */}
       <div className="mobile-filter-wrapper">

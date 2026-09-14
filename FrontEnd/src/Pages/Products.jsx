@@ -97,14 +97,7 @@ const Products = () => {
         schemaData={combinedSchema}
       />
 
-      {/* ================= BREADCRUMBS ================= */}
-      <div style={{ padding: "1rem 5% 0" }}>
-        <div className="breadcrums" aria-label="Breadcrumb">
-          <Link to="/">HOME</Link>
-          <span style={{ margin: "0 8px", color: "#666" }}>&gt;</span>
-          <span style={{ color: "#fff" }}>PRODUCTS</span>
-        </div>
-      </div>
+
 
       {/* ================= MOBILE FILTER BAR ================= */}
       <div className="mobile-filter-wrapper">

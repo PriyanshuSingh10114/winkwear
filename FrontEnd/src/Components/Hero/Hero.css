@@ -63,3 +63,9 @@
     height: auto;
   }
 }
+
+/* Light Mode */
+[data-theme="light"] .hero-wrapper {
+  background: var(--color-bg-primary);
+}
+

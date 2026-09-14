@@ -205,3 +205,64 @@
     aspect-ratio: 4 / 3;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .spotlight-header h2 {
+  color: #141414;
+}
+
+[data-theme="light"] .spotlight-badge {
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .spotlight-header p {
+  color: #555555;
+}
+
+[data-theme="light"] .spotlight-header p strong {
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .spotlight-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .spotlight-card:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .spotlight-info {
+  background: #ffffff;
+}
+
+[data-theme="light"] .spotlight-handle {
+  color: #141414;
+}
+
+[data-theme="light"] .spotlight-location {
+  color: #777777;
+}
+
+[data-theme="light"] .spotlight-quote {
+  color: #555555;
+}
+
+[data-theme="light"] .spotlight-product-tag {
+  background: #f4f5f8;
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #333333;
+}
+
+[data-theme="light"] .spotlight-product-tag:hover {
+  background: var(--color-gold-subtle);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .spotlight-shop-link {
+  color: var(--color-gold);
+}
+

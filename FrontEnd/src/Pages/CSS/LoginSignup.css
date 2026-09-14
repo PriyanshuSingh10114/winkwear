@@ -299,3 +299,52 @@
     font-size: 0.8rem;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .loginsignup {
+  background: radial-gradient(circle at top, #ffffff, #f0f2f5 65%);
+}
+
+[data-theme="light"] .loginsignup::before {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(240, 242, 245, 0.7));
+}
+
+[data-theme="light"] .loginsignup-container {
+  background: #ffffff;
+  border-color: rgba(179, 125, 29, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .loginsignup-container h1 {
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .loginsignup-fields input {
+  background: #f6f7f9;
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #141414;
+}
+
+[data-theme="light"] .loginsignup-fields input::placeholder {
+  color: #888888;
+}
+
+[data-theme="light"] .loginsignup-container button {
+  background: linear-gradient(135deg, #b37d1d, #9c6a14);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+[data-theme="light"] .loginsignup-container button:hover {
+  background: linear-gradient(135deg, #c88f28, #b37d1d);
+  color: #ffffff;
+}
+
+[data-theme="light"] .loginsignup-login {
+  color: #555555;
+}
+
+[data-theme="light"] .loginsignup-agree {
+  color: #666666;
+}
+

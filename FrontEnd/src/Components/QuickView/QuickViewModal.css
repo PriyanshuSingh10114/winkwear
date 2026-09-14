@@ -205,3 +205,46 @@
     height: 240px;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .quickview-modal {
+  background: #ffffff;
+  color: #141414;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+[data-theme="light"] .quickview-close {
+  background: rgba(0, 0, 0, 0.08);
+  color: #141414;
+}
+
+[data-theme="light"] .quickview-close:hover {
+  background: var(--color-gold);
+  color: #ffffff;
+}
+
+[data-theme="light"] .quickview-details h2 {
+  color: #141414;
+}
+
+[data-theme="light"] .quickview-old {
+  color: #777777;
+}
+
+[data-theme="light"] .quickview-desc {
+  color: #555555;
+}
+
+[data-theme="light"] .qv-size-btn {
+  background: #f6f7f9;
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #141414;
+}
+
+[data-theme="light"] .qv-wishlist-btn {
+  background: #f6f7f9;
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #141414;
+}
+

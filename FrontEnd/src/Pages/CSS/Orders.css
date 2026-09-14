@@ -236,3 +236,37 @@
     text-align: center;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .orders-page {
+  background: var(--color-bg-primary);
+  color: #141414;
+}
+
+[data-theme="light"] .order-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .order-card:hover {
+  border-color: var(--color-gold);
+}
+
+[data-theme="light"] .order-id {
+  color: #141414;
+}
+
+[data-theme="light"] .order-date {
+  color: #666666;
+}
+
+[data-theme="light"] .track-btn {
+  background: #f0f2f5;
+  color: #141414;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .track-btn:hover {
+  background: #e4e7ec;
+}

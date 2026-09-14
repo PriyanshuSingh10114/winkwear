@@ -221,3 +221,23 @@
   }
 }
 
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .about-container {
+  color: #141414;
+}
+
+[data-theme="light"] .about-image {
+  background: #f0f2f5;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .about-text h1 {
+  color: #141414;
+}
+
+[data-theme="light"] .about-text p {
+  color: #4a4a4a;
+}
+
+

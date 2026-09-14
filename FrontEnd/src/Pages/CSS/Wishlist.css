@@ -95,3 +95,32 @@
     gap: 6px;
   }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .wishlist-page {
+  background: var(--color-bg-primary);
+  color: #141414;
+}
+
+[data-theme="light"] .wishlist-header h1 {
+  color: #141414;
+}
+
+[data-theme="light"] .wishlist-header p {
+  color: #555555;
+}
+
+[data-theme="light"] .wishlist-empty {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .wishlist-empty h2 {
+  color: #141414;
+}
+
+[data-theme="light"] .wishlist-empty p {
+  color: #666666;
+}
+

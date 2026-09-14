@@ -667,4 +667,44 @@
     }
   }
 
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] {
+  --primary: #b37d1d;
+  --primary-dark: #9c6a14;
+  --primary-light: #c88f28;
+  --text: #141414;
+  --text-muted: #555555;
+  --text-light: #777777;
+  --border: rgba(0, 0, 0, 0.08);
+  --background: #f6f7f9;
+  --card-bg: #ffffff;
+  --card-bg-alt: #f8f9fa;
+  --accent: #b37d1d;
+  --shadow-sm: 0 4px 18px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.09);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .left-side h2,
+[data-theme="light"] .order-summary-title {
+  color: #141414;
+}
+
+[data-theme="light"] .input-box {
+  background: #f6f7f9;
+  color: #141414;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .payment-option {
+  background: #f8f9fa;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .payment-option:hover {
+  background: #f0f2f5;
+  border-color: var(--accent);
+}
+
+
 

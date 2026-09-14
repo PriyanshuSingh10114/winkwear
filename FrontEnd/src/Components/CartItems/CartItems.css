@@ -423,3 +423,60 @@
 /* ===============================
    LARGE MOBILE — BIG PHONES (≤ 540px)
 ================================ */
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .cartitems {
+  color: #141414;
+}
+
+[data-theme="light"] .cartitems hr {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .cartitems-format-main {
+  color: #222222;
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .cartitems-format {
+  color: #141414;
+}
+
+[data-theme="light"] .carticon-product-icon {
+  background: #f6f7f9;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .cartitems-remove-icon {
+  filter: brightness(0);
+}
+
+[data-theme="light"] .cartitems-quantity-controls button {
+  background: #f0f2f5;
+  color: #141414;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .cartitems-promobox {
+  background: #f6f7f9;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .cartitems-promocode input {
+  color: #141414;
+}
+
+[data-theme="light"] .available-offers-box {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #141414;
+}
+
+@media (max-width: 480px) {
+  [data-theme="light"] .cartitems-format {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  }
+}

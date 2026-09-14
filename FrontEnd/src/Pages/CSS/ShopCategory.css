@@ -207,3 +207,49 @@
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
 }
+
+/* ================= LIGHT MODE ================= */
+[data-theme="light"] .mobile-filter-wrapper {
+  background: var(--color-bg-primary);
+}
+
+[data-theme="light"] .mobile-filter-btn {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #141414;
+}
+
+[data-theme="light"] .shopcategory-toolbar {
+  color: #141414;
+}
+
+[data-theme="light"] .toolbar-left span {
+  color: var(--color-gold);
+}
+
+[data-theme="light"] .toolbar-center select {
+  background: #ffffff;
+  color: #141414;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .mobile-filter-sheet {
+  background: #ffffff;
+  color: #141414;
+}
+
+[data-theme="light"] .filter-group label {
+  color: #555555;
+}
+
+[data-theme="light"] .filter-group select {
+  background: #f6f7f9;
+  color: #141414;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .reset-btn {
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #333333;
+}
+
