@@ -5,6 +5,7 @@ import { ShopContext } from "../Context/ShopContext";
 import dropdown_icon from "../Components/Assets/dropdown_icon.png";
 import Item from "../Components/Item/Item";
 import SEO from "../Components/SEO/SEO";
+import CategoryHero from "../Components/CategoryHero/CategoryHero";
 import { PAGE_SEO, SITE_URL, getSubcategorySEO } from "../config/seoConfig";
 import { createProductSlug } from "../utils/slugify";
 
@@ -57,7 +58,7 @@ const matchesSubcategory = (item, sub) => {
   return itemName.includes(target);
 };
 
-const ShopCategory = ({ category, banner }) => {
+const ShopCategory = ({ category }) => {
   const { all_product } = useContext(ShopContext);
   const { subcategory } = useParams();
 
@@ -204,13 +205,14 @@ const ShopCategory = ({ category, banner }) => {
         </div>
       </div>
 
-      {/* ================= BANNER & H1 ================= */}
-      <img className="shopcategory-banner" src={banner} alt={`${catSEO.h1} Banner`} fetchPriority="high" decoding="async" />
-
-      <div style={{ padding: "0 5%", marginTop: "1rem" }}>
-        <h1 style={{ color: "#fff", fontSize: "1.8rem", marginBottom: "0.5rem" }}>{catSEO.h1}</h1>
-        <p style={{ color: "#aaa", fontSize: "0.95rem", lineHeight: "1.5", maxWidth: "800px" }}>{catSEO.intro}</p>
-      </div>
+      {/* ================= CATEGORY HERO SPOTLIGHT ================= */}
+      <CategoryHero
+        category={category}
+        subcategory={subcategory}
+        title={catSEO.h1}
+        intro={catSEO.intro}
+        count={sorted.length}
+      />
 
       {/* ================= DESKTOP TOOLBAR ================= */}
       <div className="shopcategory-toolbar">

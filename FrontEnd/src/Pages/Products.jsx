@@ -4,10 +4,10 @@ import { ShopContext } from "../Context/ShopContext";
 import dropdown_icon from "../Components/Assets/dropdown_icon.png";
 import Item from "../Components/Item/Item";
 import SEO from "../Components/SEO/SEO";
+import CategoryHero from "../Components/CategoryHero/CategoryHero";
 import { PAGE_SEO, SITE_URL } from "../config/seoConfig";
 import { createProductSlug } from "../utils/slugify";
 import { Link } from "react-router-dom";
-import all_banner from "../Components/Assets/banner_4.webp";
 
 const Products = () => {
   const { all_product } = useContext(ShopContext);
@@ -124,23 +124,13 @@ const Products = () => {
         </div>
       </div>
 
-      {/* ================= BANNER & H1 ================= */}
-      <img
-        className="shopcategory-banner"
-        src={all_banner}
-        alt="All Fashion Collections Banner"
-        fetchPriority="high"
-        decoding="async"
+      {/* ================= CATEGORY HERO SPOTLIGHT ================= */}
+      <CategoryHero
+        category="products"
+        title="All Clothing & Fashion Collections"
+        intro="Explore the complete fashion catalog from Wink & Wear. Browse trending styles across Men, Women, and Kids collections with fast shipping across India."
+        count={sorted.length}
       />
-
-      <div style={{ padding: "0 5%", marginTop: "1rem" }}>
-        <h1 style={{ color: "#fff", fontSize: "1.8rem", marginBottom: "0.5rem" }}>
-          All Fashion Collections
-        </h1>
-        <p style={{ color: "#aaa", fontSize: "0.95rem", lineHeight: "1.5", maxWidth: "800px" }}>
-          Explore the complete fashion catalog from Wink & Wear. Browse trending styles across Men, Women, and Kids collections with fast shipping across India.
-        </p>
-      </div>
 
       {/* ================= DESKTOP TOOLBAR ================= */}
       <div className="shopcategory-toolbar">

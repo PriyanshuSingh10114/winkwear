@@ -24,11 +24,6 @@ const Wishlist = lazy(() => import('./Pages/Wishlist'));
 const NotFound = lazy(() => import('./Pages/NotFound'));
 const Chatbot = lazy(() => import('./Components/Chatbot/Chatbot'));
 
-// Banners
-import men_banner from './Components/Assets/banner_1.webp';
-import women_banner from './Components/Assets/banner_4.webp';
-import kid_banner from './Components/Assets/banner_6.webp';
-
 const PageLoader = () => (
   <div className="page-loader-container">
     <div className="page-loader-spinner" />
@@ -44,12 +39,12 @@ function App() {
           <Routes>
             {/* INDEXABLE PUBLIC ROUTES */}
             <Route path='/' element={<Shop />} />
-            <Route path='/mens' element={<ShopCategory banner={men_banner} category="men" />} />
-            <Route path='/mens/:subcategory' element={<ShopCategory banner={men_banner} category="men" />} />
-            <Route path='/womens' element={<ShopCategory banner={women_banner} category="women" />} />
-            <Route path='/womens/:subcategory' element={<ShopCategory banner={women_banner} category="women" />} />
-            <Route path='/kids' element={<ShopCategory banner={kid_banner} category="kid" />} />
-            <Route path='/kids/:subcategory' element={<ShopCategory banner={kid_banner} category="kid" />} />
+            <Route path='/mens' element={<ShopCategory category="men" />} />
+            <Route path='/mens/:subcategory' element={<ShopCategory category="men" />} />
+            <Route path='/womens' element={<ShopCategory category="women" />} />
+            <Route path='/womens/:subcategory' element={<ShopCategory category="women" />} />
+            <Route path='/kids' element={<ShopCategory category="kid" />} />
+            <Route path='/kids/:subcategory' element={<ShopCategory category="kid" />} />
             <Route path='/products' element={<Products />} />
             <Route path='/about' element={<About />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
