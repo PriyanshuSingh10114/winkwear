@@ -1,65 +1,207 @@
-/* ================= CUSTOMER SPOTLIGHT ================= */
+/* =========================================================
+   CUSTOMER SPOTLIGHT — Community UGC & Social Proof Showcase
+   ========================================================= */
 
 .spotlight-section {
-  padding: 60px 24px;
-  text-align: center;
-  color: #f2f2f2;
-  overflow: hidden;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.spotlight-section h2,
-.spotlight-section h1 {
-  font-size: clamp(1.65rem, 4vw, 3.25rem);
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin: 0;
-}
-
-.spotlight-section hr {
-  width: clamp(140px, 30vw, 220px);
-  height: 4px;
-  background: #d4a045;
-  border: none;
-  margin: 12px auto 40px;
-  border-radius: 10px;
-}
-
-.spotlight-single {
-  display: flex;
-  justify-content: center;
-  padding: 0;
   width: 100%;
   max-width: 1440px;
-  margin: 0 auto;
+  margin: 60px auto 40px;
+  padding: 0 24px;
   box-sizing: border-box;
 }
 
-.spotlight-single img {
-  width: 100%;
-  max-width: 100%;
-  height: clamp(260px, 45vh, 680px);
-  border-radius: 18px;
-  object-fit: cover;
+.spotlight-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.spotlight-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #d4a045;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.spotlight-header h2 {
+  color: #ffffff;
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.spotlight-line {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4a045, transparent);
+  margin: 12px auto 14px;
+  border-radius: 99px;
+}
+
+.spotlight-header p {
+  color: #a0a0a0;
+  font-size: 0.95rem;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.spotlight-header p strong {
+  color: #d4a045;
+}
+
+/* 4-Card Responsive Grid */
+.spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.spotlight-card {
+  position: relative;
+  background: #141414;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55);
-  transition: transform 0.35s ease, border-color 0.35s ease;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-.spotlight-single img:hover {
-  transform: scale(1.015);
-  border-color: #d4a045;
+.spotlight-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 160, 69, 0.45);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
 }
 
+.spotlight-img-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.spotlight-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spotlight-card:hover .spotlight-img-box img {
+  transform: scale(1.06);
+}
+
+.spotlight-likes-pill {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(13, 13, 13, 0.78);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spotlight-info {
+  padding: 16px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: #141414;
+}
+
+.spotlight-user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.spotlight-handle {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.spotlight-location {
+  color: #777;
+  font-size: 0.78rem;
+}
+
+.spotlight-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 10px;
+}
+
+.spotlight-quote {
+  color: #b0b0b0;
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.45;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+}
+
+.spotlight-product-tag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: #d0d0d0;
+  transition: all 0.25s ease;
+}
+
+.spotlight-product-tag:hover {
+  background: rgba(212, 160, 69, 0.15);
+  border-color: rgba(212, 160, 69, 0.4);
+  color: #d4a045;
+}
+
+.spotlight-shop-link {
+  color: #d4a045;
+  font-weight: 600;
+}
+
+/* Tablet (≤ 1024px) */
+@media (max-width: 1024px) {
+  .spotlight-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+/* Mobile (≤ 640px) */
 @media (max-width: 640px) {
   .spotlight-section {
-    padding: 40px 16px;
+    margin: 40px auto 24px;
+    padding: 0 16px;
   }
-  .spotlight-single img {
-    height: 320px;
-    border-radius: 12px;
+  .spotlight-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .spotlight-img-box {
+    aspect-ratio: 4 / 3;
   }
 }

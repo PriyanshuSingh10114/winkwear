@@ -1,220 +1,239 @@
-/* ============================
-   TESTIMONIALS — MATTE DARK PREMIUM
-   ============================ */
+/* =========================================================
+   TESTIMONIALS — Luxury Matte Dark Social Proof System
+   ========================================================= */
 
 .testimonials-section {
-  padding: 90px 0;
+  width: 100%;
+  max-width: 1440px;
+  margin: 60px auto 40px;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.testimonials-header {
   text-align: center;
-  color: #f2f2f2;
-  background: transparent;
+  margin-bottom: 36px;
 }
 
-/* Heading */
-.testimonials-section h1 {
-  font-size: 46px;
+.testimonials-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #d4a045;
   font-weight: 700;
-  letter-spacing: 1px;
+  margin-bottom: 8px;
 }
 
-.testimonials-section hr {
-  width: 180px;
-  height: 4px;
-  background: #d4a045;
-  border: none;
-  margin: 15px auto 55px auto;
-  border-radius: 8px;
+.testimonials-header h2 {
+  color: #ffffff;
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 0;
+  text-transform: uppercase;
 }
 
-/* Grid Wrapper */
+.testimonials-line {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4a045, transparent);
+  margin: 12px auto 14px;
+  border-radius: 99px;
+}
+
+.testimonials-header p {
+  color: #a0a0a0;
+  font-size: 0.95rem;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.testimonials-header p strong {
+  color: #d4a045;
+}
+
+/* 3-Card Responsive Grid */
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-  gap: 35px;
-  padding: 0 50px;
-  max-width: 1400px;
-  margin: 0 auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-/* Testimonial Card */
 .testimonials-card {
-  background: #151515;
-  padding: 30px 32px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.45);
-  transition: 0.35s ease;
   position: relative;
+  background: linear-gradient(145deg, #161616 0%, #121212 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* Glow hover effect */
 .testimonials-card:hover {
   transform: translateY(-6px);
-  border-color: #d4a045;
-  box-shadow: 0 16px 40px rgba(212,160,69,0.15);
+  border-color: rgba(212, 160, 69, 0.45);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(212, 160, 69, 0.1);
 }
 
-/* Card Header (profile + text) */
-.testimonial-header {
+/* Faded Background Quote Icon */
+.card-bg-quote {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 3.5rem;
+  color: rgba(212, 160, 69, 0.06);
+  pointer-events: none;
+}
+
+/* Card Top Row */
+.card-top-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
+  margin-bottom: 16px;
 }
 
-.testimonial-header img {
-  width: 60px;
-  height: 60px;
+.user-avatar-badge {
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #d4a045;
+  background: linear-gradient(135deg, #d4a045, #8a641c);
+  color: #111;
+  font-weight: 800;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(212, 160, 69, 0.3);
 }
 
-/* Name */
-.testimonial-header h3 {
-  color: #d4a045;
-  font-size: 18px;
+.user-meta {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.user-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.user-name-row h3 {
+  color: #ffffff;
+  font-size: 1.05rem;
   font-weight: 600;
   margin: 0;
 }
 
-/* Verified text */
-.verified {
-  font-size: 14px;
-  color: #8ccf8c;
-  margin: 0;
+.verified-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: #68d391;
+  background: rgba(104, 211, 145, 0.1);
+  border: 1px solid rgba(104, 211, 145, 0.25);
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 600;
 }
 
-/* Purchased Product text */
-.purchase {
-  margin-top: 3px;
-  font-size: 13px;
-  color: #bfbfbf;
-  opacity: 0.85;
+.check-icon {
+  font-size: 0.7rem;
 }
 
-/* Review Text */
+.user-loc {
+  color: #777;
+  font-size: 0.78rem;
+  margin-top: 2px;
+}
+
+/* Rating Row */
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.stars-wrapper {
+  display: flex;
+  gap: 3px;
+}
+
+.star-icon {
+  color: #d4a045;
+  font-size: 0.92rem;
+}
+
+.rating-num {
+  font-size: 0.8rem;
+  color: #d4a045;
+  font-weight: 700;
+}
+
+/* Purchased Item Tag */
+.purchase-tag {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 16px;
+}
+
+.purchase-tag strong {
+  color: #e0e0e0;
+}
+
+/* Testimonial Quote Text */
 .testimonial-text {
-  margin: 20px 0 18px;
-  font-size: 16px;
-  line-height: 1.65;
-  color: #e2e2e2;
+  color: #c8c8c8;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0 0 18px 0;
+  flex-grow: 1;
+  font-style: normal;
 }
 
-/* Rating Stars */
-.rating {
-  color: #e7c16a;
-  font-size: 20px;
-  letter-spacing: 2px;
-  margin-top: 10px;
+/* Footer Date */
+.card-footer-date {
+  font-size: 0.75rem;
+  color: #666;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 12px;
 }
 
-/* ======================================================
-   RESPONSIVE — TESTIMONIALS
-====================================================== */
-
-/* ================= TABLET (≤ 992px) ================= */
-@media (max-width: 992px) {
-
+/* Tablet (≤ 1024px) */
+@media (max-width: 1024px) {
   .testimonials-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 26px;
-    padding: 0 24px;
-  }
-}
-
-/* ================= SMALL TABLET (≤ 768px) ================= */
-@media (max-width: 768px) {
-
-  .testimonials-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 20px;
-    padding: 0 18px;
-  }
-
-  .testimonial-text {
-    font-size: 14px;
+    max-width: 680px;
+    margin: 0 auto;
   }
 }
 
-/* ================= LARGE PHONES (≤ 540px) ================= */
-@media (max-width: 540px) {
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* ✅ 2 per row */
-    gap: 14px;
-    padding: 0 12px;
+/* Mobile (≤ 640px) */
+@media (max-width: 640px) {
+  .testimonials-section {
+    margin: 40px auto 24px;
+    padding: 0 16px;
   }
-
   .testimonials-card {
-    padding: 14px;
-    border-radius: 12px;
+    padding: 20px 18px;
   }
-
-  .testimonial-header img {
-    width: 44px;
-    height: 44px;
-  }
-
-  .testimonial-header h3 {
-    font-size: 14px;
-  }
-
   .testimonial-text {
-    font-size: 13px;
-    line-height: 1.45;
-  }
-}
-
-/* ================= SMALL PHONES (≤ 480px) ================= */
-@media (max-width: 480px) {
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* ✅ 3 compact cards */
-    gap: 12px;
-    padding: 0 10px;
-  }
-
-  .testimonials-card {
-    padding: 12px;
-    border-radius: 10px;
-    box-shadow: none;
-  }
-
-  .testimonial-header {
-    gap: 6px;
-  }
-
-  .testimonial-header img {
-    width: 38px;
-    height: 38px;
-  }
-
-  .testimonial-header h3 {
-    font-size: 13px;
-  }
-
-  .verified,
-  .purchase {
-    font-size: 11px;
-  }
-
-  .testimonial-text {
-    font-size: 12.5px;
-    line-height: 1.35;
-    margin: 10px 0;
-  }
-
-  .rating {
-    font-size: 13px;
-    letter-spacing: 1px;
-  }
-
-  /* Disable hover effects on touch */
-  .testimonials-card:hover {
-    transform: none;
-    box-shadow: none;
-    border-color: rgba(255,255,255,0.06);
+    font-size: 0.88rem;
   }
 }
