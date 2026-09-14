@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../Context/ShopContext";
 import Breadcrums from "../Components/Breadcrums/Breadcrums";
@@ -8,15 +8,36 @@ import RelatedProducts from "../Components/RelatedProducts/RelatedProducts";
 import SEO from "../Components/SEO/SEO";
 import { SITE_URL } from "../config/seoConfig";
 import { createProductSlug, parseProductId } from "../utils/slugify";
+import axios from "axios";
 
 const Product = () => {
   const { all_product } = useContext(ShopContext);
   const { productId } = useParams();
 
+  const [ratingData, setRatingData] = useState({ avgRating: 0, count: 0 });
+
   const idNum = parseProductId(productId);
   const product = all_product.find(
     (item) => item.id === idNum
   );
+
+  useEffect(() => {
+    if (product?.id) {
+      axios
+        .get(`${import.meta.env.VITE_API_BACKEND_URL}/rating/${product.id}`)
+        .then((res) => {
+          if (res.data?.count > 0) {
+            setRatingData({
+              avgRating: res.data.avgRating,
+              count: res.data.count,
+            });
+          }
+        })
+        .catch(() => {
+          // Ignore network error for ratings
+        });
+    }
+  }, [product?.id]);
 
   // 🔒 Safety check
   if (!product) {
@@ -37,7 +58,7 @@ const Product = () => {
 
   const productSlug = createProductSlug(product.name, product.id);
   const categoryPath = product.category === 'men' ? '/mens' : product.category === 'women' ? '/womens' : '/kids';
-  const categoryName = product.category ? product.category.charAt(0).toUpperCase() + product.category.slice(1) : "Collection";
+  const categoryName = product.category ? (product.category === 'kid' ? 'Kids' : product.category.charAt(0).toUpperCase() + product.category.slice(1)) : "Collection";
   const image = product.image?.startsWith("http") ? product.image : `${SITE_URL}${product.image}`;
 
   const productSchema = {
@@ -65,6 +86,15 @@ const Product = () => {
       }
     }
   };
+
+  // Only attach aggregateRating if REAL rating data exists
+  if (ratingData.count > 0 && ratingData.avgRating > 0) {
+    productSchema.aggregateRating = {
+      "@type": "AggregateRating",
+      "ratingValue": ratingData.avgRating.toFixed(1),
+      "reviewCount": ratingData.count
+    };
+  }
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -115,4 +145,3 @@ const Product = () => {
 };
 
 export default Product;
-

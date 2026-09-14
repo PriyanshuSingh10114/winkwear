@@ -5,20 +5,20 @@
 /* Wrapper */
 .hero-wrapper {
   width: 100%;
-  height: 85vh;
-  min-height: 520px;
-  max-height: 900px;
-  overflow: hidden;
   position: relative;
   background: #000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Full-width hero image */
+/* Full-width hero image maintaining complete natural aspect ratio without clipping */
 .hero-full {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
+  max-height: 92vh;
+  object-fit: contain;
   display: block;
 }
 
@@ -27,15 +27,12 @@
 ================================ */
 @media (max-width: 1024px) {
   .hero-wrapper {
-    height: 65vh;
-    min-height: 420px;
-    max-height: 700px;
+    width: 100%;
   }
 
   .hero-full {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
   }
 }
 
@@ -44,16 +41,12 @@
 ================================ */
 @media (max-width: 640px) {
   .hero-wrapper {
-    height: 52svh;            /* stable on mobile browser UI */
-    min-height: 320px;
-    max-height: 500px;
+    width: 100%;
   }
 
   .hero-full {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    height: auto;
   }
 }
 
@@ -62,15 +55,11 @@
 ================================ */
 @media (max-width: 380px) {
   .hero-wrapper {
-    height: 48svh;
-    min-height: 280px;
-    max-height: 420px;
+    width: 100%;
   }
 
   .hero-full {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    height: auto;
   }
 }

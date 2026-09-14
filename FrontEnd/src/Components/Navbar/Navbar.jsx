@@ -22,11 +22,11 @@ const MEGA_MENU_DATA = {
   women: {
     title: "Women's Collection",
     categories: [
-      { name: "Dresses & Gowns", path: "/womens" },
-      { name: "Tops & Blouses", path: "/womens" },
-      { name: "Jackets & Coats", path: "/womens" },
-      { name: "Knitwear & Sweaters", path: "/womens" },
-      { name: "Blazers & Suits", path: "/womens" },
+      { name: "Dresses & Gowns", path: "/womens/dresses" },
+      { name: "Tops & Blouses", path: "/womens/tops" },
+      { name: "Jackets & Coats", path: "/womens/jackets" },
+      { name: "Knitwear & Sweaters", path: "/womens/sweaters" },
+      { name: "Blazers & Suits", path: "/womens/blazers" },
     ],
     featured: [
       { name: "Winter Streetwear Edit", badge: "NEW" },
@@ -38,11 +38,11 @@ const MEGA_MENU_DATA = {
   men: {
     title: "Men's Apparel",
     categories: [
-      { name: "Oversized T-Shirts", path: "/mens" },
-      { name: "Casual & Formal Shirts", path: "/mens" },
-      { name: "Jackets & Outerwear", path: "/mens" },
-      { name: "Hoodies & Sweatshirts", path: "/mens" },
-      { name: "Tailored Blazers & Suits", path: "/mens" },
+      { name: "Oversized T-Shirts", path: "/mens/tshirts" },
+      { name: "Casual & Formal Shirts", path: "/mens/shirts" },
+      { name: "Jackets & Outerwear", path: "/mens/jackets" },
+      { name: "Hoodies & Sweatshirts", path: "/mens/hoodies" },
+      { name: "Tailored Blazers & Suits", path: "/mens/blazers" },
     ],
     featured: [
       { name: "Urban Streetwear '26", badge: "NEW" },
@@ -54,9 +54,9 @@ const MEGA_MENU_DATA = {
   kids: {
     title: "Kids' Fashion",
     categories: [
-      { name: "Boys T-Shirts & Tops", path: "/kids" },
-      { name: "Girls Dresses & Skirts", path: "/kids" },
-      { name: "Cozy Hoodies & Jackets", path: "/kids" },
+      { name: "Boys T-Shirts & Tops", path: "/kids/tshirts" },
+      { name: "Girls Dresses & Skirts", path: "/kids/dresses" },
+      { name: "Cozy Hoodies & Jackets", path: "/kids/hoodies" },
       { name: "Play & Casual Wear", path: "/kids" },
     ],
     featured: [
@@ -200,9 +200,10 @@ const Navbar = () => {
 
   const getActiveTab = () => {
     const path = location.pathname;
-    if (path === "/mens") return "men";
-    if (path === "/womens") return "women";
-    if (path === "/kids") return "kids";
+    if (path.startsWith("/mens")) return "men";
+    if (path.startsWith("/womens")) return "women";
+    if (path.startsWith("/kids")) return "kids";
+    if (path.startsWith("/products")) return "products";
     if (path === "/wishlist") return "wishlist";
     if (path === "/cart") return "cart";
     return "shop";
@@ -355,6 +356,15 @@ const Navbar = () => {
             </li>
           );
         })}
+
+          <li className="nav-item">
+            <Link
+              to="/products"
+              className={`nav-link ${activeTab === "products" ? "active" : ""}`}
+            >
+              All Products
+            </Link>
+          </li>
         </ul>
 
         {/* ================= 3. RIGHT: ACTION ICONS ================= */}
@@ -635,6 +645,12 @@ const Navbar = () => {
                     )}
                   </li>
                 ))}
+
+                <li>
+                  <Link to="/products" onClick={() => setDrawerOpen(false)}>
+                    All Collections &amp; Products
+                  </Link>
+                </li>
 
                 <li>
                   <Link to="/wishlist" onClick={() => setDrawerOpen(false)}>

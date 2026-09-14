@@ -16,7 +16,9 @@ const SEO = ({
   const metaTitle = title || DEFAULT_SEO.title;
   const metaDescription = description || DEFAULT_SEO.description;
   const canonicalUrl = canonical ? `${SITE_URL}${canonical.startsWith('/') ? canonical : `/${canonical}`}` : SITE_URL;
-  const image = ogImage || DEFAULT_SEO.ogImage;
+  const image = ogImage
+    ? (ogImage.startsWith('http') ? ogImage : `${SITE_URL}${ogImage.startsWith('/') ? ogImage : `/${ogImage}`}`)
+    : DEFAULT_SEO.ogImage;
   const cardType = DEFAULT_SEO.twitterCard;
 
   return (

@@ -6,6 +6,7 @@ Allow: /
 Allow: /mens
 Allow: /womens
 Allow: /kids
+Allow: /products
 Allow: /about
 Allow: /contact
 Allow: /privacy-policy
@@ -14,8 +15,11 @@ Allow: /product/
 
 # Disallow Private User & Administrative Routes
 Disallow: /cart
+Disallow: /wishlist
 Disallow: /place-order
+Disallow: /payment-success
 Disallow: /orders
+Disallow: /Orders
 Disallow: /profile
 Disallow: /login
 Disallow: /admin

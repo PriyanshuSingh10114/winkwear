@@ -24,11 +24,11 @@
 
 .offers-scroll img {
   width: 100%;
-  height: clamp(280px, 34vw, 500px);
+  height: auto;
+  max-height: 90vh;
   display: block;
   border-radius: 19px;
-  object-fit: cover;
-  object-position: center 22%;
+  object-fit: contain;
   background: #151515;
 }
 
@@ -93,8 +93,7 @@
     padding: 28px 18px;
   }
   .offers-scroll img {
-    height: clamp(220px, 32vw, 360px);
-    object-position: center 20%;
+    height: auto;
   }
   .timer-box {
     padding: 14px 18px;
@@ -117,9 +116,8 @@
     border-radius: 14px;
   }
   .offers-scroll img {
-    height: clamp(180px, 48vw, 260px);
+    height: auto;
     border-radius: 13px;
-    object-position: center 15%;
   }
   .timer-box {
     top: auto;
@@ -147,7 +145,7 @@
 /* Micro Screen (≤ 380px) */
 @media (max-width: 380px) {
   .offers-scroll img {
-    height: 180px;
+    height: auto;
   }
   .timer-box {
     padding: 8px 10px;

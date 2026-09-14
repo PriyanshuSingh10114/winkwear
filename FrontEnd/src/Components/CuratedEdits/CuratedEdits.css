@@ -1,0 +1,186 @@
+/* =========================================================
+   CURATED STYLE EDITS — Luxury Fashion Moodboard Section
+   ========================================================= */
+
+.curated-edits-section {
+  width: 100%;
+  max-width: 1440px;
+  margin: 60px auto 40px;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.curated-edits-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.curated-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #d4a045;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.curated-edits-header h2 {
+  color: #ffffff;
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.curated-line {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4a045, transparent);
+  margin: 12px auto 14px;
+  border-radius: 99px;
+}
+
+.curated-edits-header p {
+  color: #a0a0a0;
+  font-size: 0.95rem;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* 4-Card Responsive Grid */
+.curated-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.curated-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.curated-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 160, 69, 0.45);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+}
+
+.curated-img-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.curated-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.curated-card:hover .curated-img-wrapper img {
+  transform: scale(1.06);
+}
+
+.curated-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(13, 13, 13, 0.9) 100%);
+  pointer-events: none;
+}
+
+.curated-content {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: #141414;
+}
+
+.curated-card-tag {
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  color: #d4a045;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.curated-content h3 {
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.curated-content p {
+  color: #8c8c8c;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+}
+
+.curated-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #d4a045;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: gap 0.25s ease;
+}
+
+.curated-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.25s ease;
+}
+
+.curated-card:hover .curated-cta {
+  gap: 12px;
+}
+
+.curated-card:hover .curated-arrow {
+  transform: translateX(4px);
+}
+
+/* Tablet (≤ 1024px) */
+@media (max-width: 1024px) {
+  .curated-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+}
+
+/* Mobile (≤ 640px) */
+@media (max-width: 640px) {
+  .curated-edits-section {
+    margin: 40px auto 24px;
+    padding: 0 16px;
+  }
+  .curated-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .curated-img-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+  .curated-content {
+    padding: 14px 16px 18px;
+  }
+}

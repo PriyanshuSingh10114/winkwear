@@ -45,6 +45,11 @@ export const PAGE_SEO = {
     description: "Have questions about your order or styling? Get in touch with the Wink & Wear customer support team.",
     canonical: "/contact",
   },
+  products: {
+    title: "All Clothing & Fashion Collections | Wink & Wear",
+    description: "Explore the complete fashion catalog at Wink & Wear. Shop curated clothing for men, women, and kids including t-shirts, shirts, dresses, jackets, and accessories.",
+    canonical: "/products",
+  },
   privacyPolicy: {
     title: "Privacy Policy | Wink & Wear",
     description: "Read the privacy policy of Wink & Wear to understand how we collect, protect, and handle your data.",
@@ -55,4 +60,30 @@ export const PAGE_SEO = {
     description: "Learn about hassle-free returns, exchanges, and refund policies at Wink & Wear.",
     canonical: "/return-exchange",
   },
+};
+
+/**
+ * Helper to generate subcategory SEO metadata
+ */
+export const getSubcategorySEO = (category, subcategory) => {
+  const genderMap = {
+    men: { name: "Men's", path: "/mens" },
+    women: { name: "Women's", path: "/womens" },
+    kid: { name: "Kids'", path: "/kids" },
+    kids: { name: "Kids'", path: "/kids" },
+  };
+
+  const gender = genderMap[category] || { name: "Fashion", path: "/products" };
+  const subFormatted = subcategory
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+
+  return {
+    title: `${gender.name} ${subFormatted} | Wink & Wear`,
+    description: `Shop the latest ${gender.name.toLowerCase()} ${subFormatted.toLowerCase()} at Wink & Wear. Premium quality, comfortable fit, and fast delivery across India.`,
+    canonical: `${gender.path}/${subcategory}`,
+    h1: `${gender.name} ${subFormatted}`,
+    intro: `Browse our handpicked collection of ${gender.name.toLowerCase()} ${subFormatted.toLowerCase()} crafted for superior comfort, durability, and contemporary style.`,
+  };
 };

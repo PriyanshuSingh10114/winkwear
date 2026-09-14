@@ -24,6 +24,22 @@ const getSitemap = async (req, res, next) => {
       { url: "/mens", priority: "0.9", changefreq: "daily" },
       { url: "/womens", priority: "0.9", changefreq: "daily" },
       { url: "/kids", priority: "0.8", changefreq: "daily" },
+      { url: "/products", priority: "0.9", changefreq: "daily" },
+      // Important Category Landing Pages
+      { url: "/womens/dresses", priority: "0.8", changefreq: "weekly" },
+      { url: "/womens/tops", priority: "0.8", changefreq: "weekly" },
+      { url: "/womens/jackets", priority: "0.8", changefreq: "weekly" },
+      { url: "/womens/sweaters", priority: "0.8", changefreq: "weekly" },
+      { url: "/womens/blazers", priority: "0.8", changefreq: "weekly" },
+      { url: "/mens/tshirts", priority: "0.8", changefreq: "weekly" },
+      { url: "/mens/shirts", priority: "0.8", changefreq: "weekly" },
+      { url: "/mens/jackets", priority: "0.8", changefreq: "weekly" },
+      { url: "/mens/hoodies", priority: "0.8", changefreq: "weekly" },
+      { url: "/mens/blazers", priority: "0.8", changefreq: "weekly" },
+      { url: "/kids/tshirts", priority: "0.7", changefreq: "weekly" },
+      { url: "/kids/dresses", priority: "0.7", changefreq: "weekly" },
+      { url: "/kids/hoodies", priority: "0.7", changefreq: "weekly" },
+      // Content Pages
       { url: "/about", priority: "0.5", changefreq: "monthly" },
       { url: "/contact", priority: "0.5", changefreq: "monthly" },
       { url: "/privacy-policy", priority: "0.3", changefreq: "yearly" },
@@ -63,25 +79,33 @@ const getSitemap = async (req, res, next) => {
 
 const getRobots = (req, res) => {
   const robotsTxt = `# https://winkandwear.com/robots.txt
+# Wink & Wear Search Engine Crawling Instructions
+
 User-agent: *
 Allow: /
 Allow: /mens
 Allow: /womens
 Allow: /kids
+Allow: /products
 Allow: /about
 Allow: /contact
 Allow: /privacy-policy
 Allow: /return-exchange
 Allow: /product/
 
+# Disallow Private User & Administrative Routes
 Disallow: /cart
+Disallow: /wishlist
 Disallow: /place-order
+Disallow: /payment-success
 Disallow: /orders
+Disallow: /Orders
 Disallow: /profile
 Disallow: /login
 Disallow: /admin
 Disallow: /api/
 
+# Sitemap Location
 Sitemap: https://winkandwear.com/sitemap.xml
 `;
   res.header("Content-Type", "text/plain");

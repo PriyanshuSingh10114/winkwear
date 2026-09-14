@@ -3,7 +3,7 @@ import SEO from '../Components/SEO/SEO'
 import { PAGE_SEO, SITE_URL } from '../config/seoConfig'
 import Hero from '../Components/Hero/Hero'
 import Popular from '../Components/Popular/Popular'
-import Offers from '../Components/Offers/Offers'
+import CuratedEdits from '../Components/CuratedEdits/CuratedEdits'
 import NewCollections from '../Components/NewCollections/NewCollections'
 import NewsLetter from '../Components/NewsLetter/NewsLetter'
 import CreatorPicks from '../Components/CreatorPicks/CreatorPicks'
@@ -47,7 +47,7 @@ const Shop = () => {
       />
       <Hero/>
       <Popular/>
-      <Offers/>
+      <CuratedEdits/>
       <NewCollections/>
       <FashionBlog/>
       <CreatorPicks/>
@@ -58,4 +58,4 @@ const Shop = () => {
   )
 }
 
-export default Shop
+export default Shop
