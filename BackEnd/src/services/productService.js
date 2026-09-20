@@ -26,12 +26,10 @@ const getAllProducts = async (filters = {}) => {
     query.available = filters.available;
   }
 
-  let dbQuery = Product.find(query)
-    .select("id name images category new_price old_price date available")
-    .lean();
+  let dbQuery = Product.find(query).lean();
 
   if (filters.limit) {
-    const limit = Math.min(Math.max(Number(filters.limit) || 20, 1), 100);
+    const limit = Math.min(Math.max(Number(filters.limit) || 20, 1), 1000);
     const page = Math.max(Number(filters.page) || 1, 1);
     const skip = (page - 1) * limit;
     dbQuery = dbQuery.skip(skip).limit(limit);
@@ -44,7 +42,6 @@ const getNewCollection = async () => {
   return await Product.find({ available: { $ne: false } })
     .sort({ date: -1, id: -1 })
     .limit(8)
-    .select("id name images category new_price old_price date available")
     .lean();
 };
 
@@ -52,7 +49,6 @@ const getPopularInWomen = async () => {
   return await Product.find({ category: "women", available: { $ne: false } })
     .sort({ date: -1, id: -1 })
     .limit(4)
-    .select("id name images category new_price old_price date available")
     .lean();
 };
 
@@ -63,3 +59,4 @@ module.exports = {
   getNewCollection,
   getPopularInWomen,
 };
+
